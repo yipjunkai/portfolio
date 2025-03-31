@@ -1,10 +1,24 @@
 {
-  "search.exclude": {
-    "**/.yarn": true,
-    "**/.pnp.*": true
+  "files.exclude": {
+    // Node.js
+    "node_modules": true,
+    "package-lock.json": true,
+    "yarn.lock": true,
+    ".yarn": true,
+    ".pnp.*": true,
+    // Next.js
+    ".next": true,
+    "next-env.d.ts": true,
+    // Plugins
+    "postcss.config.mjs": true,
+    // TypeScript
+    "tsconfig.json": true,
+    // Linter & Formatter
+    "eslint.config.mjs": true
   },
   "eslint.nodePath": ".yarn/sdks",
   "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
