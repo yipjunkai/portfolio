@@ -58,6 +58,7 @@ export default function MobileTopNav(props: {
         <div className="flex flex-col gap-6 p-4">
           {flatRoutes.map((route, index) => (
             <Link
+              onClick={() => setIsOpen(false)}
               href={route.href}
               key={route.name}
               className={`capitalize text-4xl first:mt-16 pl-8 last:mb-48 duration-150 ease-in transition-all ${
