@@ -4,6 +4,7 @@ import MobileTopNav from "@/components/nav/MobileTopNav";
 import {
   BriefcaseIcon,
   CodeBracketIcon,
+  EnvelopeIcon,
   HomeIcon,
 } from "@heroicons/react/24/outline";
 import type { Metadata } from "next";
@@ -64,6 +65,11 @@ export default function RootLayout({
       name: "Connect",
       routes: [
         {
+          name: "Email",
+          href: "mailto:junkai@gmail.com",
+          icon: <EnvelopeIcon className="w-4 h-4" />,
+        },
+        {
           name: "LinkedIn",
           href: "https://www.linkedin.com/in/yipjk/",
           icon: <LinkedinIcon className="w-4 h-4" />,
@@ -89,7 +95,9 @@ export default function RootLayout({
         >
           <Sidebar sections={sections} />
           <MobileTopNav sections={sections} />
-          <main className="grow bg-neutral-900">{children}</main>
+          <main className="grow bg-neutral-900 *:w-full *:max-w-[900px] *:mx-auto *:p-4 *:lg:p-0">
+            {children}
+          </main>
         </div>
       </body>
     </html>
