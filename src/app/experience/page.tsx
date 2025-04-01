@@ -49,3 +49,11 @@ export default function Experience() {
     </div>
   );
 }
+
+// TODO: Add dropdown for each experience
+// Dropdown show long description
+// Add chips for each technology used
+
+// TODO: (Extra) Make it visually a timeline
+
+// TODO: (Extra) On hover date, show tooltip
