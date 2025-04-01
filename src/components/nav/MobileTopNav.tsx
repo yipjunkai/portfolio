@@ -48,16 +48,24 @@ export default function MobileTopNav(props: {
         </div>
       </button>
       <div
-        className={`absolute top-0 left-0 w-full h-screen bg-background transition-all duration-500  ${
+        className={`absolute top-0 left-0 w-full h-screen bg-background transition-all duration-500 ${
           isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         }`}
+        style={{
+          transitionTimingFunction: "cubic-bezier(0.4, 0.1, 0.6, 1.0)",
+        }}
       >
         <div className="flex flex-col gap-6 p-4">
-          {flatRoutes.map((route) => (
+          {flatRoutes.map((route, index) => (
             <Link
               href={route.href}
               key={route.name}
-              className="capitalize text-4xl first:mt-16 pl-8 last:mb-48"
+              className={`capitalize text-4xl first:mt-16 pl-8 last:mb-48 duration-150 ease-in transition-all ${
+                isOpen ? "opacity-100" : "opacity-0 !delay-0"
+              }`}
+              style={{
+                transitionDelay: `${index * 0.1 + 0.4}s`,
+              }}
             >
               {route.name}
             </Link>
