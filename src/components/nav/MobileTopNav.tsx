@@ -36,7 +36,7 @@ export default function MobileTopNav(props: {
       {/* Menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute top-4 right-4 group flex h-10 w-10 cursor-pointer items-center justify-center z-10 lg:hidden"
+        className="absolute top-4 right-4 group flex h-10 w-10 cursor-pointer items-center justify-center z-50 lg:hidden"
       >
         <div className="space-y-2">
           <span
@@ -48,7 +48,7 @@ export default function MobileTopNav(props: {
         </div>
       </button>
       <div
-        className={`lg:hidden absolute top-0 left-0 w-full h-screen bg-background transition-all duration-500 ${
+        className={`lg:hidden z-40 absolute top-0 left-0 w-full h-screen bg-background transition-all duration-500 ${
           isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         }`}
         style={{
