@@ -17,15 +17,19 @@ export default function Home() {
           obcaecati nesciunt nemo numquam sapiente eaque autem facere
           asperiores, illo ad hic.
         </p>
-        <div className="flex flex-row gap-2 *:flex *:items-center *:gap-2">
+        <div className="flex flex-col lg:flex-row gap-4 *:flex *:items-center *:gap-4 *:text-2xl">
           <Link href="mailto:junkai@gmail.com" className="primary-button">
-            <EnvelopeIcon className="w-4 h-4" />
+            <EnvelopeIcon className="w-6 h-6" />
             <span>Email me</span>
           </Link>
-          <button className="secondary-button">
-            <ArrowDownTrayIcon className="w-4 h-4" />
+          <Link
+            href="https://bit.ly/resume"
+            className="secondary-button"
+            target="_blank"
+          >
+            <ArrowDownTrayIcon className="w-6 h-6" />
             <span>Download CV</span>
-          </button>
+          </Link>
         </div>
       </div>
     </div>
