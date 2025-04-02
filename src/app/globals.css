@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-grad-1: #ee696b;
+  --color-grad-2: #523a78;
 }
 
 @theme inline {
@@ -10,6 +12,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-grad-1: var(--color-grad-1);
+  --color-grad-2: var(--color-grad-2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +27,28 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .primary-button {
+    @apply px-4 py-2 rounded-md bg-gradient-to-r from-grad-1 to-grad-2 text-white dark:bg-none dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors;
+  }
+
+  .secondary-button {
+    @apply px-4 py-2 rounded-md relative
+    bg-gradient-to-r from-grad-1 to-grad-2
+    before:content-[''] before:absolute before:inset-[1px] before:bg-white before:rounded-md before:z-0
+    dark:before:hidden
+    dark:bg-none
+    dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors;
+  }
+
+  .secondary-button svg {
+    @apply z-10;
+  }
+
+  .secondary-button p,
+  .secondary-button span {
+    @apply bg-gradient-to-r from-grad-1 to-grad-2 z-10 bg-clip-text text-transparent dark:bg-none dark:text-white;
+  }
 }
