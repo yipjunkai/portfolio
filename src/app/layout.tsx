@@ -88,14 +88,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-neutral-900 z-0"></div>
+        <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-background dark:bg-neutral-900 z-0"></div>
         <div
           className="absolute left-1/2 -translate-x-1/2
          flex flex-col lg:flex-row h-screen w-full max-w-7xl mx-auto z-10 *:lg:h-full"
         >
           <Sidebar sections={sections} />
           <MobileTopNav sections={sections} />
-          <main className="grow bg-neutral-900 *:w-full *:max-w-[900px] *:mx-auto *:p-4 *:lg:p-0 *:mt-12 *:lg:mt-24">
+          <main className="grow bg-background dark:bg-neutral-900 *:w-full *:max-w-[900px] *:mx-auto *:p-4 *:lg:p-0 *:mt-12 *:lg:mt-24">
             {children}
           </main>
         </div>
@@ -115,11 +115,11 @@ const Sidebar = (props: {
   }[];
 }) => {
   return (
-    <nav className="w-48 p-4 hidden lg:flex flex-col">
+    <nav className="w-48 p-4 hidden lg:flex flex-col border-r border-neutral-200 dark:border-neutral-800">
       <input
         type="text"
         placeholder="Search"
-        className="rounded-md bg-neutral-800 py-1.5 px-4 w-[calc(100%+0.5rem)] -ml-2"
+        className="rounded-md bg-neutral-200 dark:bg-neutral-800 py-1.5 px-4 w-[calc(100%+0.5rem)] -ml-2"
       />
       <div className="flex flex-col gap-2 mt-4">
         {props.sections.map((section) => (
@@ -132,10 +132,10 @@ const Sidebar = (props: {
                 <Link
                   href={routes.href}
                   key={routes.name}
-                  className="hover:bg-neutral-800 p-2 -ml-2 rounded-md capitalize flex flex-row gap-4 justify-start items-center group transition-all *:transition-all duration-200 *:duration-200"
+                  className="hover:bg-neutral-200 dark:hover:bg-neutral-800 p-2 -ml-2 rounded-md capitalize flex flex-row gap-4 justify-start items-center group transition-all *:transition-all duration-200 *:duration-200"
                 >
                   {routes.icon}
-                  <span className="group-hover:text-white text-neutral-300">
+                  <span className="text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-white dark:text-neutral-300">
                     {routes.name}
                   </span>
                 </Link>
