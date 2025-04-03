@@ -1,13 +1,20 @@
-import { ArrowDownTrayIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
-import { MapPinIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowDownTrayIcon,
+  EnvelopeIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <div className="space-y-5">
-        <h1 className="text-5xl font-bold mb-3">Hey, I'm Jun Kai</h1>
-        <h2 className="text-2xl font-bold flex flex-row items-center gap-2">
+    <>
+      <div className="h-[calc(100vh-8rem)] md:h-min space-y-8">
+        <h1 className="md:font-bold">
+          <span className="text-3xl md:text-5xl">Hey, I'm </span>
+          <br className="block md:hidden" />
+          <span className="text-7xl md:text-5xl font-bold">Jun Kai</span>
+        </h1>
+        <h2 className="text-2xl font-mono flex flex-row items-center gap-2">
           <MapPinIcon className="w-6 h-6" />
           <span>Singapore</span>
         </h2>
@@ -32,6 +39,6 @@ export default function Home() {
           </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }

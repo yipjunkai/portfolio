@@ -31,7 +31,49 @@ body {
 
 @layer components {
   .primary-button {
-    @apply px-4 py-2 rounded-md bg-gradient-to-r from-grad-1 to-grad-2 text-white dark:bg-none dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors;
+    @apply px-4 py-2 rounded-md text-white
+    relative
+    transition-all overflow-visible *:z-10;
+
+    &::before {
+      content: "";
+      @apply absolute rounded-md -inset-0.5;
+
+      background-image: linear-gradient(
+        to right,
+        #ff8489,
+        var(--color-grad-1),
+        var(--color-grad-2),
+        #5f0a87,
+        var(--color-grad-1),
+        #ff8489
+      );
+      background-size: 600% 100%;
+      filter: blur(10px);
+      transition: opacity 0.2s ease-in-out;
+      opacity: 0;
+      z-index: 0;
+    }
+
+    background-image: linear-gradient(
+      to right,
+      #ff8489,
+      var(--color-grad-1),
+      var(--color-grad-2),
+      #5f0a87,
+      var(--color-grad-1),
+      #ff8489
+    );
+    background-size: 600% 100%;
+
+    &:hover {
+      animation: gradient-rotate 2s linear infinite;
+
+      &::before {
+        opacity: 1;
+        animation: gradient-rotate 2s linear infinite;
+      }
+    }
   }
 
   .secondary-button {
@@ -51,5 +93,14 @@ body {
 
     background-clip: text;
     -webkit-background-clip: text;
+  }
+}
+
+@keyframes gradient-rotate {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
   }
 }
