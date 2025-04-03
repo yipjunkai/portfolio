@@ -1,46 +1,48 @@
 export default function Experience() {
   const experiences = [
     {
-      company: "Google",
-      position: "Software Engineer",
-      startDate: new Date(2020, 0, 1),
-      endDate: new Date(2021, 0, 1),
+      company: "DSBJ Pte. Ltd.",
+      position: "Application & Data Developer Intern",
+      startDate: new Date(2024, 0, 1), // Jan 2024 (Month is 0-indexed)
+      endDate: new Date(2024, 6, 1), // Represents end of June 2024
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nLorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n- Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "• Implemented a model visualization and analysis platform with Al-driven insights in Python and Nextjs, enabling business units and data scientists to interact with and evaluate mathematical optimization and Al models.\n• Established a robust Single Sign On (SSO) backend framework, and unified authentication for two existing projects.\n• Designed an LLM-powered system using LangChain to extract insights from unstructured data.",
     },
     {
-      company: "Facebook",
-      position: "Software Engineer",
-      startDate: new Date(2021, 0, 1),
-      endDate: new Date(2022, 0, 1),
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      company: "Twitter",
-      position: "Software Engineer",
-      startDate: new Date(2022, 0, 1),
-      endDate: new Date(2023, 0, 1),
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      company: "Works Pte. Ltd.",
+      position: "Mobile Application & Web Application Developer, Intern",
+      startDate: new Date(2021, 1, 1), // Feb 2021
+      endDate: new Date(2021, 6, 1), // Represents end of June 2021
+      description:
+        "• Began as a Flutter mobile developer, brought onto Angular web team, and contributed 80% of the total codebase.\n• Collaborated to create features for both platforms, such as a chat interface, payment processing pages, mobile responsive Ul and other frontend Ul updates, ensuring cross platform feature parity.\n• Diagnosed and resolved user-reported bugs, eliminating 90% of non-fatal frontend errors in two weeks.",
     },
   ];
 
   return (
     <div className="space-y-8">
       <h1 className="text-4xl font-bold">Experience</h1>
-      <div className="flex flex-col gap-4">
+      <div className="space-y-12">
         {experiences.map((experience) => (
           <div key={experience.company} className="space-y-2">
             <h2 className="text-2xl font-bold">{experience.company}</h2>
-            <div className="flex flex-row justify-between">
-              <p className="text-neutral-400">{experience.position}</p>
-              <p className="text-neutral-400">
-                {experience.startDate.toLocaleDateString()}
+            <div className="flex flex-col lg:flex-row justify-between">
+              <p className="dark:text-neutral-400 font-mono">
+                {experience.position}
+              </p>
+              <p className="dark:text-neutral-400">
+                {experience.startDate.toLocaleDateString("en-US", {
+                  month: "short",
+                  year: "numeric",
+                })}
                 {" - "}
-                {experience.endDate.toLocaleDateString()}
+                {experience.endDate.toLocaleDateString("en-US", {
+                  month: "short",
+                  year: "numeric",
+                })}
               </p>
             </div>
 
-            <p className="text-sm text-neutral-400 whitespace-pre-wrap break-words">
+            <p className="text-sm dark:text-neutral-400 whitespace-pre-wrap break-words">
               {experience.description}
             </p>
           </div>
