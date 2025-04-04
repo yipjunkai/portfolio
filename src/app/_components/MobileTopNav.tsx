@@ -4,6 +4,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { JSX, useState } from "react";
+import favicon from "../favicon.ico";
 
 export default function MobileTopNav(props: {
   sections: {
@@ -22,7 +23,7 @@ export default function MobileTopNav(props: {
   return (
     <div className="relative">
       <nav className="w-full p-4 pl-6 flex flex-row lg:hidden justify-between items-center">
-        <Image src="/favicon.ico" alt="logo" width={28} height={28} />
+        <Image src={favicon} alt="logo" width={28} height={28} />
 
         <div className="flex flex-row gap-2 *:p-2">
           {/* Search button */}

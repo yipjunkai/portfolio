@@ -1,6 +1,6 @@
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { LinkedinIcon } from "@/components/icons/LinkedinIcon";
-import MobileTopNav from "@/components/nav/MobileTopNav";
+import MobileTopNav from "@/app/_components/MobileTopNav";
 import {
   BriefcaseIcon,
   CodeBracketIcon,
