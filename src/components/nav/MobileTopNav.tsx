@@ -48,7 +48,7 @@ export default function MobileTopNav(props: {
         </div>
       </button>
       <div
-        className={`lg:hidden z-40 absolute top-0 left-0 w-full h-screen bg-background transition-all duration-500 ${
+        className={`lg:hidden z-40 absolute top-0 left-0 w-full h-screen bg-background transition-all duration-500 overflow-y-auto ${
           isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         }`}
         style={{
