@@ -1,4 +1,4 @@
-import { isDatabase, isProgrammingLanguage } from "@/shared/techStack";
+import TechStackBubble from "@/components/shared/TechStackBubble";
 
 export default function Experience() {
   const experiences = [
@@ -8,8 +8,8 @@ export default function Experience() {
       startDate: new Date(2024, 0, 1), // Jan 2024 (Month is 0-indexed)
       endDate: new Date(2024, 6, 1), // Represents end of June 2024
       techStack: [
-        "Nextjs",
-        "Nestjs",
+        "Next.js",
+        "NestJS",
         "FastAPI",
         "Python",
         "Typescript",
@@ -57,18 +57,7 @@ export default function Experience() {
             </p>
             <div className="flex flex-wrap gap-2">
               {experience.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className={`${
-                    isProgrammingLanguage(tech)
-                      ? "bg-blue-200 dark:bg-blue-800"
-                      : isDatabase(tech)
-                        ? "bg-green-200 dark:bg-green-800"
-                        : "bg-orange-200 dark:bg-orange-800"
-                  } px-2 py-1 rounded-md text-sm`}
-                >
-                  {tech}
-                </span>
+                <TechStackBubble key={tech} tech={tech} />
               ))}
             </div>
           </div>
