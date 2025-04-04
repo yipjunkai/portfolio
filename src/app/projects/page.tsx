@@ -2,8 +2,8 @@ import TechStackBubble from "@/components/shared/TechStackBubble";
 import LaptopTemplate from "./_components/LaptopTemplate";
 import MobileTemplate from "./_components/MobileTemplate";
 import Image from "next/image";
-import oceanfrontHardwareLaptop from "./_assets/oceanfront-hardware-laptop.png";
-import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.png";
+import oceanfrontHardwareLaptop from "./_assets/oceanfront-hardware-laptop.webp";
+import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp";
 
 export default function Projects() {
   const projects = [
@@ -31,7 +31,7 @@ export default function Projects() {
         {projects.map((project) => (
           <div
             key={project.name}
-            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8"
           >
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">{project.name}</h2>
