@@ -29,6 +29,25 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+* {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: transparent #1f1f1f;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #1f1f1f;
+  border-radius: 20px;
+}
+
 @layer components {
   .primary-button {
     @apply px-4 py-2 rounded-md text-white
