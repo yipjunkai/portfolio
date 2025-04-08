@@ -5,6 +5,12 @@
   --foreground: #171717;
   --color-grad-1: #ee696b;
   --color-grad-2: #523a78;
+  --scrollbar-color: #1f1f1f;
+}
+
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -16,23 +22,10 @@
   --color-grad-2: var(--color-grad-2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 * {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: transparent #1f1f1f;
+  scrollbar-color: var(--scrollbar-color) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -44,7 +37,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #1f1f1f;
+  background-color: var(--scrollbar-color);
   border-radius: 20px;
 }
 

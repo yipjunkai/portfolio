@@ -12,6 +12,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { JSX } from "react";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,21 +85,23 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-background dark:bg-neutral-900 z-0"></div>
-        <div
-          className="absolute left-1/2 -translate-x-1/2
+        <ThemeProvider disableTransitionOnChange>
+          <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-background dark:bg-neutral-900 z-0"></div>
+          <div
+            className="absolute left-1/2 -translate-x-1/2
          flex flex-col lg:flex-row h-screen w-full max-w-7xl mx-auto z-10 *:lg:h-full"
-        >
-          <Sidebar sections={sections} />
-          <MobileTopNav sections={sections} />
-          <main className="grow bg-background dark:bg-neutral-900 *:w-full *:max-w-[900px] *:mx-auto *:px-4 *:mt-12 *:lg:mt-24 *:pb-24 overflow-y-auto">
-            {children}
-          </main>
-        </div>
+          >
+            <Sidebar sections={sections} />
+            <MobileTopNav sections={sections} />
+            <main className="grow bg-background dark:bg-neutral-900 *:w-full *:max-w-[900px] *:mx-auto *:px-4 *:mt-12 *:lg:mt-24 *:pb-24 overflow-y-auto">
+              {children}
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
