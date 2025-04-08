@@ -86,7 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-y-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-background dark:bg-neutral-900 z-0"></div>
         <div
