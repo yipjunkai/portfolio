@@ -48,17 +48,17 @@ export default function RootLayout({
         {
           name: "home",
           href: "/",
-          icon: <HomeIcon className="w-4 h-4" />,
+          icon: <HomeIcon className="size-4" />,
         },
         {
           name: "experience",
           href: "/experience",
-          icon: <BriefcaseIcon className="w-4 h-4" />,
+          icon: <BriefcaseIcon className="size-4" />,
         },
         {
           name: "projects",
           href: "/projects",
-          icon: <CodeBracketIcon className="w-4 h-4" />,
+          icon: <CodeBracketIcon className="size-4" />,
         },
       ],
     },
@@ -68,17 +68,17 @@ export default function RootLayout({
         {
           name: "Email",
           href: "mailto:junkai@gmail.com",
-          icon: <EnvelopeIcon className="w-4 h-4" />,
+          icon: <EnvelopeIcon className="size-4" />,
         },
         {
           name: "LinkedIn",
           href: "https://www.linkedin.com/in/yipjk/",
-          icon: <LinkedinIcon className="w-4 h-4" />,
+          icon: <LinkedinIcon className="size-4" />,
         },
         {
           name: "Github",
           href: "https://github.com/yipjunkai",
-          icon: <GithubIcon className="w-4 h-4" />,
+          icon: <GithubIcon className="size-4" />,
         },
       ],
     },
