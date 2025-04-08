@@ -22,6 +22,8 @@
   --color-grad-2: var(--color-grad-2);
 }
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 * {
   scroll-behavior: smooth;
   scrollbar-width: thin;
