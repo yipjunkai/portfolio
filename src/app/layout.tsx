@@ -13,6 +13,7 @@ import Link from "next/link";
 import { JSX } from "react";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import ThemeChanger from "./_components/ThemeChanger";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -83,7 +84,6 @@ export default function RootLayout({
       ],
     },
   ];
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -118,13 +118,13 @@ const Sidebar = (props: {
   }[];
 }) => {
   return (
-    <nav className="w-48 p-4 hidden lg:flex flex-col border-r border-neutral-200 dark:border-neutral-800 overflow-y-auto">
-      <input
-        type="text"
-        placeholder="Search"
-        className="rounded-md bg-neutral-200 dark:bg-neutral-800 py-1.5 px-4 w-[calc(100%+0.5rem)] -ml-2"
-      />
-      <div className="flex flex-col gap-2 mt-4">
+    <nav className="w-48 p-4 hidden lg:flex flex-col border-r border-neutral-200 dark:border-neutral-800 overflow-y-auto justify-between gap-20">
+      <div className="flex flex-col gap-4">
+        <input
+          type="text"
+          placeholder="Search"
+          className="rounded-md bg-neutral-200 dark:bg-neutral-800 py-1.5 px-4 w-[calc(100%+0.5rem)] -ml-2"
+        />
         {props.sections.map((section) => (
           <div key={section.name} className="not-first:mt-4">
             <h2 className="text-xs font-bold uppercase text-neutral-600">
@@ -147,6 +147,7 @@ const Sidebar = (props: {
           </div>
         ))}
       </div>
+      <ThemeChanger />
     </nav>
   );
 };
