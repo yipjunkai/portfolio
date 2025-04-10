@@ -14,6 +14,8 @@ import { JSX } from "react";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import ThemeChanger from "./_components/ThemeChanger";
+import favicon from "./icon.svg";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -125,6 +127,11 @@ const Sidebar = (props: {
           placeholder="Search"
           className="rounded-md bg-neutral-300 dark:bg-neutral-800 py-1.5 px-4 w-[calc(100%+0.5rem)] -ml-2 outline-1 outline-neutral-400 dark:outline-neutral-800"
         /> */}
+        {/* SVG: favicon */}
+        <div className="flex flex-row gap-1 items-center -ml-2">
+          <Image src={favicon} alt="logo" className="size-8 md:size-12" />
+          <span className="font-mono text-lg">Portfolio</span>
+        </div>
         {props.sections.map((section) => (
           <div key={section.name} className="not-first:mt-4">
             <h2 className="text-xs font-bold uppercase text-neutral-600 dark:text-neutral-400">

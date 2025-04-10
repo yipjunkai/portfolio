@@ -1,10 +1,9 @@
 "use client";
 
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { JSX, useState } from "react";
-import favicon from "../favicon.ico";
+import favicon from "../icon.svg";
 import ThemeChanger from "./ThemeChanger";
 export default function MobileTopNav(props: {
   sections: {
@@ -23,7 +22,8 @@ export default function MobileTopNav(props: {
   return (
     <div className="relative">
       <nav className="w-full p-4 pl-6 flex flex-row lg:hidden justify-between items-center bg-gray-50 dark:bg-[#131313] border-b border-neutral-300 dark:border-neutral-800">
-        <Image src={favicon} alt="logo" width={28} height={28} />
+        {/* SVG: favicon */}
+        <Image src={favicon} alt="logo" className="size-8 md:size-12" />
 
         <div className="flex flex-row gap-2 *:p-2">
           {/* Search button */}
