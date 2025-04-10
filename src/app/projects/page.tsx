@@ -11,7 +11,11 @@ export default function Projects() {
       name: "Oceanfront Hardware",
       role: "Developer",
       description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae dolor error totam dolores dolorem labore distinctio necessitatibus molestias. Iure architecto assumenda quod voluptatum voluptas nemo molestias suscipit, cum deleniti veritatis.\n\nLorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae dolor error totam dolores dolorem labore distinctio necessitatibus molestias. Iure architecto assumenda quod voluptatum voluptas nemo molestias suscipit, cum deleniti veritatis.",
+        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae dolor error totam dolores dolorem labore distinctio necessitatibus molestias. \n\nIure architecto assumenda quod voluptatum voluptas nemo molestias suscipit, cum deleniti veritatis.",
+      bulletPoints: [
+        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae dolor error totam dolores dolorem labore distinctio necessitatibus molestias. Iure architecto assumenda quod voluptatum voluptas nemo molestias suscipit, cum deleniti veritatis.",
+        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae dolor errasdasdasdads or totam dolores dolorem labore distinctio necessitatibus molestias. Iure architecto assumenda quod voluptatum voluptas nemo molestias suscipit, cum deleniti veritatis.",
+      ],
       techStack: ["Nuxt", "TypeScript", "Strapi", "Stripe"],
       laptopImage: oceanfrontHardwareLaptop,
       mobileImage: oceanfrontHardwareMobile,
@@ -38,6 +42,13 @@ export default function Projects() {
               <p className="whitespace-pre-wrap text-pretty text-justify">
                 {project.description}
               </p>
+              <ul className="list-disc list-inside">
+                {project.bulletPoints.map((bulletPoint) => (
+                  <li key={bulletPoint} className="text-pretty text-justify">
+                    {bulletPoint}
+                  </li>
+                ))}
+              </ul>
               <div className="flex flex-wrap gap-2">
                 {project.techStack.map((tech) => (
                   <TechStackBubble key={tech} tech={tech} />

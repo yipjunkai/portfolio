@@ -18,7 +18,12 @@ export default function Experience() {
         "PostgreSQL",
       ],
       description:
-        "• Implemented a model visualization and analysis platform with Al-driven insights in Python and Nextjs, enabling business units and data scientists to interact with and evaluate mathematical optimization and Al models.\n• Established a robust Single Sign On (SSO) backend framework, and unified authentication for two existing projects.\n• Designed an LLM-powered system using LangChain to extract insights from unstructured data.",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus assumenda dolor porro corporis nobis cupiditate, sunt sapiente, dolorum provident necessitatibus error sit modi molestiae explicabo laudantium iste placeat, debitis labore.",
+      bulletPoints: [
+        "Implemented a model visualization and analysis platform with Al-driven insights in Python and Nextjs, enabling business units and data scientists to interact with and evaluate mathematical optimization and Al models.",
+        "Established a robust Single Sign On (SSO) backend framework, and unified authentication for two existing projects.",
+        "Designed an LLM-powered system using LangChain to extract insights from unstructured data.",
+      ],
     },
     {
       company: "Works Pte. Ltd.",
@@ -27,7 +32,12 @@ export default function Experience() {
       endDate: new Date(2021, 6, 1), // Represents end of June 2021
       techStack: ["Flutter", "Angular", "Dart", "Typescript", "Firebase"],
       description:
-        "• Began as a Flutter mobile developer, brought onto Angular web team, and contributed 80% of the total codebase.\n• Collaborated to create features for both platforms, such as a chat interface, payment processing pages, mobile responsive Ul and other frontend Ul updates, ensuring cross platform feature parity.\n• Diagnosed and resolved user-reported bugs, eliminating 90% of non-fatal frontend errors in two weeks.",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro culpa placeat dolores quasi illo sint officia, cum, quis laborum architecto? Non, ad veniam porro a esse et modi mollitia.",
+      bulletPoints: [
+        "Began as a Flutter mobile developer, brought onto Angular web team, and contributed 80% of the total codebase.",
+        "Collaborated to create features for both platforms, such as a chat interface, payment processing pages, mobile responsive Ul and other frontend Ul updates, ensuring cross platform feature parity.",
+        "Diagnosed and resolved user-reported bugs, eliminating 90% of non-fatal frontend errors in two weeks.",
+      ],
     },
   ];
 
@@ -103,7 +113,16 @@ export default function Experience() {
               </p>
             </div>
             <h1 className="text-2xl font-bold">{experience.position}</h1>
-            <p className="whitespace-pre-wrap">{experience.description}</p>
+            <p className="whitespace-pre-wrap text-pretty text-justify">
+              {experience.description}
+            </p>
+            <ul className="list-disc list-inside">
+              {experience.bulletPoints.map((bulletPoint) => (
+                <li key={bulletPoint} className="text-pretty text-justify">
+                  {bulletPoint}
+                </li>
+              ))}
+            </ul>
             <div className="flex flex-wrap gap-2 lg:gap-4">
               {experience.techStack.map((tech) => (
                 <TechStackBubble key={tech} tech={tech} />
