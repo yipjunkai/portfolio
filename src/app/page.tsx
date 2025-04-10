@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <div className="h-[calc(100vh-8rem)] md:h-min space-y-8">
         <h1 className="md:font-bold">
-          <span className="text-3xl md:text-5xl">Hey, I'm </span>
+          <span className="text-3xl md:text-5xl">Hey, I&apos;m </span>
           <br className="block md:hidden" />
           <span className="text-7xl md:text-5xl font-bold">Jun Kai</span>
         </h1>
