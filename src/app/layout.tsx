@@ -97,7 +97,7 @@ export default function RootLayout({
           >
             <Sidebar sections={sections} />
             <MobileTopNav sections={sections} />
-            <main className="grow bg-gray-50 dark:bg-[#131313] *:w-full *:max-w-[900px] *:mx-auto *:px-4 *:mt-12 *:lg:mt-24 *:pb-24 overflow-y-auto">
+            <main className="grow bg-gray-50 dark:bg-[#131313] *:w-full *:max-w-[900px] *:mx-auto *:px-8 *:md:px-6 *:lg:px-4 *:mt-12 *:lg:mt-24 *:pb-24 overflow-y-auto">
               {children}
             </main>
           </div>
