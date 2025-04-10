@@ -6,9 +6,9 @@ import {
 import Link from "next/link";
 
 export default function Home() {
-  const EMAIL = "yipjunkai@gmail.com";
+  const EMAIL = "hello@yipjunkai.com";
   const CV_URL =
-    "https://drive.google.com/file/d/1xs53HzVF1gMVlHwV3xeOnM_Qw5N0lY93/view?usp=sharing";
+    "https://drive.google.com/file/d/1GX6PJwhGFxjW6eEtaDDV7MYaZxfKXNxp/view?usp=sharing";
 
   const ABOUT_ME =
     "Software developer with a passion for frontend technologies.\n\nExtensive experience in Web, Mobile application and Desktop application development; in both frontend and backend, both at startup and large company. Adept understanding of AI/ML gained through research project.";

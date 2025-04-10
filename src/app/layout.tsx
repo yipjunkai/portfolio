@@ -70,7 +70,7 @@ export default function RootLayout({
       routes: [
         {
           name: "Email",
-          href: "mailto:yipjunkai@gmail.com",
+          href: "mailto:hello@yipjunkai.com",
           icon: <EnvelopeIcon className="size-4" />,
         },
         {
