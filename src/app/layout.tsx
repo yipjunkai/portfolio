@@ -68,7 +68,7 @@ export default function RootLayout({
       routes: [
         {
           name: "Email",
-          href: "mailto:junkai@gmail.com",
+          href: "mailto:yipjunkai@gmail.com",
           icon: <EnvelopeIcon className="size-4" />,
         },
         {
@@ -136,6 +136,7 @@ const Sidebar = (props: {
                   href={routes.href}
                   key={routes.name}
                   className="hover:bg-neutral-300 dark:hover:bg-neutral-800 p-2 -ml-2 rounded-md capitalize flex flex-row gap-4 justify-start items-center group transition-all *:transition-all duration-200 *:duration-200"
+                  target={routes.href.includes("http") ? "_blank" : "_self"}
                 >
                   {routes.icon}
                   <span className="text-neutral-800 dark:group-hover:text-white dark:text-neutral-200">

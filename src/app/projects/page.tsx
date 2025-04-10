@@ -5,6 +5,8 @@ import Image from "next/image";
 import oceanfrontHardwareLaptop from "./_assets/oceanfront-hardware-laptop.webp";
 import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp";
 import ImageCarousel from "./_components/ImageCarousel";
+import Link from "next/link";
+import { GlobeAltIcon } from "@heroicons/react/24/outline";
 
 export default function Projects() {
   const projects = [
@@ -12,10 +14,11 @@ export default function Projects() {
       name: "Oceanfront Hardware",
       role: "Developer",
       description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae dolor error totam dolores dolorem labore distinctio necessitatibus molestias. \n\nIure architecto assumenda quod voluptatum voluptas nemo molestias suscipit, cum deleniti veritatis.",
+        "Freelanced as a full-stack web developer for this hardware company. Focused on SEO performance and CMS integration.",
       bulletPoints: [
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae dolor error totam dolores dolorem labore distinctio necessitatibus molestias. Iure architecto assumenda quod voluptatum voluptas nemo molestias suscipit, cum deleniti veritatis.",
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae dolor errasdasdasdads or totam dolores dolorem labore distinctio necessitatibus molestias. Iure architecto assumenda quod voluptatum voluptas nemo molestias suscipit, cum deleniti veritatis.",
+        "Developed a company website with e-commerce functionality in two months using Vue.js (Vite), and Strapi CMS, with Stripe for payment processing",
+        "Adopted Meilisearch to upgrade search functionality, reducing query response time from 700ms to 20ms",
+        "Migrated frontend to Nuxtjs, leveraged server-side rendering (SSR) enhancing SEO and page load speed to 800ms",
       ],
       techStack: ["Nuxt", "TypeScript", "Strapi", "Stripe"],
       laptopImage: {
@@ -26,18 +29,13 @@ export default function Projects() {
         src: oceanfrontHardwareMobile,
         alt: "OceanfrontHardware mobile view",
       },
+      link: "https://oceanfronthardware.com.sg/",
     },
   ];
 
   return (
     <div className="space-y-8">
       <h1 className="text-4xl font-bold">Projects</h1>
-      <div className="text-pretty text-justify">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos,
-        assumenda eum tempore reprehenderit libero asperiores rerum odio
-        quibusdam deserunt, est repellat ducimus commodi nemo tenetur similique
-        iure esse explicabo unde.
-      </div>
       <div className="flex flex-col gap-4">
         {projects.map((project) => (
           <div
@@ -46,9 +44,21 @@ export default function Projects() {
           >
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">{project.name}</h2>
-              <p className="whitespace-pre-wrap text-pretty text-justify">
-                {project.description}
-              </p>
+              {project.description.trim() !== "" && (
+                <p className="whitespace-pre-wrap text-pretty text-justify">
+                  {project.description}
+                </p>
+              )}
+              {project.link.trim() !== "" && (
+                <Link
+                  href={project.link}
+                  target="_blank"
+                  className="text-blue-600 dark:text-blue-400 underline flex flex-row items-center gap-1 hover:text-blue-700 dark:hover:text-blue-300"
+                >
+                  <GlobeAltIcon className="size-6" />
+                  <span>Website</span>
+                </Link>
+              )}
               <ul className="list-disc list-inside">
                 {project.bulletPoints.map((bulletPoint) => (
                   <li key={bulletPoint} className="text-pretty text-justify">

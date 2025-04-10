@@ -17,8 +17,7 @@ export default function Experience() {
         "Typescript",
         "PostgreSQL",
       ],
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus assumenda dolor porro corporis nobis cupiditate, sunt sapiente, dolorum provident necessitatibus error sit modi molestiae explicabo laudantium iste placeat, debitis labore.",
+      description: "",
       bulletPoints: [
         "Implemented a model visualization and analysis platform with Al-driven insights in Python and Nextjs, enabling business units and data scientists to interact with and evaluate mathematical optimization and Al models.",
         "Established a robust Single Sign On (SSO) backend framework, and unified authentication for two existing projects.",
@@ -31,8 +30,7 @@ export default function Experience() {
       startDate: new Date(2021, 1, 1), // Feb 2021
       endDate: new Date(2021, 6, 1), // Represents end of June 2021
       techStack: ["Flutter", "Angular", "Dart", "Typescript", "Firebase"],
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro culpa placeat dolores quasi illo sint officia, cum, quis laborum architecto? Non, ad veniam porro a esse et modi mollitia.",
+      description: "",
       bulletPoints: [
         "Began as a Flutter mobile developer, brought onto Angular web team, and contributed 80% of the total codebase.",
         "Collaborated to create features for both platforms, such as a chat interface, payment processing pages, mobile responsive Ul and other frontend Ul updates, ensuring cross platform feature parity.",
@@ -53,13 +51,12 @@ export default function Experience() {
       title: "Quantifying Uncertainty in Physics-Informed Neural Networks",
       contribution: ContributionLevel.firstAuthor,
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet repellat consequuntur iusto maxime molestias dolorum, sit numquam rerum dolor perferendis eius est quidem accusantium corrupti at, quis delectus harum commodi!",
-      date: new Date(2025, 6, 8),
+        "We integrate a state-of-the-art method to quantify aleatoric and epistemic uncertainties in physics-informed neural networks and observe that they can be captured effectively while maintaining predictive accuracy.",
       topics: [
         "Physics-Informed Neural Networks",
         "Uncertainty Quantification",
       ],
-      link: "",
+      link: "https://openreview.net/pdf?id=tXJ2G0g9HM",
     },
   ];
 
@@ -78,6 +75,19 @@ export default function Experience() {
             <p className="whitespace-pre-wrap text-pretty text-justify">
               {research.description}
             </p>
+            {research.link.trim() !== "" && (
+              <div className="flex flex-row items-center gap-2">
+                <span>Avaliable at: </span>
+                <Link
+                  href={research.link}
+                  target="_blank"
+                  className="text-blue-600 dark:text-blue-400 underline flex flex-row items-center gap-1 hover:text-blue-700 dark:hover:text-blue-300"
+                >
+                  <DocumentTextIcon className="size-6" />
+                  <span>Paper</span>
+                </Link>
+              </div>
+            )}
             <div className="flex flex-wrap gap-2 lg:gap-4">
               {research.topics.map((topic) => (
                 <span
@@ -113,9 +123,11 @@ export default function Experience() {
               </p>
             </div>
             <h1 className="text-2xl font-bold">{experience.position}</h1>
-            <p className="whitespace-pre-wrap text-pretty text-justify">
-              {experience.description}
-            </p>
+            {experience.description.trim() !== "" && (
+              <p className="whitespace-pre-wrap text-pretty text-justify">
+                {experience.description}
+              </p>
+            )}
             <ul className="list-disc list-inside">
               {experience.bulletPoints.map((bulletPoint) => (
                 <li key={bulletPoint} className="text-pretty text-justify">
