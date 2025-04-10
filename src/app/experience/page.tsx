@@ -1,4 +1,6 @@
 import TechStackBubble from "@/components/shared/TechStackBubble";
+import { DocumentTextIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function Experience() {
   const experiences = [
@@ -29,14 +31,81 @@ export default function Experience() {
     },
   ];
 
+  enum ContributionLevel {
+    firstAuthor = "First Author",
+    coAuthor = "Co-Author",
+    presenter = "Presenter",
+  }
+
+  const research = [
+    {
+      conference: "AI4X 2025, Singapore",
+      title: "Quantifying Uncertainty in Physics-Informed Neural Networks",
+      contribution: ContributionLevel.firstAuthor,
+      description:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet repellat consequuntur iusto maxime molestias dolorum, sit numquam rerum dolor perferendis eius est quidem accusantium corrupti at, quis delectus harum commodi!",
+      date: new Date(2025, 6, 8),
+      topics: [
+        "Physics-Informed Neural Networks",
+        "Uncertainty Quantification",
+      ],
+      link: "",
+    },
+  ];
+
   return (
     <div className="space-y-8">
+      <h1 className="text-4xl font-bold">Research</h1>
+      <div className="space-y-12">
+        {research.map((research) => (
+          <div key={research.conference} className="space-y-4">
+            <div className="flex flex-row justify-between gap-2">
+              <div className="flex flex-col">
+                <h2 className="font-mono text-lg mb-2">
+                  {research.conference}
+                </h2>
+                <p className="dark:text-neutral-400 text-2xl font-bold">
+                  {research.title}
+                </p>
+              </div>
+              <Link href={research.link} className="place-self-center">
+                <DocumentTextIcon className="size-12" />
+              </Link>
+            </div>
+            <div className="flex flex-row justify-between gap-2">
+              <p className="dark:text-neutral-400 w-4/5 line-clamp-2">
+                {research.contribution}
+              </p>
+              <p className="dark:text-neutral-400 w-1/5 text-right">
+                {research.date.toLocaleDateString("en-US", {
+                  month: "short",
+                  year: "numeric",
+                })}
+              </p>
+            </div>
+            <p className="dark:text-neutral-400 whitespace-pre-wrap break-words">
+              {research.description}
+            </p>
+            <div className="flex flex-wrap gap-2 lg:gap-4">
+              {research.topics.map((topic) => (
+                <span
+                  key={topic}
+                  className="from-grad-1 to-grad-2 bg-gradient-to-r px-2 py-1 rounded-md text-sm text-white"
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="my-12 md:my-16 lg:my-20 w-full h-[1px] bg-gray-800 dark:bg-neutral-600" />
       <h1 className="text-4xl font-bold">Experience</h1>
       <div className="space-y-12">
         {experiences.map((experience) => (
           <div key={experience.company} className="space-y-4">
             <h2 className="font-mono text-lg mb-2">{experience.company}</h2>
-            <div className="flex flex-col lg:flex-row justify-between gap-2">
+            <div className="flex flex-col lg:flex-row justify-between gap-2 lg:items-center">
               <p className="dark:text-neutral-400 text-2xl font-bold">
                 {experience.position}
               </p>
@@ -55,7 +124,7 @@ export default function Experience() {
             <p className="dark:text-neutral-400 whitespace-pre-wrap break-words">
               {experience.description}
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 lg:gap-4">
               {experience.techStack.map((tech) => (
                 <TechStackBubble key={tech} tech={tech} />
               ))}
