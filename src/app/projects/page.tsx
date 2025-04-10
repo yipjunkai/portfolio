@@ -4,6 +4,7 @@ import MobileTemplate from "./_components/MobileTemplate";
 import Image from "next/image";
 import oceanfrontHardwareLaptop from "./_assets/oceanfront-hardware-laptop.webp";
 import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp";
+import ImageCarousel from "./_components/ImageCarousel";
 
 export default function Projects() {
   const projects = [
@@ -17,8 +18,14 @@ export default function Projects() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae dolor errasdasdasdads or totam dolores dolorem labore distinctio necessitatibus molestias. Iure architecto assumenda quod voluptatum voluptas nemo molestias suscipit, cum deleniti veritatis.",
       ],
       techStack: ["Nuxt", "TypeScript", "Strapi", "Stripe"],
-      laptopImage: oceanfrontHardwareLaptop,
-      mobileImage: oceanfrontHardwareMobile,
+      laptopImage: {
+        src: oceanfrontHardwareLaptop,
+        alt: "OceanfrontHardware desktop view",
+      },
+      mobileImage: {
+        src: oceanfrontHardwareMobile,
+        alt: "OceanfrontHardware mobile view",
+      },
     },
   ];
 
@@ -55,26 +62,30 @@ export default function Projects() {
                 ))}
               </div>
             </div>
-            <MobileTemplate>
+            <MobileTemplate className="hidden md:block">
               <Image
-                src={project.mobileImage}
-                alt={project.name}
+                src={project.mobileImage.src}
+                alt={project.mobileImage.alt}
                 style={{
                   objectFit: "cover",
                   objectPosition: "50% 0%",
                 }}
               />
             </MobileTemplate>
-            <LaptopTemplate className="md:col-span-2">
+            <LaptopTemplate className="md:col-span-2 hidden md:block">
               <Image
-                src={project.laptopImage}
-                alt={project.name}
+                src={project.laptopImage.src}
+                alt={project.laptopImage.alt}
                 style={{
                   objectFit: "cover",
                   objectPosition: "50% 0%",
                 }}
               />
             </LaptopTemplate>
+            <ImageCarousel
+              images={[project.mobileImage, project.laptopImage]}
+              className="md:hidden"
+            />
           </div>
         ))}
       </div>
