@@ -90,14 +90,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider disableTransitionOnChange>
-          <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-background dark:bg-neutral-900 z-0"></div>
+          <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-white dark:bg-[#131313] z-0"></div>
           <div
             className="absolute left-1/2 -translate-x-1/2
          flex flex-col lg:flex-row h-screen w-full max-w-7xl mx-auto z-10 *:lg:h-full"
           >
             <Sidebar sections={sections} />
             <MobileTopNav sections={sections} />
-            <main className="grow bg-background dark:bg-neutral-900 *:w-full *:max-w-[900px] *:mx-auto *:px-4 *:mt-12 *:lg:mt-24 *:pb-24 overflow-y-auto">
+            <main className="grow bg-gray-50 dark:bg-[#131313] *:w-full *:max-w-[900px] *:mx-auto *:px-4 *:mt-12 *:lg:mt-24 *:pb-24 overflow-y-auto">
               {children}
             </main>
           </div>
@@ -118,16 +118,16 @@ const Sidebar = (props: {
   }[];
 }) => {
   return (
-    <nav className="w-48 p-4 hidden lg:flex flex-col border-r border-neutral-200 dark:border-neutral-800 overflow-y-auto justify-between gap-20">
+    <nav className="w-48 p-4 hidden lg:flex flex-col border-r border-neutral-300 dark:border-neutral-800 overflow-y-auto justify-between gap-20">
       <div className="flex flex-col gap-4">
-        <input
+        {/* <input
           type="text"
           placeholder="Search"
-          className="rounded-md bg-neutral-200 dark:bg-neutral-800 py-1.5 px-4 w-[calc(100%+0.5rem)] -ml-2"
-        />
+          className="rounded-md bg-neutral-300 dark:bg-neutral-800 py-1.5 px-4 w-[calc(100%+0.5rem)] -ml-2 outline-1 outline-neutral-400 dark:outline-neutral-800"
+        /> */}
         {props.sections.map((section) => (
           <div key={section.name} className="not-first:mt-4">
-            <h2 className="text-xs font-bold uppercase text-neutral-600">
+            <h2 className="text-xs font-bold uppercase text-neutral-600 dark:text-neutral-400">
               {section.name}
             </h2>
             <div className="flex flex-col gap-2 py-2">
@@ -135,10 +135,10 @@ const Sidebar = (props: {
                 <Link
                   href={routes.href}
                   key={routes.name}
-                  className="hover:bg-neutral-200 dark:hover:bg-neutral-800 p-2 -ml-2 rounded-md capitalize flex flex-row gap-4 justify-start items-center group transition-all *:transition-all duration-200 *:duration-200"
+                  className="hover:bg-neutral-300 dark:hover:bg-neutral-800 p-2 -ml-2 rounded-md capitalize flex flex-row gap-4 justify-start items-center group transition-all *:transition-all duration-200 *:duration-200"
                 >
                   {routes.icon}
-                  <span className="text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-white dark:text-neutral-300">
+                  <span className="text-neutral-800 dark:group-hover:text-white dark:text-neutral-200">
                     {routes.name}
                   </span>
                 </Link>

@@ -22,16 +22,16 @@ export default function MobileTopNav(props: {
 
   return (
     <div className="relative">
-      <nav className="w-full p-4 pl-6 flex flex-row lg:hidden justify-between items-center">
+      <nav className="w-full p-4 pl-6 flex flex-row lg:hidden justify-between items-center bg-gray-50 dark:bg-[#131313] border-b border-neutral-300 dark:border-neutral-800">
         <Image src={favicon} alt="logo" width={28} height={28} />
 
         <div className="flex flex-row gap-2 *:p-2">
           {/* Search button */}
-          <button>
-            <MagnifyingGlassIcon className="w-6 h-6 md:w-8 md:h-8" />
-          </button>
+          {/* <button>
+            <MagnifyingGlassIcon className="size-6 md:size-8" />
+          </button> */}
 
-          <div className="w-10"></div>
+          <div className="size-10 md:size-12"></div>
         </div>
       </nav>
       {/* Menu button */}
@@ -71,7 +71,14 @@ export default function MobileTopNav(props: {
             {route.name}
           </Link>
         ))}
-        <ThemeChanger className="mt-24" />
+        <ThemeChanger
+          className={`mt-24 duration-150 ease-in transition-all ${
+            isOpen ? "opacity-100" : "opacity-0 !delay-0"
+          }`}
+          style={{
+            transitionDelay: `${flatRoutes.length * 0.1 + 0.4}s`,
+          }}
+        />
       </div>
     </div>
   );

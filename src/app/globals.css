@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #e5e7eb;
   --foreground: #171717;
   --color-grad-1: #ee696b;
   --color-grad-2: #523a78;
@@ -71,18 +71,11 @@
 
     background-image: linear-gradient(
       to right,
-      #ff8489,
       var(--color-grad-1),
-      var(--color-grad-2),
-      #5f0a87,
-      var(--color-grad-1),
-      #ff8489
+      var(--color-grad-2)
     );
-    background-size: 600% 100%;
 
     &:hover {
-      animation: gradient-rotate 2s linear infinite;
-
       &::before {
         opacity: 1;
         animation: gradient-rotate 2s linear infinite;
