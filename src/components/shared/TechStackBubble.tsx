@@ -64,7 +64,7 @@ export default function TechStackBubble({ tech }: { tech: string }) {
   };
 
   return (
-    <span className={`${isOfType(tech)} px-2 py-1 rounded-md text-sm`}>
+    <span className={`${isOfType(tech)} px-2 py-1 rounded-md dark:text-white`}>
       {tech}
     </span>
   );

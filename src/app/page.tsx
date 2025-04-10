@@ -18,7 +18,7 @@ export default function Home() {
           <MapPinIcon className="size-6" />
           <span>Singapore</span>
         </h2>
-        <p className="text-neutral-400">
+        <p className="text-pretty text-justify">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat
           nihil at pariatur voluptas fugit necessitatibus, culpa eveniet quos
           obcaecati nesciunt nemo numquam sapiente eaque autem facere

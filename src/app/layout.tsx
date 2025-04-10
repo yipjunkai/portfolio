@@ -90,7 +90,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider disableTransitionOnChange>
-          <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-white dark:bg-[#131313] z-0"></div>
+          <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-gray-50 dark:bg-[#131313] z-0"></div>
           <div
             className="absolute left-1/2 -translate-x-1/2
          flex flex-col lg:flex-row h-screen w-full max-w-7xl mx-auto z-10 *:lg:h-full"
@@ -119,7 +119,7 @@ const Sidebar = (props: {
 }) => {
   return (
     <nav className="w-48 p-4 hidden lg:flex flex-col border-r border-neutral-300 dark:border-neutral-800 overflow-y-auto justify-between gap-20">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 pt-8">
         {/* <input
           type="text"
           placeholder="Search"

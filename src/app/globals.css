@@ -5,12 +5,13 @@
   --foreground: #171717;
   --color-grad-1: #ee696b;
   --color-grad-2: #523a78;
-  --scrollbar-color: #1f1f1f;
+  --scrollbar-color: #aeaeae;
 }
 
 [data-theme="dark"] {
   --background: #0a0a0a;
   --foreground: #ededed;
+  --scrollbar-color: #1f1f1f;
 }
 
 @theme inline {

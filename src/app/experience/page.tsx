@@ -58,39 +58,21 @@ export default function Experience() {
       <h1 className="text-4xl font-bold">Research</h1>
       <div className="space-y-12">
         {research.map((research) => (
-          <div key={research.conference} className="space-y-4">
-            <div className="flex flex-row justify-between gap-2">
-              <div className="flex flex-col">
-                <h2 className="font-mono text-lg mb-2">
-                  {research.conference}
-                </h2>
-                <p className="dark:text-neutral-400 text-2xl font-bold">
-                  {research.title}
-                </p>
-              </div>
-              <Link href={research.link} className="place-self-center">
-                <DocumentTextIcon className="size-12" />
-              </Link>
-            </div>
-            <div className="flex flex-row justify-between gap-2">
-              <p className="dark:text-neutral-400 w-4/5 line-clamp-2">
-                {research.contribution}
-              </p>
-              <p className="dark:text-neutral-400 w-1/5 text-right">
-                {research.date.toLocaleDateString("en-US", {
-                  month: "short",
-                  year: "numeric",
-                })}
-              </p>
-            </div>
-            <p className="dark:text-neutral-400 whitespace-pre-wrap break-words">
+          <div key={research.conference} className="space-y-4 lg:space-y-6">
+            <h1 className="font-mono text-lg mb-2 lg:mb-4">
+              <span>{research.conference}</span>
+              {" | "}
+              <span className="italic">{research.contribution}</span>
+            </h1>
+            <h2 className="text-2xl font-bold">{research.title}</h2>
+            <p className="whitespace-pre-wrap text-pretty text-justify">
               {research.description}
             </p>
             <div className="flex flex-wrap gap-2 lg:gap-4">
               {research.topics.map((topic) => (
                 <span
                   key={topic}
-                  className="from-grad-1 to-grad-2 bg-gradient-to-r px-2 py-1 rounded-md text-sm text-white"
+                  className="from-grad-1 to-grad-2 bg-gradient-to-r px-2 py-1 rounded-md text-white"
                 >
                   {topic}
                 </span>
@@ -104,12 +86,11 @@ export default function Experience() {
       <div className="space-y-12">
         {experiences.map((experience) => (
           <div key={experience.company} className="space-y-4">
-            <h2 className="font-mono text-lg mb-2">{experience.company}</h2>
-            <div className="flex flex-col lg:flex-row justify-between gap-2 lg:items-center">
-              <p className="dark:text-neutral-400 text-2xl font-bold">
-                {experience.position}
-              </p>
-              <p className="dark:text-neutral-400">
+            <div className="flex flex-row justify-between text-lg font-mono">
+              <h2 className="max-w-1/2 md:max-w-2/3 overflow-hidden text-ellipsis whitespace-nowrap">
+                {experience.company}
+              </h2>
+              <p className="tracking-tighter italic">
                 {experience.startDate.toLocaleDateString("en-US", {
                   month: "short",
                   year: "numeric",
@@ -121,9 +102,8 @@ export default function Experience() {
                 })}
               </p>
             </div>
-            <p className="dark:text-neutral-400 whitespace-pre-wrap break-words">
-              {experience.description}
-            </p>
+            <h1 className="text-2xl font-bold">{experience.position}</h1>
+            <p className="whitespace-pre-wrap">{experience.description}</p>
             <div className="flex flex-wrap gap-2 lg:gap-4">
               {experience.techStack.map((tech) => (
                 <TechStackBubble key={tech} tech={tech} />

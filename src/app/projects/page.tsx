@@ -21,7 +21,7 @@ export default function Projects() {
   return (
     <div className="space-y-8">
       <h1 className="text-4xl font-bold">Projects</h1>
-      <div className="dark:text-neutral-400">
+      <div className="text-pretty text-justify">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos,
         assumenda eum tempore reprehenderit libero asperiores rerum odio
         quibusdam deserunt, est repellat ducimus commodi nemo tenetur similique
@@ -35,7 +35,7 @@ export default function Projects() {
           >
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">{project.name}</h2>
-              <p className="dark:text-neutral-400 whitespace-pre-wrap overflow-hidden">
+              <p className="whitespace-pre-wrap text-pretty text-justify">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2">
