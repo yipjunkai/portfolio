@@ -4,7 +4,13 @@ import { CogIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-export default function ThemeChanger({ className }: { className?: string }) {
+export default function ThemeChanger({
+  className,
+  style,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   const { theme, setTheme } = useTheme();
 
   const [mounted, setMounted] = useState(false);
@@ -33,6 +39,7 @@ export default function ThemeChanger({ className }: { className?: string }) {
   return (
     <div
       className={`rounded-full bg-gradient-to-r from-grad-1 to-grad-2 p-1 flex items-center gap-2 lg:gap-1 w-min text-neutral-200 ${className} relative`}
+      style={style}
     >
       {buttons.map((button) => (
         <button
