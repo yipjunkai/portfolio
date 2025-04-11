@@ -1,6 +1,12 @@
 import TechStackBubble from "@/components/shared/TechStackBubble";
 import { DocumentTextIcon, GlobeAltIcon } from "@heroicons/react/24/outline";
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  description:
+    "My education, work and research experience | Computer Engineering (Honours)",
+};
 
 export default function Experience() {
   const experiences = [

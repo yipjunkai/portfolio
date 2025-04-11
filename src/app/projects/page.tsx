@@ -7,6 +7,12 @@ import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp"
 import ImageCarousel from "./_components/ImageCarousel";
 import Link from "next/link";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  description:
+    "Professional and freelance projects, outside of work | Web developer, AI/ML",
+};
 
 export default function Projects() {
   const projects = [
