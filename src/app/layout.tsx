@@ -16,6 +16,7 @@ import { ThemeProvider } from "next-themes";
 import ThemeChanger from "./_components/ThemeChanger";
 import favicon from "./icon.svg";
 import Image from "next/image";
+import { PostHogProvider } from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -91,19 +92,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        <ThemeProvider disableTransitionOnChange>
-          <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-gray-50 dark:bg-[#131313] z-0"></div>
-          <div
-            className="absolute left-1/2 -translate-x-1/2
+        <PostHogProvider>
+          <ThemeProvider disableTransitionOnChange>
+            <div className="hidden lg:block absolute left-1/2 w-1/2 h-full bg-gray-50 dark:bg-[#131313] z-0"></div>
+            <div
+              className="absolute left-1/2 -translate-x-1/2
          flex flex-col lg:flex-row h-screen w-full max-w-7xl mx-auto z-10 *:lg:h-full"
-          >
-            <Sidebar sections={sections} />
-            <MobileTopNav sections={sections} />
-            <main className="grow bg-gray-50 dark:bg-[#131313] *:w-full *:max-w-[900px] *:mx-auto *:px-8 *:md:px-6 *:lg:px-4 *:mt-12 *:lg:mt-24 *:pb-24 overflow-y-auto">
-              {children}
-            </main>
-          </div>
-        </ThemeProvider>
+            >
+              <Sidebar sections={sections} />
+              <MobileTopNav sections={sections} />
+              <main className="grow bg-gray-50 dark:bg-[#131313] *:w-full *:max-w-[900px] *:mx-auto *:px-8 *:md:px-6 *:lg:px-4 *:mt-12 *:lg:mt-24 *:pb-24 overflow-y-auto">
+                {children}
+              </main>
+            </div>
+          </ThemeProvider>
+        </PostHogProvider>
       </body>
     </html>
   );

@@ -1269,6 +1269,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"core-js@npm:^3.38.1":
+  version: 3.41.0
+  resolution: "core-js@npm:3.41.0"
+  checksum: 10c0/a29ed0b7fe81acf49d04ce5c17a1947166b1c15197327a5d12f95bbe84b46d60c3c13de701d808f41da06fa316285f3f55ce5903abc8d5642afc1eac4457afc8
+  languageName: node
+  linkType: hard
+
 "cross-spawn@npm:^7.0.6":
   version: 7.0.6
   resolution: "cross-spawn@npm:7.0.6"
@@ -1910,6 +1917,13 @@ __metadata:
     picomatch:
       optional: true
   checksum: 10c0/d13c10120e9625adf21d8d80481586200759928c19405a816b77dd28eaeb80e7c59c5def3e2941508045eb06d34eb47fad865ccc8bf98e6ab988bb0ed160fb6f
+  languageName: node
+  linkType: hard
+
+"fflate@npm:^0.4.8":
+  version: 0.4.8
+  resolution: "fflate@npm:0.4.8"
+  checksum: 10c0/29d1eddaaa5deab61b1c6b0d21282adacadbc4d2c01e94d8b1ee784398151673b9c563e53f97a801bc410a1ae55e8de5378114a743430e643e7a0644ba8e5a42
   languageName: node
   linkType: hard
 
@@ -3038,6 +3052,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^5.2.0"
     next: "npm:15.2.4"
     next-themes: "npm:^0.4.6"
+    posthog-js: "npm:^1.235.5"
     prettier: "npm:^3.5.3"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
@@ -3072,6 +3087,33 @@ __metadata:
     picocolors: "npm:^1.1.1"
     source-map-js: "npm:^1.2.1"
   checksum: 10c0/b75510d7b28c3ab728c8733dd01538314a18c52af426f199a3c9177e63eb08602a3938bfb66b62dc01350b9aed62087eabbf229af97a1659eb8d3513cec823b3
+  languageName: node
+  linkType: hard
+
+"posthog-js@npm:^1.235.5":
+  version: 1.235.5
+  resolution: "posthog-js@npm:1.235.5"
+  dependencies:
+    core-js: "npm:^3.38.1"
+    fflate: "npm:^0.4.8"
+    preact: "npm:^10.19.3"
+    web-vitals: "npm:^4.2.4"
+  peerDependencies:
+    "@rrweb/types": 2.0.0-alpha.17
+    rrweb-snapshot: 2.0.0-alpha.17
+  peerDependenciesMeta:
+    "@rrweb/types":
+      optional: true
+    rrweb-snapshot:
+      optional: true
+  checksum: 10c0/47000f778480e81189ffb5a0babc2279ca185c787b103eee917106a29b4d6e3a5f4b490eabd772ea954d62af781a01b6bb8fdc8d366f943f733f3987f37fa1be
+  languageName: node
+  linkType: hard
+
+"preact@npm:^10.19.3":
+  version: 10.26.5
+  resolution: "preact@npm:10.26.5"
+  checksum: 10c0/542a924009489c21b24e9588a5580dac03239a60951d10e6ad1207db66c8e719e1d46a38af6577c8f324b238fbe2aa92e0ffc04d3a71dbe182f56426c8abe632
   languageName: node
   linkType: hard
 
@@ -3860,6 +3902,13 @@ __metadata:
   dependencies:
     punycode: "npm:^2.1.0"
   checksum: 10c0/4ef57b45aa820d7ac6496e9208559986c665e49447cb072744c13b66925a362d96dd5a46c4530a6b8e203e5db5fe849369444440cb22ecfc26c679359e5dfa3c
+  languageName: node
+  linkType: hard
+
+"web-vitals@npm:^4.2.4":
+  version: 4.2.4
+  resolution: "web-vitals@npm:4.2.4"
+  checksum: 10c0/383c9281d5b556bcd190fde3c823aeb005bb8cf82e62c75b47beb411014a4ed13fa5c5e0489ed0f1b8d501cd66b0bebcb8624c1a75750bd5df13e2a3b1b2d194
   languageName: node
   linkType: hard
 
