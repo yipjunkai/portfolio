@@ -1,5 +1,5 @@
 import TechStackBubble from "@/components/shared/TechStackBubble";
-import { DocumentTextIcon } from "@heroicons/react/24/outline";
+import { DocumentTextIcon, GlobeAltIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 export default function Experience() {
@@ -60,6 +60,19 @@ export default function Experience() {
     },
   ];
 
+  const education = [
+    {
+      school: "Nanyang Technological University",
+      schoolLink: "https://www.ntu.edu.sg/",
+      degree: "Bachelor of Engineering (Honours), Computer Engineering",
+      description: "",
+      bulletPoints: [
+        "Elective Focus in Security & Artificial Intelligence",
+        "Minor in Business",
+      ],
+    },
+  ];
+
   return (
     <div className="space-y-8">
       <h1 className="text-4xl font-bold">Research</h1>
@@ -98,6 +111,38 @@ export default function Experience() {
                 </span>
               ))}
             </div>
+          </div>
+        ))}
+      </div>
+      <div className="my-12 md:my-16 lg:my-20 w-full h-[1px] bg-gray-800 dark:bg-neutral-600" />
+      <h1 className="text-4xl font-bold">Education</h1>
+      <div className="space-y-12">
+        {education.map((education) => (
+          <div key={education.school} className="space-y-4">
+            <h1 className="text-lg font-mono flex flex-row items-center gap-2">
+              <span>{education.school}</span>
+              {" | "}
+              <Link
+                href={education.schoolLink}
+                target="_blank"
+                className="text-blue-600 dark:text-blue-400 underline flex flex-row items-center gap-1 hover:text-blue-700 dark:hover:text-blue-300"
+              >
+                <GlobeAltIcon className="size-6" />
+              </Link>
+            </h1>
+            <h2 className="text-2xl font-bold">{education.degree}</h2>
+            {education.description.trim() !== "" && (
+              <p className="whitespace-pre-wrap text-pretty text-justify">
+                {education.description}
+              </p>
+            )}
+            <ul className="list-disc list-inside">
+              {education.bulletPoints.map((bulletPoint) => (
+                <li key={bulletPoint} className="text-pretty text-justify">
+                  {bulletPoint}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
