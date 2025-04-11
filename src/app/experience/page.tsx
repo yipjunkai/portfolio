@@ -101,6 +101,7 @@ export default function Experience() {
                   href={research.link}
                   target="_blank"
                   className="text-blue-600 dark:text-blue-400 underline flex flex-row items-center gap-1 hover:text-blue-700 dark:hover:text-blue-300"
+                  aria-label="Link to paper"
                 >
                   <DocumentTextIcon className="size-6" />
                   <span>Paper</span>
@@ -132,6 +133,7 @@ export default function Experience() {
                 href={education.schoolLink}
                 target="_blank"
                 className="text-blue-600 dark:text-blue-400 underline flex flex-row items-center gap-1 hover:text-blue-700 dark:hover:text-blue-300"
+                aria-label="Link to school"
               >
                 <GlobeAltIcon className="size-6" />
               </Link>

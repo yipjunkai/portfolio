@@ -46,6 +46,7 @@ export default function ThemeChanger({
           key={button.theme}
           onClick={() => setTheme(button.theme)}
           className={`z-20 p-1 rounded-full ${theme === button.theme ? "text-purple-600" : ""}`}
+          aria-label={`Button to change theme to ${button.theme}`}
         >
           {button.icon}
         </button>

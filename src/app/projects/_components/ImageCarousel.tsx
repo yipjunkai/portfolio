@@ -33,6 +33,7 @@ export default function ImageCarousel({
             key={index}
             className="bg-white size-4 rounded-full opacity-75 transition-opacity hover:opacity-100"
             href={`#image-${index}`}
+            aria-label={`Link to image ${index + 1}`}
           />
         ))}
       </div>
