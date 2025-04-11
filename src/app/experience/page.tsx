@@ -56,7 +56,7 @@ export default function Experience() {
         "Physics-Informed Neural Networks",
         "Uncertainty Quantification",
       ],
-      link: "https://openreview.net/pdf?id=tXJ2G0g9HM",
+      link: "",
     },
   ];
 
