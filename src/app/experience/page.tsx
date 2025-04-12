@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   description:
-    "My education, work and research experience | Computer Engineering (Honours)",
+    "My education, work and research experience | Computer Engineering (Honours) | SOTA AI research",
 };
 
 export default function Experience() {
