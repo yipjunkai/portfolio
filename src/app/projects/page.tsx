@@ -10,6 +10,7 @@ import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  title: "Projects",
   description:
     "Professional and freelance projects, outside of work | Web developer, AI/ML",
 };

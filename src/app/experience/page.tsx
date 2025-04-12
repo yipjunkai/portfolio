@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  title: "Experience",
   description:
     "My education, work and research experience | Computer Engineering (Honours) | SOTA AI research",
 };

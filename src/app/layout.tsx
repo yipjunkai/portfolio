@@ -29,7 +29,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yip Jun Kai",
+  title: {
+    template: "%s | Yip Jun Kai",
+    default: "Yip Jun Kai",
+  },
   description:
     "My portfolio | Software developer in Singapore, focused on frontend",
 };
