@@ -27,7 +27,7 @@ export default function Projects() {
         "Adopted Meilisearch to upgrade search functionality, reducing query response time from 700ms to 20ms",
         "Migrated frontend to Nuxtjs, leveraged server-side rendering (SSR) enhancing SEO and page load speed to 800ms",
       ],
-      techStack: ["Nuxt", "TypeScript", "Strapi", "Stripe"],
+      techStack: ["Nuxt", "Typescript", "Strapi", "Stripe"],
       laptopImage: {
         src: oceanfrontHardwareLaptop,
         alt: "OceanfrontHardware desktop view",

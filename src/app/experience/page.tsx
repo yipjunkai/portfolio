@@ -54,16 +54,18 @@ export default function Experience() {
 
   const research = [
     {
-      conference: "AI4X 2025, Singapore",
+      conference: "AI4X 2025 International Conference",
       title: "Quantifying Uncertainty in Physics-Informed Neural Networks",
       contribution: ContributionLevel.firstAuthor,
       description:
+        "We used deep evidential regression to quantify uncertainties in physics-informed neural networks, demonstrating it on the Burgers and Laplace experiments.",
+      abstract:
         "We integrate a state-of-the-art method to quantify aleatoric and epistemic uncertainties in physics-informed neural networks and observe that they can be captured effectively while maintaining predictive accuracy.",
       topics: [
         "Physics-Informed Neural Networks",
         "Uncertainty Quantification",
       ],
-      link: "",
+      link: "https://openreview.net/forum?id=tXJ2G0g9HM",
     },
   ];
 
@@ -94,6 +96,10 @@ export default function Experience() {
             <h2 className="text-2xl font-bold">{research.title}</h2>
             <p className="whitespace-pre-wrap text-pretty text-justify">
               {research.description}
+            </p>
+            <p className="italic whitespace-pre-wrap text-pretty text-justify line-clamp-3">
+              <span className="uppercase mr-4">abstract</span>
+              <span>{research.abstract}</span>
             </p>
             {research.link.trim() !== "" && (
               <div className="flex flex-row items-center gap-2">
@@ -160,8 +166,8 @@ export default function Experience() {
       <div className="space-y-12">
         {experiences.map((experience) => (
           <div key={experience.company} className="space-y-4">
-            <div className="flex flex-row justify-between text-lg font-mono">
-              <h2 className="max-w-1/2 md:max-w-2/3 overflow-hidden text-ellipsis whitespace-nowrap">
+            <div className="flex flex-col md:flex-row justify-between text-lg font-mono">
+              <h2 className="overflow-hidden text-ellipsis whitespace-nowrap">
                 {experience.company}
               </h2>
               <p className="tracking-tighter italic">
