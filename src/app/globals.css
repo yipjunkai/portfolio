@@ -87,8 +87,8 @@
   .secondary-button {
     @apply px-4 py-2 rounded-md relative
     bg-gradient-to-r from-grad-1 to-grad-2
-    before:content-[''] before:absolute before:inset-[1px] before:bg-white before:rounded-md before:z-0
-    dark:before:hidden dark:bg-none dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors;
+    before:content-[''] before:absolute before:inset-[2px] before:bg-white before:rounded-md before:z-0
+    dark:before:bg-neutral-900 transition-colors;
   }
 
   .secondary-button svg {
@@ -97,7 +97,7 @@
 
   .secondary-button p,
   .secondary-button span {
-    @apply bg-gradient-to-r from-grad-1 to-grad-2 z-10 bg-clip-text text-transparent dark:bg-none dark:text-white;
+    @apply bg-gradient-to-r from-grad-1 to-grad-2 z-10 bg-clip-text text-transparent dark:text-neutral-50;
 
     background-clip: text;
     -webkit-background-clip: text;
