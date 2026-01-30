@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { JSX, useState } from "react";
-import favicon from "@/app/icon.svg";
 import ThemeChanger from "./ThemeChanger";
 import { Link } from "@/i18n/navigation";
 export default function MobileTopNav(props: {
@@ -23,7 +22,13 @@ export default function MobileTopNav(props: {
     <div className="relative">
       <nav className="w-full p-4 pl-6 flex flex-row lg:hidden justify-between items-center bg-gray-50 dark:bg-[#131313] border-b border-neutral-300 dark:border-neutral-800">
         {/* SVG: favicon */}
-        <Image src={favicon} alt="logo" className="size-8 md:size-12" />
+        <Image
+          src="/logo.svg"
+          alt="logo"
+          className="size-8 md:size-12"
+          width={32}
+          height={32}
+        />
 
         <div className="flex flex-row gap-2 *:p-2">
           {/* Search button */}
@@ -62,7 +67,7 @@ export default function MobileTopNav(props: {
             href={route.href}
             key={route.name}
             className={`capitalize text-4xl md:text-5xl duration-150 ease-in transition-all ${
-              isOpen ? "opacity-100" : "opacity-0 !delay-0"
+              isOpen ? "opacity-100" : "opacity-0 delay-0!"
             }`}
             style={{
               transitionDelay: `${index * 0.1 + 0.4}s`,
@@ -73,7 +78,7 @@ export default function MobileTopNav(props: {
         ))}
         <ThemeChanger
           className={`mt-24 duration-150 ease-in transition-all ${
-            isOpen ? "opacity-100" : "opacity-0 !delay-0"
+            isOpen ? "opacity-100" : "opacity-0 delay-0!"
           }`}
           style={{
             transitionDelay: `${flatRoutes.length * 0.1 + 0.4}s`,

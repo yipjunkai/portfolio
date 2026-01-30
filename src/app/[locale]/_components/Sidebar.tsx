@@ -3,7 +3,6 @@
 import { JSX } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import favicon from "@/app/icon.svg";
 import { Link } from "@/i18n/navigation";
 import ThemeChanger from "./ThemeChanger";
 
@@ -29,7 +28,13 @@ export default function Sidebar(props: {
           /> */}
         {/* SVG: favicon */}
         <div className="flex flex-row gap-1 items-center -ml-2">
-          <Image src={favicon} alt="logo" className="size-8 md:size-12" />
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            className="size-8 md:size-12"
+            width={32}
+            height={32}
+          />
           <span className="font-mono text-lg">Portfolio</span>
         </div>
         {props.sections.map((section) => (
