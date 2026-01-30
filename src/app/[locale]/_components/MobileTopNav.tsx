@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { JSX, useState } from "react";
-import favicon from "../icon.svg";
+import favicon from "@/app/icon.svg";
 import ThemeChanger from "./ThemeChanger";
 export default function MobileTopNav(props: {
   sections: {

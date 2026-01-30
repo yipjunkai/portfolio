@@ -1,7 +1,7 @@
 import Link from "next/link";
-import undrawVibeCoding from "./_assets/undraw_vibe-coding_mjme.svg";
 import Image from "next/image";
 import { HomeIcon } from "@heroicons/react/24/outline";
+import undrawVibeCoding from "./_assets/undraw_vibe-coding_mjme.svg";
 
 export default function NotFound() {
   return (
