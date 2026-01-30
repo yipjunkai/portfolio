@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { JSX, useState } from "react";
 import favicon from "@/app/icon.svg";
 import ThemeChanger from "./ThemeChanger";
+import { Link } from "@/i18n/navigation";
 export default function MobileTopNav(props: {
   sections: {
     name: string;
