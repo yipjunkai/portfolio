@@ -1,9 +1,9 @@
+import { Link } from "@/i18n/navigation";
 import {
   ArrowDownTrayIcon,
   EnvelopeIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
-import Link from "next/link";
 
 export default function Home() {
   const EMAIL = "hello@yipjunkai.com";

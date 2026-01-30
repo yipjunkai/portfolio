@@ -4,7 +4,7 @@ import { JSX } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import favicon from "@/app/icon.svg";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import ThemeChanger from "./ThemeChanger";
 
 export default function Sidebar(props: {
