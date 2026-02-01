@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { ArrowDownTrayIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import { setRequestLocale } from "next-intl/server";
@@ -27,14 +28,18 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
         </h2>
         <p className="text-justify text-pretty whitespace-pre-line">{ABOUT_ME}</p>
         <div className="flex flex-col gap-4 *:flex *:items-center *:gap-4 *:text-2xl lg:flex-row">
-          <Link href={`mailto:${EMAIL}`} className="primary-button">
-            <EnvelopeIcon className="size-6" />
-            <span>Email me</span>
-          </Link>
-          <Link href={CV_URL} className="secondary-button" target="_blank">
-            <ArrowDownTrayIcon className="size-6" />
-            <span>Download CV</span>
-          </Link>
+          <Button variant="default" asChild>
+            <Link href={`mailto:${EMAIL}`}>
+              <EnvelopeIcon className="size-6" />
+              <span>Email me</span>
+            </Link>
+          </Button>
+          <Button variant="secondary" asChild>
+            <Link href={CV_URL} target="_blank">
+              <ArrowDownTrayIcon className="size-6" />
+              <span>Download CV</span>
+            </Link>
+          </Button>
         </div>
       </div>
     </>
