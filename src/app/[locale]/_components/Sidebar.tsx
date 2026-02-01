@@ -44,11 +44,11 @@ export default function Sidebar(props: {
                   className={`group -ml-2 flex flex-row items-center justify-start gap-4 rounded-md p-2 capitalize transition-all duration-200 *:transition-all *:duration-200 hover:bg-gray-300 dark:hover:bg-neutral-800 ${
                     pathname === route.href ? "bg-gray-300 dark:bg-neutral-800" : ""
                   }`}
-                  target={route.href.includes("http") ? "_blank" : "_self"}
+                  target={route.href.includes("http") || route.href.includes("mailto") ? "_blank" : "_self"}
                 >
                   {route.icon}
                   <span className="text-neutral-800 dark:text-neutral-200 dark:group-hover:text-white">{route.name}</span>
-                  {route.href.includes("http") && <ExternalLinkIcon className="ml-auto size-4" />}
+                  {(route.href.includes("http") || route.href.includes("mailto")) && <ExternalLinkIcon className="ml-auto size-4" />}
                 </Link>
               ))}
             </div>

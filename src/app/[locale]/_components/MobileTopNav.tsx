@@ -5,6 +5,7 @@ import { JSX, useState } from "react";
 import ThemeChanger from "./ThemeChanger";
 import { Link } from "@/i18n/navigation";
 import LanguageChanger from "./LanguageChanger";
+import { ExternalLinkIcon } from "lucide-react";
 export default function MobileTopNav(props: {
   sections: {
     name: string;
@@ -61,14 +62,16 @@ export default function MobileTopNav(props: {
             onClick={() => setIsOpen(false)}
             href={route.href}
             key={route.name}
-            className={`text-4xl capitalize transition-all duration-150 ease-in md:text-5xl ${
+            className={`flex flex-row items-center justify-between text-4xl capitalize transition-all duration-150 ease-in md:text-5xl ${
               isOpen ? "opacity-100" : "opacity-0 delay-0!"
             }`}
             style={{
               transitionDelay: `${index * 0.1 + 0.4}s`
             }}
+            target={route.href.includes("http") || route.href.includes("mailto") ? "_blank" : "_self"}
           >
-            {route.name}
+            <span>{route.name}</span>
+            {(route.href.includes("http") || route.href.includes("mailto")) && <ExternalLinkIcon className="size-6" />}
           </Link>
         ))}
         <div className="mt-auto flex flex-row items-center justify-between">
