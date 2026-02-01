@@ -6,6 +6,7 @@
 :root {
   --color-grad-1: #ee696b;
   --color-grad-2: #523a78;
+  --color-grad-3: #a855f7;
   --scrollbar-color: #aeaeae;
 }
 
@@ -16,6 +17,7 @@
 @theme inline {
   --color-grad-1: var(--color-grad-1);
   --color-grad-2: var(--color-grad-2);
+  --color-grad-3: var(--color-grad-3);
 }
 
 @keyframes gradient-rotate {
