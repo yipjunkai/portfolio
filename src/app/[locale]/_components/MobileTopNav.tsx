@@ -43,7 +43,7 @@ export default function MobileTopNav(props: {
             className={`block h-1 w-6 origin-center rounded-full bg-neutral-500 transition-transform ease-in-out md:w-8 ${isOpen ? "translate-y-1.5 rotate-45" : ""}`}
           ></span>
           <span
-            className={`block h-1 w-4 origin-center rounded-full bg-gradient-to-r from-grad-1 to-grad-2 transition-transform ease-in-out md:w-6 ${isOpen ? "w-6 -translate-y-1.5 -rotate-45 md:w-8" : ""}`}
+            className={`block h-1 w-4 origin-center rounded-full bg-linear-to-r from-grad-1 to-grad-2 transition-transform ease-in-out md:w-6 ${isOpen ? "w-6 -translate-y-1.5 -rotate-45 md:w-8" : ""}`}
           ></span>
         </div>
       </button>
