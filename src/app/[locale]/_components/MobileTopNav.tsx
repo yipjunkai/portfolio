@@ -50,7 +50,7 @@ export default function MobileTopNav(props: {
       <div
         className={`absolute top-0 left-0 z-40 h-screen w-full overflow-y-auto bg-background transition-all duration-500 lg:hidden ${
           isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-        } flex flex-col gap-6 pt-16 pb-48 *:ml-12 md:gap-8`}
+        } flex flex-col gap-6 py-16 *:mx-12 md:gap-8`}
         style={{
           transitionTimingFunction: "cubic-bezier(0.4, 0.1, 0.6, 1.0)"
         }}
@@ -71,7 +71,7 @@ export default function MobileTopNav(props: {
           </Link>
         ))}
         <ThemeChanger
-          className={`mt-24 transition-all duration-150 ease-in ${isOpen ? "opacity-100" : "opacity-0 delay-0!"}`}
+          className={`mt-auto transition-all duration-150 ease-in ${isOpen ? "opacity-100" : "opacity-0 delay-0!"}`}
           style={{
             transitionDelay: `${flatRoutes.length * 0.1 + 0.4}s`
           }}
