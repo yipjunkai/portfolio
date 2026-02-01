@@ -14,40 +14,14 @@ export default function TechStackBubble({ tech }: { tech: string }) {
     "C",
     "C#",
     "C++",
-    "Java",
+    "Java"
   ];
 
-  const backendFrameworks = [
-    "NestJS",
-    "FastAPI",
-    "Django",
-    "Flask",
-    "Express",
-    "Strapi",
-  ];
+  const backendFrameworks = ["NestJS", "FastAPI", "Django", "Flask", "Express", "Strapi"];
 
-  const databases = [
-    "PostgreSQL",
-    "Firebase",
-    "MySQL",
-    "MongoDB",
-    "Redis",
-    "SQLite",
-    "MariaDB",
-  ];
+  const databases = ["PostgreSQL", "Firebase", "MySQL", "MongoDB", "Redis", "SQLite", "MariaDB"];
 
-  const services = [
-    "Stripe",
-    "AWS",
-    "Azure",
-    "Google Cloud",
-    "Heroku",
-    "Vercel",
-    "Cloudflare",
-    "Digital Ocean",
-    "Linode",
-    "Vercel",
-  ];
+  const services = ["Stripe", "AWS", "Azure", "Google Cloud", "Heroku", "Vercel", "Cloudflare", "Digital Ocean", "Linode", "Vercel"];
 
   const isOfType = (tech: string) => {
     if (programmingLanguages.includes(tech)) {
@@ -63,9 +37,5 @@ export default function TechStackBubble({ tech }: { tech: string }) {
     }
   };
 
-  return (
-    <span className={`${isOfType(tech)} px-2 py-1 rounded-md dark:text-white`}>
-      {tech}
-    </span>
-  );
+  return <span className={`${isOfType(tech)} rounded-md px-2 py-1 dark:text-white`}>{tech}</span>;
 }

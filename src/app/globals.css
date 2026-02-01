@@ -28,15 +28,7 @@
       content: "";
       @apply absolute rounded-md -inset-0.5;
 
-      background-image: linear-gradient(
-        to right,
-        #ff8489,
-        var(--color-grad-1),
-        var(--color-grad-2),
-        #5f0a87,
-        var(--color-grad-1),
-        #ff8489
-      );
+      background-image: linear-gradient(to right, #ff8489, var(--color-grad-1), var(--color-grad-2), #5f0a87, var(--color-grad-1), #ff8489);
       background-size: 600% 100%;
       filter: blur(10px);
       transition: opacity 0.2s ease-in-out;
@@ -44,11 +36,7 @@
       z-index: 0;
     }
 
-    background-image: linear-gradient(
-      to right,
-      var(--color-grad-1),
-      var(--color-grad-2)
-    );
+    background-image: linear-gradient(to right, var(--color-grad-1), var(--color-grad-2));
 
     &:hover {
       &::before {

@@ -8,15 +8,15 @@ const nextConfig = {
     return [
       {
         source: "/relay-buRP/static/:path*",
-        destination: "https://eu-assets.i.posthog.com/static/:path*",
+        destination: "https://eu-assets.i.posthog.com/static/:path*"
       },
       {
         source: "/relay-buRP/:path*",
-        destination: "https://eu.i.posthog.com/:path*",
-      },
+        destination: "https://eu.i.posthog.com/:path*"
+      }
     ];
   },
-  skipTrailingSlashRedirect: true,
+  skipTrailingSlashRedirect: true
 };
 
 export default withNextIntl(nextConfig);

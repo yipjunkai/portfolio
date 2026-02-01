@@ -8,7 +8,7 @@ export const config = {
   // Match all pathnames except for
   // - … if they start with `/api`, `/_next`, `/_vercel` or `/relay-buRP`
   // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: ["/((?!api|_next|_vercel|relay-buRP|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|_vercel|relay-buRP|.*\\..*).*)"]
 };
 
 export default function proxy(request: NextRequest) {
