@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "relative overflow-visible bg-gradient-to-r from-grad-1 to-grad-2 text-white before:absolute before:-inset-0.5 before:z-0 before:rounded-md before:bg-[linear-gradient(to_right,#ff8489,var(--color-grad-1),var(--color-grad-2),#5f0a87,var(--color-grad-1),#ff8489)] before:bg-[length:600%_100%] before:opacity-0 before:blur-[10px] before:transition-opacity before:content-[''] hover:before:animate-[gradient-rotate_2s_linear_infinite] hover:before:opacity-100 [&>*]:z-10",
+          "relative overflow-visible bg-gradient-to-r from-grad-1 to-grad-2 text-white before:absolute before:-inset-1 before:z-0 before:animate-[gradient-rotate_2s_ease-in-out_infinite] before:rounded-lg before:bg-[linear-gradient(to_right,var(--color-grad-1),var(--color-grad-2),#5f0a87,var(--color-grad-2),var(--color-grad-1),var(--color-grad-2),#5f0a87,var(--color-grad-2),var(--color-grad-1))] before:bg-[length:200%_100%] before:opacity-80 before:blur-[12px] before:transition-opacity before:content-[''] motion-reduce:before:animate-none md:before:animate-none md:before:opacity-0 md:before:blur-[20px] md:hover:before:animate-[gradient-rotate_2s_ease-in-out_infinite] md:hover:before:opacity-80 [&>*]:z-10",
         destructive:
           "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40",
         outline:
