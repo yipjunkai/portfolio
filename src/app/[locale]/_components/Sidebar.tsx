@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import ThemeChanger from "./ThemeChanger";
 import LanguageChanger from "./LanguageChanger";
+import { ExternalLinkIcon } from "lucide-react";
 
 export default function Sidebar(props: {
   sections: {
@@ -47,6 +48,7 @@ export default function Sidebar(props: {
                 >
                   {route.icon}
                   <span className="text-neutral-800 dark:text-neutral-200 dark:group-hover:text-white">{route.name}</span>
+                  {route.href.includes("http") && <ExternalLinkIcon className="ml-auto size-4" />}
                 </Link>
               ))}
             </div>
