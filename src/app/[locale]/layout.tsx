@@ -11,7 +11,7 @@ import "../globals.css";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,13 +27,18 @@ export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Yip Jun Kai",
-    default: "Yip Jun Kai"
-  },
-  description: "My portfolio | Software developer in Singapore, focused on frontend"
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "common" });
+
+  return {
+    title: {
+      template: `%s | ${t("name")}`,
+      default: t("name")
+    },
+    description: t("description")
+  };
+}
 
 export default async function RootLayout({
   children,
