@@ -6,7 +6,7 @@ import oceanfrontHardwareLaptop from "./_assets/oceanfront-hardware-laptop.webp"
 import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp";
 import ImageCarousel from "./_components/ImageCarousel";
 import { Link } from "@/i18n/navigation";
-import { GlobeAltIcon } from "@heroicons/react/24/outline";
+import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { use } from "react";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { HomeIcon } from "@heroicons/react/24/outline";
+import { HomeIcon } from "@heroicons/react/24/solid";
 import undrawVibeCoding from "./_assets/undraw_vibe-coding_mjme.svg";
 import { Link } from "@/i18n/navigation";
 

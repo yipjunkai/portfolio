@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/navigation";
-import { ArrowDownTrayIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import { ArrowDownTrayIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import { setRequestLocale } from "next-intl/server";
 import { use } from "react";
 
