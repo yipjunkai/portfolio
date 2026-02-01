@@ -4,6 +4,7 @@ import Image from "next/image";
 import { JSX, useState } from "react";
 import ThemeChanger from "./ThemeChanger";
 import { Link } from "@/i18n/navigation";
+import LanguageChanger from "./LanguageChanger";
 export default function MobileTopNav(props: {
   sections: {
     name: string;
@@ -70,12 +71,20 @@ export default function MobileTopNav(props: {
             {route.name}
           </Link>
         ))}
-        <ThemeChanger
-          className={`mt-auto transition-all duration-150 ease-in ${isOpen ? "opacity-100" : "opacity-0 delay-0!"}`}
-          style={{
-            transitionDelay: `${flatRoutes.length * 0.1 + 0.4}s`
-          }}
-        />
+        <div className="mt-auto flex flex-row items-center justify-between">
+          <ThemeChanger
+            className={`transition-all duration-150 ease-in ${isOpen ? "opacity-100" : "opacity-0 delay-0!"}`}
+            style={{
+              transitionDelay: `${flatRoutes.length * 0.1 + 0.4}s`
+            }}
+          />
+          <LanguageChanger
+            className={`transition-all duration-150 ease-in ${isOpen ? "opacity-100" : "opacity-0 delay-0!"}`}
+            style={{
+              transitionDelay: `${flatRoutes.length * 0.1 + 0.4}s`
+            }}
+          />
+        </div>
       </div>
     </div>
   );

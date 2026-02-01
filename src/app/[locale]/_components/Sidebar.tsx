@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import ThemeChanger from "./ThemeChanger";
+import LanguageChanger from "./LanguageChanger";
 
 export default function Sidebar(props: {
   sections: {
@@ -52,7 +53,10 @@ export default function Sidebar(props: {
           </div>
         ))}
       </div>
-      <ThemeChanger />
+      <div className="flex flex-row justify-between gap-2">
+        <ThemeChanger />
+        <LanguageChanger />
+      </div>
     </nav>
   );
 }
