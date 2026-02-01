@@ -1,10 +1,11 @@
 "use client";
 
+import { cn } from "@/components/lib/utils";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 
-export default function ThemeChanger({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDivElement>) {
   const { resolvedTheme, setTheme } = useTheme();
 
   const [mounted, setMounted] = useState(false);
@@ -28,7 +29,10 @@ export default function ThemeChanger({ className, style }: { className?: string;
 
   return (
     <div
-      className={`flex w-min items-center gap-2 rounded-full bg-gradient-to-r from-grad-1 to-grad-2 p-1 text-neutral-200 lg:gap-1 ${className} relative`}
+      className={cn(
+        "flex w-min items-center gap-2 rounded-full bg-linear-to-r from-grad-1 to-grad-2 p-1 text-neutral-200 lg:gap-1 relative",
+        className
+      )}
       style={style}
     >
       {buttons.map(button => (
