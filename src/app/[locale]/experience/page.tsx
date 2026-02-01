@@ -2,13 +2,18 @@ import TechStackBubble from "@/components/shared/TechStackBubble";
 import { DocumentTextIcon, GlobeAltIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { use } from "react";
 
-export const metadata: Metadata = {
-  title: "Experience",
-  description: "My education, work and research experience | Computer Engineering (Honours) | SOTA AI research"
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "experience" });
+
+  return {
+    title: t("title"),
+    description: t("description")
+  };
+}
 
 export default function Experience({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params);

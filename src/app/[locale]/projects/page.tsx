@@ -8,13 +8,18 @@ import ImageCarousel from "./_components/ImageCarousel";
 import { Link } from "@/i18n/navigation";
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { use } from "react";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description: "Professional and freelance projects, outside of work | Web developer, AI/ML"
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "projects" });
+
+  return {
+    title: t("title"),
+    description: t("description")
+  };
+}
 
 export default function Projects({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params);
