@@ -16,7 +16,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const configs = defineConfig(
   {
-    ignores: ["node_modules", "dist", ".next", "**/*.d.ts"]
+    ignores: ["node_modules", "dist", ".next", "**/*.d.ts", "public", "messages"]
   },
   {
     languageOptions: {
@@ -66,9 +66,6 @@ const configs = defineConfig(
         }
       ]
     }
-  },
-  {
-    ignores: ["messages", "public"]
   },
   {
     plugins: {
