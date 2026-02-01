@@ -8,13 +8,18 @@ import ImageCarousel from "./_components/ImageCarousel";
 import { Link } from "@/i18n/navigation";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
+import { use } from "react";
 
 export const metadata: Metadata = {
   title: "Projects",
   description: "Professional and freelance projects, outside of work | Web developer, AI/ML"
 };
 
-export default function Projects() {
+export default function Projects({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
+  setRequestLocale(locale);
+
   const projects = [
     {
       name: "Oceanfront Hardware",

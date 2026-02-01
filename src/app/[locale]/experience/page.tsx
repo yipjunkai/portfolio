@@ -2,13 +2,18 @@ import TechStackBubble from "@/components/shared/TechStackBubble";
 import { DocumentTextIcon, GlobeAltIcon } from "@heroicons/react/24/outline";
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
+import { setRequestLocale } from "next-intl/server";
+import { use } from "react";
 
 export const metadata: Metadata = {
   title: "Experience",
   description: "My education, work and research experience | Computer Engineering (Honours) | SOTA AI research"
 };
 
-export default function Experience() {
+export default function Experience({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = use(params);
+  setRequestLocale(locale);
+
   const experiences = [
     {
       company: "DSBJ Pte. Ltd.",
