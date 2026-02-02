@@ -12,12 +12,13 @@ import { Button } from "@/components/ui/button";
 import { LanguageIcon } from "@heroicons/react/24/solid";
 import { cn } from "@/components/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
 
 export default function LanguageChanger({ className, style }: ButtonHTMLAttributes<HTMLButtonElement>) {
   const t = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
 
   const languages: {
     name: string;
@@ -50,11 +51,13 @@ export default function LanguageChanger({ className, style }: ButtonHTMLAttribut
           <DropdownMenuLabel>{t("select-language")}</DropdownMenuLabel>
           <DropdownMenuRadioGroup value={locale}>
             {languages.map(language => (
-              <DropdownMenuRadioItem key={language.code} value={language.code}>
-                <Link locale={language.code} href={pathname} className="flex items-center gap-2">
-                  {language.icon}
-                  {language.name}
-                </Link>
+              <DropdownMenuRadioItem
+                key={language.code}
+                value={language.code}
+                onClick={() => router.push(pathname, { locale: language.code })}
+              >
+                {language.icon}
+                {language.name}
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>

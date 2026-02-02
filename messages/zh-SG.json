@@ -1,5 +1,15 @@
 {
   "common": {
     "name": "叶俊凯"
+  },
+  "nav": {
+    "sections": {
+      "connect": {
+        "routes": {
+          "email": "电子邮件",
+          "linkedin": "领英"
+        }
+      }
+    }
   }
 }

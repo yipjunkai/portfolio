@@ -21,7 +21,7 @@
         "routes": {
           "email": "Email",
           "linkedin": "LinkedIn",
-          "github": "Github"
+          "github": "GitHub"
         }
       }
     }
