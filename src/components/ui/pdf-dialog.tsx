@@ -14,10 +14,12 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.m
 
 interface Props {
   url: string;
+  title: string;
+  description: string;
   downloadName?: string;
 }
 
-export default function PDFDialog({ url, downloadName, children }: Props & { children: React.ReactNode }) {
+export default function PDFDialog({ url, downloadName, title, description, children }: Props & { children: React.ReactNode }) {
   const t = useTranslations("pdf-dialog");
 
   const [numPages, setNumPages] = useState(0);
@@ -52,8 +54,8 @@ export default function PDFDialog({ url, downloadName, children }: Props & { chi
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="!top-0 !left-0 flex !h-[100dvh] !w-full !max-w-full !translate-x-0 !translate-y-0 flex-col !rounded-none !p-4 sm:!top-[50%] sm:!left-[50%] sm:!h-auto sm:!w-auto sm:!max-w-3xl sm:!translate-x-[-50%] sm:!translate-y-[-50%] sm:!rounded-lg sm:!p-6">
         <DialogHeader>
-          <DialogTitle>{t("title")}</DialogTitle>
-          <DialogDescription>{t("description")}</DialogDescription>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
 
         <div className="flex-1 overflow-y-auto border sm:max-h-[70vh] sm:flex-none dark:border-0">

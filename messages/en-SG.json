@@ -32,8 +32,10 @@
   },
   "home": {
     "email-me": "Email me",
-    "download-cv": "Download CV",
-    "resume-file-name": "YipJunKai_Resume"
+    "download-cv": "View CV",
+    "resume-file-name": "YipJunKai_Resume",
+    "download-cv-title": "Here's my CV",
+    "download-cv-description": "Put in a good word to HR!"
   },
   "experience": {
     "title": "Experience",
@@ -49,8 +51,6 @@
     "go-home": "Go home"
   },
   "pdf-dialog": {
-    "title": "Download CV",
-    "description": "Download my CV in PDF format",
     "download": "Download"
   }
 }
