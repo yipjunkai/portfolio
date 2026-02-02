@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Button } from "./button";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
 export interface PDFDialogContentProps {
   url: string;
