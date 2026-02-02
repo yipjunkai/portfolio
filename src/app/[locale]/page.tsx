@@ -18,7 +18,7 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
 
   return (
     <>
-      <div className="h-[calc(100vh-8rem)] space-y-8 md:h-min">
+      <div className="h-[calc(100svh-8rem)] space-y-8 md:h-min">
         <h1 className="md:font-bold">
           <span className="text-3xl md:text-5xl">Hey, I&apos;m </span>
           <br className="block md:hidden" />
