@@ -116,7 +116,7 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider>
           <ThemeProvider disableTransitionOnChange>
-            <div className="absolute left-1/2 z-0 hidden h-full w-1/2 bg-gray-50 lg:block dark:bg-[#131313]"></div>
+            <div className="fixed left-1/2 -z-10 hidden h-screen w-1/2 bg-gray-50 lg:block dark:bg-[#131313]"></div>
             <div className="absolute left-1/2 z-10 mx-auto flex h-dvh w-full max-w-7xl -translate-x-1/2 flex-col lg:flex-row *:lg:h-full">
               <Sidebar sections={sections} />
               <MobileTopNav sections={sections} />
