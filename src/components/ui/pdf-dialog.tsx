@@ -9,21 +9,42 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { useState } from "react";
 import { Button } from "./button";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
-import { Link } from "@/i18n/navigation";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
 interface Props {
   url: string;
+  downloadName?: string;
 }
 
-export default function PDFDialog({ url, children }: Props & { children: React.ReactNode }) {
+export default function PDFDialog({ url, downloadName, children }: Props & { children: React.ReactNode }) {
   const t = useTranslations("pdf-dialog");
 
   const [numPages, setNumPages] = useState(0);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
+  };
+
+  // Client side download function to avoid CORS issues
+  const downloadPDF = async (url: string, downloadName: string) => {
+    // Fetch the PDF file
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Failed to download PDF");
+    }
+    const blob = await response.blob();
+
+    // Create a blob URL and trigger a download
+    const blobUrl = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = downloadName;
+    a.click();
+
+    // Clean up the blob URL
+    window.URL.revokeObjectURL(blobUrl);
+    a.remove();
   };
 
   return (
@@ -41,25 +62,15 @@ export default function PDFDialog({ url, children }: Props & { children: React.R
               <Page key={`page-${index + 1}`} pageNumber={index + 1} width={718} />
             ))}
           </Document>
-          <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-            {Array.from({ length: numPages }, (_, index) => (
-              <Page key={`page-${index + 1}`} pageNumber={index + 1} width={718} />
-            ))}
-          </Document>
-          <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-            {Array.from({ length: numPages }, (_, index) => (
-              <Page key={`page-${index + 1}`} pageNumber={index + 1} width={718} />
-            ))}
-          </Document>
         </div>
 
         {/* Download button */}
         <DialogFooter>
           <Button variant="secondary" className="mt-4" asChild>
-            <Link href={url}>
+            <Button onClick={() => downloadPDF(url, downloadName ?? "download.pdf")}>
               <ArrowDownTrayIcon className="size-6" />
               <span>{t("download")}</span>
-            </Link>
+            </Button>
           </Button>
         </DialogFooter>
       </DialogContent>

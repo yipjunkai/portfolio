@@ -38,7 +38,7 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
               <span>{t("email-me")}</span>
             </Button>
           </EmailMeDialog>
-          <PDFDialog url={CV_URL}>
+          <PDFDialog url={CV_URL} downloadName={`${t("resume-file-name")}.pdf`}>
             <Button variant="secondary">
               <ArrowDownTrayIcon className="size-6" />
               <span>{t("download-cv")}</span>
