@@ -66,11 +66,9 @@ export default function PDFDialog({ url, downloadName, children }: Props & { chi
 
         {/* Download button */}
         <DialogFooter>
-          <Button variant="secondary" className="mt-4" asChild>
-            <Button onClick={() => downloadPDF(url, downloadName ?? "download.pdf")}>
-              <ArrowDownTrayIcon className="size-6" />
-              <span>{t("download")}</span>
-            </Button>
+          <Button variant="secondary" className="mt-4" onClick={() => downloadPDF(url, downloadName ?? "download.pdf")}>
+            <ArrowDownTrayIcon className="size-6" />
+            <span>{t("download")}</span>
           </Button>
         </DialogFooter>
       </DialogContent>
