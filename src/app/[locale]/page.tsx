@@ -1,14 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/navigation";
 import { ArrowDownTrayIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import { setRequestLocale } from "next-intl/server";
 import { use } from "react";
 import EmailMeDialog from "./_components/EmailMeDialog";
 import { MailIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+import PDFDialog from "@/components/ui/pdf-dialog-wrapper";
 
 export default function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params);
   setRequestLocale(locale);
+
+  const t = useTranslations("home");
 
   const CV_URL = "https://umpsbusvwgpktceb.public.blob.vercel-storage.com/resume-ozfP9vT12y8ThPw55957KAH0yJwNfK.pdf";
 
@@ -32,15 +35,15 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
           <EmailMeDialog>
             <Button variant="default">
               <MailIcon className="size-6" />
-              <span>Email me</span>
+              <span>{t("email-me")}</span>
             </Button>
           </EmailMeDialog>
-          <Button variant="secondary" asChild>
-            <Link href={CV_URL} target="_blank">
+          <PDFDialog url={CV_URL}>
+            <Button variant="secondary">
               <ArrowDownTrayIcon className="size-6" />
-              <span>Download CV</span>
-            </Link>
-          </Button>
+              <span>{t("download-cv")}</span>
+            </Button>
+          </PDFDialog>
         </div>
       </div>
     </>

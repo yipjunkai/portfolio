@@ -30,6 +30,10 @@
     "name": "Yip Jun Kai",
     "description": "My portfolio | Software developer in Singapore, focused on frontend"
   },
+  "home": {
+    "email-me": "Email me",
+    "download-cv": "Download CV"
+  },
   "experience": {
     "title": "Experience",
     "description": "My work and research experience | Computer Engineering (Honours)"
@@ -42,5 +46,10 @@
     "title": "Page Not Found",
     "illustration-alt": "404 page illustration",
     "go-home": "Go home"
+  },
+  "pdf-dialog": {
+    "title": "Download CV",
+    "description": "Download my CV in PDF format",
+    "download": "Download"
   }
 }
