@@ -11,10 +11,13 @@ export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDi
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    // Delay to allow browser to paint initial state before transitioning
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setMounted(true);
+      });
+    });
   }, []);
-
-  if (!mounted) return null;
 
   const buttons = [
     {
@@ -39,7 +42,7 @@ export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDi
         <button
           key={button.theme}
           onClick={() => setTheme(button.theme)}
-          className={`z-20 rounded-full p-1 ${resolvedTheme === button.theme ? "text-purple-600" : ""}`}
+          className={`z-20 rounded-full p-1 transition-colors duration-300 ${mounted && resolvedTheme === button.theme ? "text-purple-600" : ""}`}
           aria-label={`Button to change theme to ${button.theme}`}
         >
           {button.icon}
@@ -47,9 +50,11 @@ export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDi
       ))}
 
       <div
-        className={`absolute size-9 transform rounded-full bg-white transition-transform! duration-300 md:size-8 lg:size-6 ${
-          resolvedTheme === "dark" ? "translate-x-0.5" : "translate-x-12.5 md:translate-x-11.5 lg:translate-x-8.5"
-        }`}
+        className={cn(
+          "absolute size-9 rounded-full bg-white transition-all duration-300 md:size-8 lg:size-6",
+          mounted ? "opacity-100" : "opacity-0",
+          !mounted || resolvedTheme === "dark" ? "translate-x-0.5" : "translate-x-12.5 md:translate-x-11.5 lg:translate-x-8.5"
+        )}
       />
     </div>
   );
