@@ -6,7 +6,25 @@
     "or": "or"
   },
   "nav": {
-    "select-language": "Select Language"
+    "select-language": "Select Language",
+    "sections": {
+      "about-me": {
+        "title": "About Me",
+        "routes": {
+          "home": "Home",
+          "experience": "Experience",
+          "projects": "Projects"
+        }
+      },
+      "connect": {
+        "title": "Connect",
+        "routes": {
+          "email": "Email",
+          "linkedin": "LinkedIn",
+          "github": "Github"
+        }
+      }
+    }
   },
   "common": {
     "name": "Yip Jun Kai",

@@ -66,42 +66,44 @@ export default async function RootLayout({
 
   setRequestLocale(locale);
 
+  const t = await getTranslations("nav");
+
   const sections: Sections[] = [
     {
-      name: "About Me",
+      name: t("sections.about-me.title"),
       routes: [
         {
-          name: "home",
+          name: t("sections.about-me.routes.home"),
           href: "/",
           icon: <HomeIcon className="size-4" />
         },
         {
-          name: "experience",
+          name: t("sections.about-me.routes.experience"),
           href: "/experience",
           icon: <BriefcaseIcon className="size-4" />
         },
         {
-          name: "projects",
+          name: t("sections.about-me.routes.projects"),
           href: "/projects",
           icon: <CodeBracketIcon className="size-4" />
         }
       ]
     },
     {
-      name: "Connect",
+      name: t("sections.connect.title"),
       routes: [
         {
-          name: "Email",
+          name: t("sections.connect.routes.email"),
           href: "mailto:hello@yipjunkai.com",
           icon: <EnvelopeIcon className="size-4" />
         },
         {
-          name: "LinkedIn",
+          name: t("sections.connect.routes.linkedin"),
           href: "https://www.linkedin.com/in/yipjk/",
           icon: <LinkedinIcon className="size-4" />
         },
         {
-          name: "Github",
+          name: t("sections.connect.routes.github"),
           href: "https://github.com/yipjunkai",
           icon: <GithubIcon className="size-4" />
         }
