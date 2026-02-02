@@ -117,10 +117,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ThemeProvider disableTransitionOnChange>
             <div className="absolute left-1/2 z-0 hidden h-full w-1/2 bg-gray-50 lg:block dark:bg-[#131313]"></div>
-            <div
-              className="absolute left-1/2 z-10
-         mx-auto flex h-screen w-full max-w-7xl -translate-x-1/2 flex-col lg:flex-row *:lg:h-full"
-            >
+            <div className="absolute left-1/2 z-10 mx-auto flex h-dvh w-full max-w-7xl -translate-x-1/2 flex-col lg:flex-row *:lg:h-full">
               <Sidebar sections={sections} />
               <MobileTopNav sections={sections} />
               <main className="grow overflow-y-auto bg-gray-50 *:mx-auto *:mt-12 *:w-full *:max-w-[900px] *:px-8 *:pb-24 *:md:px-6 *:lg:mt-24 dark:bg-[#131313]">
