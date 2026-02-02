@@ -19,5 +19,10 @@
   "projects": {
     "title": "Projects",
     "description": "Professional and freelance projects, outside of work | Web developer, AI/ML"
+  },
+  "not-found": {
+    "title": "Page Not Found",
+    "illustration-alt": "404 page illustration",
+    "go-home": "Go home"
   }
 }
