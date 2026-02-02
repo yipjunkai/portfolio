@@ -33,7 +33,7 @@ export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDi
   return (
     <div
       className={cn(
-        "flex w-min items-center gap-2 rounded-full bg-linear-to-r from-grad-1 to-grad-2 p-1 text-neutral-200 lg:gap-1 relative",
+        "flex w-min items-center gap-2 rounded-full bg-linear-to-r from-grad-1 to-grad-2 p-1 text-neutral-200 lg:gap-1 relative overflow-visible before:absolute before:-inset-1 before:z-0 before:animate-[gradient-rotate_2s_ease-in-out_infinite] before:rounded-full before:bg-[linear-gradient(to_right,var(--color-grad-1),var(--color-grad-1),var(--color-grad-3),var(--color-grad-3),var(--color-grad-1),var(--color-grad-1),var(--color-grad-3),var(--color-grad-3),var(--color-grad-1))] before:bg-size-[200%_100%] before:opacity-80 before:blur-md before:content-[''] motion-reduce:before:animate-none lg:before:animate-none lg:before:opacity-0",
         className
       )}
       style={style}
