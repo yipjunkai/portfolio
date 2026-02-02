@@ -16,7 +16,7 @@ const buttonVariants = cva(
         outline:
           "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         secondary:
-          "relative bg-gradient-to-r from-grad-1 to-grad-2 shadow-[0_0_0_rgba(238,105,107,0)] transition-shadow duration-200 before:absolute before:inset-[2px] before:z-0 before:rounded-md before:bg-white before:content-[''] hover:animate-[shadow-breathe_2s_ease-in-out_infinite] dark:before:bg-neutral-900 [&_p]:z-10 [&_p]:bg-gradient-to-r [&_p]:from-grad-1 [&_p]:to-grad-2 [&_p]:bg-clip-text [&_p]:text-transparent dark:[&_p]:text-neutral-50 [&_span]:z-10 [&_span]:bg-gradient-to-r [&_span]:from-grad-1 [&_span]:to-grad-2 [&_span]:bg-clip-text [&_span]:text-transparent dark:[&_span]:text-neutral-50 [&_svg]:z-10",
+          "relative bg-gradient-to-r from-grad-1 to-grad-2 shadow-[0_0_0_rgba(238,105,107,0)] transition-shadow duration-200 before:absolute before:inset-[2px] before:z-0 before:rounded-md before:bg-card before:content-[''] hover:animate-[shadow-breathe_2s_ease-in-out_infinite] [&_p]:z-10 [&_p]:bg-gradient-to-r [&_p]:from-grad-1 [&_p]:to-grad-2 [&_p]:bg-clip-text [&_p]:text-transparent dark:[&_p]:text-neutral-50 [&_span]:z-10 [&_span]:bg-gradient-to-r [&_span]:from-grad-1 [&_span]:to-grad-2 [&_span]:bg-clip-text [&_span]:text-transparent dark:[&_span]:text-neutral-50 [&_svg]:z-10",
         ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline"
       },

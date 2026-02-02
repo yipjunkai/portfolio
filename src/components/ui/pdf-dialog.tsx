@@ -50,13 +50,13 @@ export default function PDFDialog({ url, downloadName, children }: Props & { chi
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-3xl!">
+      <DialogContent className="!top-0 !left-0 flex !h-[100dvh] !w-full !max-w-full !translate-x-0 !translate-y-0 flex-col !rounded-none !p-4 sm:!top-[50%] sm:!left-[50%] sm:!h-auto sm:!w-auto sm:!max-w-3xl sm:!translate-x-[-50%] sm:!translate-y-[-50%] sm:!rounded-lg sm:!p-6">
         <DialogHeader>
           <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
 
-        <div className="max-h-[70vh] overflow-y-auto">
+        <div className="flex-1 overflow-y-auto border sm:max-h-[70vh] sm:flex-none dark:border-0">
           <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
             {Array.from({ length: numPages }, (_, index) => (
               <Page key={`page-${index + 1}`} pageNumber={index + 1} width={718} />
