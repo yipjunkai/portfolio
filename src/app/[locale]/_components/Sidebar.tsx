@@ -1,23 +1,14 @@
 "use client";
 
-import { JSX } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import ThemeChanger from "./ThemeChanger";
 import LanguageChanger from "./LanguageChanger";
 import { ExternalLinkIcon } from "lucide-react";
+import { Sections } from "../layout";
 
-export default function Sidebar(props: {
-  sections: {
-    name: string;
-    routes: {
-      name: string;
-      href: string;
-      icon: JSX.Element;
-    }[];
-  }[];
-}) {
+export default function Sidebar(props: { sections: Sections[] }) {
   const pathname = usePathname();
 
   return (

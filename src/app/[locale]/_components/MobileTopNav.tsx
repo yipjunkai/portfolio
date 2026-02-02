@@ -1,21 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { JSX, useState } from "react";
+import { useState } from "react";
 import ThemeChanger from "./ThemeChanger";
 import { Link } from "@/i18n/navigation";
 import LanguageChanger from "./LanguageChanger";
 import { ExternalLinkIcon } from "lucide-react";
-export default function MobileTopNav(props: {
-  sections: {
-    name: string;
-    routes: {
-      name: string;
-      href: string;
-      icon: JSX.Element;
-    }[];
-  }[];
-}) {
+import { Sections } from "../layout";
+
+export default function MobileTopNav(props: { sections: Sections[] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const flatRoutes = props.sections.flatMap(section => section.routes);

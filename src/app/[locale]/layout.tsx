@@ -13,6 +13,17 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+interface Routes {
+  name: string;
+  href: string;
+  icon: JSX.Element;
+}
+
+export interface Sections {
+  name: string;
+  routes: Routes[];
+}
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"]
@@ -55,14 +66,7 @@ export default async function RootLayout({
 
   setRequestLocale(locale);
 
-  const sections: {
-    name: string;
-    routes: {
-      name: string;
-      href: string;
-      icon: JSX.Element;
-    }[];
-  }[] = [
+  const sections: Sections[] = [
     {
       name: "About Me",
       routes: [
