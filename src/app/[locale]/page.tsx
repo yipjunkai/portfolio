@@ -5,7 +5,7 @@ import { use } from "react";
 import EmailMeDialog from "./_components/EmailMeDialog";
 import { MailIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import PDFDialog from "@/components/ui/pdf-dialog-wrapper";
+import PDFDialog from "@/components/ui/pdf-dialog";
 
 export default function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params);
