@@ -10,7 +10,7 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
   const { locale } = use(params);
   setRequestLocale(locale);
 
-  const CV_URL = "https://drive.google.com/file/d/1GX6PJwhGFxjW6eEtaDDV7MYaZxfKXNxp/view?usp=sharing";
+  const CV_URL = "https://umpsbusvwgpktceb.public.blob.vercel-storage.com/resume-ozfP9vT12y8ThPw55957KAH0yJwNfK.pdf";
 
   const ABOUT_ME =
     "Software developer with a passion for frontend technologies.\n\nExtensive experience in Web, Mobile application and Desktop application development; in both frontend and backend, both at startup and large company. Adept understanding of AI/ML gained through research project.";
