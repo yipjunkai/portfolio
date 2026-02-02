@@ -5,15 +5,13 @@ import { use } from "react";
 import EmailMeDialog from "./_components/EmailMeDialog";
 import { MailIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import PDFDialog from "@/components/ui/pdf-dialog";
+import ResumePDFDialog from "./_components/ResumePDFDialog";
 
 export default function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params);
   setRequestLocale(locale);
 
   const t = useTranslations("home");
-
-  const CV_URL = "https://umpsbusvwgpktceb.public.blob.vercel-storage.com/resume-ozfP9vT12y8ThPw55957KAH0yJwNfK.pdf";
 
   const ABOUT_ME =
     "Software developer with a passion for frontend technologies.\n\nExtensive experience in Web, Mobile application and Desktop application development; in both frontend and backend, both at startup and large company. Adept understanding of AI/ML gained through research project.";
@@ -38,17 +36,12 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
               <span>{t("email-me")}</span>
             </Button>
           </EmailMeDialog>
-          <PDFDialog
-            url={CV_URL}
-            downloadName={`${t("resume-file-name")}.pdf`}
-            title={t("download-cv-title")}
-            description={t("download-cv-description")}
-          >
+          <ResumePDFDialog>
             <Button variant="secondary">
               <ArrowDownTrayIcon className="size-6" />
               <span>{t("download-cv")}</span>
             </Button>
-          </PDFDialog>
+          </ResumePDFDialog>
         </div>
       </div>
     </>
