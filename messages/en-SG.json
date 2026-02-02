@@ -1,4 +1,10 @@
 {
+  "email": {
+    "title": "Get in touch with me",
+    "description": "Hey! One more step to get in touch with me. I will try my best to reply ASAP!",
+    "open-email-client": "Open email client",
+    "or": "or"
+  },
   "nav": {
     "select-language": "Select Language"
   },

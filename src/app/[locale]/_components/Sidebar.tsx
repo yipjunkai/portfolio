@@ -24,10 +24,10 @@ export default function Sidebar(props: {
     <nav className="hidden w-48 flex-col justify-between gap-20 overflow-y-auto border-r border-neutral-300 p-4 lg:flex dark:border-neutral-800">
       <div className="flex flex-col gap-4 pt-8">
         {/* <input
-            type="text"
-            placeholder="Search"
-            className="rounded-md bg-neutral-300 dark:bg-neutral-800 py-1.5 px-4 w-[calc(100%+0.5rem)] -ml-2 outline-1 outline-neutral-400 dark:outline-neutral-800"
-          /> */}
+          type="text"
+          placeholder="Search"
+          className="rounded-md bg-neutral-300 dark:bg-neutral-800 py-1.5 px-4 w-[calc(100%+0.5rem)] -ml-2 outline-1 outline-neutral-400 dark:outline-neutral-800"
+        /> */}
         {/* SVG: favicon */}
         <div className="-ml-2 flex flex-row items-center gap-1">
           <Image src="/logo.svg" alt="logo" className="size-8 md:size-12" width={32} height={32} />

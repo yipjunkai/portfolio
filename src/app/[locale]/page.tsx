@@ -1,14 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { ArrowDownTrayIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import { ArrowDownTrayIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import { setRequestLocale } from "next-intl/server";
 import { use } from "react";
+import EmailMeDialog from "./_components/EmailMeDialog";
+import { MailIcon } from "lucide-react";
 
 export default function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = use(params);
   setRequestLocale(locale);
 
-  const EMAIL = "hello@yipjunkai.com";
   const CV_URL = "https://drive.google.com/file/d/1GX6PJwhGFxjW6eEtaDDV7MYaZxfKXNxp/view?usp=sharing";
 
   const ABOUT_ME =
@@ -28,12 +29,12 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
         </h2>
         <p className="text-justify text-pretty whitespace-pre-line">{ABOUT_ME}</p>
         <div className="flex flex-col gap-4 *:flex *:items-center *:gap-4 *:text-2xl lg:flex-row">
-          <Button variant="default" asChild>
-            <Link href={`mailto:${EMAIL}`}>
-              <EnvelopeIcon className="size-6" />
+          <EmailMeDialog>
+            <Button variant="default">
+              <MailIcon className="size-6" />
               <span>Email me</span>
-            </Link>
-          </Button>
+            </Button>
+          </EmailMeDialog>
           <Button variant="secondary" asChild>
             <Link href={CV_URL} target="_blank">
               <ArrowDownTrayIcon className="size-6" />
