@@ -19,7 +19,6 @@ export interface PDFDialogContentProps {
   downloadName?: string;
 }
 
-// This is the heavy component that gets lazy-loaded
 export default function PDFDialogContent({ url, downloadName, title, description }: PDFDialogContentProps) {
   const t = useTranslations("pdf-dialog");
 
@@ -51,16 +50,16 @@ export default function PDFDialogContent({ url, downloadName, title, description
   };
 
   return (
-    <DialogContent className="!top-0 !left-0 flex !h-[100dvh] !w-full !max-w-full !translate-x-0 !translate-y-0 flex-col !rounded-none !p-4 sm:!top-[50%] sm:!left-[50%] sm:!h-auto sm:!w-auto sm:!max-w-3xl sm:!translate-x-[-50%] sm:!translate-y-[-50%] sm:!rounded-lg sm:!p-6">
+    <DialogContent className="top-0 left-0 flex h-[100dvh] w-full max-w-full translate-x-0 translate-y-0 flex-col rounded-none p-4 sm:top-[50%] sm:left-[50%] sm:h-auto sm:w-auto sm:max-w-3xl sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-lg sm:p-6">
       <DialogHeader>
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
 
-      <div className="flex-1 overflow-y-auto border sm:max-h-[70vh] sm:flex-none dark:border-0">
+      <div className="overflow-y-auto border sm:max-h-[70vh]">
         <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
           {Array.from({ length: numPages }, (_, index) => (
-            <Page key={`page-${index + 1}`} pageNumber={index + 1} width={718} />
+            <Page key={`page-${index + 1}`} pageNumber={index + 1} width={716} />
           ))}
         </Document>
       </div>
