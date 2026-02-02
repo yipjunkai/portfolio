@@ -43,7 +43,7 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
         </div>
       </button>
       <div
-        className={`absolute top-0 left-0 z-40 h-screen w-full overflow-y-auto bg-background transition-all duration-500 lg:hidden ${
+        className={`absolute top-0 left-0 z-40 h-svh w-full overflow-y-auto bg-background transition-all duration-500 lg:hidden ${
           isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         } flex flex-col gap-6 py-16 *:mx-12 md:gap-8`}
         style={{
