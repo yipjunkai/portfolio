@@ -29,60 +29,44 @@ export default async function Experience({ params }: { params: Promise<{ locale:
 
   const experiences = [
     {
-      company: "DSBJ Pte. Ltd.",
-      position: "Application & Data Developer Intern",
+      company: t("jobs.dsbj.company"),
+      position: t("jobs.dsbj.position"),
       startDate: new Date(2024, 0, 1), // Jan 2024 (Month is 0-indexed)
       endDate: new Date(2024, 6, 1), // Represents end of June 2024
       techStack: ["Next.js", "NestJS", "FastAPI", "Python", "Typescript", "PostgreSQL"],
-      description: "",
-      bulletPoints: [
-        "Implemented a model visualization and analysis platform with Al-driven insights in Python and Nextjs, enabling business units and data scientists to interact with and evaluate mathematical optimization and Al models.",
-        "Established a robust Single Sign On (SSO) backend framework, and unified authentication for two existing projects.",
-        "Designed an LLM-powered system using LangChain to extract insights from unstructured data."
-      ]
+      description: t("jobs.dsbj.description"),
+      bulletPoints: [t("jobs.dsbj.bullet1"), t("jobs.dsbj.bullet2"), t("jobs.dsbj.bullet3")]
     },
     {
-      company: "Works Pte. Ltd.",
-      position: "Mobile Application & Web Application Developer, Intern",
+      company: t("jobs.works.company"),
+      position: t("jobs.works.position"),
       startDate: new Date(2021, 1, 1), // Feb 2021
       endDate: new Date(2021, 6, 1), // Represents end of June 2021
       techStack: ["Flutter", "Angular", "Dart", "Typescript", "Firebase"],
-      description: "",
-      bulletPoints: [
-        "Began as a Flutter mobile developer, brought onto Angular web team, and contributed 80% of the total codebase.",
-        "Collaborated to create features for both platforms, such as a chat interface, payment processing pages, mobile responsive Ul and other frontend Ul updates, ensuring cross platform feature parity.",
-        "Diagnosed and resolved user-reported bugs, eliminating 90% of non-fatal frontend errors in two weeks."
-      ]
+      description: t("jobs.works.description"),
+      bulletPoints: [t("jobs.works.bullet1"), t("jobs.works.bullet2"), t("jobs.works.bullet3")]
     }
   ];
 
-  enum ContributionLevel {
-    firstAuthor = "First Author",
-    coAuthor = "Co-Author",
-    presenter = "Presenter"
-  }
-
   const research = [
     {
-      conference: "AI4X 2025 International Conference",
-      title: "Quantifying Uncertainty in Physics-Informed Neural Networks",
-      contribution: ContributionLevel.firstAuthor,
-      description:
-        "We used deep evidential regression to quantify uncertainties in physics-informed neural networks, demonstrating it on the Burgers and Laplace experiments.",
-      abstract:
-        "We integrate a state-of-the-art method to quantify aleatoric and epistemic uncertainties in physics-informed neural networks and observe that they can be captured effectively while maintaining predictive accuracy.",
-      topics: ["Physics-Informed Neural Networks", "Uncertainty Quantification"],
+      conference: t("research.ai4x.conference"),
+      title: t("research.ai4x.title"),
+      contribution: t("contributionLevel.firstAuthor"),
+      description: t("research.ai4x.description"),
+      abstract: t("research.ai4x.abstract"),
+      topics: [t("research.ai4x.topic1"), t("research.ai4x.topic2")],
       link: "https://openreview.net/forum?id=tXJ2G0g9HM"
     }
   ];
 
   const education = [
     {
-      school: "Nanyang Technological University",
+      school: t("education.ntu.school"),
       schoolLink: "https://www.ntu.edu.sg/",
-      degree: "Bachelor of Engineering (Honours), Computer Engineering",
-      description: "",
-      bulletPoints: ["Elective Focus in Security & Artificial Intelligence", "Minor in Business"]
+      degree: t("education.ntu.degree"),
+      description: t("education.ntu.description"),
+      bulletPoints: [t("education.ntu.bullet1"), t("education.ntu.bullet2")]
     }
   ];
 
@@ -198,3 +182,5 @@ export default async function Experience({ params }: { params: Promise<{ locale:
 // TODO: (Extra) Make it visually a timeline
 
 // TODO: (Extra) On hover date, show tooltip
+
+// TODO: add pdf viewer for papers

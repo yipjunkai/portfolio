@@ -29,12 +29,12 @@ export default function LanguageChanger({ className, style }: ButtonHTMLAttribut
       name: "English (Singapore)",
       code: "en-SG",
       icon: <span className="text-2xl">🇸🇬</span>
+    },
+    {
+      name: "简体中文",
+      code: "zh-SG",
+      icon: <span className="text-2xl">🇨🇳</span>
     }
-    // {
-    //   name: "简体中文",
-    //   code: "zh-SG",
-    //   icon: <span className="text-2xl">🇨🇳</span>
-    // }
   ];
 
   if (languages.length === 1) return null;

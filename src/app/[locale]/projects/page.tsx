@@ -27,22 +27,22 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
 
   const projects = [
     {
-      name: "Oceanfront Hardware",
-      role: "Developer",
-      description: "Freelanced as a full-stack web developer for this hardware company. Focused on SEO performance and CMS integration.",
+      name: t("oceanfrontHardware.name"),
+      role: t("oceanfrontHardware.role"),
+      description: t("oceanfrontHardware.description"),
       bulletPoints: [
-        "Developed a company website with e-commerce functionality in two months using Vue.js (Vite), and Strapi CMS, with Stripe for payment processing",
-        "Adopted Meilisearch to upgrade search functionality, reducing query response time from 700ms to 20ms",
-        "Migrated frontend to Nuxtjs, leveraged server-side rendering (SSR) enhancing SEO and page load speed to 800ms"
+        t("oceanfrontHardware.bullet1"),
+        t("oceanfrontHardware.bullet2"),
+        t("oceanfrontHardware.bullet3")
       ],
       techStack: ["Nuxt", "Typescript", "Strapi", "Stripe"],
       laptopImage: {
         src: oceanfrontHardwareLaptop,
-        alt: "OceanfrontHardware desktop view"
+        alt: t("oceanfrontHardware.laptopAlt")
       },
       mobileImage: {
         src: oceanfrontHardwareMobile,
-        alt: "OceanfrontHardware mobile view"
+        alt: t("oceanfrontHardware.mobileAlt")
       },
       link: "https://oceanfronthardware.com.sg/"
     }

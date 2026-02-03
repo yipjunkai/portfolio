@@ -13,22 +13,19 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
 
   const t = useTranslations("home");
 
-  const ABOUT_ME =
-    "Software developer with a passion for frontend technologies.\n\nExtensive experience in Web, Mobile application and Desktop application development; in both frontend and backend, both at startup and large company. Adept understanding of AI/ML gained through research project.";
-
   return (
     <>
       <div className="h-[calc(100svh-8rem)] space-y-8 md:h-min">
         <h1 className="md:font-bold">
-          <span className="text-3xl md:text-5xl">Hey, I&apos;m </span>
+          <span className="text-3xl md:text-5xl">{t("greeting")}</span>
           <br className="block md:hidden" />
-          <span className="text-7xl font-bold md:text-5xl">Jun Kai</span>
+          <span className="text-7xl font-bold md:text-5xl">{t("name")}</span>
         </h1>
         <h2 className="flex flex-row items-center gap-2 font-mono text-2xl">
           <MapPinIcon className="size-6" />
-          <span>Singapore</span>
+          <span>{t("location")}</span>
         </h2>
-        <p className="text-justify text-pretty whitespace-pre-line">{ABOUT_ME}</p>
+        <p className="text-justify text-pretty whitespace-pre-line">{t("aboutMe")}</p>
         <div className="flex flex-col gap-4 *:flex *:items-center *:gap-4 *:text-2xl lg:flex-row">
           <EmailMeDialog>
             <Button variant="default">
