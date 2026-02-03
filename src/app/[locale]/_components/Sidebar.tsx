@@ -23,7 +23,7 @@ export default function Sidebar(props: { sections: Sections[] }) {
         /> */}
         {/* SVG: favicon */}
         <div className="-ml-2 flex flex-row items-center gap-1">
-          <Image src="/logo.svg" alt="logo" className="size-8 md:size-12" width={32} height={32} />
+          <Image src="/logo.svg" alt={t("logoAlt")} className="size-8 md:size-12" width={32} height={32} />
           <span className="font-mono text-lg">{t("portfolio")}</span>
         </div>
         {props.sections.map(section => (

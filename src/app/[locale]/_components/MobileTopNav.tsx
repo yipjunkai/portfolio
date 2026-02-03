@@ -6,10 +6,12 @@ import ThemeChanger from "./ThemeChanger";
 import { Link } from "@/i18n/navigation";
 import LanguageChanger from "./LanguageChanger";
 import { ExternalLinkIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Sections } from "../layout";
 
 export default function MobileTopNav(props: { sections: Sections[] }) {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("nav");
 
   const flatRoutes = props.sections.flatMap(section => section.routes);
 
@@ -17,7 +19,7 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
     <div className="relative">
       <nav className="flex w-full flex-row items-center justify-between border-b border-neutral-300 bg-gray-50 p-4 pl-6 lg:hidden dark:border-neutral-800 dark:bg-[#131313]">
         {/* SVG: favicon */}
-        <Image src="/logo.svg" alt="logo" className="size-8 md:size-12" width={32} height={32} />
+        <Image src="/logo.svg" alt={t("logoAlt")} className="size-8 md:size-12" width={32} height={32} />
 
         <div className="flex flex-row gap-2 *:p-2">
           {/* Search button */}

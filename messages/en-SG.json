@@ -16,6 +16,7 @@
   "nav": {
     "portfolio": "Portfolio",
     "selectLanguage": "Select language",
+    "logoAlt": "My portfolio logo",
     "sections": {
       "aboutMe": {
         "title": "About me",
