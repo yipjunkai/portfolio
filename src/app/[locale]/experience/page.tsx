@@ -110,7 +110,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
                   href={research.link}
                   target="_blank"
                   className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                  aria-label="Link to paper"
+                  aria-label={t("aria.linkToPaper")}
                 >
                   <DocumentTextIcon className="size-6" />
                   <span>{t("labels.paper")}</span>
@@ -139,7 +139,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
                 href={education.schoolLink}
                 target="_blank"
                 className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                aria-label="Link to school"
+                aria-label={t("aria.linkToSchool")}
               >
                 <GlobeAltIcon className="size-6" />
               </Link>

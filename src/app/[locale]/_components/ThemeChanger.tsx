@@ -2,11 +2,13 @@
 
 import { cn } from "@/components/lib/utils";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { HTMLAttributes, useEffect, useState } from "react";
 
 export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDivElement>) {
   const { resolvedTheme, setTheme } = useTheme();
+  const t = useTranslations("common");
 
   const [mounted, setMounted] = useState(false);
 
@@ -43,7 +45,7 @@ export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDi
           key={button.theme}
           onClick={() => setTheme(button.theme)}
           className={`z-20 rounded-full p-1 transition-colors duration-300 ${mounted && resolvedTheme === button.theme ? "text-purple-600" : ""}`}
-          aria-label={`Button to change theme to ${button.theme}`}
+          aria-label={t("aria.changeTheme", { theme: button.theme })}
         >
           {button.icon}
         </button>

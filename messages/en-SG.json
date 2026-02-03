@@ -57,7 +57,10 @@
     "goHome": "Go home"
   },
   "common": {
-    "download": "Download"
+    "download": "Download",
+    "aria": {
+      "changeTheme": "Button to change theme to {theme}"
+    }
   },
   "experience": {
     "sections": {
@@ -69,6 +72,10 @@
       "abstract": "ABSTRACT",
       "availableAt": "Available at:",
       "paper": "Paper"
+    },
+    "aria": {
+      "linkToPaper": "Link to paper",
+      "linkToSchool": "Link to school"
     }
   },
   "projects": {
