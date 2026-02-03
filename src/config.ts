@@ -1,0 +1,12 @@
+export const siteConfig = {
+  url: "https://www.yipjunkai.com",
+  email: "hello@yipjunkai.com",
+  links: {
+    github: "https://github.com/yipjunkai",
+    linkedin: "https://www.linkedin.com/in/yipjk/"
+  },
+  resume: {
+    filename: "YipJunKai_CV.pdf",
+    url: "https://umpsbusvwgpktceb.public.blob.vercel-storage.com/resume-ozfP9vT12y8ThPw55957KAH0yJwNfK.pdf"
+  }
+};

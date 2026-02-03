@@ -5,8 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { CheckIcon, CopyIcon, MailIcon } from "lucide-react";
-
-const EMAIL = "hello@yipjunkai.com";
+import { siteConfig } from "@/config";
 
 const EmailActions = ({ email }: { email: string }) => {
   const t = useTranslations("email");
@@ -27,14 +26,14 @@ const EmailActions = ({ email }: { email: string }) => {
         <Button variant="secondary" asChild className="w-full">
           <a href={`mailto:${email}`}>
             <MailIcon className="size-4" />
-            <span>{t("open-email-client")}</span>
+            <span>{t("openEmailClient")}</span>
           </a>
         </Button>
       </div>
 
       <div className="flex items-center gap-2">
         <div className="h-px flex-1 bg-border" />
-        <span className="text-xs text-muted-foreground">{t("or")}</span>
+        <span className="text-xs text-muted-foreground">{t("orCopyEmail")}</span>
         <div className="h-px flex-1 bg-border" />
       </div>
 
@@ -67,7 +66,7 @@ export default function EmailMeDialog({ children }: { children: React.ReactNode 
           <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
 
-        <EmailActions email={EMAIL} />
+        <EmailActions email={siteConfig.email} />
       </DialogContent>
     </Dialog>
   );

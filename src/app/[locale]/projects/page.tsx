@@ -13,7 +13,7 @@ import { use } from "react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "projects" });
+  const t = await getTranslations({ locale, namespace: "meta.pages.projects" });
 
   return {
     title: t("title"),

@@ -12,6 +12,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { siteConfig } from "@/config";
 
 interface Routes {
   name: string;
@@ -40,14 +41,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  const t = await getTranslations({ locale, namespace: "meta" });
 
   return {
     title: {
-      template: `%s | ${t("name")}`,
-      default: t("name")
+      template: `%s | ${t("siteName")}`,
+      default: t("siteName")
     },
-    description: t("description")
+    description: t("siteDescription")
   };
 }
 
@@ -70,20 +71,20 @@ export default async function RootLayout({
 
   const sections: Sections[] = [
     {
-      name: t("sections.about-me.title"),
+      name: t("sections.aboutMe.title"),
       routes: [
         {
-          name: t("sections.about-me.routes.home"),
+          name: t("sections.aboutMe.routes.home"),
           href: "/",
           icon: <HomeIcon className="size-4" />
         },
         {
-          name: t("sections.about-me.routes.experience"),
+          name: t("sections.aboutMe.routes.experience"),
           href: "/experience",
           icon: <BriefcaseIcon className="size-4" />
         },
         {
-          name: t("sections.about-me.routes.projects"),
+          name: t("sections.aboutMe.routes.projects"),
           href: "/projects",
           icon: <CodeBracketIcon className="size-4" />
         }
@@ -94,17 +95,17 @@ export default async function RootLayout({
       routes: [
         {
           name: t("sections.connect.routes.email"),
-          href: "mailto:hello@yipjunkai.com",
+          href: `mailto:${siteConfig.email}`,
           icon: <EnvelopeIcon className="size-4" />
         },
         {
           name: t("sections.connect.routes.linkedin"),
-          href: "https://www.linkedin.com/in/yipjk/",
+          href: siteConfig.links.linkedin,
           icon: <LinkedinIcon className="size-4" />
         },
         {
           name: t("sections.connect.routes.github"),
-          href: "https://github.com/yipjunkai",
+          href: siteConfig.links.github,
           icon: <GithubIcon className="size-4" />
         }
       ]

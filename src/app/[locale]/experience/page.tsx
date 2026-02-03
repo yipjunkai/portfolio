@@ -7,7 +7,7 @@ import { use } from "react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "experience" });
+  const t = await getTranslations({ locale, namespace: "meta.pages.experience" });
 
   return {
     title: t("title"),

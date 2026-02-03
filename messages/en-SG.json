@@ -1,15 +1,23 @@
 {
-  "email": {
-    "title": "Get in touch with me",
-    "description": "Hey! One more step to get in touch with me. I will try my best to reply ASAP!",
-    "open-email-client": "Open email client",
-    "or": "or"
+  "meta": {
+    "siteName": "Yip Jun Kai",
+    "siteDescription": "My portfolio | Software developer in Singapore, focused on frontend",
+    "pages": {
+      "experience": {
+        "title": "Experience",
+        "description": "My work and research experience | Computer Engineering (Honours)"
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "Professional and freelance projects, outside of work | Web developer, AI/ML"
+      }
+    }
   },
   "nav": {
-    "select-language": "Select Language",
+    "selectLanguage": "Select language",
     "sections": {
-      "about-me": {
-        "title": "About Me",
+      "aboutMe": {
+        "title": "About me",
         "routes": {
           "home": "Home",
           "experience": "Experience",
@@ -26,31 +34,27 @@
       }
     }
   },
-  "common": {
-    "name": "Yip Jun Kai",
-    "description": "My portfolio | Software developer in Singapore, focused on frontend"
-  },
   "home": {
-    "email-me": "Email me",
-    "download-cv": "View CV",
-    "resume-file-name": "YipJunKai_Resume",
-    "download-cv-title": "Here's my CV",
-    "download-cv-description": "Put in a good word to HR!"
+    "emailMe": "Email me",
+    "viewCv": "View CV",
+    "cvDialog": {
+      "title": "Here's my CV",
+      "description": "Put in a good word to HR!"
+    }
   },
-  "experience": {
-    "title": "Experience",
-    "description": "My work and research experience | Computer Engineering (Honours)"
+  "email": {
+    "title": "Get in touch with me",
+    "description": "Hey! One more step to get in touch with me. I will try my best to reply ASAP!",
+    "openEmailClient": "Open email client",
+    "copyEmail": "Copy email address",
+    "orCopyEmail": "or copy my email address"
   },
-  "projects": {
-    "title": "Projects",
-    "description": "Professional and freelance projects, outside of work | Web developer, AI/ML"
-  },
-  "not-found": {
+  "notFound": {
     "title": "Page Not Found",
-    "illustration-alt": "404 page illustration",
-    "go-home": "Go home"
+    "illustrationAlt": "404 page illustration",
+    "goHome": "Go home"
   },
-  "pdf-dialog": {
+  "pdfDialog": {
     "download": "Download"
   }
 }

@@ -48,7 +48,7 @@ export default function LanguageChanger({ className, style }: ButtonHTMLAttribut
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuGroup>
-          <DropdownMenuLabel>{t("select-language")}</DropdownMenuLabel>
+          <DropdownMenuLabel>{t("selectLanguage")}</DropdownMenuLabel>
           <DropdownMenuRadioGroup value={locale}>
             {languages.map(language => (
               <DropdownMenuRadioItem

@@ -33,13 +33,13 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
           <EmailMeDialog>
             <Button variant="default">
               <MailIcon className="size-6" />
-              <span>{t("email-me")}</span>
+              <span>{t("emailMe")}</span>
             </Button>
           </EmailMeDialog>
           <ResumePDFDialog>
             <Button variant="secondary">
               <ArrowDownTrayIcon className="size-6" />
-              <span>{t("download-cv")}</span>
+              <span>{t("viewCv")}</span>
             </Button>
           </ResumePDFDialog>
         </div>
