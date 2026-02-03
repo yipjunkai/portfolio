@@ -1,15 +1,143 @@
 {
   "meta": {
-    "siteName": "叶俊凯"
+    "siteName": "叶俊凯",
+    "siteDescription": "我的作品集 | 新加坡软件开发者，专注于前端开发",
+    "pages": {
+      "experience": {
+        "title": "经历",
+        "description": "我的工作与研究经历 | 计算机工程（荣誉学位）"
+      },
+      "projects": {
+        "title": "项目",
+        "description": "工作之外的专业与自由职业项目 | 网页开发、AI/ML"
+      }
+    }
   },
   "nav": {
+    "portfolio": "作品集",
+    "selectLanguage": "选择语言",
+    "logoAlt": "我的作品集标志",
     "sections": {
+      "aboutMe": {
+        "title": "关于我",
+        "routes": {
+          "home": "主页",
+          "experience": "经历",
+          "projects": "项目"
+        }
+      },
       "connect": {
+        "title": "联系方式",
         "routes": {
           "email": "电子邮件",
-          "linkedin": "领英"
+          "linkedin": "领英",
+          "github": "GitHub"
         }
       }
+    }
+  },
+  "home": {
+    "greeting": "嗨，我是",
+    "name": "俊凯",
+    "location": "新加坡",
+    "aboutMe": "热衷于前端技术的软件开发者。\n\n在网页、移动端和桌面端应用开发方面拥有丰富经验，涵盖前端与后端，曾在初创公司和大型企业工作。通过研究项目对 AI/ML 有深入的理解。",
+    "emailMe": "给我发邮件",
+    "viewCv": "查看简历",
+    "cvDialog": {
+      "title": "这是我的简历",
+      "description": "帮我在 HR 那里美言几句吧！"
+    },
+    "emailDialog": {
+      "title": "与我联系",
+      "description": "嗨！再一步就能联系到我了。我会尽快回复！",
+      "openEmailClient": "打开邮件客户端",
+      "copyEmail": "复制邮箱地址",
+      "orCopyEmail": "或复制我的邮箱地址"
+    }
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "illustrationAlt": "404 页面插图",
+    "goHome": "返回主页"
+  },
+  "common": {
+    "download": "下载",
+    "aria": {
+      "changeTheme": "切换主题为 {theme} 的按钮"
+    }
+  },
+  "experience": {
+    "sections": {
+      "research": "研究",
+      "education": "教育",
+      "experience": "工作经历"
+    },
+    "labels": {
+      "abstract": "摘要",
+      "availableAt": "可在此查阅：",
+      "paper": "论文"
+    },
+    "aria": {
+      "linkToPaper": "论文链接",
+      "linkToSchool": "学校链接"
+    },
+    "contributionLevel": {
+      "firstAuthor": "第一作者",
+      "coAuthor": "共同作者",
+      "presenter": "演讲者"
+    },
+    "jobs": {
+      "dsbj": {
+        "company": "DSBJ Pte. Ltd.",
+        "position": "应用与数据开发实习生",
+        "description": "",
+        "bullet1": "使用 Python 和 Next.js 实现了一个模型可视化与分析平台，集成 AI 驱动的洞察功能，使业务部门和数据科学家能够交互式地评估数学优化和 AI 模型。",
+        "bullet2": "搭建了稳健的单点登录（SSO）后端框架，为两个现有项目统一了身份认证。",
+        "bullet3": "使用 LangChain 设计了一个基于大语言模型的系统，从非结构化数据中提取洞察。"
+      },
+      "works": {
+        "company": "Works Pte. Ltd.",
+        "position": "移动端与网页应用开发实习生",
+        "description": "",
+        "bullet1": "从 Flutter 移动端开发起步，后加入 Angular 网页团队，贡献了总代码库 80% 的代码。",
+        "bullet2": "协作开发两个平台的功能，包括聊天界面、支付处理页面、移动端响应式 UI 及其他前端 UI 更新，确保跨平台功能一致。",
+        "bullet3": "诊断并修复用户反馈的 bug，在两周内消除了 90% 的非致命前端错误。"
+      }
+    },
+    "research": {
+      "ai4x": {
+        "conference": "AI4X 2025 国际会议",
+        "title": "物理信息神经网络中的不确定性量化",
+        "description": "我们使用深度证据回归来量化物理信息神经网络中的不确定性，并在 Burgers 和 Laplace 实验中进行了验证。",
+        "abstract": "我们将一种先进的方法集成到物理信息神经网络中，用于量化随机不确定性和认知不确定性，观察到在保持预测准确性的同时，不确定性能被有效捕获。",
+        "topic1": "物理信息神经网络",
+        "topic2": "不确定性量化"
+      }
+    },
+    "education": {
+      "ntu": {
+        "school": "南洋理工大学",
+        "degree": "计算机工程荣誉工学学士",
+        "description": "",
+        "bullet1": "选修方向：安全与人工智能",
+        "bullet2": "辅修商科"
+      }
+    }
+  },
+  "projects": {
+    "title": "项目",
+    "labels": {
+      "website": "网站"
+    },
+    "oceanfrontHardware": {
+      "name": "Oceanfront Hardware",
+      "role": "开发者",
+      "description": "为这家五金公司担任全栈网页开发自由职业者。专注于 SEO 性能和 CMS 集成。",
+      "bullet1": "使用 Vue.js (Vite) 和 Strapi CMS 在两个月内开发了一个具备电商功能的企业网站，集成 Stripe 进行支付处理",
+      "bullet2": "采用 Meilisearch 升级搜索功能，将查询响应时间从 700ms 降至 20ms",
+      "bullet3": "将前端迁移至 Nuxt.js，利用服务端渲染（SSR）提升 SEO 和页面加载速度至 800ms",
+      "laptopAlt": "OceanfrontHardware 桌面端视图",
+      "mobileAlt": "OceanfrontHardware 移动端视图"
     }
   }
 }
