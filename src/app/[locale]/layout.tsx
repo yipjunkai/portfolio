@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import { JSX } from "react";
 import MobileTopNav from "./_components/MobileTopNav";
+import ScrollToTop from "./_components/ScrollToTop";
 import Sidebar from "./_components/Sidebar";
 import "../globals.css";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -122,6 +123,7 @@ export default async function RootLayout({
               <Sidebar sections={sections} />
               <MobileTopNav sections={sections} />
               <main className="grow overflow-y-auto bg-gray-50 *:mx-auto *:mt-12 *:w-full *:max-w-[900px] *:px-8 *:pb-24 *:md:px-6 *:lg:mt-24 dark:bg-[#131313]">
+                <ScrollToTop />
                 {children}
               </main>
             </div>
