@@ -26,7 +26,7 @@ export default function LanguageChanger({ className, style }: ButtonHTMLAttribut
     icon: React.ReactNode;
   }[] = [
     {
-      name: "English (Singapore)",
+      name: "English",
       code: "en-SG",
       icon: <span className="text-2xl">🇸🇬</span>
     },
@@ -46,7 +46,7 @@ export default function LanguageChanger({ className, style }: ButtonHTMLAttribut
           <LanguageIcon className="size-6 lg:size-5" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent collisionPadding={16}>
         <DropdownMenuGroup>
           <DropdownMenuLabel>{t("selectLanguage")}</DropdownMenuLabel>
           <DropdownMenuRadioGroup value={locale}>
