@@ -2,8 +2,7 @@ import TechStackBubble from "@/components/shared/TechStackBubble";
 import { DocumentTextIcon, GlobeAltIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import { use } from "react";
+import { getFormatter, getTranslations, setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -15,9 +14,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function Experience({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = use(params);
+export default async function Experience({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "experience" });
+  const formatter = await getFormatter({ locale });
+
+  const formattedDate = (date: Date) => {
+    return formatter.dateTime(date, {
+      month: "short",
+      year: "numeric"
+    });
+  };
 
   const experiences = [
     {
@@ -80,7 +88,7 @@ export default function Experience({ params }: { params: Promise<{ locale: strin
 
   return (
     <div className="space-y-8">
-      <h1 className="text-4xl font-bold">Research</h1>
+      <h1 className="text-4xl font-bold">{t("sections.research")}</h1>
       <div className="space-y-12">
         {research.map(research => (
           <div key={research.conference} className="space-y-4 lg:space-y-6">
@@ -92,12 +100,12 @@ export default function Experience({ params }: { params: Promise<{ locale: strin
             <h2 className="text-2xl font-bold">{research.title}</h2>
             <p className="text-justify text-pretty whitespace-pre-wrap">{research.description}</p>
             <p className="line-clamp-3 text-justify text-pretty whitespace-pre-wrap italic">
-              <span className="mr-4 uppercase">abstract</span>
+              <span className="mr-4 uppercase">{t("labels.abstract")}</span>
               <span>{research.abstract}</span>
             </p>
             {research.link.trim() !== "" && (
               <div className="flex flex-row items-center gap-2">
-                <span>Avaliable at: </span>
+                <span>{t("labels.availableAt")} </span>
                 <Link
                   href={research.link}
                   target="_blank"
@@ -105,7 +113,7 @@ export default function Experience({ params }: { params: Promise<{ locale: strin
                   aria-label="Link to paper"
                 >
                   <DocumentTextIcon className="size-6" />
-                  <span>Paper</span>
+                  <span>{t("labels.paper")}</span>
                 </Link>
               </div>
             )}
@@ -120,7 +128,7 @@ export default function Experience({ params }: { params: Promise<{ locale: strin
         ))}
       </div>
       <div className="my-12 h-[1px] w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
-      <h1 className="text-4xl font-bold">Education</h1>
+      <h1 className="text-4xl font-bold">{t("sections.education")}</h1>
       <div className="space-y-12">
         {education.map(education => (
           <div key={education.school} className="space-y-4">
@@ -149,22 +157,16 @@ export default function Experience({ params }: { params: Promise<{ locale: strin
         ))}
       </div>
       <div className="my-12 h-[1px] w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
-      <h1 className="text-4xl font-bold">Experience</h1>
+      <h1 className="text-4xl font-bold">{t("sections.experience")}</h1>
       <div className="space-y-12">
         {experiences.map(experience => (
           <div key={experience.company} className="space-y-4">
             <div className="flex flex-col justify-between font-mono text-lg md:flex-row">
               <h2 className="truncate">{experience.company}</h2>
               <p className="tracking-tighter italic">
-                {experience.startDate.toLocaleDateString("en-US", {
-                  month: "short",
-                  year: "numeric"
-                })}
+                {formattedDate(experience.startDate)}
                 {" - "}
-                {experience.endDate.toLocaleDateString("en-US", {
-                  month: "short",
-                  year: "numeric"
-                })}
+                {formattedDate(experience.endDate)}
               </p>
             </div>
             <h1 className="text-2xl font-bold">{experience.position}</h1>

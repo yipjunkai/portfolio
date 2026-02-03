@@ -20,7 +20,7 @@ export interface PDFDialogContentProps {
 }
 
 export default function PDFDialogContent({ url, downloadName, title, description }: PDFDialogContentProps) {
-  const t = useTranslations("pdf-dialog");
+  const t = useTranslations("common");
 
   const [numPages, setNumPages] = useState(0);
 

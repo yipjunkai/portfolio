@@ -9,7 +9,6 @@ import { Link } from "@/i18n/navigation";
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { use } from "react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -21,9 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function Projects({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = use(params);
+export default async function Projects({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "projects" });
 
   const projects = [
     {
@@ -50,7 +50,7 @@ export default function Projects({ params }: { params: Promise<{ locale: string 
 
   return (
     <div className="space-y-8">
-      <h1 className="text-4xl font-bold">Projects</h1>
+      <h1 className="text-4xl font-bold">{t("title")}</h1>
       <div className="flex flex-col gap-4">
         {projects.map(project => (
           <div key={project.name} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
@@ -64,7 +64,7 @@ export default function Projects({ params }: { params: Promise<{ locale: string 
                   className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                 >
                   <GlobeAltIcon className="size-6" />
-                  <span>Website</span>
+                  <span>{t("labels.website")}</span>
                 </Link>
               )}
               <ul className="list-inside list-disc">
