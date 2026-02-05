@@ -1,8 +1,9 @@
-import TechStackBubble from "@/components/shared/TechStackBubble";
-import { DocumentTextIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
-import { Link } from "@/i18n/navigation";
 import { getFormatter, getTranslations, setRequestLocale } from "next-intl/server";
+import ExperienceCard from "./_components/ExperienceCard";
+import SectionDivider from "./_components/SectionDivider";
+import { DocumentTextIcon } from "@heroicons/react/24/solid";
+import { Link } from "@/i18n/navigation";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -86,52 +87,37 @@ export default async function Experience({ params }: { params: Promise<{ locale:
       <h1 className="text-4xl font-bold">{t("sections.experience")}</h1>
       <div className="space-y-12">
         {experiences.map(experience => (
-          <div key={experience.company} className="space-y-4">
-            <div className="flex flex-col justify-between font-mono text-lg md:flex-row">
-              <h2 className="truncate">
-                {experience.company}
-                {" | "}
-                {experience.location}
-              </h2>
-              <p className="tracking-tighter italic">
-                {formattedDate(experience.startDate)}
-                {" - "}
-                {experience.endDate ? formattedDate(experience.endDate) : t("labels.present")}
-              </p>
-            </div>
-            <h1 className="text-2xl font-bold">{experience.position}</h1>
-            {experience.description.trim() !== "" && (
-              <p className="text-justify text-pretty whitespace-pre-wrap">{experience.description}</p>
-            )}
-            <ul className="list-inside list-disc">
-              {experience.bulletPoints
-                .filter(bulletPoint => bulletPoint.trim() !== "")
-                .map(bulletPoint => (
-                  <li key={bulletPoint} className="text-justify text-pretty">
-                    {bulletPoint}
-                  </li>
-                ))}
-            </ul>
-            <div className="flex flex-wrap gap-2 lg:gap-4">
-              {experience.techStack.map(tech => (
-                <TechStackBubble key={tech} tech={tech} />
-              ))}
-            </div>
-          </div>
+          <ExperienceCard
+            key={experience.company}
+            header={{
+              left: `${experience.company} | ${experience.location}`,
+              right: (
+                <>
+                  {formattedDate(experience.startDate)}
+                  {" - "}
+                  {experience.endDate ? formattedDate(experience.endDate) : t("labels.present")}
+                </>
+              )
+            }}
+            title={experience.position}
+            description={experience.description}
+            bulletPoints={experience.bulletPoints}
+            techStack={experience.techStack}
+          />
         ))}
       </div>
-      <div className="my-12 h-px w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
+      <SectionDivider />
       <h1 className="text-4xl font-bold">{t("sections.research")}</h1>
       <div className="space-y-12">
         {research.map(research => (
-          <div key={research.conference} className="space-y-4 lg:space-y-6">
-            <h1 className="mb-2 font-mono text-lg lg:mb-4">
-              <span>{research.conference}</span>
-              {" | "}
-              <span className="italic">{research.contribution}</span>
-            </h1>
-            <h2 className="text-2xl font-bold">{research.title}</h2>
-            <p className="text-justify text-pretty whitespace-pre-wrap">{research.description}</p>
+          <ExperienceCard
+            key={research.conference}
+            header={{
+              left: `${research.conference} | ${research.contribution}`
+            }}
+            title={research.title}
+            description={research.description}
+          >
             <p className="line-clamp-3 text-justify text-pretty whitespace-pre-wrap italic">
               <span className="mr-4 uppercase">{t("labels.abstract")}</span>
               <span>{research.abstract}</span>
@@ -157,27 +143,23 @@ export default async function Experience({ params }: { params: Promise<{ locale:
                 </span>
               ))}
             </div>
-          </div>
+          </ExperienceCard>
         ))}
       </div>
-      <div className="my-12 h-px w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
+      <SectionDivider />
       <h1 className="text-4xl font-bold">{t("sections.education")}</h1>
       <div className="space-y-12">
         {education.map(education => (
-          <div key={education.school} className="space-y-4">
-            <h1 className="flex flex-row items-center gap-2 font-mono text-lg">
-              <span>{education.school}</span>
-            </h1>
-            <h2 className="text-2xl font-bold">{education.degree}</h2>
-            {education.description.trim() !== "" && <p className="text-justify text-pretty whitespace-pre-wrap">{education.description}</p>}
-            <ul className="list-inside list-disc">
-              {education.bulletPoints.map(bulletPoint => (
-                <li key={bulletPoint} className="text-justify text-pretty">
-                  {bulletPoint}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ExperienceCard
+            key={education.school}
+            header={{
+              left: education.school,
+              right: <></>
+            }}
+            title={education.degree}
+            description={education.description}
+            bulletPoints={education.bulletPoints}
+          />
         ))}
       </div>
     </div>
