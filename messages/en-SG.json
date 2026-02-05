@@ -76,7 +76,8 @@
     "labels": {
       "abstract": "ABSTRACT",
       "availableAt": "Available at:",
-      "paper": "Paper"
+      "paper": "Paper",
+      "present": "Present"
     },
     "aria": {
       "linkToPaper": "Link to paper",
@@ -88,6 +89,14 @@
       "presenter": "Presenter"
     },
     "jobs": {
+      "kipo": {
+        "company": "Kipo AI",
+        "position": "Software Engineering Intern",
+        "description": "Joined Kipo on NTU OEP programme to build systems to make millions of parts searchable",
+        "bullet1": "",
+        "bullet2": "",
+        "bullet3": ""
+      },
       "dsbj": {
         "company": "DSBJ Pte. Ltd.",
         "position": "Application & Data Developer Intern",

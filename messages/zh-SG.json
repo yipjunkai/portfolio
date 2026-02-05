@@ -75,7 +75,8 @@
     "labels": {
       "abstract": "摘要",
       "availableAt": "可在此查阅：",
-      "paper": "论文"
+      "paper": "论文",
+      "present": "至今"
     },
     "aria": {
       "linkToPaper": "论文链接",
@@ -87,6 +88,14 @@
       "presenter": "演讲者"
     },
     "jobs": {
+      "kipo": {
+        "company": "Kipo AI",
+        "position": "软件工程实习生",
+        "description": "通过 NTU OEP 计划加入 Kipo AI，构建系统使数百万零件可搜索",
+        "bullet1": "",
+        "bullet2": "",
+        "bullet3": ""
+      },
       "dsbj": {
         "company": "DSBJ Pte. Ltd.",
         "position": "应用与数据开发实习生",

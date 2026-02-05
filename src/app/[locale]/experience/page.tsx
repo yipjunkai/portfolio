@@ -29,6 +29,17 @@ export default async function Experience({ params }: { params: Promise<{ locale:
 
   const experiences = [
     {
+      company: t("jobs.kipo.company"),
+      position: t("jobs.kipo.position"),
+      startDate: new Date(2025, 5, 1), // Jun 2025 (Month is 0-indexed)
+      endDate: null, // Present
+      techStack: [],
+      description: t("jobs.kipo.description"),
+      bulletPoints: [t("jobs.kipo.bullet1"), t("jobs.kipo.bullet2"), t("jobs.kipo.bullet3")].filter(
+        bullet => bullet.trim() !== ""
+      )
+    },
+    {
       company: t("jobs.dsbj.company"),
       position: t("jobs.dsbj.position"),
       startDate: new Date(2024, 0, 1), // Jan 2024 (Month is 0-indexed)
@@ -150,7 +161,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
               <p className="tracking-tighter italic">
                 {formattedDate(experience.startDate)}
                 {" - "}
-                {formattedDate(experience.endDate)}
+                {experience.endDate ? formattedDate(experience.endDate) : t("labels.present")}
               </p>
             </div>
             <h1 className="text-2xl font-bold">{experience.position}</h1>
