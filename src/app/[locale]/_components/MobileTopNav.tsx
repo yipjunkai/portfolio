@@ -19,7 +19,9 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
     <div className="relative">
       <nav className="flex w-full flex-row items-center justify-between border-b border-neutral-300 bg-gray-50 p-4 pl-6 lg:hidden dark:border-neutral-800 dark:bg-[#131313]">
         {/* SVG: favicon */}
-        <Image src="/logo.svg" alt={t("logoAlt")} className="size-8 md:size-12" width={32} height={32} />
+        <Link href="/" className="cursor-pointer transition-opacity hover:opacity-80">
+          <Image src="/logo.svg" alt={t("logoAlt")} className="size-8 md:size-12" width={32} height={32} />
+        </Link>
 
         <div className="flex flex-row gap-2 *:p-2">
           {/* Search button */}
