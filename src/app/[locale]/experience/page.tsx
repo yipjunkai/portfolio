@@ -30,6 +30,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
   const experiences = [
     {
       company: t("jobs.kipo.company"),
+      location: t("jobs.kipo.location"),
       position: t("jobs.kipo.position"),
       startDate: new Date(2025, 5, 1), // Jun 2025 (Month is 0-indexed)
       endDate: null, // Present
@@ -41,6 +42,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
     },
     {
       company: t("jobs.dsbj.company"),
+      location: t("jobs.dsbj.location"),
       position: t("jobs.dsbj.position"),
       startDate: new Date(2024, 0, 1), // Jan 2024 (Month is 0-indexed)
       endDate: new Date(2024, 6, 1), // Represents end of June 2024
@@ -50,6 +52,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
     },
     {
       company: t("jobs.works.company"),
+      location: t("jobs.works.location"),
       position: t("jobs.works.position"),
       startDate: new Date(2021, 1, 1), // Feb 2021
       endDate: new Date(2021, 6, 1), // Represents end of June 2021
@@ -157,7 +160,11 @@ export default async function Experience({ params }: { params: Promise<{ locale:
         {experiences.map(experience => (
           <div key={experience.company} className="space-y-4">
             <div className="flex flex-col justify-between font-mono text-lg md:flex-row">
-              <h2 className="truncate">{experience.company}</h2>
+              <h2 className="truncate">
+                {experience.company}
+                {" | "}
+                {experience.location}
+              </h2>
               <p className="tracking-tighter italic">
                 {formattedDate(experience.startDate)}
                 {" - "}

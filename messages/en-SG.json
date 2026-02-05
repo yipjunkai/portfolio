@@ -91,6 +91,7 @@
     "jobs": {
       "kipo": {
         "company": "Kipo AI",
+        "location": "San Francisco",
         "position": "Software Engineering Intern",
         "description": "Joined Kipo on NTU OEP programme to build systems to make millions of parts searchable",
         "bullet1": "",
@@ -99,6 +100,7 @@
       },
       "dsbj": {
         "company": "DSBJ Pte. Ltd.",
+        "location": "Singapore",
         "position": "Application & Data Developer Intern",
         "description": "",
         "bullet1": "Implemented a model visualization and analysis platform with Al-driven insights in Python and Nextjs, enabling business units and data scientists to interact with and evaluate mathematical optimization and Al models.",
@@ -107,6 +109,7 @@
       },
       "works": {
         "company": "Works Pte. Ltd.",
+        "location": "Singapore",
         "position": "Mobile Application & Web Application Developer, Intern",
         "description": "",
         "bullet1": "Began as a Flutter mobile developer, brought onto Angular web team, and contributed 80% of the total codebase.",

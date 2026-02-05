@@ -90,6 +90,7 @@
     "jobs": {
       "kipo": {
         "company": "Kipo AI",
+        "location": "旧金山",
         "position": "软件工程实习生",
         "description": "通过 NTU OEP 计划加入 Kipo AI，构建系统使数百万零件可搜索",
         "bullet1": "",
@@ -98,6 +99,7 @@
       },
       "dsbj": {
         "company": "DSBJ Pte. Ltd.",
+        "location": "新加坡",
         "position": "应用与数据开发实习生",
         "description": "",
         "bullet1": "使用 Python 和 Next.js 实现了一个模型可视化与分析平台，集成 AI 驱动的洞察功能，使业务部门和数据科学家能够交互式地评估数学优化和 AI 模型。",
@@ -106,6 +108,7 @@
       },
       "works": {
         "company": "Works Pte. Ltd.",
+        "location": "新加坡",
         "position": "移动端与网页应用开发实习生",
         "description": "",
         "bullet1": "从 Flutter 移动端开发起步，后加入 Angular 网页团队，贡献了总代码库 80% 的代码。",
