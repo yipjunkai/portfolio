@@ -84,6 +84,44 @@ export default async function Experience({ params }: { params: Promise<{ locale:
 
   return (
     <div className="space-y-8">
+      <h1 className="text-4xl font-bold">{t("sections.experience")}</h1>
+      <div className="space-y-12">
+        {experiences.map(experience => (
+          <div key={experience.company} className="space-y-4">
+            <div className="flex flex-col justify-between font-mono text-lg md:flex-row">
+              <h2 className="truncate">
+                {experience.company}
+                {" | "}
+                {experience.location}
+              </h2>
+              <p className="tracking-tighter italic">
+                {formattedDate(experience.startDate)}
+                {" - "}
+                {experience.endDate ? formattedDate(experience.endDate) : t("labels.present")}
+              </p>
+            </div>
+            <h1 className="text-2xl font-bold">{experience.position}</h1>
+            {experience.description.trim() !== "" && (
+              <p className="text-justify text-pretty whitespace-pre-wrap">{experience.description}</p>
+            )}
+            <ul className="list-inside list-disc">
+              {experience.bulletPoints
+                .filter(bulletPoint => bulletPoint.trim() !== "")
+                .map(bulletPoint => (
+                  <li key={bulletPoint} className="text-justify text-pretty">
+                    {bulletPoint}
+                  </li>
+                ))}
+            </ul>
+            <div className="flex flex-wrap gap-2 lg:gap-4">
+              {experience.techStack.map(tech => (
+                <TechStackBubble key={tech} tech={tech} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="my-12 h-px w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
       <h1 className="text-4xl font-bold">{t("sections.research")}</h1>
       <div className="space-y-12">
         {research.map(research => (
@@ -149,42 +187,6 @@ export default async function Experience({ params }: { params: Promise<{ locale:
                 </li>
               ))}
             </ul>
-          </div>
-        ))}
-      </div>
-      <div className="my-12 h-px w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
-      <h1 className="text-4xl font-bold">{t("sections.experience")}</h1>
-      <div className="space-y-12">
-        {experiences.map(experience => (
-          <div key={experience.company} className="space-y-4">
-            <div className="flex flex-col justify-between font-mono text-lg md:flex-row">
-              <h2 className="truncate">
-                {experience.company}
-                {" | "}
-                {experience.location}
-              </h2>
-              <p className="tracking-tighter italic">
-                {formattedDate(experience.startDate)}
-                {" - "}
-                {experience.endDate ? formattedDate(experience.endDate) : t("labels.present")}
-              </p>
-            </div>
-            <h1 className="text-2xl font-bold">{experience.position}</h1>
-            {experience.description.trim() !== "" && (
-              <p className="text-justify text-pretty whitespace-pre-wrap">{experience.description}</p>
-            )}
-            <ul className="list-inside list-disc">
-              {experience.bulletPoints.map(bulletPoint => (
-                <li key={bulletPoint} className="text-justify text-pretty">
-                  {bulletPoint}
-                </li>
-              ))}
-            </ul>
-            <div className="flex flex-wrap gap-2 lg:gap-4">
-              {experience.techStack.map(tech => (
-                <TechStackBubble key={tech} tech={tech} />
-              ))}
-            </div>
           </div>
         ))}
       </div>
