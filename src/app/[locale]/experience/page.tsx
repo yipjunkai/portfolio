@@ -36,9 +36,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
       endDate: null, // Present
       techStack: [],
       description: t("jobs.kipo.description"),
-      bulletPoints: [t("jobs.kipo.bullet1"), t("jobs.kipo.bullet2"), t("jobs.kipo.bullet3")].filter(
-        bullet => bullet.trim() !== ""
-      )
+      bulletPoints: [t("jobs.kipo.bullet1"), t("jobs.kipo.bullet2"), t("jobs.kipo.bullet3")]
     },
     {
       company: t("jobs.dsbj.company"),
@@ -117,7 +115,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
             )}
             <div className="flex flex-wrap gap-2 lg:gap-4">
               {research.topics.map(topic => (
-                <span key={topic} className="rounded-md bg-gradient-to-r from-grad-1 to-grad-2 px-2 py-1 text-white">
+                <span key={topic} className="rounded-md bg-linear-to-r from-grad-1 to-grad-2 px-2 py-1 text-white">
                   {topic}
                 </span>
               ))}
@@ -125,7 +123,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
           </div>
         ))}
       </div>
-      <div className="my-12 h-[1px] w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
+      <div className="my-12 h-px w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
       <h1 className="text-4xl font-bold">{t("sections.education")}</h1>
       <div className="space-y-12">
         {education.map(education => (
@@ -154,7 +152,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
           </div>
         ))}
       </div>
-      <div className="my-12 h-[1px] w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
+      <div className="my-12 h-px w-full bg-gray-800 md:my-16 lg:my-20 dark:bg-neutral-600" />
       <h1 className="text-4xl font-bold">{t("sections.experience")}</h1>
       <div className="space-y-12">
         {experiences.map(experience => (
