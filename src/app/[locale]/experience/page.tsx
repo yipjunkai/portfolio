@@ -1,5 +1,5 @@
 import TechStackBubble from "@/components/shared/TechStackBubble";
-import { DocumentTextIcon, GlobeAltIcon } from "@heroicons/react/24/solid";
+import { DocumentTextIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { getFormatter, getTranslations, setRequestLocale } from "next-intl/server";
@@ -75,7 +75,6 @@ export default async function Experience({ params }: { params: Promise<{ locale:
   const education = [
     {
       school: t("education.ntu.school"),
-      schoolLink: "https://www.ntu.edu.sg/",
       degree: t("education.ntu.degree"),
       description: t("education.ntu.description"),
       bulletPoints: [t("education.ntu.bullet1"), t("education.ntu.bullet2")]
@@ -168,15 +167,6 @@ export default async function Experience({ params }: { params: Promise<{ locale:
           <div key={education.school} className="space-y-4">
             <h1 className="flex flex-row items-center gap-2 font-mono text-lg">
               <span>{education.school}</span>
-              {" | "}
-              <Link
-                href={education.schoolLink}
-                target="_blank"
-                className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                aria-label={t("aria.linkToSchool")}
-              >
-                <GlobeAltIcon className="size-6" />
-              </Link>
             </h1>
             <h2 className="text-2xl font-bold">{education.degree}</h2>
             {education.description.trim() !== "" && <p className="text-justify text-pretty whitespace-pre-wrap">{education.description}</p>}
