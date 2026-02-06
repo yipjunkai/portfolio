@@ -1,17 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDownTrayIcon, MapPinIcon } from "@heroicons/react/24/solid";
-import { setRequestLocale } from "next-intl/server";
-import { use } from "react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import EmailMeDialog from "./_components/EmailMeDialog";
-import { MailIcon } from "lucide-react";
-import { useTranslations } from "next-intl";
 import ResumePDFDialog from "./_components/ResumePDFDialog";
+import { EnvelopeIcon } from "@heroicons/react/24/solid";
 
-export default function Home({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = use(params);
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = useTranslations("home");
+  const t = await getTranslations({ locale, namespace: "home" });
 
   return (
     <>
@@ -29,7 +27,7 @@ export default function Home({ params }: { params: Promise<{ locale: string }> }
         <div className="flex flex-col gap-4 *:flex *:items-center *:gap-4 *:text-2xl lg:flex-row">
           <EmailMeDialog>
             <Button variant="default">
-              <MailIcon className="size-6" />
+              <EnvelopeIcon className="size-6" />
               <span>{t("emailMe")}</span>
             </Button>
           </EmailMeDialog>
