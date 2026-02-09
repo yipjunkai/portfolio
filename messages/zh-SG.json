@@ -92,28 +92,28 @@
         "company": "Kipo AI",
         "location": "旧金山",
         "position": "软件工程实习生",
-        "description": "通过 NTU OEP 计划加入 Kipo AI，构建系统使数百万零件可搜索",
-        "bullet1": "",
-        "bullet2": "",
-        "bullet3": ""
+        "description": "",
+        "bullet1": "开发了使数百万零件可搜索的系统，集成了网络搜索、实时定价和交货期跟踪功能。",
+        "bullet2": "构建了数据表符号提取平台，并将其导出为行业标准格式。",
+        "bullet3": "开发了将物料清单转换为可操作项的工具，实现自动化采购和替代品识别。"
       },
       "dsbj": {
-        "company": "DSBJ Pte. Ltd.",
+        "company": "DSBJ",
         "location": "新加坡",
         "position": "应用与数据开发实习生",
         "description": "",
-        "bullet1": "使用 Python 和 Next.js 实现了一个模型可视化与分析平台，集成 AI 驱动的洞察功能，使业务部门和数据科学家能够交互式地评估数学优化和 AI 模型。",
-        "bullet2": "搭建了稳健的单点登录（SSO）后端框架，为两个现有项目统一了身份认证。",
-        "bullet3": "使用 LangChain 设计了一个基于大语言模型的系统，从非结构化数据中提取洞察。"
+        "bullet1": "使用 Python 和 Next.js 开发了模型可视化平台，集成了基于大语言模型的诊断工具来自动化数据解释，使利益相关者能够从复杂的数学模型中获得自然语言洞察。",
+        "bullet2": "使用 NestJS 集中部署了单点登录（SSO）框架，统一了多个内部应用程序的身份认证，增强了组织安全性。",
+        "bullet3": ""
       },
       "works": {
-        "company": "Works Pte. Ltd.",
+        "company": "Gigworks (Works Pte. Ltd.)",
         "location": "新加坡",
         "position": "移动端与网页应用开发实习生",
         "description": "",
-        "bullet1": "从 Flutter 移动端开发起步，后加入 Angular 网页团队，贡献了总代码库 80% 的代码。",
-        "bullet2": "协作开发两个平台的功能，包括聊天界面、支付处理页面、移动端响应式 UI 及其他前端 UI 更新，确保跨平台功能一致。",
-        "bullet3": "诊断并修复用户反馈的 bug，在两周内消除了 90% 的非致命前端错误。"
+        "bullet1": "在实习期间为一家中型初创公司加速产品开发，在 Flutter 移动端和 Angular 网页平台上编写了约 80% 的总代码库。",
+        "bullet2": "通过开发高影响力组件实现了跨平台功能一致性，包括实时聊天界面、安全支付处理模块和完全移动端响应式 UI。",
+        "bullet3": ""
       }
     },
     "research": {
@@ -143,11 +143,11 @@
     },
     "oceanfrontHardware": {
       "name": "Oceanfront Hardware",
-      "role": "开发者",
+      "role": "自由职业开发者",
       "description": "为这家五金公司担任全栈网页开发自由职业者。专注于 SEO 性能和 CMS 集成。",
-      "bullet1": "使用 Vue.js (Vite) 和 Strapi CMS 在两个月内开发了一个具备电商功能的企业网站，集成 Stripe 进行支付处理",
-      "bullet2": "采用 Meilisearch 升级搜索功能，将查询响应时间从 700ms 降至 20ms",
-      "bullet3": "将前端迁移至 Nuxt.js，利用服务端渲染（SSR）提升 SEO 和页面加载速度至 800ms",
+      "bullet1": "使用 Vue.js 和 Strapi 架构并部署了全栈 B2B 电商平台，支持 800 个活跃 SKU 的目录。",
+      "bullet2": "实施了从 Vue.js 到 Next.js 的迁移，利用服务端渲染（SSR）优化核心网页性能指标，在行业竞争对手中获得顶级 Google 搜索排名。",
+      "bullet3": "通过实施 Meilisearch 优化产品可发现性，将搜索查询延迟降低了 97%（从 700ms 降至 20ms），并为 B2B 目录启用即时、容错的筛选功能。",
       "laptopAlt": "OceanfrontHardware 桌面端视图",
       "mobileAlt": "OceanfrontHardware 移动端视图"
     }

@@ -93,28 +93,28 @@
         "company": "Kipo AI",
         "location": "San Francisco",
         "position": "Software Engineering Intern",
-        "description": "Joined Kipo on NTU OEP programme to build systems to make millions of parts searchable",
-        "bullet1": "",
-        "bullet2": "",
-        "bullet3": ""
+        "description": "",
+        "bullet1": "Developed systems to make millions of parts searchable, integrating web search and live pricing and lead-time tracking.",
+        "bullet2": "Engineered platform to extract datasheet symbols and export them into industry-standard formats.",
+        "bullet3": "Built tools to convert Bill of Materials into actionables, enabling automated sourcing and the identification of alternatives."
       },
       "dsbj": {
-        "company": "DSBJ Pte. Ltd.",
+        "company": "DSBJ",
         "location": "Singapore",
         "position": "Application & Data Developer Intern",
         "description": "",
-        "bullet1": "Implemented a model visualization and analysis platform with Al-driven insights in Python and Nextjs, enabling business units and data scientists to interact with and evaluate mathematical optimization and Al models.",
-        "bullet2": "Established a robust Single Sign On (SSO) backend framework, and unified authentication for two existing projects.",
-        "bullet3": "Designed an LLM-powered system using LangChain to extract insights from unstructured data."
+        "bullet1": "Developed a model visualization platform using Python and Next.js that integrated LLM-based diagnostic tools to automate data interpretation, enabling stakeholders to gain natural language insights from complex mathematical models.",
+        "bullet2": "Centralized and deployed a Single Sign-On (SSO) framework using NestJS, unifying authentication across multiple internal applications to enhance organizational security.",
+        "bullet3": ""
       },
       "works": {
-        "company": "Works Pte. Ltd.",
+        "company": "Gigworks (Works Pte. Ltd.)",
         "location": "Singapore",
-        "position": "Mobile Application & Web Application Developer, Intern",
+        "position": "Mobile Application and Web Application Developer Intern",
         "description": "",
-        "bullet1": "Began as a Flutter mobile developer, brought onto Angular web team, and contributed 80% of the total codebase.",
-        "bullet2": "Collaborated to create features for both platforms, such as a chat interface, payment processing pages, mobile responsive Ul and other frontend Ul updates, ensuring cross platform feature parity.",
-        "bullet3": "Diagnosed and resolved user-reported bugs, eliminating 90% of non-fatal frontend errors in two weeks."
+        "bullet1": "Accelerated product development for a mid-sized startup by authoring approximately 80% of the total codebase across both Flutter mobile and Angular web platforms during the internship tenure.",
+        "bullet2": "Delivered cross-platform feature parity by developing high-impact components, including a real-time chat interface, secure payment processing modules, and a fully mobile-responsive UI.",
+        "bullet3": ""
       }
     },
     "research": {
@@ -144,11 +144,11 @@
     },
     "oceanfrontHardware": {
       "name": "Oceanfront Hardware",
-      "role": "Developer",
+      "role": "Freelance Developer",
       "description": "Freelanced as a full-stack web developer for this hardware company. Focused on SEO performance and CMS integration.",
-      "bullet1": "Developed a company website with e-commerce functionality in two months using Vue.js (Vite), and Strapi CMS, with Stripe for payment processing",
-      "bullet2": "Adopted Meilisearch to upgrade search functionality, reducing query response time from 700ms to 20ms",
-      "bullet3": "Migrated frontend to Nuxtjs, leveraged server-side rendering (SSR) enhancing SEO and page load speed to 800ms",
+      "bullet1": "Architected and deployed a full-stack B2B e-commerce platform using Vue.js and Strapi, supporting a catalog of 800 active SKUs.",
+      "bullet2": "Engineered a migration from Vue.js to Next.js, leveraging Server-Side Rendering (SSR) to optimize Core Web Vitals and secure top-tier Google search rankings against industry competitors.",
+      "bullet3": "Optimized product discoverability by implementing Meilisearch, reducing search query latency by 97% (from 700ms to 20ms) and enabling instant, typo-tolerant filtering for the B2B catalog.",
       "laptopAlt": "OceanfrontHardware desktop view",
       "mobileAlt": "OceanfrontHardware mobile view"
     }
