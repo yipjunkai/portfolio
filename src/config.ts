@@ -7,6 +7,6 @@ export const siteConfig = {
   },
   resume: {
     filename: "YipJunKai_CV.pdf",
-    url: "https://umpsbusvwgpktceb.public.blob.vercel-storage.com/resume_EN-SVX0krPLPxukHyrkKyzStsEBJvyxt5.pdf"
+    url: "https://umpsbusvwgpktceb.public.blob.vercel-storage.com/resume_EN-e5CcwujcbTgcDdJC09oPqWTvxq8P2X.pdf"
   }
 };
