@@ -4,6 +4,8 @@ import { ReactNode } from "react";
 interface CardProps {
   header: {
     left: string;
+    leftUrl?: string;
+    leftSuffix?: string;
     right?: ReactNode;
   };
   title: string;
@@ -17,7 +19,23 @@ export default function Card({ header, title, description, bulletPoints = [], te
   return (
     <div className="space-y-4 lg:space-y-6">
       <div className="flex flex-col justify-between gap-2 font-mono text-lg md:flex-row md:items-center">
-        <h2 className="truncate">{header.left}</h2>
+        <div className="flex flex-row items-center gap-2">
+          <h2 className="truncate">
+            {header.leftUrl ? (
+              <a
+                href={header.leftUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+              >
+                {header.left}
+              </a>
+            ) : (
+              header.left
+            )}
+          </h2>
+          {header.leftSuffix && <span className="text-gray-600 dark:text-gray-400">{header.leftSuffix}</span>}
+        </div>
         {header.right && <div className="tracking-tighter italic">{header.right}</div>}
       </div>
       <h1 className="text-2xl font-bold">{title}</h1>

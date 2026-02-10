@@ -31,6 +31,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
   const experiences = [
     {
       company: t("jobs.kipo.company"),
+      companyUrl: "https://kipo.ai",
       location: t("jobs.kipo.location"),
       position: t("jobs.kipo.position"),
       startDate: new Date(2025, 5, 1), // Jun 2025 (Month is 0-indexed)
@@ -41,6 +42,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
     },
     {
       company: t("jobs.dsbj.company"),
+      companyUrl: "https://www.dsbj.com/",
       location: t("jobs.dsbj.location"),
       position: t("jobs.dsbj.position"),
       startDate: new Date(2024, 0, 1), // Jan 2024 (Month is 0-indexed)
@@ -90,7 +92,9 @@ export default async function Experience({ params }: { params: Promise<{ locale:
           <ExperienceCard
             key={experience.company}
             header={{
-              left: `${experience.company} | ${experience.location}`,
+              left: experience.company,
+              leftSuffix: ` | ${experience.location}`,
+              leftUrl: experience.companyUrl,
               right: (
                 <>
                   {formattedDate(experience.startDate)}
@@ -113,7 +117,8 @@ export default async function Experience({ params }: { params: Promise<{ locale:
           <ExperienceCard
             key={research.conference}
             header={{
-              left: `${research.conference} | ${research.contribution}`
+              left: research.conference,
+              leftSuffix: ` | ${research.contribution}`
             }}
             title={research.title}
             description={research.description}
