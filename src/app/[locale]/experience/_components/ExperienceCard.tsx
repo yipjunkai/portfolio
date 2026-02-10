@@ -21,15 +21,13 @@ export default function Card({ header, title, description, bulletPoints = [], te
         {header.right && <div className="tracking-tighter italic">{header.right}</div>}
       </div>
       <h1 className="text-2xl font-bold">{title}</h1>
-      {description && description.trim() !== "" && (
-        <p className="text-justify text-pretty whitespace-pre-wrap">{description}</p>
-      )}
+      {description && description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{description}</p>}
       {bulletPoints.length > 0 && (
         <ul className="list-inside list-disc">
           {bulletPoints
             .filter(point => point.trim() !== "")
             .map(point => (
-              <li key={point} className="text-justify text-pretty">
+              <li key={point} className="text-pretty">
                 {point}
               </li>
             ))}

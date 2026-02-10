@@ -30,11 +30,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
       name: t("oceanfrontHardware.name"),
       role: t("oceanfrontHardware.role"),
       description: t("oceanfrontHardware.description"),
-      bulletPoints: [
-        t("oceanfrontHardware.bullet1"),
-        t("oceanfrontHardware.bullet2"),
-        t("oceanfrontHardware.bullet3")
-      ],
+      bulletPoints: [t("oceanfrontHardware.bullet1"), t("oceanfrontHardware.bullet2"), t("oceanfrontHardware.bullet3")],
       techStack: ["Nuxt", "Typescript", "Strapi", "Stripe"],
       laptopImage: {
         src: oceanfrontHardwareLaptop,
@@ -56,7 +52,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
           <div key={project.name} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">{project.name}</h2>
-              {project.description.trim() !== "" && <p className="text-justify text-pretty whitespace-pre-wrap">{project.description}</p>}
+              {project.description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{project.description}</p>}
               {project.link.trim() !== "" && (
                 <Link
                   href={project.link}
@@ -69,7 +65,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
               )}
               <ul className="list-inside list-disc">
                 {project.bulletPoints.map(bulletPoint => (
-                  <li key={bulletPoint} className="text-justify text-pretty">
+                  <li key={bulletPoint} className="text-pretty">
                     {bulletPoint}
                   </li>
                 ))}
