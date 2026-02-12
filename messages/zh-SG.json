@@ -45,7 +45,8 @@
     "viewCv": "查看简历",
     "cvDialog": {
       "title": "这是我的简历",
-      "description": "帮我在 HR 那里美言几句吧！"
+      "description": "帮我在 HR 那里美言几句吧！",
+      "filename": "叶俊凯_简历.pdf"
     },
     "emailDialog": {
       "title": "与我联系",

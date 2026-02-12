@@ -45,7 +45,8 @@
     "viewCv": "View Resume",
     "cvDialog": {
       "title": "Here's my resume",
-      "description": "Put in a good word to HR!"
+      "description": "Put in a good word to HR!",
+      "filename": "Yip_JunKai_Resume.pdf"
     },
     "emailDialog": {
       "title": "Get in touch with me",
