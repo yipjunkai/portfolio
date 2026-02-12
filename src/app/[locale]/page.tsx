@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDownTrayIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import { DocumentArrowDownIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import EmailMeDialog from "./_components/EmailMeDialog";
 import ResumePDFDialog from "./_components/ResumePDFDialog";
-import { EnvelopeIcon } from "@heroicons/react/24/solid";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -25,18 +25,18 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </h2>
         <p className="text-justify text-pretty whitespace-pre-line">{t("aboutMe")}</p>
         <div className="flex flex-col gap-4 *:flex *:items-center *:gap-4 *:text-2xl lg:flex-row">
-          <EmailMeDialog>
+          <ResumePDFDialog>
             <Button variant="default">
+              <DocumentArrowDownIcon className="size-6" />
+              <span>{t("viewCv")}</span>
+            </Button>
+          </ResumePDFDialog>
+          <EmailMeDialog>
+            <Button variant="secondary">
               <EnvelopeIcon className="size-6" />
               <span>{t("emailMe")}</span>
             </Button>
           </EmailMeDialog>
-          <ResumePDFDialog>
-            <Button variant="secondary">
-              <ArrowDownTrayIcon className="size-6" />
-              <span>{t("viewCv")}</span>
-            </Button>
-          </ResumePDFDialog>
         </div>
       </div>
     </>
