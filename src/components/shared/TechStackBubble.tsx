@@ -39,3 +39,5 @@ export default function TechStackBubble({ tech }: { tech: string }) {
 
   return <span className={`${isOfType(tech)} rounded-md px-2 py-1 dark:text-white`}>{tech}</span>;
 }
+
+//todo remove this, replace with shadcn ui badge component with custom colors instead
