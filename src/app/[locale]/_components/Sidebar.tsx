@@ -6,7 +6,8 @@ import { Link } from "@/i18n/navigation";
 import ThemeChanger from "./ThemeChanger";
 import LanguageChanger from "./LanguageChanger";
 import { ExternalLinkIcon } from "lucide-react";
-import { Sections } from "../layout";
+import type { Sections } from "../layout";
+import type { Pathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
 export default function Sidebar(props: { sections: Sections[] }) {
@@ -30,20 +31,28 @@ export default function Sidebar(props: { sections: Sections[] }) {
           <div key={section.name} className="not-first:mt-4">
             <h2 className="text-xs font-bold text-neutral-600 uppercase dark:text-neutral-400">{section.name}</h2>
             <div className="flex flex-col gap-2 py-2">
-              {section.routes.map(route => (
-                <Link
-                  href={route.href}
-                  key={route.name}
-                  className={`group -ml-2 flex flex-row items-center justify-start gap-4 rounded-md p-2 capitalize transition-all duration-200 *:transition-all *:duration-200 hover:bg-gray-300 dark:hover:bg-neutral-800 ${
-                    pathname === route.href ? "bg-gray-300 dark:bg-neutral-800" : ""
-                  }`}
-                  target={route.href.includes("http") || route.href.includes("mailto") ? "_blank" : "_self"}
-                >
-                  {route.icon}
-                  <span className="text-neutral-800 dark:text-neutral-200 dark:group-hover:text-white">{route.name}</span>
-                  {(route.href.includes("http") || route.href.includes("mailto")) && <ExternalLinkIcon className="ml-auto size-4" />}
-                </Link>
-              ))}
+              {section.routes.map(route => {
+                const className = `group -ml-2 flex flex-row items-center justify-start gap-4 rounded-md p-2 capitalize transition-all duration-200 *:transition-all *:duration-200 hover:bg-gray-300 dark:hover:bg-neutral-800 ${
+                  !route.external && pathname === route.href ? "bg-gray-300 dark:bg-neutral-800" : ""
+                }`;
+                const children = (
+                  <>
+                    {route.icon}
+                    <span className="text-neutral-800 dark:text-neutral-200 dark:group-hover:text-white">{route.name}</span>
+                    {route.external && <ExternalLinkIcon className="ml-auto size-4" />}
+                  </>
+                );
+
+                return route.external ? (
+                  <a key={route.name} href={route.href} className={className} target="_blank" rel="noopener noreferrer">
+                    {children}
+                  </a>
+                ) : (
+                  <Link key={route.name} href={route.href as Pathname} className={className}>
+                    {children}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         ))}

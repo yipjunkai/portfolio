@@ -5,7 +5,6 @@ import Image from "next/image";
 import oceanfrontHardwareLaptop from "./_assets/oceanfront-hardware-laptop.webp";
 import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp";
 import ImageCarousel from "./_components/ImageCarousel";
-import { Link } from "@/i18n/navigation";
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -54,14 +53,15 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
               <h2 className="text-2xl font-bold">{project.name}</h2>
               {project.description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{project.description}</p>}
               {project.link.trim() !== "" && (
-                <Link
+                <a
                   href={project.link}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                 >
                   <GlobeAltIcon className="size-6" />
                   <span>{t("labels.website")}</span>
-                </Link>
+                </a>
               )}
               <ul className="list-inside list-disc">
                 {project.bulletPoints.map(bulletPoint => (

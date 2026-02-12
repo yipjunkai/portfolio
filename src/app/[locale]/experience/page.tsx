@@ -3,7 +3,6 @@ import { getFormatter, getTranslations, setRequestLocale } from "next-intl/serve
 import ExperienceCard from "./_components/ExperienceCard";
 import SectionDivider from "./_components/SectionDivider";
 import { DocumentTextIcon } from "@heroicons/react/24/solid";
-import { Link } from "@/i18n/navigation";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -130,15 +129,16 @@ export default async function Experience({ params }: { params: Promise<{ locale:
             {research.link.trim() !== "" && (
               <div className="flex flex-row items-center gap-2">
                 <span>{t("labels.availableAt")} </span>
-                <Link
+                <a
                   href={research.link}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                   aria-label={t("aria.linkToPaper")}
                 >
                   <DocumentTextIcon className="size-6" />
                   <span>{t("labels.paper")}</span>
-                </Link>
+                </a>
               </div>
             )}
             <div className="flex flex-wrap gap-2 lg:gap-4">

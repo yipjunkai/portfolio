@@ -10,20 +10,31 @@ import ScrollToTop from "./_components/ScrollToTop";
 import Sidebar from "./_components/Sidebar";
 import "../globals.css";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { routing } from "@/i18n/routing";
+import { routing, type Pathname } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { siteConfig } from "@/config";
 
-interface Routes {
+interface BaseRoute {
   name: string;
-  href: string;
   icon: JSX.Element;
 }
 
+export interface InternalRoute extends BaseRoute {
+  href: Pathname;
+  external?: false;
+}
+
+export interface ExternalRoute extends BaseRoute {
+  href: string;
+  external: true;
+}
+
+export type Route = InternalRoute | ExternalRoute;
+
 export interface Sections {
   name: string;
-  routes: Routes[];
+  routes: Route[];
 }
 
 const geistSans = Geist({
@@ -97,17 +108,20 @@ export default async function RootLayout({
         {
           name: t("sections.connect.routes.email"),
           href: `mailto:${siteConfig.email}`,
-          icon: <EnvelopeIcon className="size-4" />
+          icon: <EnvelopeIcon className="size-4" />,
+          external: true
         },
         {
           name: t("sections.connect.routes.linkedin"),
           href: siteConfig.links.linkedin,
-          icon: <LinkedinIcon className="size-4" />
+          icon: <LinkedinIcon className="size-4" />,
+          external: true
         },
         {
           name: t("sections.connect.routes.github"),
           href: siteConfig.links.github,
-          icon: <GithubIcon className="size-4" />
+          icon: <GithubIcon className="size-4" />,
+          external: true
         }
       ]
     }

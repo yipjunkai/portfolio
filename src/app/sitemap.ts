@@ -3,17 +3,18 @@ import { routing } from "@/i18n/routing";
 import type { MetadataRoute } from "next";
 import { Languages } from "next/dist/lib/metadata/types/alternative-urls-types";
 import { siteConfig } from "@/config";
+import type { Pathname } from "@/i18n/routing";
 
-const routes = ["/", "/experience", "/projects"];
+const routes: Pathname[] = ["/", "/experience", "/projects"];
 
-const generateLanguageAlternates = (path: string) => {
+const generateLanguageAlternates = (path: Pathname) => {
   return routing.locales.reduce((acc, locale) => {
     acc[locale] = siteConfig.url + getPathname({ href: path, locale });
     return acc;
   }, {} as Languages<string>);
 };
 
-const generateSitemap = (path: string) => {
+const generateSitemap = (path: Pathname) => {
   return {
     url: `${siteConfig.url}${path}`,
     lastModified: new Date(),

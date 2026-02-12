@@ -1,6 +1,5 @@
 import { StaticImageData } from "next/image";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
 
 export default function ImageCarousel({
   images,
@@ -27,7 +26,7 @@ export default function ImageCarousel({
       </div>
       <div className="absolute bottom-2 left-1/2 grid -translate-x-1/2 grid-flow-col gap-2 rounded-full bg-gradient-to-r from-grad-1 to-grad-2 p-1">
         {images.map((image, index) => (
-          <Link
+          <a
             key={index}
             className="size-4 rounded-full bg-white opacity-75 transition-opacity hover:opacity-100"
             href={`#image-${index}`}

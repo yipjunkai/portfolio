@@ -7,7 +7,8 @@ import { Link } from "@/i18n/navigation";
 import LanguageChanger from "./LanguageChanger";
 import { ExternalLinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Sections } from "../layout";
+import type { Sections } from "../layout";
+import type { Pathname } from "@/i18n/routing";
 
 export default function MobileTopNav(props: { sections: Sections[] }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,23 +55,28 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
           transitionTimingFunction: "cubic-bezier(0.4, 0.1, 0.6, 1.0)"
         }}
       >
-        {flatRoutes.map((route, index) => (
-          <Link
-            onClick={() => setIsOpen(false)}
-            href={route.href}
-            key={route.name}
-            className={`flex flex-row items-center justify-between text-4xl capitalize transition-all duration-150 ease-in md:text-5xl ${
-              isOpen ? "opacity-100" : "opacity-0 delay-0!"
-            }`}
-            style={{
-              transitionDelay: `${index * 0.1 + 0.4}s`
-            }}
-            target={route.href.includes("http") || route.href.includes("mailto") ? "_blank" : "_self"}
-          >
-            <span>{route.name}</span>
-            {(route.href.includes("http") || route.href.includes("mailto")) && <ExternalLinkIcon className="size-6" />}
-          </Link>
-        ))}
+        {flatRoutes.map((route, index) => {
+          const className = `flex flex-row items-center justify-between text-4xl capitalize transition-all duration-150 ease-in md:text-5xl ${
+            isOpen ? "opacity-100" : "opacity-0 delay-0!"
+          }`;
+          const style = { transitionDelay: `${index * 0.1 + 0.4}s` };
+          const children = (
+            <>
+              <span>{route.name}</span>
+              {route.external && <ExternalLinkIcon className="size-6" />}
+            </>
+          );
+
+          return route.external ? (
+            <a key={route.name} href={route.href} onClick={() => setIsOpen(false)} className={className} style={style} target="_blank" rel="noopener noreferrer">
+              {children}
+            </a>
+          ) : (
+            <Link key={route.name} href={route.href as Pathname} onClick={() => setIsOpen(false)} className={className} style={style}>
+              {children}
+            </Link>
+          );
+        })}
         <div className="mt-auto flex flex-row items-center justify-between">
           <ThemeChanger
             className={`transition-all duration-150 ease-in ${isOpen ? "opacity-100" : "opacity-0 delay-0!"}`}
