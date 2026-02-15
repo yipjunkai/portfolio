@@ -133,11 +133,11 @@ function BoyfriendResume() {
             leftSuffix: "| Full-time",
             right: "Forever - Present"
           }}
-          title="Dedicated Boyfriend"
+          title="Dedicated Boyfriend — 180cm of love"
           description="Committed to making every day special, turning ordinary moments into extraordinary memories."
           bulletPoints={[
             "Provides unlimited hugs, cuddles, and emotional support with 99.99% uptime",
-            "Proactively plans surprise dates, gifts, and heartfelt gestures",
+            "Proactively surprises you with preserved roses — because real love deserves flowers that last",
             "Expert at listening, understanding, and always being there when it matters most"
           ]}
           tags={["Love", "Patience", "Dedication", "Affection"]}
@@ -149,6 +149,19 @@ function BoyfriendResume() {
       {/* --- Core Skills --- */}
       <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400">Core Skills</h2>
       <div className="space-y-12">
+        <Card
+          header={{
+            left: "Ex-Firefighter",
+            leftSuffix: "| Certified"
+          }}
+          title="Protection & Safety"
+          bulletPoints={[
+            "Trained to keep you safe — literally ran into burning buildings",
+            "Smoke-free lifestyle, zero exceptions",
+            "Calm under pressure, reliable when it counts"
+          ]}
+        />
+
         <Card
           header={{
             left: "Emotional Intelligence",
@@ -182,9 +195,9 @@ function BoyfriendResume() {
           }}
           title="Activities & Adventures"
           bulletPoints={[
+            "Rooftop bars and hidden speakeasies — not for the drinks, for the vibe and you",
             "Binge-watching series together without spoilers — zero tolerance policy",
-            "Spontaneous road trips and travel planning",
-            "Comfortable silence enjoyer — no awkwardness, just vibes"
+            "Spontaneous road trips and travel planning"
           ]}
         />
       </div>
