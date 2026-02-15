@@ -233,7 +233,7 @@ function BoyfriendResume() {
 
       <div className="pt-8 text-center">
         <p className="text-sm text-gray-500 dark:text-gray-500">
-          Happy Valentine&apos;s Day! ❤️
+          I don&apos;t wanna play games, I&apos;d rather cuddle you ❤️
         </p>
       </div>
     </div>
