@@ -133,7 +133,7 @@ function BoyfriendResume() {
             leftSuffix: "| Full-time",
             right: "Forever - Present"
           }}
-          title="Dedicated Boyfriend — 180cm of love"
+          title="Dedicated Boyfriend"
           description="Committed to making every day special, turning ordinary moments into extraordinary memories."
           bulletPoints={[
             "Provides unlimited hugs, cuddles, and emotional support with 99.99% uptime",
@@ -157,8 +157,8 @@ function BoyfriendResume() {
           title="Protection & Safety"
           bulletPoints={[
             "Trained to keep you safe — literally ran into burning buildings",
-            "Smoke-free lifestyle, zero exceptions",
-            "Calm under pressure, reliable when it counts"
+            "180cm, smoke-free, and calm under pressure",
+            "Reliable when it counts, every single time"
           ]}
         />
 
