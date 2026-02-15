@@ -5,7 +5,7 @@ import { HeartIcon } from "@heroicons/react/24/solid";
 
 // SHA-256 hash of the password — change the hash to update the password
 // To generate: echo -n "yourpassword" | shasum -a 256
-const PASSWORD_HASH = "e4ad93ca07acb8d908a3aa41e920ea4f4ef4f26e7f86cf8291c5db289780a5ae";
+const PASSWORD_HASH = "095d315eec48a0e89022fd07a6d561f694d9cfd18903ce72ca8908d52ecdb2fb";
 
 async function sha256(message: string): Promise<string> {
   const msgBuffer = new TextEncoder().encode(message);
@@ -108,7 +108,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
         >
           {checking ? "..." : "Unlock"}
         </button>
-        {error && <p className="text-sm text-red-500">Wrong password, try again!</p>}
+        {error && <p className="text-sm text-red-500">Nice try, there&apos;s only one girl for me</p>}
       </form>
     </div>
   );

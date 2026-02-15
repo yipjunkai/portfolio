@@ -11,8 +11,7 @@ export const routing = defineRouting({
     },
     "/projects": {
       "zh-SG": "/项目"
-    },
-    "/secret-valentine": "/secret-valentine"
+    }
   }
 });
 
