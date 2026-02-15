@@ -109,7 +109,7 @@
         "bullet3": ""
       },
       "works": {
-        "company": "Gigworks (Works Pte. Ltd.)",
+        "company": "Gigworks",
         "location": "Singapore",
         "position": "Mobile Application and Web Application Developer Intern",
         "description": "",
@@ -120,7 +120,7 @@
     },
     "research": {
       "ai4x": {
-        "conference": "AI4X 2025 International Conference",
+        "conference": "AI4X 2025",
         "title": "Quantifying Uncertainty in Physics-Informed Neural Networks",
         "description": "We used deep evidential regression to quantify uncertainties in physics-informed neural networks, demonstrating it on the Burgers and Laplace experiments.",
         "abstract": "We integrate a state-of-the-art method to quantify aleatoric and epistemic uncertainties in physics-informed neural networks and observe that they can be captured effectively while maintaining predictive accuracy.",

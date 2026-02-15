@@ -4,7 +4,6 @@ import MobileTemplate from "./_components/MobileTemplate";
 import Image from "next/image";
 import oceanfrontHardwareLaptop from "./_assets/oceanfront-hardware-laptop.webp";
 import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp";
-import ImageCarousel from "./_components/ImageCarousel";
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -30,7 +29,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
       role: t("oceanfrontHardware.role"),
       description: t("oceanfrontHardware.description"),
       bulletPoints: [t("oceanfrontHardware.bullet1"), t("oceanfrontHardware.bullet2"), t("oceanfrontHardware.bullet3")],
-      techStack: ["Nuxt", "Typescript", "Strapi", "Stripe"],
+      techStack: ["Next.js", "Typescript", "Strapi", "Stripe", "Meilisearch"],
       laptopImage: {
         src: oceanfrontHardwareLaptop,
         alt: t("oceanfrontHardware.laptopAlt")
@@ -96,7 +95,6 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
                 }}
               />
             </LaptopTemplate>
-            <ImageCarousel images={[project.mobileImage, project.laptopImage]} className="md:hidden" />
           </div>
         ))}
       </div>
