@@ -133,11 +133,11 @@ function BoyfriendResume() {
             leftSuffix: "| Full-time",
             right: "Forever - Present"
           }}
-          title="Dedicated Boyfriend"
-          description="Committed to making every day special, turning ordinary moments into extraordinary memories."
+          title="Boyfriend Candidate"
+          description="Ready to make every day special, turning ordinary moments into extraordinary memories."
           bulletPoints={[
-            "Provides unlimited hugs, cuddles, and emotional support with 99.99% uptime",
-            "Proactively surprises you with preserved roses — because real love deserves flowers that last",
+            "Will provide unlimited hugs, cuddles, and emotional support with 99.99% uptime",
+            "Will proactively surprise you with preserved roses — because you deserve flowers that last",
             "Expert at listening, understanding, and always being there when it matters most"
           ]}
           tags={["Love", "Patience", "Dedication", "Affection"]}
@@ -227,13 +227,13 @@ function BoyfriendResume() {
       <h2 className="text-3xl font-bold text-pink-600 dark:text-pink-400">References</h2>
       <div className="rounded-lg border-2 border-dashed border-pink-300 p-6 dark:border-pink-700">
         <p className="text-center text-lg text-gray-600 italic dark:text-gray-400">
-          &ldquo;He&apos;s alright I guess&rdquo; — You, hopefully
+          &ldquo;He&apos;s alright I guess&rdquo; — You, hopefully soon
         </p>
       </div>
 
       <div className="pt-8 text-center">
         <p className="text-sm text-gray-500 dark:text-gray-500">
-          Happy Valentine&apos;s Day! I love you! ❤️
+          Happy Valentine&apos;s Day! ❤️
         </p>
       </div>
     </div>
