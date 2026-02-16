@@ -1,6 +1,6 @@
 export default function LaptopTemplate({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className} -translate-x-6`}>
       <div className="relative mx-auto aspect-[512/294] w-[95%] rounded-t-xl border-[8px] border-gray-700 bg-gray-700 dark:border-gray-700">
         <div className="h-full w-full overflow-hidden rounded-lg bg-white dark:bg-gray-700">{children}</div>
       </div>
