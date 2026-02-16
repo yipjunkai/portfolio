@@ -17,6 +17,7 @@ interface CardProps {
     section: "frontend" | "backend" | "database" | "service" | "language" | "other";
   }[];
   techSectionLabels?: Record<string, string>;
+  backgroundGraphic?: ReactNode;
   children?: ReactNode;
 }
 
@@ -27,10 +28,12 @@ export default function Card({
   bulletPoints = [],
   techStack = [],
   techSectionLabels = {},
+  backgroundGraphic,
   children
 }: CardProps) {
   return (
-    <div className="space-y-4 lg:space-y-6">
+    <div className="relative space-y-4 overflow-hidden lg:space-y-6">
+      {backgroundGraphic}
       <div className="flex flex-col justify-between gap-2 font-mono text-lg md:flex-row md:items-center">
         <div className="flex flex-row items-center gap-2">
           <h2 className="truncate">

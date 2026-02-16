@@ -4,6 +4,7 @@ import ExperienceCard from "./_components/ExperienceCard";
 import SectionDivider from "./_components/SectionDivider";
 import { DocumentTextIcon } from "@heroicons/react/24/solid";
 import { Badge } from "@/components/ui/badge";
+import TechPattern from "./_components/TechPattern";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -43,6 +44,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
     }[];
     description: string;
     bulletPoints: string[];
+    patternVariant: "circuit" | "storefront" | "nodes";
   }[] = [
     {
       company: t("jobs.kipo.company"),
@@ -66,7 +68,8 @@ export default async function Experience({ params }: { params: Promise<{ locale:
         { name: "AWS", section: "service" }
       ],
       description: t("jobs.kipo.description"),
-      bulletPoints: [t("jobs.kipo.bullet1"), t("jobs.kipo.bullet2"), t("jobs.kipo.bullet3")]
+      bulletPoints: [t("jobs.kipo.bullet1"), t("jobs.kipo.bullet2"), t("jobs.kipo.bullet3")],
+      patternVariant: "circuit"
     },
     {
       company: t("jobs.dsbj.company"),
@@ -85,7 +88,8 @@ export default async function Experience({ params }: { params: Promise<{ locale:
         { name: "RBAC + JWT Authentication", section: "backend" }
       ],
       description: t("jobs.dsbj.description"),
-      bulletPoints: [t("jobs.dsbj.bullet1"), t("jobs.dsbj.bullet2"), t("jobs.dsbj.bullet3")]
+      bulletPoints: [t("jobs.dsbj.bullet1"), t("jobs.dsbj.bullet2"), t("jobs.dsbj.bullet3")],
+      patternVariant: "nodes"
     },
     {
       company: t("jobs.works.company"),
@@ -101,7 +105,8 @@ export default async function Experience({ params }: { params: Promise<{ locale:
         { name: "Firebase", section: "database" }
       ],
       description: t("jobs.works.description"),
-      bulletPoints: [t("jobs.works.bullet1"), t("jobs.works.bullet2"), t("jobs.works.bullet3")]
+      bulletPoints: [t("jobs.works.bullet1"), t("jobs.works.bullet2"), t("jobs.works.bullet3")],
+      patternVariant: "storefront"
     }
   ];
 
@@ -148,6 +153,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
             title={experience.position}
             description={experience.description}
             bulletPoints={experience.bulletPoints}
+            backgroundGraphic={<TechPattern variant={experience.patternVariant} />}
             techStack={experience.techStack}
             techSectionLabels={{
               language: tCommon("techSections.language"),
