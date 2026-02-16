@@ -63,6 +63,14 @@
   },
   "common": {
     "download": "下载",
+    "techSections": {
+      "language": "编程语言",
+      "frontend": "前端",
+      "backend": "后端",
+      "database": "数据库",
+      "service": "服务",
+      "other": "其他"
+    },
     "aria": {
       "changeTheme": "切换至{theme}主题"
     }
@@ -132,8 +140,8 @@
         "school": "南洋理工大学",
         "degree": "计算机工程荣誉工学学士",
         "description": "",
-        "bullet1": "选修方向：安全与人工智能",
-        "bullet2": "辅修商科"
+        "bullet1": "辅修商科",
+        "bullet2": "选修方向：安全与人工智能"
       }
     }
   },

@@ -3,6 +3,7 @@ import { getFormatter, getTranslations, setRequestLocale } from "next-intl/serve
 import ExperienceCard from "./_components/ExperienceCard";
 import SectionDivider from "./_components/SectionDivider";
 import { DocumentTextIcon } from "@heroicons/react/24/solid";
+import { Badge } from "@/components/ui/badge";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -18,6 +19,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "experience" });
+  const tCommon = await getTranslations({ locale, namespace: "common" });
   const formatter = await getFormatter({ locale });
 
   const formattedDate = (date: Date) => {
@@ -27,15 +29,41 @@ export default async function Experience({ params }: { params: Promise<{ locale:
     });
   };
 
-  const experiences = [
+  const experiences: {
+    company: string;
+    companyUrl?: string;
+    location: string;
+    position: string;
+    startDate: Date;
+    endDate?: Date;
+    techStack: {
+      name: string;
+      section: "frontend" | "backend" | "database" | "service" | "language" | "other";
+    }[];
+    description: string;
+    bulletPoints: string[];
+  }[] = [
     {
       company: t("jobs.kipo.company"),
       companyUrl: "https://kipo.ai",
       location: t("jobs.kipo.location"),
       position: t("jobs.kipo.position"),
       startDate: new Date(2025, 5, 1), // Jun 2025 (Month is 0-indexed)
-      endDate: null, // Present
-      techStack: [],
+      techStack: [
+        { name: "Next.js", section: "frontend" },
+        { name: "NestJS", section: "backend" },
+        { name: "FastAPI", section: "backend" },
+        { name: "Python", section: "language" },
+        { name: "Typescript", section: "language" },
+        { name: "PostgreSQL", section: "database" },
+        { name: "MongoDB", section: "database" },
+        { name: "Redis", section: "database" },
+        {
+          name: "OpenFGA",
+          section: "backend"
+        },
+        { name: "AWS", section: "service" }
+      ],
       description: t("jobs.kipo.description"),
       bulletPoints: [t("jobs.kipo.bullet1"), t("jobs.kipo.bullet2"), t("jobs.kipo.bullet3")]
     },
@@ -46,7 +74,15 @@ export default async function Experience({ params }: { params: Promise<{ locale:
       position: t("jobs.dsbj.position"),
       startDate: new Date(2024, 0, 1), // Jan 2024 (Month is 0-indexed)
       endDate: new Date(2024, 6, 1), // Represents end of June 2024
-      techStack: ["Next.js", "NestJS", "FastAPI", "Python", "Typescript", "PostgreSQL"],
+      techStack: [
+        { name: "Next.js", section: "frontend" },
+        { name: "NestJS", section: "backend" },
+        { name: "FastAPI", section: "backend" },
+        { name: "Python", section: "language" },
+        { name: "Typescript", section: "language" },
+        { name: "PostgreSQL", section: "database" },
+        { name: "RBAC + JWT Authentication", section: "backend" }
+      ],
       description: t("jobs.dsbj.description"),
       bulletPoints: [t("jobs.dsbj.bullet1"), t("jobs.dsbj.bullet2"), t("jobs.dsbj.bullet3")]
     },
@@ -56,7 +92,13 @@ export default async function Experience({ params }: { params: Promise<{ locale:
       position: t("jobs.works.position"),
       startDate: new Date(2021, 1, 1), // Feb 2021
       endDate: new Date(2021, 6, 1), // Represents end of June 2021
-      techStack: ["Flutter", "Angular", "Dart", "Typescript", "Firebase"],
+      techStack: [
+        { name: "Flutter", section: "frontend" },
+        { name: "Angular", section: "frontend" },
+        { name: "Dart", section: "language" },
+        { name: "Typescript", section: "language" },
+        { name: "Firebase", section: "database" }
+      ],
       description: t("jobs.works.description"),
       bulletPoints: [t("jobs.works.bullet1"), t("jobs.works.bullet2"), t("jobs.works.bullet3")]
     }
@@ -92,8 +134,8 @@ export default async function Experience({ params }: { params: Promise<{ locale:
             key={experience.company}
             header={{
               left: experience.company,
-              leftSuffix: ` | ${experience.location}`,
               leftUrl: experience.companyUrl,
+              leftSuffix: ` | ${experience.location}`,
               right: (
                 <>
                   {formattedDate(experience.startDate)}
@@ -106,6 +148,14 @@ export default async function Experience({ params }: { params: Promise<{ locale:
             description={experience.description}
             bulletPoints={experience.bulletPoints}
             techStack={experience.techStack}
+            techSectionLabels={{
+              language: tCommon("techSections.language"),
+              frontend: tCommon("techSections.frontend"),
+              backend: tCommon("techSections.backend"),
+              database: tCommon("techSections.database"),
+              service: tCommon("techSections.service"),
+              other: tCommon("techSections.other")
+            }}
           />
         ))}
       </div>
@@ -143,9 +193,9 @@ export default async function Experience({ params }: { params: Promise<{ locale:
             )}
             <div className="flex flex-wrap gap-2 lg:gap-4">
               {research.topics.map(topic => (
-                <span key={topic} className="rounded-md bg-linear-to-r from-grad-1 to-grad-2 px-2 py-1 text-white">
+                <Badge key={topic} variant="default">
                   {topic}
-                </span>
+                </Badge>
               ))}
             </div>
           </ExperienceCard>

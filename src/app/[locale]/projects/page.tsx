@@ -1,4 +1,5 @@
-import TechStackBubble from "@/components/shared/TechStackBubble";
+import { Badge, badgeVariants } from "@/components/ui/badge";
+import { VariantProps } from "class-variance-authority";
 import LaptopTemplate from "./_components/LaptopTemplate";
 import MobileTemplate from "./_components/MobileTemplate";
 import Image from "next/image";
@@ -22,6 +23,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "projects" });
+  const tCommon = await getTranslations({ locale, namespace: "common" });
 
   const projects = [
     {
@@ -29,7 +31,13 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
       role: t("oceanfrontHardware.role"),
       description: t("oceanfrontHardware.description"),
       bulletPoints: [t("oceanfrontHardware.bullet1"), t("oceanfrontHardware.bullet2"), t("oceanfrontHardware.bullet3")],
-      techStack: ["Next.js", "Typescript", "Strapi", "Stripe", "Meilisearch"],
+      techStack: [
+        { name: "Next.js", section: "frontend" },
+        { name: "Typescript", section: "language" },
+        { name: "Strapi", section: "backend" },
+        { name: "Stripe", section: "service" },
+        { name: "Meilisearch", section: "backend" }
+      ],
       laptopImage: {
         src: oceanfrontHardwareLaptop,
         alt: t("oceanfrontHardware.laptopAlt")
@@ -69,11 +77,35 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.map(tech => (
-                  <TechStackBubble key={tech} tech={tech} />
-                ))}
-              </div>
+              {(() => {
+                const sectionOrder = ["language", "frontend", "backend", "database", "service", "other"] as const;
+                const techSectionLabels: Record<string, string> = {
+                  language: tCommon("techSections.language"),
+                  frontend: tCommon("techSections.frontend"),
+                  backend: tCommon("techSections.backend"),
+                  database: tCommon("techSections.database"),
+                  service: tCommon("techSections.service"),
+                  other: tCommon("techSections.other")
+                };
+                const grouped = Object.groupBy(project.techStack, tech => tech.section);
+
+                return (
+                  <div className="space-y-2">
+                    {sectionOrder
+                      .filter(section => grouped[section]?.length)
+                      .map(section => (
+                        <div key={section} className="flex flex-wrap items-center gap-2 lg:gap-4">
+                          <span className="w-24 shrink-0 text-sm font-semibold text-muted-foreground">{`${techSectionLabels[section]}:`}</span>
+                          {grouped[section]!.map(tech => (
+                            <Badge key={tech.name} variant={tech.section as VariantProps<typeof badgeVariants>["variant"]}>
+                              {tech.name}
+                            </Badge>
+                          ))}
+                        </div>
+                      ))}
+                  </div>
+                );
+              })()}
             </div>
             <MobileTemplate className="hidden md:block">
               <Image

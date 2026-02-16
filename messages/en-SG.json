@@ -64,6 +64,14 @@
   },
   "common": {
     "download": "Download",
+    "techSections": {
+      "language": "Languages",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Databases",
+      "service": "Services",
+      "other": "Other"
+    },
     "aria": {
       "changeTheme": "Button to change theme to {theme}"
     }
@@ -133,8 +141,8 @@
         "school": "Nanyang Technological University",
         "degree": "Bachelor of Engineering (Honours), Computer Engineering",
         "description": "",
-        "bullet1": "Elective Focus in Security & Artificial Intelligence",
-        "bullet2": "Minor in Business"
+        "bullet1": "Minor in Business",
+        "bullet2": "Elective Focus in Security & Artificial Intelligence"
       }
     }
   },

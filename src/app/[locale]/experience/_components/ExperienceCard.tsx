@@ -1,4 +1,5 @@
-import TechStackBubble from "@/components/shared/TechStackBubble";
+import { Badge, badgeVariants } from "@/components/ui/badge";
+import { VariantProps } from "class-variance-authority";
 import { ReactNode } from "react";
 
 interface CardProps {
@@ -11,11 +12,23 @@ interface CardProps {
   title: string;
   description?: string;
   bulletPoints?: string[];
-  techStack?: string[];
+  techStack?: {
+    name: string;
+    section: "frontend" | "backend" | "database" | "service" | "language" | "other";
+  }[];
+  techSectionLabels?: Record<string, string>;
   children?: ReactNode;
 }
 
-export default function Card({ header, title, description, bulletPoints = [], techStack = [], children }: CardProps) {
+export default function Card({
+  header,
+  title,
+  description,
+  bulletPoints = [],
+  techStack = [],
+  techSectionLabels = {},
+  children
+}: CardProps) {
   return (
     <div className="space-y-4 lg:space-y-6">
       <div className="flex flex-col justify-between gap-2 font-mono text-lg md:flex-row md:items-center">
@@ -52,13 +65,28 @@ export default function Card({ header, title, description, bulletPoints = [], te
         </ul>
       )}
       {children}
-      {techStack.length > 0 && (
-        <div className="flex flex-wrap gap-2 lg:gap-4">
-          {techStack.map(tech => (
-            <TechStackBubble key={tech} tech={tech} />
-          ))}
-        </div>
-      )}
+      {techStack.length > 0 &&
+        (() => {
+          const sectionOrder = ["language", "frontend", "backend", "database", "service", "other"] as const;
+          const grouped = Object.groupBy(techStack, tech => tech.section);
+
+          return (
+            <div className="space-y-2">
+              {sectionOrder
+                .filter(section => grouped[section]?.length)
+                .map(section => (
+                  <div key={section} className="flex flex-wrap items-center gap-2 lg:gap-4">
+                    <span className="w-24 shrink-0 text-sm font-semibold text-muted-foreground">{`${techSectionLabels[section]}:`}</span>
+                    {grouped[section]!.map(tech => (
+                      <Badge key={tech.name} variant={tech.section as VariantProps<typeof badgeVariants>["variant"]}>
+                        {tech.name}
+                      </Badge>
+                    ))}
+                  </div>
+                ))}
+            </div>
+          );
+        })()}
     </div>
   );
 }
