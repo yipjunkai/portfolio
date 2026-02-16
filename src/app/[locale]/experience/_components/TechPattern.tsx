@@ -250,7 +250,10 @@ function NodesPattern() {
 
 export default function TechPattern({ variant }: TechPatternProps) {
   return (
-    <div className="pointer-events-none absolute -top-4 right-0 opacity-15 md:top-1/2 md:-translate-y-1/2" aria-hidden="true">
+    <div
+      className="pointer-events-none absolute -top-4 right-0 opacity-20 md:top-1/2 md:-translate-y-1/2 dark:opacity-15"
+      aria-hidden="true"
+    >
       {variant === "circuit" && <CircuitPattern />}
       {variant === "storefront" && <StorefrontPattern />}
       {variant === "nodes" && <NodesPattern />}
