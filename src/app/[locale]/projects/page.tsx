@@ -11,7 +11,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "meta.pages.projects" });
+  const t = await getTranslations({ locale, namespace: "content.meta.pages.projects" });
 
   return {
     title: t("title"),
@@ -22,7 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Projects({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "projects" });
+  const t = await getTranslations({ locale, namespace: "content.projects" });
+  const tUI = await getTranslations({ locale, namespace: "common.projects" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
 
   const projects = [
@@ -52,7 +53,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="space-y-8">
-      <h1 className="text-4xl font-bold">{t("title")}</h1>
+      <h1 className="text-4xl font-bold">{tUI("title")}</h1>
       <div className="flex flex-col gap-4">
         {projects.map(project => (
           <div key={project.name} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
@@ -67,7 +68,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
                   className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                 >
                   <GlobeAltIcon className="size-6" />
-                  <span>{t("labels.website")}</span>
+                  <span>{tUI("labels.website")}</span>
                 </a>
               )}
               <ul className="list-inside list-disc">

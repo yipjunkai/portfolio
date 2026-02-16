@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "meta.pages.experience" });
+  const t = await getTranslations({ locale, namespace: "content.meta.pages.experience" });
 
   return {
     title: t("title"),
@@ -18,7 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Experience({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "experience" });
+  const t = await getTranslations({ locale, namespace: "content.experience" });
+  const tUI = await getTranslations({ locale, namespace: "common.experience" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const formatter = await getFormatter({ locale });
 
@@ -108,7 +109,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
     {
       conference: t("research.ai4x.conference"),
       title: t("research.ai4x.title"),
-      contribution: t("contributionLevel.firstAuthor"),
+      contribution: tUI("contributionLevel.firstAuthor"),
       description: t("research.ai4x.description"),
       abstract: t("research.ai4x.abstract"),
       topics: [t("research.ai4x.topic1"), t("research.ai4x.topic2")],
@@ -127,7 +128,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
 
   return (
     <div className="space-y-8">
-      <h1 className="text-4xl font-bold">{t("sections.experience")}</h1>
+      <h1 className="text-4xl font-bold">{tUI("sections.experience")}</h1>
       <div className="space-y-12">
         {experiences.map(experience => (
           <ExperienceCard
@@ -140,7 +141,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
                 <>
                   {formattedDate(experience.startDate)}
                   {" - "}
-                  {experience.endDate ? formattedDate(experience.endDate) : t("labels.present")}
+                  {experience.endDate ? formattedDate(experience.endDate) : tUI("labels.present")}
                 </>
               )
             }}
@@ -160,7 +161,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
         ))}
       </div>
       <SectionDivider />
-      <h1 className="text-4xl font-bold">{t("sections.research")}</h1>
+      <h1 className="text-4xl font-bold">{tUI("sections.research")}</h1>
       <div className="space-y-12">
         {research.map(research => (
           <ExperienceCard
@@ -173,21 +174,21 @@ export default async function Experience({ params }: { params: Promise<{ locale:
             description={research.description}
           >
             <p className="line-clamp-3 text-justify text-pretty whitespace-pre-wrap italic">
-              <span className="mr-4 uppercase">{t("labels.abstract")}</span>
+              <span className="mr-4 uppercase">{tUI("labels.abstract")}</span>
               <span>{research.abstract}</span>
             </p>
             {research.link.trim() !== "" && (
               <div className="flex flex-row items-center gap-2">
-                <span>{t("labels.availableAt")} </span>
+                <span>{tUI("labels.availableAt")} </span>
                 <a
                   href={research.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                  aria-label={t("aria.linkToPaper")}
+                  aria-label={tUI("aria.linkToPaper")}
                 >
                   <DocumentTextIcon className="size-6" />
-                  <span>{t("labels.paper")}</span>
+                  <span>{tUI("labels.paper")}</span>
                 </a>
               </div>
             )}
@@ -202,7 +203,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
         ))}
       </div>
       <SectionDivider />
-      <h1 className="text-4xl font-bold">{t("sections.education")}</h1>
+      <h1 className="text-4xl font-bold">{tUI("sections.education")}</h1>
       <div className="space-y-12">
         {education.map(education => (
           <ExperienceCard

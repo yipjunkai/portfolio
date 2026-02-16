@@ -12,7 +12,7 @@ import type { Pathname } from "@/i18n/routing";
 
 export default function MobileTopNav(props: { sections: Sections[] }) {
   const [isOpen, setIsOpen] = useState(false);
-  const t = useTranslations("nav");
+  const t = useTranslations("common.nav");
 
   const flatRoutes = props.sections.flatMap(section => section.routes);
 

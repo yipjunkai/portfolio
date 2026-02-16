@@ -53,7 +53,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "meta" });
+  const t = await getTranslations({ locale, namespace: "content.meta" });
 
   return {
     title: {
@@ -79,7 +79,7 @@ export default async function RootLayout({
 
   setRequestLocale(locale);
 
-  const t = await getTranslations("nav");
+  const t = await getTranslations("common.nav");
 
   const sections: Sections[] = [
     {

@@ -15,7 +15,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
 export default function LanguageChanger({ className, style }: ButtonHTMLAttributes<HTMLButtonElement>) {
-  const t = useTranslations("nav");
+  const t = useTranslations("common.nav");
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();

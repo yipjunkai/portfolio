@@ -9,7 +9,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = await getTranslations({ locale, namespace: "home" });
+  const t = await getTranslations({ locale, namespace: "content.home" });
+  const tCommon = await getTranslations({ locale, namespace: "common.home" });
 
   return (
     <>
@@ -28,13 +29,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <ResumePDFDialog>
             <Button variant="default">
               <DocumentArrowDownIcon className="size-6" />
-              <span>{t("viewCv")}</span>
+              <span>{tCommon("viewCv")}</span>
             </Button>
           </ResumePDFDialog>
           <EmailMeDialog>
             <Button variant="secondary">
               <EnvelopeIcon className="size-6" />
-              <span>{t("emailMe")}</span>
+              <span>{tCommon("emailMe")}</span>
             </Button>
           </EmailMeDialog>
         </div>

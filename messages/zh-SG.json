@@ -1,67 +1,33 @@
 {
-  "meta": {
-    "siteName": "叶俊凯",
-    "siteDescription": "我的作品集 | 新加坡软件开发者，专注于前端开发",
-    "pages": {
-      "experience": {
-        "title": "经历",
-        "description": "我的工作与研究经历 | 计算机工程（荣誉学位）"
-      },
-      "projects": {
-        "title": "项目",
-        "description": "工作之外的专业与自由职业项目 | 网页开发、AI/ML"
-      }
-    }
-  },
-  "nav": {
-    "portfolio": "作品集",
-    "selectLanguage": "选择语言",
-    "logoAlt": "我的作品集标志",
-    "sections": {
-      "aboutMe": {
-        "title": "关于我",
-        "routes": {
-          "home": "主页",
-          "experience": "经历",
-          "projects": "项目"
-        }
-      },
-      "connect": {
-        "title": "联系方式",
-        "routes": {
-          "email": "电子邮件",
-          "linkedin": "领英",
-          "github": "GitHub"
-        }
-      }
-    }
-  },
-  "home": {
-    "greeting": "嗨，我是",
-    "name": "俊凯",
-    "location": "旧金山 & 新加坡",
-    "aboutMe": "热衷于前端技术的软件开发者。\n\n在网页、移动端和桌面端应用开发方面拥有丰富经验，涵盖前端与后端，曾在初创公司和大型企业工作。通过研究项目对 AI/ML 有深入的理解。",
-    "emailMe": "给我发邮件",
-    "viewCv": "查看简历",
-    "cvDialog": {
-      "title": "这是我的简历",
-      "description": "记得帮我推荐一下哦！",
-      "filename": "叶俊凯_简历.pdf"
-    },
-    "emailDialog": {
-      "title": "与我联系",
-      "description": "嗨！就差最后一步啦，我会尽快回复你的！",
-      "openEmailClient": "打开邮件客户端",
-      "copyEmail": "复制邮箱地址",
-      "orCopyEmail": "或复制我的邮箱地址"
-    }
-  },
-  "notFound": {
-    "title": "页面未找到",
-    "illustrationAlt": "404 页面插图",
-    "goHome": "返回主页"
-  },
   "common": {
+    "nav": {
+      "portfolio": "作品集",
+      "selectLanguage": "选择语言",
+      "logoAlt": "我的作品集标志",
+      "sections": {
+        "aboutMe": {
+          "title": "关于我",
+          "routes": {
+            "home": "主页",
+            "experience": "经历",
+            "projects": "项目"
+          }
+        },
+        "connect": {
+          "title": "联系方式",
+          "routes": {
+            "email": "电子邮件",
+            "linkedin": "领英",
+            "github": "GitHub"
+          }
+        }
+      }
+    },
+    "notFound": {
+      "title": "页面未找到",
+      "illustrationAlt": "404 页面插图",
+      "goHome": "返回主页"
+    },
     "download": "下载",
     "techSections": {
       "language": "编程语言",
@@ -73,92 +39,134 @@
     },
     "aria": {
       "changeTheme": "切换至{theme}主题"
-    }
-  },
-  "experience": {
-    "sections": {
-      "research": "研究",
-      "education": "教育",
-      "experience": "工作经历"
     },
-    "labels": {
-      "abstract": "摘要",
-      "availableAt": "可在此查阅：",
-      "paper": "论文",
-      "present": "至今"
-    },
-    "aria": {
-      "linkToPaper": "论文链接",
-      "linkToSchool": "学校链接"
-    },
-    "contributionLevel": {
-      "firstAuthor": "第一作者",
-      "coAuthor": "共同作者",
-      "presenter": "演讲者"
-    },
-    "jobs": {
-      "kipo": {
-        "company": "Kipo AI",
-        "location": "旧金山",
-        "position": "软件工程实习生",
-        "description": "",
-        "bullet1": "为 B2B 零件智能平台构建核心基础设施，帮助产品从内测阶段扩展到约 1,000 名活跃用户，并支持企业级工作流程。",
-        "bullet2": "开发了可扩展的搜索和采购系统，索引超过 200 万个组件，支持实时定价与交期查询，实现实时报价和更快的采购决策。",
-        "bullet3": "自动化数据表符号提取和物料清单到采购的流程，减少人工工程工作量，加速企业付费客户的落地准备。"
+    "home": {
+      "emailMe": "给我发邮件",
+      "viewCv": "查看简历",
+      "cvDialog": {
+        "title": "这是我的简历",
+        "description": "记得帮我推荐一下哦！",
+        "filename": "叶俊凯_简历.pdf"
       },
-      "dsbj": {
-        "company": "东山精密",
-        "location": "新加坡",
-        "position": "应用与数据开发实习生",
-        "description": "",
-        "bullet1": "构建了具有基于大语言模型诊断功能的模型可视化平台，让非技术人员能通过自然语言理解复杂数学模型。",
-        "bullet2": "集中部署了单点登录（SSO）框架，统一了 6 个内部应用程序的身份认证，增强了组织安全性。",
-        "bullet3": ""
-      },
-      "works": {
-        "company": "Gigworks",
-        "location": "新加坡",
-        "position": "移动端与网页应用开发实习生",
-        "description": "",
-        "bullet1": "负责营收型电商平台的移动端和网页端开发，贡献了约 80% 的生产代码库。",
-        "bullet2": "将用户报告的缺陷减少约 90%，提高了结账可靠性和客户信任度。",
-        "bullet3": "协助弥补与设计团队约 6 个月的交付进度差距，加快产品上线。"
+      "emailDialog": {
+        "title": "与我联系",
+        "description": "嗨！就差最后一步啦，我会尽快回复你的！",
+        "openEmailClient": "打开邮件客户端",
+        "copyEmail": "复制邮箱地址",
+        "orCopyEmail": "或复制我的邮箱地址"
       }
     },
-    "research": {
-      "ai4x": {
-        "conference": "AI4X 2025 国际会议",
-        "title": "物理信息神经网络中的不确定性量化",
-        "description": "我们使用深度证据回归来量化物理信息神经网络中的不确定性，并在 Burgers 和 Laplace 实验中进行了验证。",
-        "abstract": "我们将一种先进的方法集成到物理信息神经网络中，用于量化随机不确定性和认知不确定性，观察到在保持预测准确性的同时，不确定性能被有效捕获。",
-        "topic1": "物理信息神经网络",
-        "topic2": "不确定性量化"
+    "experience": {
+      "sections": {
+        "research": "研究",
+        "education": "教育",
+        "experience": "工作经历"
+      },
+      "labels": {
+        "abstract": "摘要",
+        "availableAt": "可在此查阅：",
+        "paper": "论文",
+        "present": "至今"
+      },
+      "aria": {
+        "linkToPaper": "论文链接",
+        "linkToSchool": "学校链接"
+      },
+      "contributionLevel": {
+        "firstAuthor": "第一作者",
+        "coAuthor": "共同作者",
+        "presenter": "演讲者"
       }
     },
-    "education": {
-      "ntu": {
-        "school": "南洋理工大学",
-        "degree": "计算机工程荣誉工学学士",
-        "description": "",
-        "bullet1": "辅修商科",
-        "bullet2": "选修方向：安全与人工智能"
+    "projects": {
+      "title": "项目",
+      "labels": {
+        "website": "网站"
       }
     }
   },
-  "projects": {
-    "title": "项目",
-    "labels": {
-      "website": "网站"
+  "content": {
+    "meta": {
+      "siteName": "叶俊凯",
+      "siteDescription": "我的作品集 | 新加坡软件开发者，专注于前端开发",
+      "pages": {
+        "experience": {
+          "title": "经历",
+          "description": "我的工作与研究经历 | 计算机工程（荣誉学位）"
+        },
+        "projects": {
+          "title": "项目",
+          "description": "工作之外的专业与自由职业项目 | 网页开发、AI/ML"
+        }
+      }
     },
-    "oceanfrontHardware": {
-      "name": "Oceanfront Hardware",
-      "role": "自由职业开发者",
-      "description": "为这家五金公司担任全栈网页开发自由职业者。专注于 SEO 性能和 CMS 集成。",
-      "bullet1": "架构并部署了全栈 B2B 电商平台，支持 800 个活跃 SKU 的目录，帮助客户实现销售数字化并扩大目录运营规模。",
-      "bullet2": "主导使用服务端渲染（SSR）的迁移，改善核心网页性能指标并推动顶级 Google 排名，增加与竞争对手相比的自然流量可发现性。",
-      "bullet3": "通过实施先进的搜索功能优化产品可发现性，将搜索查询延迟降低了 97%（从 700ms 降至 20ms），并为 B2B 目录启用即时、容错的筛选功能。",
-      "laptopAlt": "OceanfrontHardware 桌面端视图",
-      "mobileAlt": "OceanfrontHardware 移动端视图"
+    "home": {
+      "greeting": "嗨，我是",
+      "name": "俊凯",
+      "location": "旧金山 & 新加坡",
+      "aboutMe": "热衷于前端技术的软件开发者。\n\n在网页、移动端和桌面端应用开发方面拥有丰富经验，涵盖前端与后端，曾在初创公司和大型企业工作。通过研究项目对 AI/ML 有深入的理解。"
+    },
+    "experience": {
+      "jobs": {
+        "kipo": {
+          "company": "Kipo AI",
+          "location": "旧金山",
+          "position": "软件工程实习生",
+          "description": "",
+          "bullet1": "为 B2B 零件智能平台构建核心基础设施，帮助产品从内测阶段扩展到约 1,000 名活跃用户，并支持企业级工作流程。",
+          "bullet2": "开发了可扩展的搜索和采购系统，索引超过 200 万个组件，支持实时定价与交期查询，实现实时报价和更快的采购决策。",
+          "bullet3": "自动化数据表符号提取和物料清单到采购的流程，减少人工工程工作量，加速企业付费客户的落地准备。"
+        },
+        "dsbj": {
+          "company": "东山精密",
+          "location": "新加坡",
+          "position": "应用与数据开发实习生",
+          "description": "",
+          "bullet1": "构建了具有基于大语言模型诊断功能的模型可视化平台，让非技术人员能通过自然语言理解复杂数学模型。",
+          "bullet2": "集中部署了单点登录（SSO）框架，统一了 6 个内部应用程序的身份认证，增强了组织安全性。",
+          "bullet3": ""
+        },
+        "works": {
+          "company": "Gigworks",
+          "location": "新加坡",
+          "position": "移动端与网页应用开发实习生",
+          "description": "",
+          "bullet1": "负责营收型电商平台的移动端和网页端开发，贡献了约 80% 的生产代码库。",
+          "bullet2": "将用户报告的缺陷减少约 90%，提高了结账可靠性和客户信任度。",
+          "bullet3": "协助弥补与设计团队约 6 个月的交付进度差距，加快产品上线。"
+        }
+      },
+      "research": {
+        "ai4x": {
+          "conference": "AI4X 2025 国际会议",
+          "title": "物理信息神经网络中的不确定性量化",
+          "description": "我们使用深度证据回归来量化物理信息神经网络中的不确定性，并在 Burgers 和 Laplace 实验中进行了验证。",
+          "abstract": "我们将一种先进的方法集成到物理信息神经网络中，用于量化随机不确定性和认知不确定性，观察到在保持预测准确性的同时，不确定性能被有效捕获。",
+          "topic1": "物理信息神经网络",
+          "topic2": "不确定性量化"
+        }
+      },
+      "education": {
+        "ntu": {
+          "school": "南洋理工大学",
+          "degree": "计算机工程荣誉工学学士",
+          "description": "",
+          "bullet1": "辅修商科",
+          "bullet2": "选修方向：安全与人工智能"
+        }
+      }
+    },
+    "projects": {
+      "oceanfrontHardware": {
+        "name": "Oceanfront Hardware",
+        "role": "自由职业开发者",
+        "description": "为这家五金公司担任全栈网页开发自由职业者。专注于 SEO 性能和 CMS 集成。",
+        "bullet1": "架构并部署了全栈 B2B 电商平台，支持 800 个活跃 SKU 的目录，帮助客户实现销售数字化并扩大目录运营规模。",
+        "bullet2": "主导使用服务端渲染（SSR）的迁移，改善核心网页性能指标并推动顶级 Google 排名，增加与竞争对手相比的自然流量可发现性。",
+        "bullet3": "通过实施先进的搜索功能优化产品可发现性，将搜索查询延迟降低了 97%（从 700ms 降至 20ms），并为 B2B 目录启用即时、容错的筛选功能。",
+        "laptopAlt": "OceanfrontHardware 桌面端视图",
+        "mobileAlt": "OceanfrontHardware 移动端视图"
+      }
     }
   }
 }

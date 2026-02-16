@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 
 export default function NotFound() {
-  const t = useTranslations("notFound");
+  const t = useTranslations("common.notFound");
 
   return (
     <div className="flex h-4/5 flex-col items-center justify-center space-y-4">

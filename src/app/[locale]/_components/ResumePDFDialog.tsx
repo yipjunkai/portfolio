@@ -11,7 +11,7 @@ const PDFDialogContent = dynamic(() => import("@/components/ui/pdf-dialog-conten
 });
 
 export default function PDFDialog({ children }: { children: ReactNode }) {
-  const t = useTranslations("home.cvDialog");
+  const t = useTranslations("common.home.cvDialog");
 
   return (
     <Dialog>

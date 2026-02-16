@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 
 export default function Sidebar(props: { sections: Sections[] }) {
   const pathname = usePathname();
-  const t = useTranslations("nav");
+  const t = useTranslations("common.nav");
 
   return (
     <nav className="hidden w-48 flex-col justify-between gap-20 overflow-y-auto border-r border-neutral-300 p-4 lg:flex dark:border-neutral-800">

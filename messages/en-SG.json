@@ -1,68 +1,33 @@
 {
-  "meta": {
-    "siteName": "Yip Jun Kai",
-    "siteDescription": "My portfolio | Software developer in Singapore, focused on frontend",
-    "pages": {
-      "experience": {
-        "title": "Experience",
-        "description": "My work and research experience | Computer Engineering (Honours)"
-      },
-      "projects": {
-        "title": "Projects",
-        "description": "Professional and freelance projects, outside of work | Web developer, AI/ML"
-      }
-    }
-  },
-  "nav": {
-    "portfolio": "Portfolio",
-    "selectLanguage": "Select language",
-    "logoAlt": "My portfolio logo",
-    "sections": {
-      "aboutMe": {
-        "title": "About me",
-        "routes": {
-          "home": "Home",
-          "experience": "Experience",
-          "projects": "Projects"
-        }
-      },
-      "connect": {
-        "title": "Connect",
-        "routes": {
-          "email": "Email",
-          "linkedin": "LinkedIn",
-          "github": "GitHub"
-        }
-      }
-    }
-  },
-  "home": {
-    "greeting": "Hey, I'm ",
-    "name": "Jun Kai",
-    "location": "San Francisco & Singapore",
-    "aboutMe": "Software developer with a passion for frontend technologies.\n\nExtensive experience in Web, Mobile application and Desktop application development; in both frontend and backend, both at startup and large company. Adept understanding of AI/ML gained through research project.",
-    "emailMe": "Email me",
-    "viewCv": "View resume",
-    "cvDialog": {
-      "title": "Here's my resume",
-      "description": "Put in a good word to HR!",
-      "filename": "Yip_JunKai_Resume.pdf"
-    },
-    "emailDialog": {
-      "title": "Get in touch with me",
-      "description": "Hey! One more step to get in touch with me. I will try my best to reply ASAP!",
-      "openEmailClient": "Open email client",
-      "copyEmail": "Copy email address",
-      "orCopyEmail": "or copy my email address"
-    }
-  },
-
-  "notFound": {
-    "title": "Page Not Found",
-    "illustrationAlt": "404 page illustration",
-    "goHome": "Go home"
-  },
   "common": {
+    "nav": {
+      "portfolio": "Portfolio",
+      "selectLanguage": "Select language",
+      "logoAlt": "My portfolio logo",
+      "sections": {
+        "aboutMe": {
+          "title": "About me",
+          "routes": {
+            "home": "Home",
+            "experience": "Experience",
+            "projects": "Projects"
+          }
+        },
+        "connect": {
+          "title": "Connect",
+          "routes": {
+            "email": "Email",
+            "linkedin": "LinkedIn",
+            "github": "GitHub"
+          }
+        }
+      }
+    },
+    "notFound": {
+      "title": "Page Not Found",
+      "illustrationAlt": "404 page illustration",
+      "goHome": "Go home"
+    },
     "download": "Download",
     "techSections": {
       "language": "Languages",
@@ -74,92 +39,134 @@
     },
     "aria": {
       "changeTheme": "Button to change theme to {theme}"
-    }
-  },
-  "experience": {
-    "sections": {
-      "research": "Research",
-      "education": "Education",
-      "experience": "Experience"
     },
-    "labels": {
-      "abstract": "ABSTRACT",
-      "availableAt": "Available at:",
-      "paper": "Paper",
-      "present": "Present"
-    },
-    "aria": {
-      "linkToPaper": "Link to paper",
-      "linkToSchool": "Link to school"
-    },
-    "contributionLevel": {
-      "firstAuthor": "First Author",
-      "coAuthor": "Co-Author",
-      "presenter": "Presenter"
-    },
-    "jobs": {
-      "kipo": {
-        "company": "Kipo AI",
-        "location": "San Francisco",
-        "position": "Software Engineering Intern",
-        "description": "",
-        "bullet1": "Built core infrastructure for a B2B parts intelligence platform, helping scale the product from stealth to ~1,000 active users and supporting enterprise-grade workflows.",
-        "bullet2": "Developed a scalable search and sourcing system indexing 2M+ components with live pricing and lead-time awareness, enabling real-time quoting and faster sourcing decisions.",
-        "bullet3": "Automated datasheet symbol extraction and BOM-to-sourcing pipelines, reducing manual engineering effort and accelerating readiness for paid enterprise adoption."
+    "home": {
+      "emailMe": "Email me",
+      "viewCv": "View resume",
+      "cvDialog": {
+        "title": "Here's my resume",
+        "description": "Put in a good word to HR!",
+        "filename": "Yip_JunKai_Resume.pdf"
       },
-      "dsbj": {
-        "company": "DSBJ",
-        "location": "Singapore",
-        "position": "Application & Data Developer Intern",
-        "description": "",
-        "bullet1": "Built a model visualization platform with LLM-based diagnostics, enabling non-technical stakeholders to interpret complex mathematical models via natural language.",
-        "bullet2": "Centralized and deployed a Single Sign-On (SSO) framework, unifying authentication across 6 internal applications to enhance organizational security.",
-        "bullet3": ""
-      },
-      "works": {
-        "company": "Gigworks",
-        "location": "Singapore",
-        "position": "Mobile Application and Web Application Developer Intern",
-        "description": "",
-        "bullet1": "Owned development across mobile and web on a revenue-generating e-commerce platform, contributing ~80% of the production codebase.",
-        "bullet2": "Reduced user-reported defects by ~90%, improving checkout reliability and customer trust.",
-        "bullet3": "Accelerated time-to-market by helping close a ~6-month delivery gap with the design team."
+      "emailDialog": {
+        "title": "Get in touch with me",
+        "description": "Hey! One more step to get in touch with me. I will try my best to reply ASAP!",
+        "openEmailClient": "Open email client",
+        "copyEmail": "Copy email address",
+        "orCopyEmail": "or copy my email address"
       }
     },
-    "research": {
-      "ai4x": {
-        "conference": "AI4X 2025",
-        "title": "Quantifying Uncertainty in Physics-Informed Neural Networks",
-        "description": "We used deep evidential regression to quantify uncertainties in physics-informed neural networks, demonstrating it on the Burgers and Laplace experiments.",
-        "abstract": "We integrate a state-of-the-art method to quantify aleatoric and epistemic uncertainties in physics-informed neural networks and observe that they can be captured effectively while maintaining predictive accuracy.",
-        "topic1": "Physics-Informed Neural Networks",
-        "topic2": "Uncertainty Quantification"
+    "experience": {
+      "sections": {
+        "research": "Research",
+        "education": "Education",
+        "experience": "Experience"
+      },
+      "labels": {
+        "abstract": "ABSTRACT",
+        "availableAt": "Available at:",
+        "paper": "Paper",
+        "present": "Present"
+      },
+      "aria": {
+        "linkToPaper": "Link to paper",
+        "linkToSchool": "Link to school"
+      },
+      "contributionLevel": {
+        "firstAuthor": "First Author",
+        "coAuthor": "Co-Author",
+        "presenter": "Presenter"
       }
     },
-    "education": {
-      "ntu": {
-        "school": "Nanyang Technological University",
-        "degree": "Bachelor of Engineering (Honours), Computer Engineering",
-        "description": "",
-        "bullet1": "Minor in Business",
-        "bullet2": "Elective Focus in Security & Artificial Intelligence"
+    "projects": {
+      "title": "Projects",
+      "labels": {
+        "website": "Website"
       }
     }
   },
-  "projects": {
-    "title": "Projects",
-    "labels": {
-      "website": "Website"
+  "content": {
+    "meta": {
+      "siteName": "Yip Jun Kai",
+      "siteDescription": "My portfolio | Software developer in Singapore, focused on frontend",
+      "pages": {
+        "experience": {
+          "title": "Experience",
+          "description": "My work and research experience | Computer Engineering (Honours)"
+        },
+        "projects": {
+          "title": "Projects",
+          "description": "Professional and freelance projects, outside of work | Web developer, AI/ML"
+        }
+      }
     },
-    "oceanfrontHardware": {
-      "name": "Oceanfront Hardware",
-      "role": "Freelance Developer",
-      "description": "Freelanced as a full-stack web developer for this hardware company. Focused on SEO performance and CMS integration.",
-      "bullet1": "Architected and deployed a full-stack B2B e-commerce platform supporting a catalog of 800 active SKUs, enabling the client to digitize sales and scale catalog operations.",
-      "bullet2": "Led migration with Server-Side Rendering (SSR), improving Core Web Vitals and driving top-tier Google rankings, increasing organic discoverability against competitors.",
-      "bullet3": "Optimized product discoverability by implementing advanced search capabilities, reducing search query latency by 97% (from 700ms to 20ms) and enabling instant, typo-tolerant filtering for the B2B catalog.",
-      "laptopAlt": "OceanfrontHardware desktop view",
-      "mobileAlt": "OceanfrontHardware mobile view"
+    "home": {
+      "greeting": "Hey, I'm ",
+      "name": "Jun Kai",
+      "location": "San Francisco & Singapore",
+      "aboutMe": "Software developer with a passion for frontend technologies.\n\nExtensive experience in Web, Mobile application and Desktop application development; in both frontend and backend, both at startup and large company. Adept understanding of AI/ML gained through research project."
+    },
+    "experience": {
+      "jobs": {
+        "kipo": {
+          "company": "Kipo AI",
+          "location": "San Francisco",
+          "position": "Software Engineering Intern",
+          "description": "",
+          "bullet1": "Built core infrastructure for a B2B parts intelligence platform, helping scale the product from stealth to ~1,000 active users and supporting enterprise-grade workflows.",
+          "bullet2": "Developed a scalable search and sourcing system indexing 2M+ components with live pricing and lead-time awareness, enabling real-time quoting and faster sourcing decisions.",
+          "bullet3": "Automated datasheet symbol extraction and BOM-to-sourcing pipelines, reducing manual engineering effort and accelerating readiness for paid enterprise adoption."
+        },
+        "dsbj": {
+          "company": "DSBJ",
+          "location": "Singapore",
+          "position": "Application & Data Developer Intern",
+          "description": "",
+          "bullet1": "Built a model visualization platform with LLM-based diagnostics, enabling non-technical stakeholders to interpret complex mathematical models via natural language.",
+          "bullet2": "Centralized and deployed a Single Sign-On (SSO) framework, unifying authentication across 6 internal applications to enhance organizational security.",
+          "bullet3": ""
+        },
+        "works": {
+          "company": "Gigworks",
+          "location": "Singapore",
+          "position": "Mobile Application and Web Application Developer Intern",
+          "description": "",
+          "bullet1": "Owned development across mobile and web on a revenue-generating e-commerce platform, contributing ~80% of the production codebase.",
+          "bullet2": "Reduced user-reported defects by ~90%, improving checkout reliability and customer trust.",
+          "bullet3": "Accelerated time-to-market by helping close a ~6-month delivery gap with the design team."
+        }
+      },
+      "research": {
+        "ai4x": {
+          "conference": "AI4X 2025",
+          "title": "Quantifying Uncertainty in Physics-Informed Neural Networks",
+          "description": "We used deep evidential regression to quantify uncertainties in physics-informed neural networks, demonstrating it on the Burgers and Laplace experiments.",
+          "abstract": "We integrate a state-of-the-art method to quantify aleatoric and epistemic uncertainties in physics-informed neural networks and observe that they can be captured effectively while maintaining predictive accuracy.",
+          "topic1": "Physics-Informed Neural Networks",
+          "topic2": "Uncertainty Quantification"
+        }
+      },
+      "education": {
+        "ntu": {
+          "school": "Nanyang Technological University",
+          "degree": "Bachelor of Engineering (Honours), Computer Engineering",
+          "description": "",
+          "bullet1": "Minor in Business",
+          "bullet2": "Elective Focus in Security & Artificial Intelligence"
+        }
+      }
+    },
+    "projects": {
+      "oceanfrontHardware": {
+        "name": "Oceanfront Hardware",
+        "role": "Freelance Developer",
+        "description": "Freelanced as a full-stack web developer for this hardware company. Focused on SEO performance and CMS integration.",
+        "bullet1": "Architected and deployed a full-stack B2B e-commerce platform supporting a catalog of 800 active SKUs, enabling the client to digitize sales and scale catalog operations.",
+        "bullet2": "Led migration with Server-Side Rendering (SSR), improving Core Web Vitals and driving top-tier Google rankings, increasing organic discoverability against competitors.",
+        "bullet3": "Optimized product discoverability by implementing advanced search capabilities, reducing search query latency by 97% (from 700ms to 20ms) and enabling instant, typo-tolerant filtering for the B2B catalog.",
+        "laptopAlt": "OceanfrontHardware desktop view",
+        "mobileAlt": "OceanfrontHardware mobile view"
+      }
     }
   }
 }

@@ -8,7 +8,7 @@ import { CheckIcon, CopyIcon, MailIcon } from "lucide-react";
 import { siteConfig } from "@/config";
 
 const EmailActions = ({ email }: { email: string }) => {
-  const t = useTranslations("home.emailDialog");
+  const t = useTranslations("common.home.emailDialog");
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
@@ -56,7 +56,7 @@ const EmailActions = ({ email }: { email: string }) => {
 };
 
 export default function EmailMeDialog({ children }: { children: React.ReactNode }) {
-  const t = useTranslations("home.emailDialog");
+  const t = useTranslations("common.home.emailDialog");
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
