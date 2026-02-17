@@ -29,7 +29,7 @@ export default function Sidebar(props: { sections: Sections[] }) {
         </Link>
         {props.sections.map(section => (
           <div key={section.name} className="not-first:mt-4">
-            <h2 className="text-xs font-bold text-neutral-600 uppercase dark:text-neutral-400">{section.name}</h2>
+            <p className="text-xs font-bold text-neutral-600 uppercase dark:text-neutral-400">{section.name}</p>
             <div className="flex flex-col gap-2 py-2">
               {section.routes.map(route => {
                 const className = `group -ml-2 flex flex-row items-center justify-start gap-4 rounded-md p-2 capitalize transition-all duration-200 *:transition-all *:duration-200 hover:bg-gray-300 dark:hover:bg-neutral-800 ${
