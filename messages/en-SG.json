@@ -134,6 +134,13 @@
           "bullet1": "Owned development across mobile and web on a revenue-generating e-commerce platform, contributing ~80% of the production codebase.",
           "bullet2": "Reduced user-reported defects by ~90%, improving checkout reliability and customer trust.",
           "bullet3": "Accelerated time-to-market by helping close a ~6-month delivery gap with the design team."
+        },
+        "cda": {
+          "company": "Civil Defence Academy",
+          "location": "Singapore",
+          "position": "Mobile Application Developer",
+          "description": "",
+          "bullet1": "Pioneered a mission-critical attendance system during National Service using Flutter and Firebase, that digitised status tracking for 1,000+ personnel across the military base."
         }
       },
       "research": {

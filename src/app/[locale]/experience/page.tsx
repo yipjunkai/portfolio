@@ -44,7 +44,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
     }[];
     description: string;
     bulletPoints: string[];
-    patternVariant: "circuit" | "storefront" | "nodes";
+    patternVariant: "circuit" | "storefront" | "nodes" | "shield";
   }[] = [
     {
       company: t("jobs.kipo.company"),
@@ -107,6 +107,21 @@ export default async function Experience({ params }: { params: Promise<{ locale:
       description: t("jobs.works.description"),
       bulletPoints: [t("jobs.works.bullet1"), t("jobs.works.bullet2"), t("jobs.works.bullet3")],
       patternVariant: "storefront"
+    },
+    {
+      company: t("jobs.cda.company"),
+      location: t("jobs.cda.location"),
+      position: t("jobs.cda.position"),
+      startDate: new Date(2020, 0, 1), // Jan 2020 (Month is 0-indexed)
+      endDate: new Date(2021, 1, 1), // Represents end of Jan 2021
+      techStack: [
+        { name: "Dart", section: "language" },
+        { name: "Flutter", section: "frontend" },
+        { name: "Firebase", section: "database" }
+      ],
+      description: t("jobs.cda.description"),
+      bulletPoints: [t("jobs.cda.bullet1")],
+      patternVariant: "shield"
     }
   ];
 

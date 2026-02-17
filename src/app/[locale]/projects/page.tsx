@@ -8,6 +8,7 @@ import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp"
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { cn } from "@/components/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -54,10 +55,10 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
   return (
     <div className="space-y-8">
       <h1 className="text-4xl font-bold">{tUI("title")}</h1>
-      <section aria-label={tUI("title")} className="flex flex-col gap-4">
+      <section aria-label={tUI("title")} className="flex flex-col gap-16">
         {projects.map(project => (
           <article key={project.name} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
-            <div className="space-y-4">
+            <div className={cn("space-y-4", !project.mobileImage && "col-span-2")}>
               <h2 className="text-2xl font-bold">{project.name}</h2>
               {project.description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{project.description}</p>}
               {project.link.trim() !== "" && (
@@ -108,26 +109,30 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
                 );
               })()}
             </div>
-            <MobileTemplate className="hidden md:block">
-              <Image
-                src={project.mobileImage.src}
-                alt={project.mobileImage.alt}
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "50% 0%"
-                }}
-              />
-            </MobileTemplate>
-            <LaptopTemplate className="hidden md:col-span-2 md:block">
-              <Image
-                src={project.laptopImage.src}
-                alt={project.laptopImage.alt}
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "50% 0%"
-                }}
-              />
-            </LaptopTemplate>
+            {project.mobileImage && (
+              <MobileTemplate className="hidden md:block">
+                <Image
+                  src={project.mobileImage.src}
+                  alt={project.mobileImage.alt}
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "50% 0%"
+                  }}
+                />
+              </MobileTemplate>
+            )}
+            {project.laptopImage && (
+              <LaptopTemplate className="hidden md:col-span-2 md:block">
+                <Image
+                  src={project.laptopImage.src}
+                  alt={project.laptopImage.alt}
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "50% 0%"
+                  }}
+                />
+              </LaptopTemplate>
+            )}
           </article>
         ))}
       </section>
