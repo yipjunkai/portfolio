@@ -32,11 +32,11 @@ export default function Card({
   children
 }: CardProps) {
   return (
-    <div className="relative space-y-4 overflow-hidden lg:space-y-6">
+    <article className="relative space-y-4 overflow-hidden lg:space-y-6">
       {backgroundGraphic}
       <div className="flex flex-col justify-between gap-2 font-mono text-lg md:flex-row md:items-center">
         <div className="flex flex-row items-center gap-2">
-          <h2 className="truncate">
+          <h3 className="truncate">
             {header.leftUrl ? (
               <a
                 href={header.leftUrl}
@@ -49,12 +49,12 @@ export default function Card({
             ) : (
               header.left
             )}
-          </h2>
+          </h3>
           {header.leftSuffix && <span className="text-gray-600 dark:text-gray-400">{header.leftSuffix}</span>}
         </div>
         {header.right && <div className="tracking-tighter italic">{header.right}</div>}
       </div>
-      <h1 className="text-2xl font-bold">{title}</h1>
+      <h4 className="text-2xl font-bold">{title}</h4>
       {description && description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{description}</p>}
       {bulletPoints.length > 0 && (
         <ul className="list-inside list-disc">
@@ -90,6 +90,6 @@ export default function Card({
             </div>
           );
         })()}
-    </div>
+    </article>
   );
 }

@@ -134,7 +134,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
   return (
     <div className="space-y-8">
       <h1 className="text-4xl font-bold">{tUI("sections.experience")}</h1>
-      <div className="space-y-12">
+      <section aria-label={tUI("sections.experience")} className="space-y-12">
         {experiences.map(experience => (
           <ExperienceCard
             key={experience.company}
@@ -165,65 +165,69 @@ export default async function Experience({ params }: { params: Promise<{ locale:
             }}
           />
         ))}
-      </div>
+      </section>
       <SectionDivider />
-      <h1 className="text-4xl font-bold">{tUI("sections.research")}</h1>
-      <div className="space-y-12">
-        {research.map(research => (
-          <ExperienceCard
-            key={research.conference}
-            header={{
-              left: research.conference,
-              leftSuffix: ` | ${research.contribution}`
-            }}
-            title={research.title}
-            description={research.description}
-          >
-            <p className="line-clamp-3 text-justify text-pretty whitespace-pre-wrap italic">
-              <span className="mr-4 uppercase">{tUI("labels.abstract")}</span>
-              <span>{research.abstract}</span>
-            </p>
-            {research.link.trim() !== "" && (
-              <div className="flex flex-row items-center gap-2">
-                <span>{tUI("labels.availableAt")} </span>
-                <a
-                  href={research.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                  aria-label={tUI("aria.linkToPaper")}
-                >
-                  <DocumentTextIcon className="size-6" />
-                  <span>{tUI("labels.paper")}</span>
-                </a>
+      <section aria-label={tUI("sections.research")} className="space-y-8">
+        <h2 className="text-4xl font-bold">{tUI("sections.research")}</h2>
+        <div className="space-y-12">
+          {research.map(research => (
+            <ExperienceCard
+              key={research.conference}
+              header={{
+                left: research.conference,
+                leftSuffix: ` | ${research.contribution}`
+              }}
+              title={research.title}
+              description={research.description}
+            >
+              <p className="line-clamp-3 text-justify text-pretty whitespace-pre-wrap italic">
+                <span className="mr-4 uppercase">{tUI("labels.abstract")}</span>
+                <span>{research.abstract}</span>
+              </p>
+              {research.link.trim() !== "" && (
+                <div className="flex flex-row items-center gap-2">
+                  <span>{tUI("labels.availableAt")} </span>
+                  <a
+                    href={research.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                    aria-label={tUI("aria.linkToPaper")}
+                  >
+                    <DocumentTextIcon className="size-6" />
+                    <span>{tUI("labels.paper")}</span>
+                  </a>
+                </div>
+              )}
+              <div className="flex flex-wrap gap-2 lg:gap-4">
+                {research.topics.map(topic => (
+                  <Badge key={topic} variant="default">
+                    {topic}
+                  </Badge>
+                ))}
               </div>
-            )}
-            <div className="flex flex-wrap gap-2 lg:gap-4">
-              {research.topics.map(topic => (
-                <Badge key={topic} variant="default">
-                  {topic}
-                </Badge>
-              ))}
-            </div>
-          </ExperienceCard>
-        ))}
-      </div>
+            </ExperienceCard>
+          ))}
+        </div>
+      </section>
       <SectionDivider />
-      <h1 className="text-4xl font-bold">{tUI("sections.education")}</h1>
-      <div className="space-y-12">
-        {education.map(education => (
-          <ExperienceCard
-            key={education.school}
-            header={{
-              left: education.school,
-              right: <></>
-            }}
-            title={education.degree}
-            description={education.description}
-            bulletPoints={education.bulletPoints}
-          />
-        ))}
-      </div>
+      <section aria-label={tUI("sections.education")} className="space-y-8">
+        <h2 className="text-4xl font-bold">{tUI("sections.education")}</h2>
+        <div className="space-y-12">
+          {education.map(education => (
+            <ExperienceCard
+              key={education.school}
+              header={{
+                left: education.school,
+                right: <></>
+              }}
+              title={education.degree}
+              description={education.description}
+              bulletPoints={education.bulletPoints}
+            />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

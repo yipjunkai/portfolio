@@ -54,9 +54,9 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
   return (
     <div className="space-y-8">
       <h1 className="text-4xl font-bold">{tUI("title")}</h1>
-      <div className="flex flex-col gap-4">
+      <section aria-label={tUI("title")} className="flex flex-col gap-4">
         {projects.map(project => (
-          <div key={project.name} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+          <article key={project.name} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">{project.name}</h2>
               {project.description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{project.description}</p>}
@@ -128,9 +128,9 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
                 }}
               />
             </LaptopTemplate>
-          </div>
+          </article>
         ))}
-      </div>
+      </section>
     </div>
   );
 }
