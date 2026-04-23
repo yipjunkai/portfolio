@@ -88,15 +88,13 @@
   "content": {
     "meta": {
       "siteName": "叶俊凯",
-      "siteDescription": "我的作品集 | 新加坡软件开发者，专注于前端开发",
+      "siteDescription": "俊凯是一名现居旧金山与新加坡的软件开发者，目前在Kipo AI打造B2B零件智能平台。",
       "pages": {
         "experience": {
-          "title": "经历",
-          "description": "我的工作与研究经历 | 计算机工程（荣誉学位）"
+          "title": "工作经历"
         },
         "projects": {
-          "title": "项目",
-          "description": "工作之外的专业与自由职业项目 | 网页开发、AI/ML"
+          "title": "项目"
         }
       }
     },

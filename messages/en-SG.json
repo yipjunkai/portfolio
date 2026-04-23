@@ -88,15 +88,13 @@
   "content": {
     "meta": {
       "siteName": "Yip Jun Kai",
-      "siteDescription": "My portfolio | Software developer in Singapore, focused on frontend",
+      "siteDescription": "Jun Kai is a software developer in San Francisco and Singapore. Currently at Kipo AI building B2B parts intelligence.",
       "pages": {
         "experience": {
-          "title": "Experience",
-          "description": "My work and research experience | Computer Engineering (Honours)"
+          "title": "Experience"
         },
         "projects": {
-          "title": "Projects",
-          "description": "Professional and freelance projects, outside of work | Web developer, AI/ML"
+          "title": "Projects"
         }
       }
     },
