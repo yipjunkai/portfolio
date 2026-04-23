@@ -81,7 +81,8 @@
     "projects": {
       "title": "项目",
       "labels": {
-        "website": "网站"
+        "website": "网站",
+        "github": "GitHub"
       }
     }
   },
@@ -171,6 +172,14 @@
         "bullet3": "通过实施先进的搜索功能优化产品可发现性，将搜索查询延迟降低了 97%（从 700ms 降至 20ms），并为 B2B 目录启用即时、容错的筛选功能。",
         "laptopAlt": "OceanfrontHardware 桌面端视图",
         "mobileAlt": "OceanfrontHardware 移动端视图"
+      },
+      "secretsSpotter": {
+        "name": "Secrets Spotter",
+        "role": "开源项目",
+        "description": "一款开源的 CLI 工具与 Chrome 扩展，用于检测文件、目录、标准输入、网页和网络流量中泄露的密钥；由共享的 Rust 核心驱动。",
+        "bullet1": "构建统一的 Rust 检测引擎，内置 50 种检测模式（涵盖 AWS、GitHub、Stripe、JWT、私钥等），并通过香农熵、字符类多样性和代码标识符过滤来排除误报；CLI 和浏览器扩展共用同一核心。",
+        "bullet2": "推出面向 CI/CD 的 CLI 工具，支持 SARIF（用于 GitHub Code Scanning）与 JSON 输出格式，以及 glob 和严重程度筛选，实现对文件、目录及标准输入流的即插即用密钥扫描。",
+        "bullet3": "开发基于 WebAssembly 的 Chrome 扩展，扫描 DOM 并通过 MAIN 世界拦截器捕获 fetch、XHR、WebSocket、SSE 和 Cookie；结合 SHA-256 去重与 SPA 路由变更自动重扫，全程本地运行，数据不外泄。"
       }
     }
   }

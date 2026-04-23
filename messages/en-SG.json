@@ -81,7 +81,8 @@
     "projects": {
       "title": "Projects",
       "labels": {
-        "website": "Website"
+        "website": "Website",
+        "github": "GitHub"
       }
     }
   },
@@ -171,6 +172,14 @@
         "bullet3": "Optimized product discoverability by implementing advanced search capabilities, reducing search query latency by 97% (from 700ms to 20ms) and enabling instant, typo-tolerant filtering for the B2B catalog.",
         "laptopAlt": "OceanfrontHardware desktop view",
         "mobileAlt": "OceanfrontHardware mobile view"
+      },
+      "secretsSpotter": {
+        "name": "Secrets Spotter",
+        "role": "Open-source Project",
+        "description": "An open-source CLI and Chrome extension that detects exposed secrets in files, directories, stdin, web pages, and network traffic — powered by a shared Rust core.",
+        "bullet1": "Built a unified Rust detection engine with 50 patterns (AWS, GitHub, Stripe, JWTs, private keys, and more) plus false-positive filtering via Shannon entropy, character-class diversity, and code-identifier rejection — shared across the CLI and browser extension from a single core.",
+        "bullet2": "Shipped a CI/CD-ready CLI with SARIF output for GitHub Code Scanning, JSON mode for automation, and glob and severity filters, enabling drop-in secret scanning across files, directories, and stdin pipelines.",
+        "bullet3": "Engineered a WASM-powered Chrome extension that scans DOM content and intercepts fetch, XHR, WebSocket, SSE, and cookies through a MAIN-world interceptor, with SHA-256 deduplication and automatic re-scan on SPA navigations — all fully local."
       }
     }
   }
