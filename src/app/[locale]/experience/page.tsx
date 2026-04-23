@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getFormatter, getTranslations, setRequestLocale } from "next-intl/server";
+import { requireLocale } from "@/i18n/locale";
+import { getPageMetadata } from "@/lib/seo";
 import ExperienceCard from "./_components/ExperienceCard";
 import SectionDivider from "./_components/SectionDivider";
 import { DocumentTextIcon } from "@heroicons/react/24/solid";
@@ -7,16 +9,23 @@ import { Badge } from "@/components/ui/badge";
 import TechPattern from "./_components/TechPattern";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "content.meta.pages.experience" });
+  const { locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
+  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+  const tPage = await getTranslations({ locale, namespace: "content.meta.pages.experience" });
 
-  return {
-    title: t("title")
-  };
+  return getPageMetadata({
+    locale,
+    pathname: "/experience",
+    siteName: tMeta("siteName"),
+    title: tPage("title"),
+    description: tMeta("siteDescription")
+  });
 }
 
 export default async function Experience({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+  const { locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "content.experience" });
   const tUI = await getTranslations({ locale, namespace: "common.experience" });

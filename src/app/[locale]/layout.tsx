@@ -9,11 +9,12 @@ import MobileTopNav from "./_components/MobileTopNav";
 import ScrollToTop from "./_components/ScrollToTop";
 import Sidebar from "./_components/Sidebar";
 import "../globals.css";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { routing, type Pathname } from "@/i18n/routing";
-import { notFound } from "next/navigation";
+import { requireLocale } from "@/i18n/locale";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { siteConfig } from "@/config";
+import { getPageMetadata, getTitleMetadata } from "@/lib/seo";
 
 interface BaseRoute {
   name: string;
@@ -52,15 +53,18 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
   const t = await getTranslations({ locale, namespace: "content.meta" });
 
   return {
-    title: {
-      template: `%s | ${t("siteName")}`,
-      default: t("siteName")
-    },
-    description: t("siteDescription")
+    title: getTitleMetadata(t("siteName")),
+    ...getPageMetadata({
+      locale,
+      pathname: "/",
+      siteName: t("siteName"),
+      description: t("siteDescription")
+    })
   };
 }
 
@@ -71,11 +75,8 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }>) {
-  const { locale } = await params;
-
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+  const { locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
 
   setRequestLocale(locale);
 

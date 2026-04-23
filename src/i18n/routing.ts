@@ -15,6 +15,7 @@ export const routing = defineRouting({
   }
 });
 
+export type Locale = (typeof routing.locales)[number];
 export type Pathname = keyof typeof routing.pathnames;
 
 //todo add US locale

@@ -1,12 +1,29 @@
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { DocumentArrowDownIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { requireLocale } from "@/i18n/locale";
+import { getPageMetadata } from "@/lib/seo";
 import EmailMeDialog from "./_components/EmailMeDialog";
 import ResumePDFDialog from "./_components/ResumePDFDialog";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
+  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+
+  return getPageMetadata({
+    locale,
+    pathname: "/",
+    siteName: tMeta("siteName"),
+    description: tMeta("siteDescription")
+  });
+}
+
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+  const { locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "content.home" });

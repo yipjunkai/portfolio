@@ -1,25 +1,17 @@
-import { getPathname } from "@/i18n/navigation";
-import { routing } from "@/i18n/routing";
 import type { MetadataRoute } from "next";
-import { Languages } from "next/dist/lib/metadata/types/alternative-urls-types";
 import { siteConfig } from "@/config";
 import type { Pathname } from "@/i18n/routing";
+import { getLanguageAlternates } from "@/lib/seo";
+import { getPathname } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 
 const routes: Pathname[] = ["/", "/experience", "/projects"];
 
-const generateLanguageAlternates = (path: Pathname) => {
-  return routing.locales.reduce((acc, locale) => {
-    acc[locale] = siteConfig.url + getPathname({ href: path, locale });
-    return acc;
-  }, {} as Languages<string>);
-};
-
 const generateSitemap = (path: Pathname) => {
   return {
-    url: `${siteConfig.url}${path}`,
-    lastModified: new Date(),
+    url: new URL(getPathname({ href: path, locale: routing.defaultLocale }), siteConfig.url).toString(),
     alternates: {
-      languages: generateLanguageAlternates(path)
+      languages: getLanguageAlternates(path)
     }
   };
 };

@@ -11,19 +11,28 @@ import GithubIcon from "@/components/icons/GithubIcon";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { cn } from "@/components/lib/utils";
+import { requireLocale } from "@/i18n/locale";
 import type { ReactNode } from "react";
+import { getPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "content.meta.pages.projects" });
+  const { locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
+  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+  const tPage = await getTranslations({ locale, namespace: "content.meta.pages.projects" });
 
-  return {
-    title: t("title")
-  };
+  return getPageMetadata({
+    locale,
+    pathname: "/projects",
+    siteName: tMeta("siteName"),
+    title: tPage("title"),
+    description: tMeta("siteDescription")
+  });
 }
 
 export default async function Projects({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+  const { locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "content.projects" });
   const tUI = await getTranslations({ locale, namespace: "common.projects" });
