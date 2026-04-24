@@ -4,6 +4,7 @@ import { DocumentArrowDownIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { requireLocale } from "@/i18n/locale";
 import { getPageMetadata } from "@/lib/seo";
+import { JsonLd, getPersonJsonLd } from "@/lib/jsonLd";
 import EmailMeDialog from "./_components/EmailMeDialog";
 import ResumePDFDialog from "./_components/ResumePDFDialog";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
@@ -28,9 +29,18 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   const t = await getTranslations({ locale, namespace: "content.home" });
   const tCommon = await getTranslations({ locale, namespace: "common.home" });
+  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+
+  const personJsonLd = getPersonJsonLd({
+    locale,
+    name: tMeta("siteName"),
+    jobTitle: tMeta("jobTitle"),
+    description: tMeta("siteDescription")
+  });
 
   return (
     <>
+      <JsonLd data={personJsonLd} />
       <div className="h-[calc(100svh-8rem)] space-y-8 md:h-min">
         <h1 className="md:font-bold">
           <span className="text-3xl md:text-5xl">{t("greeting")}</span>

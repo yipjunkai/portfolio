@@ -15,6 +15,7 @@ import { requireLocale } from "@/i18n/locale";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { siteConfig } from "@/config";
 import { getPageMetadata, getTitleMetadata } from "@/lib/seo";
+import { JsonLd, getWebsiteJsonLd } from "@/lib/jsonLd";
 
 interface BaseRoute {
   name: string;
@@ -81,6 +82,13 @@ export default async function RootLayout({
   setRequestLocale(locale);
 
   const t = await getTranslations("common.nav");
+  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+
+  const websiteJsonLd = getWebsiteJsonLd({
+    locale,
+    name: tMeta("siteName"),
+    description: tMeta("siteDescription")
+  });
 
   const sections: Sections[] = [
     {
@@ -131,6 +139,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <JsonLd data={websiteJsonLd} />
         <NextIntlClientProvider>
           <ThemeProvider disableTransitionOnChange>
             <div className="fixed left-1/2 -z-10 hidden h-screen w-1/2 bg-gray-50 lg:block dark:bg-[#131313]"></div>
