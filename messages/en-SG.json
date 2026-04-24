@@ -28,6 +28,12 @@
       "illustrationAlt": "404 page illustration",
       "goHome": "Go home"
     },
+    "error": {
+      "title": "Something went wrong",
+      "description": "An unexpected error occurred. Try again, or head back home.",
+      "retry": "Try again",
+      "goHome": "Go home"
+    },
     "download": "Download",
     "techSections": {
       "language": "Languages",

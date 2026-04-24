@@ -139,6 +139,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <link rel="prefetch" as="fetch" href={siteConfig.resume.url} crossOrigin="anonymous" />
         <JsonLd data={websiteJsonLd} />
         <NextIntlClientProvider>
           <ThemeProvider disableTransitionOnChange>
