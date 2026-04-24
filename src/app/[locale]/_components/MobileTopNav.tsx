@@ -68,7 +68,15 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
           );
 
           return route.external ? (
-            <a key={route.name} href={route.href} onClick={() => setIsOpen(false)} className={className} style={style} target="_blank" rel="noopener noreferrer">
+            <a
+              key={route.name}
+              href={route.href}
+              onClick={() => setIsOpen(false)}
+              className={className}
+              style={style}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {children}
             </a>
           ) : (

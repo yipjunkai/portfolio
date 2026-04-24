@@ -252,18 +252,8 @@ function ShieldPattern() {
   return (
     <svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* Shield */}
-      <path
-        d="M100 40 H180 V130 Q140 190 100 130 Z"
-        stroke="var(--color-grad-1)"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M115 58 H165 V125 Q140 168 115 125 Z"
-        stroke="var(--color-grad-2)"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
+      <path d="M100 40 H180 V130 Q140 190 100 130 Z" stroke="var(--color-grad-1)" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M115 58 H165 V125 Q140 168 115 125 Z" stroke="var(--color-grad-2)" strokeWidth="1.5" strokeLinejoin="round" />
       {/* Chevron rank inside shield */}
       <path d="M128 85 L140 100 L152 85" stroke="var(--color-grad-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M128 95 L140 110 L152 95" stroke="var(--color-grad-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -277,7 +267,14 @@ function ShieldPattern() {
       ))}
       {/* Checkmarks on clipboard */}
       {[190, 202, 214].map(y => (
-        <path key={`ck-${y}`} d={`M26 ${y} l2 3 l5 -5`} stroke="var(--color-grad-3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          key={`ck-${y}`}
+          d={`M26 ${y} l2 3 l5 -5`}
+          stroke="var(--color-grad-3)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       ))}
 
       {/* Radar / compass (bottom-right) */}
@@ -303,20 +300,8 @@ function ShieldPattern() {
       ))}
 
       {/* Star (decorative, top-left) */}
-      <path
-        d="M40 40 L44 28 L48 40 L36 32 L52 32 Z"
-        stroke="var(--color-grad-1)"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      <path
-        d="M60 60 L63 52 L66 60 L58 55 L68 55 Z"
-        stroke="var(--color-grad-2)"
-        strokeWidth="1"
-        strokeLinejoin="round"
-        fill="none"
-      />
+      <path d="M40 40 L44 28 L48 40 L36 32 L52 32 Z" stroke="var(--color-grad-1)" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
+      <path d="M60 60 L63 52 L66 60 L58 55 L68 55 Z" stroke="var(--color-grad-2)" strokeWidth="1" strokeLinejoin="round" fill="none" />
     </svg>
   );
 }

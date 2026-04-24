@@ -16,12 +16,7 @@ export default function PDFDialog({ children }: { children: ReactNode }) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <PDFDialogContent
-        url={siteConfig.resume.url}
-        downloadName={t("filename")}
-        title={t("title")}
-        description={t("description")}
-      />
+      <PDFDialogContent url={siteConfig.resume.url} downloadName={t("filename")} title={t("title")} description={t("description")} />
     </Dialog>
   );
 }
