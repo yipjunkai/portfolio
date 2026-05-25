@@ -3,8 +3,8 @@ import { VariantProps } from "class-variance-authority";
 import LaptopTemplate from "./_components/LaptopTemplate";
 import MobileTemplate from "./_components/MobileTemplate";
 import ExtensionPopupPreview from "./_components/ExtensionPopupPreview";
+import PyvolrPerfPreview from "./_components/PyvolrPerfPreview";
 import Image, { type StaticImageData } from "next/image";
-import oceanfrontHardwareLaptop from "./_assets/oceanfront-hardware-laptop.webp";
 import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp";
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import GithubIcon from "@/components/icons/GithubIcon";
@@ -47,6 +47,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
     laptopImage?: { src: StaticImageData; alt: string };
     mobileImage?: { src: StaticImageData; alt: string };
     preview?: ReactNode;
+    previewPosition?: "side" | "top";
     link: string;
     linkType?: "website" | "github";
   }[] = [
@@ -62,16 +63,29 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
         { name: "Stripe", section: "service" },
         { name: "Meilisearch", section: "backend" }
       ],
-      laptopImage: {
-        src: oceanfrontHardwareLaptop,
-        alt: t("oceanfrontHardware.laptopAlt")
-      },
       mobileImage: {
         src: oceanfrontHardwareMobile,
         alt: t("oceanfrontHardware.mobileAlt")
       },
       link: "https://oceanfronthardware.com.sg/",
       linkType: "website"
+    },
+    {
+      name: t("pyvolr.name"),
+      role: t("pyvolr.role"),
+      description: t("pyvolr.description"),
+      bulletPoints: [t("pyvolr.bullet1"), t("pyvolr.bullet2"), t("pyvolr.bullet3")],
+      techStack: [
+        { name: "Rust", section: "language" },
+        { name: "Python", section: "language" },
+        { name: "PyO3", section: "other" },
+        { name: "NumPy", section: "other" },
+        { name: "maturin", section: "other" }
+      ],
+      preview: <PyvolrPerfPreview alt={t("pyvolr.chartAlt")} />,
+      previewPosition: "top",
+      link: "https://github.com/yipjunkai/pyvolr",
+      linkType: "github"
     },
     {
       name: t("secretsSpotter.name"),
@@ -96,7 +110,13 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
       <section aria-label={tUI("title")} className="flex flex-col gap-16">
         {projects.map(project => (
           <article key={project.name} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
-            <div className={cn("space-y-4", !project.mobileImage && !project.preview && "col-span-2")}>
+            {project.preview && project.previewPosition === "top" && <div className="md:col-span-2">{project.preview}</div>}
+            <div
+              className={cn(
+                "space-y-4",
+                (!project.mobileImage && (!project.preview || project.previewPosition === "top")) && "md:col-span-2"
+              )}
+            >
               <h2 className="text-2xl font-bold">{project.name}</h2>
               {project.description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{project.description}</p>}
               {project.link.trim() !== "" && (
@@ -147,7 +167,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
                 );
               })()}
             </div>
-            {project.preview && <div>{project.preview}</div>}
+            {project.preview && project.previewPosition !== "top" && <div>{project.preview}</div>}
             {project.mobileImage && (
               <MobileTemplate className="hidden md:block">
                 <Image

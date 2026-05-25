@@ -180,6 +180,15 @@
         "laptopAlt": "OceanfrontHardware desktop view",
         "mobileAlt": "OceanfrontHardware mobile view"
       },
+      "pyvolr": {
+        "name": "pyvolr",
+        "role": "Open-source Project",
+        "description": "A modern Python library for Black-Scholes-Merton pricing, Greeks, and implied volatility — Rust core, fully vectorized over numpy, and a drop-in replacement for the abandoned py_vollib.",
+        "bullet1": "Built a Rust numerical core (BSM and Black-76 pricing, all five Greeks, and a Manaster-Koehler-seeded Newton-Raphson implied-vol solver with bisection fallback) exposed to Python via PyO3, delivering 100×+ throughput over py_vollib on vectorized workloads while preserving scalar-in/scalar-out ergonomics.",
+        "bullet2": "Designed a sustainability-first release pipeline — release-please with PyPI Trusted Publishing (OIDC, no stored credentials), nightly differential tests against py_vollib to catch numerical drift, and a Python 3.10–3.14 × Linux/macOS/Windows CI matrix (including free-threaded 3.13t/3.14t wheels) that covers the exact failure mode that killed the predecessor.",
+        "bullet3": "Shipped a drop-in `pyvolr.compat.py_vollib` shim mirroring the upstream module tree (including `py_vollib.black`), preserving the legacy unit conventions so existing users can migrate with a single import-line change.",
+        "chartAlt": "Throughput benchmark: pyvolr vs py_vollib, log-log scaling by array size"
+      },
       "secretsSpotter": {
         "name": "Secrets Spotter",
         "role": "Open-source Project",

@@ -180,6 +180,15 @@
         "laptopAlt": "OceanfrontHardware 桌面端视图",
         "mobileAlt": "OceanfrontHardware 移动端视图"
       },
+      "pyvolr": {
+        "name": "pyvolr",
+        "role": "开源项目",
+        "description": "现代 Python 期权定价库，提供 Black-Scholes-Merton 价格、希腊值与隐含波动率计算；以 Rust 为内核，全面支持 numpy 向量化，是已停止维护的 py_vollib 的即插即用替代品。",
+        "bullet1": "构建 Rust 数值内核（BSM 与 Black-76 定价、五大希腊值，以及由 Manaster-Koehler 初值驱动、并以二分法兜底的牛顿-拉夫森隐含波动率求解器），通过 PyO3 暴露给 Python；在向量化工作负载下吞吐量较 py_vollib 提升 100 倍以上，同时保留标量入/标量出的使用体验。",
+        "bullet2": "设计了以可持续性为先的发布流程：release-please 搭配 PyPI Trusted Publishing（OIDC，无需存储凭证）、对 py_vollib 进行夜间差异化测试以捕捉数值漂移，以及 Python 3.10–3.14 × Linux/macOS/Windows 的 CI 矩阵（含 3.13t/3.14t 自由线程版本的 wheel），正面覆盖当年导致前辈项目崩塌的失败模式。",
+        "bullet3": "提供 `pyvolr.compat.py_vollib` 兼容层，镜像上游模块树（包含 `py_vollib.black`），并保留旧有的单位约定，让现有用户只需修改一行 import 即可无缝迁移。",
+        "chartAlt": "吞吐量基准测试：pyvolr 与 py_vollib 的对比（按数组大小双对数缩放）"
+      },
       "secretsSpotter": {
         "name": "Secrets Spotter",
         "role": "开源项目",
