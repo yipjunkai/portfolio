@@ -118,10 +118,10 @@
           "company": "Kipo AI",
           "location": "San Francisco",
           "position": "Software Engineering Intern",
-          "description": "",
-          "bullet1": "Built core infrastructure for a B2B parts intelligence platform, helping scale the product from stealth to ~1,000 active users and supporting enterprise-grade workflows.",
-          "bullet2": "Developed a scalable search and sourcing system indexing 2M+ components with live pricing and lead-time awareness, enabling real-time quoting and faster sourcing decisions.",
-          "bullet3": "Automated datasheet symbol extraction and BOM-to-sourcing pipelines, reducing manual engineering effort and accelerating readiness for paid enterprise adoption."
+          "description": "Built and hardened core platform systems as the product scaled from stealth to ~1,000 active users with 2M+ indexed components.",
+          "bullet1": "Unblocked OAuth and enterprise rollout by rewriting refresh-token rotation end-to-end — race-safe family revocation, cookie hardening, Edge-gated internal routes — verified by cross-browser Playwright e2e coverage.",
+          "bullet2": "Made the AI agent reliably usable for ~1,000 users by bringing Temporal into production as the workflow engine (worker split, cache tuning, ECS health checks) and migrating chat state from in-memory Maps onto Redis, eliminating the SSE and interrupt races that were dropping streams.",
+          "bullet3": "Decoupled chat and search subsystems in a 137-file architectural split and made the deploy pipeline production-grade with image-digest pinning, parallel Buildx caching, and a Playwright/Docker e2e harness."
         },
         "dsbj": {
           "company": "DSBJ",

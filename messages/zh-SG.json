@@ -118,10 +118,10 @@
           "company": "Kipo AI",
           "location": "旧金山",
           "position": "软件工程实习生",
-          "description": "",
-          "bullet1": "为 B2B 零件智能平台构建核心基础设施，帮助产品从内测阶段扩展到约 1,000 名活跃用户，并支持企业级工作流程。",
-          "bullet2": "开发了可扩展的搜索和采购系统，索引超过 200 万个组件，支持实时定价与交期查询，实现实时报价和更快的采购决策。",
-          "bullet3": "自动化数据表符号提取和物料清单到采购的流程，减少人工工程工作量，加速企业付费客户的落地准备。"
+          "description": "在产品从内测扩展到约 1,000 名活跃用户、索引超过 200 万个组件的过程中，构建并强化了核心平台系统。",
+          "bullet1": "通过端到端重写 refresh token 轮换机制（无竞态的 family revocation、cookie 加固、Edge 网关保护的内部路由），并以跨浏览器 Playwright 端到端测试验证，为 OAuth 与企业级部署铺平道路。",
+          "bullet2": "将 Temporal 引入生产作为平台的工作流引擎（worker 拆分、缓存调优、ECS 健康检查），并把聊天状态从内存 Map 迁移至 Redis，解决了导致流中断的 SSE 与 interrupt 竞态问题，让约 1,000 名用户能够真正稳定地使用 AI agent。",
+          "bullet3": "主导跨 137 个文件的架构拆分，将聊天与搜索子系统解耦；并通过 image digest 锁定、Buildx 并行缓存构建及 Playwright/Docker 端到端测试框架，让部署流水线达到生产级标准。"
         },
         "dsbj": {
           "company": "东山精密",
