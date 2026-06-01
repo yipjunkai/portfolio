@@ -119,9 +119,9 @@
           "location": "旧金山",
           "position": "软件工程实习生",
           "description": "在产品从内测扩展到约 1,000 名活跃用户、索引超过 200 万个组件的过程中，构建并强化了核心平台系统。",
-          "bullet1": "通过端到端重写 refresh token 轮换机制（无竞态的 family revocation、cookie 加固、Edge 网关保护的内部路由），并以跨浏览器 Playwright 端到端测试验证，为 OAuth 与企业级部署铺平道路。",
-          "bullet2": "将 Temporal 引入生产作为平台的工作流引擎（worker 拆分、缓存调优、ECS 健康检查），并把聊天状态从内存 Map 迁移至 Redis，解决了导致流中断的 SSE 与 interrupt 竞态问题，让约 1,000 名用户能够真正稳定地使用 AI agent。",
-          "bullet3": "主导跨 137 个文件的架构拆分，将聊天与搜索子系统解耦；并通过 image digest 锁定、Buildx 并行缓存构建及 Playwright/Docker 端到端测试框架，让部署流水线达到生产级标准。"
+          "bullet1": "端到端重写认证与会话系统，为 OAuth 与企业级部署铺平道路，并以跨浏览器端到端测试保障流程稳定。",
+          "bullet2": "引入持久化工作流引擎，并将聊天状态从内存迁移至 Redis，解决了导致实时响应中断的竞态问题，让约 1,000 名用户能稳定使用 AI agent。",
+          "bullet3": "主导架构拆分，将聊天与搜索子系统解耦；并通过可复现构建、更快的缓存以及端到端测试框架，让部署流水线达到生产级标准。"
         },
         "dsbj": {
           "company": "东山精密",

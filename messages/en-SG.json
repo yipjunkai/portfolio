@@ -119,9 +119,9 @@
           "location": "San Francisco",
           "position": "Software Engineering Intern",
           "description": "Built and hardened core platform systems as the product scaled from stealth to ~1,000 active users with 2M+ indexed components.",
-          "bullet1": "Unblocked OAuth and enterprise rollout by rewriting refresh-token rotation end-to-end — race-safe family revocation, cookie hardening, Edge-gated internal routes — verified by cross-browser Playwright e2e coverage.",
-          "bullet2": "Made the AI agent reliably usable for ~1,000 users by bringing Temporal into production as the workflow engine (worker split, cache tuning, ECS health checks) and migrating chat state from in-memory Maps onto Redis, eliminating the SSE and interrupt races that were dropping streams.",
-          "bullet3": "Decoupled chat and search subsystems in a 137-file architectural split and made the deploy pipeline production-grade with image-digest pinning, parallel Buildx caching, and a Playwright/Docker e2e harness."
+          "bullet1": "Rewrote the authentication and session system end-to-end to unblock OAuth and enterprise rollout, with cross-browser end-to-end tests guarding the flow.",
+          "bullet2": "Made the AI agent reliably usable for ~1,000 users by introducing a durable workflow engine and moving chat state onto Redis, eliminating the race conditions that were dropping live responses.",
+          "bullet3": "Led an architectural split that decoupled the chat and search subsystems, and hardened the deploy pipeline with reproducible builds, faster caching, and end-to-end test coverage."
         },
         "dsbj": {
           "company": "DSBJ",
