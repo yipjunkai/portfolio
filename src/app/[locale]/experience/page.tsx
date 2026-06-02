@@ -85,7 +85,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
       location: t("jobs.dsbj.location"),
       position: t("jobs.dsbj.position"),
       startDate: new Date(2024, 0, 1), // Jan 2024 (Month is 0-indexed)
-      endDate: new Date(2024, 6, 1), // Represents end of June 2024
+      endDate: new Date(2024, 5, 1), // Jun 2024 (Month is 0-indexed)
       techStack: [
         { name: "Next.js", section: "frontend" },
         { name: "NestJS", section: "backend" },
@@ -104,7 +104,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
       location: t("jobs.works.location"),
       position: t("jobs.works.position"),
       startDate: new Date(2021, 1, 1), // Feb 2021
-      endDate: new Date(2021, 6, 1), // Represents end of June 2021
+      endDate: new Date(2021, 5, 1), // Jun 2021 (Month is 0-indexed)
       techStack: [
         { name: "Flutter", section: "frontend" },
         { name: "Angular", section: "frontend" },
@@ -121,7 +121,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
       location: t("jobs.cda.location"),
       position: t("jobs.cda.position"),
       startDate: new Date(2020, 0, 1), // Jan 2020 (Month is 0-indexed)
-      endDate: new Date(2021, 1, 1), // Represents end of Jan 2021
+      endDate: new Date(2021, 1, 1), // Feb 2021 (Month is 0-indexed)
       techStack: [
         { name: "Dart", section: "language" },
         { name: "Flutter", section: "frontend" },
