@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/ui/button";
-import { DocumentArrowDownIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import { AnimatedIconButton } from "@/components/ui/animated-icon-button";
+import { MapPinIcon } from "@heroicons/react/24/solid";
+import { DownloadIcon } from "@/components/ui/download";
+import { SendIcon } from "@/components/ui/send";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { requireLocale } from "@/i18n/locale";
 import { getPageMetadata } from "@/lib/seo";
 import { JsonLd, getPersonJsonLd } from "@/lib/jsonLd";
 import EmailMeDialog from "./_components/EmailMeDialog";
 import ResumePDFDialog from "./_components/ResumePDFDialog";
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
@@ -54,16 +55,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <p className="text-justify text-pretty whitespace-pre-line">{t("aboutMe")}</p>
         <div className="flex flex-col gap-4 *:flex *:items-center *:gap-4 *:text-2xl lg:flex-row">
           <ResumePDFDialog>
-            <Button variant="default">
-              <DocumentArrowDownIcon className="size-6" />
-              <span>{tCommon("viewCv")}</span>
-            </Button>
+            <AnimatedIconButton variant="default" icon={DownloadIcon} label={tCommon("viewCv")} />
           </ResumePDFDialog>
           <EmailMeDialog>
-            <Button variant="secondary">
-              <EnvelopeIcon className="size-6" />
-              <span>{tCommon("emailMe")}</span>
-            </Button>
+            <AnimatedIconButton variant="secondary" icon={SendIcon} label={tCommon("emailMe")} />
           </EmailMeDialog>
         </div>
       </div>
