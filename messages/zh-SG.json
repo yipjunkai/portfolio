@@ -183,11 +183,14 @@
       "pyvolr": {
         "name": "pyvolr",
         "role": "开源项目",
-        "description": "现代 Python 期权定价库，提供 Black-Scholes-Merton 价格、希腊值与隐含波动率计算；以 Rust 为内核，全面支持 numpy 向量化，是已停止维护的 py_vollib 的即插即用替代品。",
-        "bullet1": "构建 Rust 数值内核（BSM 与 Black-76 定价、五大希腊值，以及由 Manaster-Koehler 初值驱动、并以二分法兜底的牛顿-拉夫森隐含波动率求解器），通过 PyO3 暴露给 Python；在向量化工作负载下吞吐量较 py_vollib 提升 100 倍以上，同时保留标量入/标量出的使用体验。",
-        "bullet2": "设计了以可持续性为先的发布流程：release-please 搭配 PyPI Trusted Publishing（OIDC，无需存储凭证）、对 py_vollib 进行夜间差异化测试以捕捉数值漂移，以及 Python 3.10–3.14 × Linux/macOS/Windows 的 CI 矩阵（含 3.13t/3.14t 自由线程版本的 wheel），正面覆盖当年导致前辈项目崩塌的失败模式。",
-        "bullet3": "提供 `pyvolr.compat.py_vollib` 兼容层，镜像上游模块树（包含 `py_vollib.black`），并保留旧有的单位约定，让现有用户只需修改一行 import 即可无缝迁移。",
-        "chartAlt": "吞吐量基准测试：pyvolr 与 py_vollib 的对比（按数组大小双对数缩放）"
+        "description": "现代 Python 期权定价库，提供 Black-Scholes-Merton 价格、希腊值与隐含波动率计算；以 Rust 为内核，全面支持 NumPy 向量化，并与 `py_vollib`/`vollib` 即插即用兼容。定位为活跃 BSM 生态的高速路径，同时在深度尾部仍保持 f64 精确——正是那些更快的竞品悄然失效之处。",
+        "bullet1": "构建 Rust 数值内核（BSM 与 Black-76 定价、五大希腊值，以及由 Manaster-Koehler 初值驱动、并以二分法兜底的牛顿-拉夫森隐含波动率求解器），通过 PyO3 暴露给 Python，并在各端点阈值之上以 rayon 并行化。在大规模下领跑活跃生态：100 万次隐含波动率求解比 fast-vollib 的 numba 后端快约 2 倍、比 opengreeks 快约 12 倍，并行定价路径在约 4 毫秒内完成 100 万个执行价的定价；同时保留标量入/标量出的使用体验，标量快路径低至亚微秒级。",
+        "bullet2": "以尾部正确性作为核心差异化：基于 `erfcx` 的正态累积分布函数与归一化 Black 正向映射，让隐含波动率在期权价格低至 1e-215 时仍保持 f64 精确；而每一款 2026 年的高速竞品（fast-vollib、opengreeks、quantforge）在价格约 1e-6 至 1e-26 之间便开始悄然返回错误的常数波动率——本项目以 mpmath 黄金基准阶梯锚定，并在良态输入上与所有竞品交叉校验至约 1e-13。",
+        "bullet3": "打造以可持续性为先的发布流程：release-please 搭配 PyPI Trusted Publishing（OIDC，无需存储凭证）、差异化测试以捕捉数值漂移，以及 Python 3.10–3.14 × Linux/macOS/Windows 的 wheel 矩阵，外加自由线程 3.14t 构建；同时提供 `pyvolr.compat.py_vollib` 与 `py_vollib_vectorized` 即插即用兼容层，让现有用户只需修改一行 import 即可迁移。",
+        "chartCaptionThroughput": "吞吐量对比：pyvolr 与活跃 BSM 生态（双对数，按数组大小）",
+        "chartCaptionAccuracy": "深度尾部的隐含波动率精度（正确位数，越高越好）",
+        "chartAltThroughput": "吞吐量基准测试：pyvolr 对比 fast-vollib、opengreeks 及更广的 BSM 生态，在 Apple M4 Pro 上按数组大小双对数缩放",
+        "chartAltAccuracy": "隐含波动率尾部精度：pyvolr 在期权价格低至 1e-215 时仍保持 f64 精确，而更快的库在价格 1e-6 至 1e-26 之间跌至零正确位数"
       },
       "secretsSpotter": {
         "name": "Secrets Spotter",

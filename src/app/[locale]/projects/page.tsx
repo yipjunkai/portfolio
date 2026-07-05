@@ -82,7 +82,14 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
         { name: "NumPy", section: "other" },
         { name: "maturin", section: "other" }
       ],
-      preview: <PyvolrPerfPreview alt={t("pyvolr.chartAlt")} />,
+      preview: (
+        <PyvolrPerfPreview
+          throughputAlt={t("pyvolr.chartAltThroughput")}
+          accuracyAlt={t("pyvolr.chartAltAccuracy")}
+          throughputCaption={t("pyvolr.chartCaptionThroughput")}
+          accuracyCaption={t("pyvolr.chartCaptionAccuracy")}
+        />
+      ),
       previewPosition: "top",
       link: "https://github.com/yipjunkai/pyvolr",
       linkType: "github"

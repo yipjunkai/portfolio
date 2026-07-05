@@ -183,11 +183,14 @@
       "pyvolr": {
         "name": "pyvolr",
         "role": "Open-source Project",
-        "description": "A modern Python library for Black-Scholes-Merton pricing, Greeks, and implied volatility — Rust core, fully vectorized over numpy, and a drop-in replacement for the abandoned py_vollib.",
-        "bullet1": "Built a Rust numerical core (BSM and Black-76 pricing, all five Greeks, and a Manaster-Koehler-seeded Newton-Raphson implied-vol solver with bisection fallback) exposed to Python via PyO3, delivering 100×+ throughput over py_vollib on vectorized workloads while preserving scalar-in/scalar-out ergonomics.",
-        "bullet2": "Designed a sustainability-first release pipeline — release-please with PyPI Trusted Publishing (OIDC, no stored credentials), nightly differential tests against py_vollib to catch numerical drift, and a Python 3.10–3.14 × Linux/macOS/Windows CI matrix (including free-threaded 3.13t/3.14t wheels) that covers the exact failure mode that killed the predecessor.",
-        "bullet3": "Shipped a drop-in `pyvolr.compat.py_vollib` shim mirroring the upstream module tree (including `py_vollib.black`), preserving the legacy unit conventions so existing users can migrate with a single import-line change.",
-        "chartAlt": "Throughput benchmark: pyvolr vs py_vollib, log-log scaling by array size"
+        "description": "A modern Python library for Black-Scholes-Merton pricing, Greeks, and implied volatility — a Rust core, fully vectorized over NumPy, and drop-in compatible with `py_vollib`/`vollib`. Built to be the fast path for the active BSM ecosystem while staying f64-exact deep in the tails, where faster rivals silently break.",
+        "bullet1": "Built a Rust numerical core — BSM and Black-76 pricing, all five Greeks, and a Manaster-Koehler-seeded Newton-Raphson implied-vol solver with bisection fallback — exposed to Python via PyO3 and parallelized with rayon above per-endpoint thresholds. It leads the active ecosystem at scale: 1M implied-vol solves land ~2× faster than fast-vollib's numba backend and ~12× faster than opengreeks, and the parallel price path prices 1M strikes in ~4 ms — all while preserving scalar-in/scalar-out ergonomics down to a sub-microsecond scalar fast path.",
+        "bullet2": "Made tail correctness the differentiator: an `erfcx`-based normal CDF and a normalized-Black forward map keep implied vols f64-exact down to option prices of 1e-215, where every fast 2026 entrant (fast-vollib, opengreeks, quantforge) starts returning silently-wrong constant volatilities between prices of ~1e-6 and ~1e-26 — pinned against an mpmath golden ladder and cross-checked to ~1e-13 against every competitor on well-posed inputs.",
+        "bullet3": "Shipped a sustainability-first release pipeline — release-please with PyPI Trusted Publishing (OIDC, no stored credentials), differential tests to catch numerical drift, and a Python 3.10–3.14 × Linux/macOS/Windows wheel matrix plus a free-threaded 3.14t build — alongside drop-in `pyvolr.compat.py_vollib` and `py_vollib_vectorized` shims that let existing users migrate with a single import-line change.",
+        "chartCaptionThroughput": "Throughput vs the active BSM ecosystem (log-log, by array size)",
+        "chartCaptionAccuracy": "Implied-vol accuracy deep in the tail (correct digits, higher is better)",
+        "chartAltThroughput": "Throughput benchmark: pyvolr vs fast-vollib, opengreeks, and the wider BSM ecosystem, log-log by array size on an Apple M4 Pro",
+        "chartAltAccuracy": "Implied-vol tail accuracy: pyvolr stays f64-exact down to option prices of 1e-215 while faster libraries fall to zero correct digits between prices of 1e-6 and 1e-26"
       },
       "secretsSpotter": {
         "name": "Secrets Spotter",
