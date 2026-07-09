@@ -3,6 +3,7 @@
     "nav": {
       "portfolio": "Portfolio",
       "selectLanguage": "Select language",
+      "toggleMenu": "Toggle navigation menu",
       "logoAlt": "My portfolio logo",
       "sections": {
         "aboutMe": {

@@ -36,7 +36,9 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
       {/* Menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group absolute top-4 right-4 z-50 flex h-10 w-10 cursor-pointer items-center justify-center md:h-12 md:w-12 lg:hidden"
+        className="group absolute top-4 right-4 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none md:h-12 md:w-12 lg:hidden"
+        aria-label={t("toggleMenu")}
+        aria-expanded={isOpen}
       >
         <div className="space-y-2">
           <span
@@ -56,7 +58,7 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
         }}
       >
         {flatRoutes.map((route, index) => {
-          const className = `flex flex-row items-center justify-between text-4xl capitalize transition-all duration-150 ease-in md:text-5xl ${
+          const className = `flex flex-row items-center justify-between rounded-md text-4xl capitalize transition-all duration-150 ease-in focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none md:text-5xl ${
             isOpen ? "opacity-100" : "opacity-0 delay-0!"
           }`;
           const style = { transitionDelay: `${index * 0.1 + 0.4}s` };

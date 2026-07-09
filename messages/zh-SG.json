@@ -3,6 +3,7 @@
     "nav": {
       "portfolio": "作品集",
       "selectLanguage": "选择语言",
+      "toggleMenu": "切换导航菜单",
       "logoAlt": "我的作品集标志",
       "sections": {
         "aboutMe": {

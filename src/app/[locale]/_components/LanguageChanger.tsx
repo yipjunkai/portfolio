@@ -42,7 +42,7 @@ export default function LanguageChanger({ className, style }: ButtonHTMLAttribut
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className={cn("flex items-center gap-2", className)} style={style} size="icon-lg">
+        <Button className={cn("flex items-center gap-2", className)} style={style} size="icon-lg" aria-label={t("selectLanguage")}>
           <LanguageIcon className="size-6 lg:size-5" />
         </Button>
       </DropdownMenuTrigger>

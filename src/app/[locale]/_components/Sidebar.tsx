@@ -31,7 +31,7 @@ export default function Sidebar(props: { sections: Sections[] }) {
             <p className="text-xs font-bold text-neutral-600 uppercase dark:text-neutral-400">{section.name}</p>
             <div className="flex flex-col gap-2 py-2">
               {section.routes.map(route => {
-                const className = `group -ml-2 flex flex-row items-center justify-start gap-4 rounded-md p-2 capitalize transition-all duration-200 *:transition-all *:duration-200 hover:bg-gray-300 dark:hover:bg-neutral-800 ${
+                const className = `group -ml-2 flex flex-row items-center justify-start gap-4 rounded-md p-2 capitalize transition-all duration-200 *:transition-all *:duration-200 hover:bg-gray-300 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none dark:hover:bg-neutral-800 ${
                   !route.external && pathname === route.href ? "bg-gray-300 dark:bg-neutral-800" : ""
                 }`;
                 const children = (

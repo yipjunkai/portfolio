@@ -44,7 +44,7 @@ export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDi
         <button
           key={button.theme}
           onClick={() => setTheme(button.theme)}
-          className={`z-20 rounded-full p-1 transition-colors duration-300 ${mounted && resolvedTheme === button.theme ? "text-purple-600" : ""}`}
+          className={`z-20 rounded-full p-1 transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:outline-none ${mounted && resolvedTheme === button.theme ? "text-purple-600" : ""}`}
           aria-label={t("aria.changeTheme", { theme: button.theme })}
         >
           {button.icon}
