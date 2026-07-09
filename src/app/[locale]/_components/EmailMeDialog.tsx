@@ -10,10 +10,12 @@ import { siteConfig } from "@/config";
 const EmailActions = ({ email }: { email: string }) => {
   const t = useTranslations("common.home.emailDialog");
   const [isCopied, setIsCopied] = useState(false);
+  const [copyCount, setCopyCount] = useState(0);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
     setIsCopied(true);
+    setCopyCount((c) => c + 1);
     setTimeout(() => {
       setIsCopied(false);
     }, 2000);
@@ -39,14 +41,28 @@ const EmailActions = ({ email }: { email: string }) => {
 
       {/* Option 2: Copy email */}
       <div className="flex flex-col gap-1">
-        <div className="flex flex-row items-center justify-between rounded-md bg-gray-100 py-2 pr-2 pl-4 dark:bg-gray-800">
+        <div className="relative flex flex-row items-center justify-between overflow-hidden rounded-md bg-gray-100 py-2 pr-2 pl-4 dark:bg-gray-800">
+          {copyCount > 0 && (
+            <span
+              key={copyCount}
+              aria-hidden
+              className="animate-copy-shimmer pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent motion-reduce:hidden dark:via-white/15"
+            />
+          )}
           <pre className="font-mono text-sm tracking-wider whitespace-pre-wrap">{email}</pre>
-          <Button variant="ghost" size="icon" className="hover:bg-gray-200 dark:hover:bg-gray-700" onClick={handleCopy}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hover:bg-gray-200 dark:hover:bg-gray-700"
+            onClick={handleCopy}
+            aria-label={t("copyEmail")}
+            title={t("copyEmail")}
+          >
             <CopyIcon
-              className={`absolute size-4 opacity-0 transition-opacity duration-200 ease-in-out ${isCopied ? "" : "opacity-100"}`}
+              className={`absolute size-4 transition-opacity duration-200 ease-in-out ${isCopied ? "opacity-0" : "opacity-100"}`}
             />
             <CheckIcon
-              className={`absolute size-4 opacity-0 transition-opacity duration-200 ease-in-out ${isCopied ? "opacity-100" : ""}`}
+              className={`absolute size-4 transition-opacity duration-200 ease-in-out ${isCopied ? "opacity-100" : "opacity-0"}`}
             />
           </Button>
         </div>

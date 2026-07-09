@@ -29,6 +29,24 @@
   }
 }
 
+@keyframes copy-shimmer {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@utility animate-copy-shimmer {
+  animation: copy-shimmer 0.7s ease-out forwards;
+}
+
 @keyframes shadow-breathe {
   0%,
   100% {
