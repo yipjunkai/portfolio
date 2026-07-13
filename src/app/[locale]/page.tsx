@@ -49,7 +49,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <span className="text-7xl font-bold md:text-5xl">{t("name")}</span>
         </h1>
         <h2 className="flex flex-row items-center gap-2 font-mono text-2xl">
-          <MapPinIcon className="size-6" />
+          <MapPinIcon className="size-6 text-grad-1" />
           <span>{t("location")}</span>
         </h2>
         <p className="text-justify text-pretty whitespace-pre-line">{t("aboutMe")}</p>
