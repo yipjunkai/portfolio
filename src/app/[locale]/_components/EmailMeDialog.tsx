@@ -15,7 +15,7 @@ const EmailActions = ({ email }: { email: string }) => {
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
     setIsCopied(true);
-    setCopyCount((c) => c + 1);
+    setCopyCount(c => c + 1);
     setTimeout(() => {
       setIsCopied(false);
     }, 2000);
@@ -58,9 +58,7 @@ const EmailActions = ({ email }: { email: string }) => {
             aria-label={t("copyEmail")}
             title={t("copyEmail")}
           >
-            <CopyIcon
-              className={`absolute size-4 transition-opacity duration-200 ease-in-out ${isCopied ? "opacity-0" : "opacity-100"}`}
-            />
+            <CopyIcon className={`absolute size-4 transition-opacity duration-200 ease-in-out ${isCopied ? "opacity-0" : "opacity-100"}`} />
             <CheckIcon
               className={`absolute size-4 transition-opacity duration-200 ease-in-out ${isCopied ? "opacity-100" : "opacity-0"}`}
             />
