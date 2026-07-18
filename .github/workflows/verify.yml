@@ -21,7 +21,7 @@ jobs:
       matrix:
         node-version: [22.x]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-pnpm
       - name: Type check
         run: pnpm typecheck
@@ -33,7 +33,7 @@ jobs:
       matrix:
         node-version: [22.x]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-pnpm
       - name: Lint
         run: pnpm lint
@@ -45,7 +45,7 @@ jobs:
       matrix:
         node-version: [22.x]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-pnpm
       - name: Check formatting
         run: pnpm format:check
@@ -58,7 +58,7 @@ jobs:
         node-version: [22.x]
     needs: [type-check, lint, format]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-pnpm
       - name: Build
         run: pnpm build
