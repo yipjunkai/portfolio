@@ -1,0 +1,35 @@
+# Keeps the dependency tree from silently drifting behind security patches.
+# NOTE: pnpm is handled by the "npm" ecosystem — Dependabot reads pnpm-lock.yaml
+# and updates package.json. There is no separate "pnpm" ecosystem key.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    # Group related bumps into one PR to cut review noise.
+    groups:
+      next:
+        patterns: ["next", "@next/*"]
+      react:
+        patterns: ["react", "react-dom", "@types/react", "@types/react-dom"]
+      radix:
+        patterns: ["@radix-ui/*", "radix-ui"]
+      eslint:
+        patterns: ["eslint", "eslint-*", "@eslint/*", "typescript-eslint", "@typescript-eslint/*", "globals"]
+      tailwind:
+        patterns: ["tailwindcss", "@tailwindcss/*", "tailwind", "tw-animate-css"]
+      dev-dependencies:
+        dependency-type: "development"
+        update-types: ["minor", "patch"]
+    # Next.js majors are handled manually — a major bump (e.g. 16 -> 17) needs
+    # migration work, so a grouped auto-PR shouldn't drag it along.
+    ignore:
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
