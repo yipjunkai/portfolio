@@ -12,7 +12,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { cn } from "@/components/lib/utils";
 import { requireLocale } from "@/i18n/locale";
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import { getPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -115,91 +115,94 @@ export default async function Projects({ params }: { params: Promise<{ locale: s
     <div className="space-y-8">
       <h1 className="text-4xl font-bold">{tUI("title")}</h1>
       <section aria-label={tUI("title")} className="flex flex-col gap-16">
-        {projects.map(project => (
-          <article key={project.name} className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
-            {project.preview && project.previewPosition === "top" && <div className="md:col-span-2">{project.preview}</div>}
-            <div
-              className={cn(
-                "space-y-4",
-                (!project.mobileImage && (!project.preview || project.previewPosition === "top")) && "md:col-span-2"
-              )}
-            >
-              <h2 className="text-2xl font-bold">{project.name}</h2>
-              {project.description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{project.description}</p>}
-              {project.link.trim() !== "" && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                >
-                  {project.linkType === "github" ? <GithubIcon className="size-6" /> : <GlobeAltIcon className="size-6" />}
-                  <span>{project.linkType === "github" ? tUI("labels.github") : tUI("labels.website")}</span>
-                </a>
-              )}
-              <ul className="list-inside list-disc">
-                {project.bulletPoints.map(bulletPoint => (
-                  <li key={bulletPoint} className="text-pretty">
-                    {bulletPoint}
-                  </li>
-                ))}
-              </ul>
-              {(() => {
-                const sectionOrder = ["language", "frontend", "backend", "database", "service", "other"] as const;
-                const techSectionLabels: Record<string, string> = {
-                  language: tCommon("techSections.language"),
-                  frontend: tCommon("techSections.frontend"),
-                  backend: tCommon("techSections.backend"),
-                  database: tCommon("techSections.database"),
-                  service: tCommon("techSections.service"),
-                  other: tCommon("techSections.other")
-                };
-                const grouped = Object.groupBy(project.techStack, tech => tech.section);
+        {projects.map((project, index) => (
+          <Fragment key={project.name}>
+            {index > 0 && <div aria-hidden="true" className="h-px w-full bg-gray-800 dark:bg-neutral-600" />}
+            <article className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+              {project.preview && project.previewPosition === "top" && <div className="md:col-span-2">{project.preview}</div>}
+              <div
+                className={cn(
+                  "space-y-4",
+                  !project.mobileImage && (!project.preview || project.previewPosition === "top") && "md:col-span-2"
+                )}
+              >
+                <h2 className="text-2xl font-bold">{project.name}</h2>
+                {project.description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{project.description}</p>}
+                {project.link.trim() !== "" && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-row items-center gap-1 text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                  >
+                    {project.linkType === "github" ? <GithubIcon className="size-6" /> : <GlobeAltIcon className="size-6" />}
+                    <span>{project.linkType === "github" ? tUI("labels.github") : tUI("labels.website")}</span>
+                  </a>
+                )}
+                <ul className="list-inside list-disc">
+                  {project.bulletPoints.map(bulletPoint => (
+                    <li key={bulletPoint} className="text-pretty">
+                      {bulletPoint}
+                    </li>
+                  ))}
+                </ul>
+                {(() => {
+                  const sectionOrder = ["language", "frontend", "backend", "database", "service", "other"] as const;
+                  const techSectionLabels: Record<string, string> = {
+                    language: tCommon("techSections.language"),
+                    frontend: tCommon("techSections.frontend"),
+                    backend: tCommon("techSections.backend"),
+                    database: tCommon("techSections.database"),
+                    service: tCommon("techSections.service"),
+                    other: tCommon("techSections.other")
+                  };
+                  const grouped = Object.groupBy(project.techStack, tech => tech.section);
 
-                return (
-                  <div className="space-y-2">
-                    {sectionOrder
-                      .filter(section => grouped[section]?.length)
-                      .map(section => (
-                        <div key={section} className="flex flex-wrap items-center gap-2 lg:gap-4">
-                          <span className="w-24 shrink-0 text-sm font-semibold text-muted-foreground">{`${techSectionLabels[section]}:`}</span>
-                          {grouped[section]!.map(tech => (
-                            <Badge key={tech.name} variant={tech.section as VariantProps<typeof badgeVariants>["variant"]}>
-                              {tech.name}
-                            </Badge>
-                          ))}
-                        </div>
-                      ))}
-                  </div>
-                );
-              })()}
-            </div>
-            {project.preview && project.previewPosition !== "top" && <div>{project.preview}</div>}
-            {project.mobileImage && (
-              <MobileTemplate className="hidden md:block">
-                <Image
-                  src={project.mobileImage.src}
-                  alt={project.mobileImage.alt}
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "50% 0%"
-                  }}
-                />
-              </MobileTemplate>
-            )}
-            {project.laptopImage && (
-              <LaptopTemplate className="hidden md:col-span-2 md:block">
-                <Image
-                  src={project.laptopImage.src}
-                  alt={project.laptopImage.alt}
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "50% 0%"
-                  }}
-                />
-              </LaptopTemplate>
-            )}
-          </article>
+                  return (
+                    <div className="space-y-2">
+                      {sectionOrder
+                        .filter(section => grouped[section]?.length)
+                        .map(section => (
+                          <div key={section} className="flex flex-wrap items-center gap-2 lg:gap-4">
+                            <span className="w-24 shrink-0 text-sm font-semibold text-muted-foreground">{`${techSectionLabels[section]}:`}</span>
+                            {grouped[section]!.map(tech => (
+                              <Badge key={tech.name} variant={tech.section as VariantProps<typeof badgeVariants>["variant"]}>
+                                {tech.name}
+                              </Badge>
+                            ))}
+                          </div>
+                        ))}
+                    </div>
+                  );
+                })()}
+              </div>
+              {project.preview && project.previewPosition !== "top" && <div>{project.preview}</div>}
+              {project.mobileImage && (
+                <MobileTemplate className="hidden md:block">
+                  <Image
+                    src={project.mobileImage.src}
+                    alt={project.mobileImage.alt}
+                    style={{
+                      objectFit: "cover",
+                      objectPosition: "50% 0%"
+                    }}
+                  />
+                </MobileTemplate>
+              )}
+              {project.laptopImage && (
+                <LaptopTemplate className="hidden md:col-span-2 md:block">
+                  <Image
+                    src={project.laptopImage.src}
+                    alt={project.laptopImage.alt}
+                    style={{
+                      objectFit: "cover",
+                      objectPosition: "50% 0%"
+                    }}
+                  />
+                </LaptopTemplate>
+              )}
+            </article>
+          </Fragment>
         ))}
       </section>
     </div>
