@@ -117,3 +117,6 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,dotenv,nextjs
 
 .claude/
+
+# Local MCP server config (Chrome DevTools MCP, etc.)
+.mcp.json
