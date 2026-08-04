@@ -13,6 +13,7 @@ import { LanguageIcon } from "@heroicons/react/24/solid";
 import { cn } from "@/components/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
+import type { StaticPathname } from "@/i18n/routing";
 
 export default function LanguageChanger({ className, style }: ButtonHTMLAttributes<HTMLButtonElement>) {
   const t = useTranslations("common.nav");
@@ -54,7 +55,7 @@ export default function LanguageChanger({ className, style }: ButtonHTMLAttribut
               <DropdownMenuRadioItem
                 key={language.code}
                 value={language.code}
-                onClick={() => router.push(pathname, { locale: language.code })}
+                onClick={() => router.push(pathname as StaticPathname, { locale: language.code })}
               >
                 {language.icon}
                 {language.name}

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -193,4 +194,86 @@
     background-color: var(--scrollbar-color);
     border-radius: 20px;
   }
+}
+
+/* ── MDX blog: code blocks (rehype-pretty-code + Shiki dual theme) ─────────── */
+[data-rehype-pretty-code-figure] {
+  margin: 1.5rem 0;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg);
+}
+
+[data-rehype-pretty-code-figure] code {
+  display: grid;
+  background-color: transparent;
+  counter-reset: line;
+}
+
+/* Light (default) token colors: Shiki stores them in per-token --shiki-light vars — apply them,
+   or prose's --tw-prose-pre-code (a light gray for dark backgrounds) wins the cascade and washes
+   the code out. !important is needed to beat prose, exactly like the dark-mode rule below. */
+[data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-light) !important;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+  padding: 0 1.25rem;
+  border-left: 2px solid transparent;
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background-color: color-mix(in oklch, var(--color-grad-2) 12%, transparent);
+  border-left-color: var(--color-grad-1);
+}
+
+[data-rehype-pretty-code-title] {
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  background-color: var(--shiki-light-bg);
+}
+
+[data-rehype-pretty-code-title] + pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Dark theme: swap Shiki token colors + code surfaces */
+[data-theme="dark"] [data-rehype-pretty-code-figure] pre,
+[data-theme="dark"] [data-rehype-pretty-code-title] {
+  background-color: var(--shiki-dark-bg);
+}
+
+[data-theme="dark"] [data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-dark) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* Inline code: drop prose's backtick pseudo-content, add a subtle chip */
+.prose :where(code):not(:where([data-rehype-pretty-code-figure] *))::before,
+.prose :where(code):not(:where([data-rehype-pretty-code-figure] *))::after {
+  content: none;
+}
+
+.prose :where(code):not(:where([data-rehype-pretty-code-figure] *)) {
+  padding: 0.15rem 0.35rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--muted);
+  font-weight: 500;
+  font-size: 0.875em;
 }

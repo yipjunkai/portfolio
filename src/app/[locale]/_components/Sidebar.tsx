@@ -6,7 +6,6 @@ import ThemeChanger from "./ThemeChanger";
 import LanguageChanger from "./LanguageChanger";
 import { ExternalLinkIcon } from "lucide-react";
 import type { Sections } from "../layout";
-import type { Pathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
 export default function Sidebar(props: { sections: Sections[] }) {
@@ -47,7 +46,7 @@ export default function Sidebar(props: { sections: Sections[] }) {
                     {children}
                   </a>
                 ) : (
-                  <Link key={route.name} href={route.href as Pathname} className={className}>
+                  <Link key={route.name} href={route.href} className={className}>
                     {children}
                   </Link>
                 );

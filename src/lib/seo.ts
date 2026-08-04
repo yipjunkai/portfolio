@@ -1,7 +1,10 @@
 import { siteConfig } from "@/config";
 import { getPathname } from "@/i18n/navigation";
-import { routing, type Locale, type Pathname } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 import type { Metadata } from "next";
+
+/** A next-intl href: a bare pathname key, or an object form with params for dynamic routes. */
+type Href = Parameters<typeof getPathname>[0]["href"];
 
 function toOpenGraphLocale(locale: Locale) {
   return locale.replace("-", "_");
@@ -22,16 +25,16 @@ function getFullTitle(siteName: string, title?: string) {
   return title ? getTitleTemplate(siteName).replace("%s", title) : siteName;
 }
 
-export function getLanguageAlternates(pathname: Pathname) {
+export function getLanguageAlternates(href: Href) {
   const languages = routing.locales.reduce(
     (acc, locale) => {
-      acc[locale] = new URL(getPathname({ href: pathname, locale }), siteConfig.url).toString();
+      acc[locale] = new URL(getPathname({ href, locale }), siteConfig.url).toString();
       return acc;
     },
     {} as Record<string, string>
   );
 
-  languages["x-default"] = new URL(getPathname({ href: pathname, locale: routing.defaultLocale }), siteConfig.url).toString();
+  languages["x-default"] = new URL(getPathname({ href, locale: routing.defaultLocale }), siteConfig.url).toString();
 
   return languages;
 }
@@ -44,7 +47,7 @@ export function getPageMetadata({
   title
 }: {
   locale: Locale;
-  pathname: Pathname;
+  pathname: Href;
   siteName: string;
   description: string;
   title?: string;

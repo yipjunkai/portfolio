@@ -1,6 +1,6 @@
 import GithubIcon from "@/components/icons/GithubIcon";
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
-import { BriefcaseIcon, CodeBracketIcon, EnvelopeIcon, HomeIcon } from "@heroicons/react/24/solid";
+import { BookOpenIcon, BriefcaseIcon, CodeBracketIcon, EnvelopeIcon, HomeIcon } from "@heroicons/react/24/solid";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -11,7 +11,7 @@ import ContentEngagementTracker from "./_components/ContentEngagementTracker";
 import Sidebar from "./_components/Sidebar";
 import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
-import { routing, type Pathname } from "@/i18n/routing";
+import { routing, type StaticPathname } from "@/i18n/routing";
 import { requireLocale } from "@/i18n/locale";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { siteConfig } from "@/config";
@@ -24,7 +24,7 @@ interface BaseRoute {
 }
 
 export interface InternalRoute extends BaseRoute {
-  href: Pathname;
+  href: StaticPathname;
   external?: false;
 }
 
@@ -109,6 +109,11 @@ export default async function RootLayout({
           name: t("sections.aboutMe.routes.projects"),
           href: "/projects",
           icon: <CodeBracketIcon className="size-4" />
+        },
+        {
+          name: t("sections.aboutMe.routes.blog"),
+          href: "/blog",
+          icon: <BookOpenIcon className="size-4" />
         }
       ]
     },

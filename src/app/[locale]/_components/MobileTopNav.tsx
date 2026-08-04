@@ -8,7 +8,6 @@ import LanguageChanger from "./LanguageChanger";
 import { ExternalLinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { Sections } from "../layout";
-import type { Pathname } from "@/i18n/routing";
 
 export default function MobileTopNav(props: { sections: Sections[] }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -82,7 +81,7 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
               {children}
             </a>
           ) : (
-            <Link key={route.name} href={route.href as Pathname} onClick={() => setIsOpen(false)} className={className} style={style}>
+            <Link key={route.name} href={route.href} onClick={() => setIsOpen(false)} className={className} style={style}>
               {children}
             </Link>
           );

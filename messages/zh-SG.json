@@ -11,7 +11,8 @@
           "routes": {
             "home": "主页",
             "experience": "经历",
-            "projects": "项目"
+            "projects": "项目",
+            "blog": "博客"
           }
         },
         "connect": {
@@ -91,6 +92,18 @@
         "website": "网站",
         "github": "GitHub"
       }
+    },
+    "blog": {
+      "title": "博客",
+      "subtitle": "我在构建与拆解各种项目时写下的指南、实验与笔记。",
+      "empty": "暂无文章 —— 首批内容正在筹备中。",
+      "readingTime": "阅读约 {minutes} 分钟",
+      "backToBlog": "返回博客",
+      "categories": {
+        "guide": "指南",
+        "experiment": "实验",
+        "note": "笔记"
+      }
     }
   },
   "content": {
@@ -104,6 +117,10 @@
         },
         "projects": {
           "title": "项目"
+        },
+        "blog": {
+          "title": "博客",
+          "description": "叶俊凯关于软件、系统与性能优化的指南、实验与笔记。"
         }
       }
     },

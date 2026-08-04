@@ -11,7 +11,8 @@
           "routes": {
             "home": "Home",
             "experience": "Experience",
-            "projects": "Projects"
+            "projects": "Projects",
+            "blog": "Blog"
           }
         },
         "connect": {
@@ -91,6 +92,18 @@
         "website": "Website",
         "github": "GitHub"
       }
+    },
+    "blog": {
+      "title": "Blog",
+      "subtitle": "Guides, experiments, and notes from the things I build and break.",
+      "empty": "No posts yet — the first ones are in the works.",
+      "readingTime": "{minutes} min read",
+      "backToBlog": "Back to blog",
+      "categories": {
+        "guide": "Guides",
+        "experiment": "Experiments",
+        "note": "Notes"
+      }
     }
   },
   "content": {
@@ -104,6 +117,10 @@
         },
         "projects": {
           "title": "Projects"
+        },
+        "blog": {
+          "title": "Blog",
+          "description": "Guides, experiments, and notes on software, systems, and performance by Jun Kai."
         }
       }
     },

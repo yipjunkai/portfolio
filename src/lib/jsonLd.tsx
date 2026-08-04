@@ -1,12 +1,12 @@
 import { siteConfig } from "@/config";
 import { getPathname } from "@/i18n/navigation";
-import { routing, type Locale, type Pathname } from "@/i18n/routing";
-import type { Person, WebSite, WithContext } from "schema-dts";
+import { routing, type Locale, type StaticPathname } from "@/i18n/routing";
+import type { BlogPosting, Person, WebSite, WithContext } from "schema-dts";
 
 const PERSON_ID = `${siteConfig.url}/#person`;
 const WEBSITE_ID = `${siteConfig.url}/#website`;
 
-function absoluteUrl(path: Pathname, locale: Locale) {
+function absoluteUrl(path: StaticPathname, locale: Locale) {
   return new URL(getPathname({ href: path, locale }), siteConfig.url).toString();
 }
 
@@ -54,6 +54,40 @@ export function getWebsiteJsonLd({
     url: absoluteUrl("/", locale),
     inLanguage: locale,
     author: { "@id": PERSON_ID }
+  };
+}
+
+export function getBlogPostingJsonLd({
+  locale,
+  slug,
+  title,
+  description,
+  datePublished,
+  dateModified,
+  authorName
+}: {
+  locale: Locale;
+  slug: string;
+  title: string;
+  description: string;
+  datePublished: string;
+  dateModified?: string;
+  authorName: string;
+}): WithContext<BlogPosting> {
+  const url = new URL(getPathname({ href: { pathname: "/blog/[slug]", params: { slug } }, locale }), siteConfig.url).toString();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    url,
+    mainEntityOfPage: url,
+    datePublished,
+    ...(dateModified ? { dateModified } : {}),
+    inLanguage: locale,
+    author: { "@type": "Person", "@id": PERSON_ID, name: authorName },
+    publisher: { "@id": PERSON_ID }
   };
 }
 

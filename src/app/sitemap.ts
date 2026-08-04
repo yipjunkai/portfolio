@@ -1,15 +1,16 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config";
-import type { Pathname } from "@/i18n/routing";
+import type { StaticPathname } from "@/i18n/routing";
 import { getLanguageAlternates } from "@/lib/seo";
 import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { getAllPosts } from "@/lib/blog";
 
-const routes: Pathname[] = ["/", "/experience", "/projects"];
+const staticRoutes: StaticPathname[] = ["/", "/experience", "/projects", "/blog"];
 
 const BUILD_TIME = new Date();
 
-const generateSitemap = (path: Pathname) => {
+const generateSitemap = (path: StaticPathname) => {
   return {
     url: new URL(getPathname({ href: path, locale: routing.defaultLocale }), siteConfig.url).toString(),
     lastModified: BUILD_TIME,
@@ -20,5 +21,18 @@ const generateSitemap = (path: Pathname) => {
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map(route => generateSitemap(route));
+  const staticEntries = staticRoutes.map(generateSitemap);
+
+  const postEntries = getAllPosts().map(post => {
+    const href = { pathname: "/blog/[slug]" as const, params: { slug: post.slug } };
+    return {
+      url: new URL(getPathname({ href, locale: routing.defaultLocale }), siteConfig.url).toString(),
+      lastModified: new Date(post.updated ?? post.date),
+      alternates: {
+        languages: getLanguageAlternates(href)
+      }
+    };
+  });
+
+  return [...staticEntries, ...postEntries];
 }
