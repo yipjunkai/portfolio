@@ -99,6 +99,7 @@
       "empty": "No posts yet — the first ones are in the works.",
       "readingTime": "{minutes} min read",
       "backToBlog": "Back to blog",
+      "onThisPage": "On this page",
       "categories": {
         "guide": "Guides",
         "experiment": "Experiments",

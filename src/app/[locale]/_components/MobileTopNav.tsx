@@ -7,7 +7,7 @@ import { Link } from "@/i18n/navigation";
 import LanguageChanger from "./LanguageChanger";
 import { ExternalLinkIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import type { Sections } from "../layout";
+import type { Sections } from "./navSections";
 
 export default function MobileTopNav(props: { sections: Sections[] }) {
   const [isOpen, setIsOpen] = useState(false);

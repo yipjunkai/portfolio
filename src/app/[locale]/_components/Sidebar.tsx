@@ -5,7 +5,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import ThemeChanger from "./ThemeChanger";
 import LanguageChanger from "./LanguageChanger";
 import { ExternalLinkIcon } from "lucide-react";
-import type { Sections } from "../layout";
+import type { Sections } from "./navSections";
 import { useTranslations } from "next-intl";
 
 export default function Sidebar(props: { sections: Sections[] }) {

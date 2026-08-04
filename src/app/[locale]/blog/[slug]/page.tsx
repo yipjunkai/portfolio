@@ -7,8 +7,9 @@ import { requireLocale } from "@/i18n/locale";
 import { getPageMetadata } from "@/lib/seo";
 import { JsonLd, getBlogPostingJsonLd } from "@/lib/jsonLd";
 import { Badge } from "@/components/ui/badge";
-import { formatPostDate, getAllPosts, getPost } from "@/lib/blog";
+import { formatPostDate, getAllPosts, getPost, getPostHeadings } from "@/lib/blog";
 import { Mdx } from "../_components/Mdx";
+import MobileToc from "../_components/MobileToc";
 
 export function generateStaticParams() {
   return getAllPosts().map(post => ({ slug: post.slug }));
@@ -47,6 +48,7 @@ export default async function BlogPost({ params }: { params: Promise<{ locale: s
 
   const t = await getTranslations({ locale, namespace: "common.blog" });
   const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+  const headings = getPostHeadings(slug);
 
   const jsonLd = getBlogPostingJsonLd({
     locale,
@@ -62,7 +64,11 @@ export default async function BlogPost({ params }: { params: Promise<{ locale: s
     <div className="space-y-8">
       <JsonLd data={jsonLd} />
 
-      <Link href="/blog" className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground">
+      {/* Desktop uses the sidebar rail's back link; this is the mobile/tablet fallback. */}
+      <Link
+        href="/blog"
+        className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground lg:hidden"
+      >
         <ArrowLeftIcon className="size-4" />
         {t("backToBlog")}
       </Link>
@@ -77,6 +83,8 @@ export default async function BlogPost({ params }: { params: Promise<{ locale: s
         <h1 className="text-4xl font-bold text-balance">{post.meta.title}</h1>
         {post.meta.description && <p className="text-lg text-pretty text-muted-foreground">{post.meta.description}</p>}
       </header>
+
+      <MobileToc headings={headings} label={t("onThisPage")} />
 
       <article className="prose max-w-none prose-neutral dark:prose-invert prose-pre:border-0 prose-pre:bg-transparent prose-pre:p-0">
         <Mdx source={post.content} />

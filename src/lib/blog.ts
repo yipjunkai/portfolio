@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import GithubSlugger from "github-slugger";
 
 export const BLOG_CATEGORIES = ["guide", "experiment", "note"] as const;
 export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
@@ -121,6 +122,52 @@ export function getPostsByCategory(): Record<BlogCategory, PostMeta[]> {
   }
 
   return grouped;
+}
+
+export interface TocEntry {
+  text: string;
+  slug: string;
+}
+
+/** Strip inline markdown markers so the TOC text matches the heading's rendered text. */
+function stripInlineMarkdown(value: string): string {
+  return value
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .trim();
+}
+
+/**
+ * Table of contents for a post: top-level (H2) headings only.
+ * All headings advance a single GithubSlugger so the slugs match rehype-slug's ids exactly
+ * (it dedupes across every heading in document order).
+ */
+export function getPostHeadings(slug: string): TocEntry[] {
+  const post = getPost(slug);
+  if (!post) return [];
+
+  const slugger = new GithubSlugger();
+  const toc: TocEntry[] = [];
+  let inFence = false;
+
+  for (const line of post.content.split("\n")) {
+    if (/^```/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+
+    const match = line.match(/^(#{2,4})\s+(.*)$/);
+    if (!match) continue;
+
+    const text = stripInlineMarkdown(match[2]);
+    const id = slugger.slug(text); // advance for every H2–H4 to mirror rehype-slug dedup
+    if (match[1].length === 2) toc.push({ text, slug: id });
+  }
+
+  return toc;
 }
 
 export function formatPostDate(iso: string, locale: string): string {

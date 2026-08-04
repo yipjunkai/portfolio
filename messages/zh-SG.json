@@ -99,6 +99,7 @@
       "empty": "暂无文章 —— 首批内容正在筹备中。",
       "readingTime": "阅读约 {minutes} 分钟",
       "backToBlog": "返回博客",
+      "onThisPage": "本页目录",
       "categories": {
         "guide": "指南",
         "experiment": "实验",
