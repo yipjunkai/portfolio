@@ -127,6 +127,7 @@ export function getPostsByCategory(): Record<BlogCategory, PostMeta[]> {
 export interface TocEntry {
   text: string;
   slug: string;
+  level: 2 | 3;
 }
 
 /** Strip inline markdown markers so the TOC text matches the heading's rendered text. */
@@ -140,7 +141,7 @@ function stripInlineMarkdown(value: string): string {
 }
 
 /**
- * Table of contents for a post: top-level (H2) headings only.
+ * Table of contents for a post: H2 (sections) and H3 (subsections).
  * All headings advance a single GithubSlugger so the slugs match rehype-slug's ids exactly
  * (it dedupes across every heading in document order).
  */
@@ -162,9 +163,10 @@ export function getPostHeadings(slug: string): TocEntry[] {
     const match = line.match(/^(#{2,4})\s+(.*)$/);
     if (!match) continue;
 
+    const level = match[1].length;
     const text = stripInlineMarkdown(match[2]);
     const id = slugger.slug(text); // advance for every H2–H4 to mirror rehype-slug dedup
-    if (match[1].length === 2) toc.push({ text, slug: id });
+    if (level === 2 || level === 3) toc.push({ text, slug: id, level });
   }
 
   return toc;

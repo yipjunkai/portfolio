@@ -17,9 +17,8 @@ tags: [security, linux, ops, hardening, self-hosting]
 > inline where providers differ.
 > **Assumes:** first login is as `root` via an SSH key you added at creation time.
 >
-> **Supersedes the older `VM.md`.** This folds that 20-phase baseline together with the
-> service-isolation patterns and the gotchas that actually bit on a real build. You can retire
-> `VM.md` and copy this per project.
+> **What it pairs.** A baseline every VM should have with the service-isolation patterns that cage an
+> untrusted workload — plus the hard-won gotchas that actually bit on a real build.
 >
 > **How to read it.** **Part A** applies to *every* VM — do all of it. **Part B** is opt-in:
 > do it only if your workload runs untrusted / model-authored code, ingests untrusted input, or
@@ -29,7 +28,7 @@ tags: [security, linux, ops, hardening, self-hosting]
 
 ---
 
-## Conventions / placeholders
+## Conventions
 
 Substitute these throughout:
 
@@ -74,7 +73,7 @@ your model, you shouldn't be on shared cloud.
 - **The only control that survives a full root compromise is enforced _off the box_.** On-box
   firewalls, file perms, and caps all fall if root falls. Design accordingly (see Part C).
 
-## Sequencing — do it in this order or you will lock yourself out
+## Sequencing
 
 The single most common way to brick a remote box is doing the right steps in the wrong order.
 
@@ -89,9 +88,9 @@ The single most common way to brick a remote box is doing the right steps in the
 
 ---
 
-## PART A — Baseline hardening (every VM)
+## Part A — Baseline hardening
 
-### A1 — First login, users, directories
+### A1 — First login & users
 
 ```bash
 ssh root@<vm-ip>
@@ -198,7 +197,7 @@ Host <vm>
 
 `mkdir -p ~/.ssh/sockets && chmod 700 ~/.ssh/sockets` once. Force a fresh connection with `ssh -O exit <vm>`.
 
-### A2b — Operator editor default: Neovim / Vim (optional, operator QoL)
+### A2b — Editor default
 
 For the **human** context only — `admin`, plus root when you `sudoedit` / `visudo`. The `svc` service user
 (B1) is non-interactive and needs none of this. Do it early if you hand-edit configs on the box, so your
@@ -241,7 +240,7 @@ one and root-context edits will surprise you with `nano`.
 the box. **Verify:** `sudo update-alternatives --display editor` shows nvim, `echo "$EDITOR"` is nvim, and
 `sudo -e /tmp/verify` opens nvim (quit without saving).
 
-### A3 — Firewall (UFW, v4 **and** v6)
+### A3 — Firewall (UFW)
 
 ```bash
 sudo ufw default deny incoming
@@ -267,7 +266,7 @@ misconfiguration, so the one thing not to do is leave it ambiguous.
 disable block, delete `AddressFamily inet` from A2, and make sure nothing binds only to `::` by accident
 (`sudo ss -tulpn | grep ':::'`). Check what you have with `ip -6 addr show`.
 
-### A5 — Kernel / network sysctl
+### A5 — Kernel & network sysctl
 
 `/etc/sysctl.d/99-hardening.conf`:
 
@@ -319,7 +318,7 @@ sudo sysctl --system
 sudo sysctl kernel.kptr_restrict kernel.yama.ptrace_scope net.ipv4.tcp_syncookies   # spot-verify
 ```
 
-### A6 — Automatic security updates
+### A6 — Automatic updates
 
 ```bash
 sudo apt install -y unattended-upgrades apt-listchanges needrestart
@@ -342,7 +341,7 @@ Unattended-Upgrade::Automatic-Reboot-Time "04:00";
 A oneshot timer's `Persistent=true` (B5) catches any run missed during the reboot; for a long-running
 server, pick a low-traffic window.
 
-### A7 — Login / session limits + faillock
+### A7 — Session limits & faillock
 
 `/etc/login.defs`: `UMASK 027`, `PASS_MAX_DAYS 90`, `PASS_MIN_DAYS 1`, `PASS_WARN_AGE 14`.
 
@@ -360,7 +359,7 @@ lockout risk. Recommended: write `/etc/security/faillock.conf` (`deny=5`, `unloc
 `fail_interval=900`) but **leave it out of PAM** unless you actually keep passwords somewhere. If you do
 wire it, keep a root session open and test in a second terminal first.
 
-### A8 — AppArmor (verify, don't assume)
+### A8 — AppArmor
 
 ```bash
 sudo aa-status        # profiles should be loaded + enforcing
@@ -403,7 +402,7 @@ sudo apt install -y auditd
 sudo augenrules --load && sudo systemctl restart auditd   # query later: ausearch -k identity
 ```
 
-### A11 — DNS: pin it + DNS-over-TLS
+### A11 — DNS (pinned + DoT)
 
 `/etc/systemd/resolved.conf.d/99-hardening.conf`:
 
@@ -436,7 +435,7 @@ and you'd then need the port-53 CGNAT exception in the B3 cage (C-3).
 sudo apt install -y debsums && sudo debsums -c    # clean = no shipped files modified; run periodically
 ```
 
-### A13 — File-integrity monitoring (AIDE) — *optional, heavier*
+### A13 — File integrity (AIDE)
 
 Worth it for long-lived, high-value, or compliance-bound boxes; skip for a truly disposable throwaway.
 Detects tampering with binaries and config. **Add dev-tool exclusions _before_ building the baseline** or
@@ -452,7 +451,7 @@ sudo aideinit && sudo mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db
 # failure (the check not running) alerts you. Refresh the baseline after every change you MADE.
 ```
 
-### A14 — Off-box log shipping — *optional, heavier*
+### A14 — Off-box log shipping
 
 Logs that live only on the VM vanish with it — including during an incident (`rm -rf /var/log` is an early
 attacker move). For a disposable box, **journald with size caps is a legitimate choice** (nothing external,
@@ -460,7 +459,7 @@ attacker move). For a disposable box, **journald with size caps is a legitimate 
 `journald` + `auditd` + `ufw` logs off-box over Tailscale: rsyslog → remote listener (simple),
 promtail → Loki (moderate), or a managed sink (Grafana Cloud / Better Stack / Axiom).
 
-### A14b — Liveness / dead-man's-switch (recommended for any unattended box)
+### A14b — Liveness / dead-man's switch
 
 A dashboard or a log tail can't show you the one failure that matters most: the box or its workload
 **silently stopped** (crash, OOM, hung run, dead VM) — and a dashboard on a dead box serves no page. Close
@@ -479,7 +478,7 @@ stops arriving.
 
 Cheapest high-value alert you can wire — do it before you walk away.
 
-### A15 — Private access via Tailscale + SSH cutover
+### A15 — Private access (Tailscale)
 
 Puts SSH behind a WireGuard mesh; removes ~all drive-by noise and gives ACL-based access.
 
@@ -534,7 +533,7 @@ sudo install -m 0600 /dev/null /etc/myapp/app.env    # edit, reference from syst
 Doppler / Vault / cloud secret manager). **Part B tightens the ownership so the workload can read but not
 rewrite its own config.**
 
-### A18 — Snapshots + backups
+### A18 — Snapshots & backups
 
 **Default: treat the box as stateless and disposable.** If its real state lives in git and off-box (code
 reproducible, data in a managed DB / object store), all you need is a provider **snapshot** as a
@@ -545,7 +544,7 @@ it lives with the provider, so a compromised provider account takes it too.
 add an **offsite** backup of *just that state*: `restic` to S3/B2, repo password in your secrets manager,
 on a systemd timer. **Test a restore at least quarterly — an untested backup is not a backup.**
 
-### A19 — Pre-use verification pass
+### A19 — Pre-use audit
 
 Run this before any real workload touches the box. Anything surprising, stop and fix.
 
@@ -565,7 +564,7 @@ sudo ls -la /etc/cron.*/ /var/spool/cron/crontabs/      # no surprise cron
 
 ---
 
-## PART B — Project isolation (opt-in)
+## Part B — Project isolation
 
 ### B0 — When to do Part B
 
@@ -584,7 +583,7 @@ scoped to the `svc` user, so it doesn't fight your admin access, Tailscale, or `
 *regular* or a `--system` user — B1; (2) `admin`'s SSH posture, dev vs service box — A2. Both follow from
 what the workload actually is, so decide them once you know it.
 
-### B1 — Dedicated unprivileged service user (two-user model)
+### B1 — Dedicated service user
 
 **First decide `svc`'s type — it follows from whether you'll run the B4 rootless-container sandbox:**
 
@@ -607,7 +606,7 @@ install -d -m 750 -o root  -g svc   /etc/myapp   # config/secrets: root owns, sv
 `sudo -u svc -H …`. This one split is what makes every control below meaningful — a control scoped to
 "the workload" needs the workload to *be* a distinct principal.
 
-### B2 — Secrets the service can read but **not write**
+### B2 — Read-only secrets
 
 The subtle, high-value one. Set the env/config file **`root:svc 0640`** — owned by root, readable by the
 `svc` group, writable by neither the service nor anyone but root:
@@ -621,7 +620,7 @@ budget/rate caps, or an `ISOLATION=off` switch on its next run — quietly undoi
 means the limits are set *by you, above it*. (This bit for real once: an env file mistakenly `svc:svc`
 would have let the workload disable its own sandbox.) The very highest-value secrets go further — see B6.
 
-### B3 — Egress allowlist scoped to the service (the headline control)
+### B3 — Egress allowlist
 
 Inbound firewalls do nothing against a compromised workload phoning home or exfiltrating. Close that by
 letting `svc` reach **only** the handful of destinations it genuinely needs, via a loopback proxy, and
@@ -629,8 +628,8 @@ dropping everything else at the kernel. Proxy-based (not IP-based) so it survive
 so it doesn't disturb the rest of the box.
 
 **Recommended posture: start tight, broaden deliberately.** Ship with a strict domain allowlist, and open
-up to broad reads *only after* the proxy-uid caging (below) is in place. Ember broadened the allowlist
-first and briefly exposed the cloud metadata service — do it in the opposite order.
+up to broad reads *only after* the proxy-uid caging (below) is in place. Broadening the allowlist before
+that caging briefly exposed the cloud metadata service — do it in the opposite order.
 
 **Two layers:**
 
@@ -707,7 +706,7 @@ link-local/metadata (`169.254.0.0/16`), **and the Tailscale CGNAT range `100.64.
 64–127) plus IPv6 ULA `fc00::/7`. The app guard and the network layer are belt-and-suspenders; the network
 layer matters more because it also covers any code path that bypasses your guard.
 
-### B4 — Run-command sandbox (rootless Podman, fail-closed)
+### B4 — Run-command sandbox
 
 If the workload executes commands the *model* (or any untrusted source) wrote, an un-isolated exec can read
 your secrets and overwrite the very files that enforce safety — voiding every other control. Run each such
@@ -741,7 +740,7 @@ podman run --rm --network=none --read-only --cap-drop=ALL --security-opt=no-new-
 *inside the egress cage* (still bounded by B3) and treat that run as tainted/untrusted — don't punch a hole
 in the cage. Smoke-test: confirm the sandbox has no network and cannot see the host FS.
 
-### B5 — Run it on a schedule (systemd oneshot + timer)
+### B5 — Scheduling (systemd timer)
 
 For a periodic workload, run it as a **oneshot** on a **timer** rather than a long-lived daemon — the timer
 catches up runs missed while the box was off and kills a hung run.
@@ -807,7 +806,7 @@ user, secrets perms, egress cage, sandbox) applies unchanged — only the unit s
 for such a server is a **separate** decision (reverse proxy / Tailscale Funnel / an opened port); the
 egress cage still governs what it can reach *out* regardless.
 
-### B6 — Keep the crown-jewel credential off the box
+### B6 — Crown-jewel credential
 
 The highest-value secret — a signing key, a prod-DB master, a push-capable deploy key — should not be
 reachable by the workload at all, and ideally not live on the box:
@@ -825,7 +824,7 @@ compromise.** Match the custody to the stakes.
 
 ---
 
-## PART C — Hard-won gotchas (read before touching nftables, PAM, or DNS)
+## Part C — Hard-won gotchas
 
 - **C-1 — Test on the _target OS_, not just your laptop.** A blocking syscall against an unwritable path
   (e.g. a synchronous `mkdir` at a path that lost write perms) **hangs on Linux** where it *threw* on
