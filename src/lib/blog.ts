@@ -112,10 +112,7 @@ export function getPost(slug: string): Post | null {
 }
 
 export function getPostsByCategory(): Record<BlogCategory, PostMeta[]> {
-  const grouped = Object.fromEntries(BLOG_CATEGORIES.map(category => [category, [] as PostMeta[]])) as Record<
-    BlogCategory,
-    PostMeta[]
-  >;
+  const grouped = Object.fromEntries(BLOG_CATEGORIES.map(category => [category, [] as PostMeta[]])) as Record<BlogCategory, PostMeta[]>;
 
   for (const meta of getAllPosts()) {
     grouped[meta.category].push(meta);
@@ -174,7 +171,5 @@ export function getPostHeadings(slug: string): TocEntry[] {
 
 export function formatPostDate(iso: string, locale: string): string {
   // Format in UTC so a date-only value renders as the same calendar day in every timezone.
-  return new Intl.DateTimeFormat(locale, { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" }).format(
-    new Date(iso)
-  );
+  return new Intl.DateTimeFormat(locale, { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" }).format(new Date(iso));
 }

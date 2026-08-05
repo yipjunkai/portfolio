@@ -51,9 +51,7 @@ export default async function Blog({ params }: { params: Promise<{ locale: strin
                     <article className="group">
                       <Link href={{ pathname: "/blog/[slug]", params: { slug: post.slug } }} className="block space-y-1">
                         <div className="flex items-baseline justify-between gap-4">
-                          <h3 className="text-xl font-semibold transition-colors group-hover:text-grad-1">
-                            {post.title}
-                          </h3>
+                          <h3 className="text-xl font-semibold transition-colors group-hover:text-grad-1">{post.title}</h3>
                           <time dateTime={post.date} className="shrink-0 text-sm text-muted-foreground">
                             {formatPostDate(post.date, locale)}
                           </time>

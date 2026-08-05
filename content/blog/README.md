@@ -17,10 +17,10 @@ Every post starts with a YAML frontmatter block:
 title: "Hardening a fresh VM"
 description: "A practical runbook for locking down a new Linux server."
 date: 2026-08-03
-updated: 2026-08-10        # optional — last meaningful edit
-category: guide            # guide | experiment | note
-tags: [security, linux]    # optional
-draft: false               # optional — true hides it everywhere
+updated: 2026-08-10 # optional — last meaningful edit
+category: guide # guide | experiment | note
+tags: [security, linux] # optional
+draft: false # optional — true hides it everywhere
 ---
 
 Your MDX content starts here.
@@ -34,7 +34,7 @@ Your MDX content starts here.
 | `updated`     | no       | ISO date; surfaces in the sitemap + JSON-LD                   |
 | `category`    | yes      | One of `guide`, `experiment`, `note`                          |
 | `tags`        | no       | Array of strings                                              |
-| `draft`       | no       | `true` excludes the post from the site and build             |
+| `draft`       | no       | `true` excludes the post from the site and build              |
 
 Reading time is computed automatically from the body.
 

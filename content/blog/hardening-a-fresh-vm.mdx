@@ -20,7 +20,7 @@ tags: [security, linux, ops, hardening, self-hosting]
 > **What it pairs.** A baseline every VM should have with the service-isolation patterns that cage an
 > untrusted workload — plus the hard-won gotchas that actually bit on a real build.
 >
-> **How to read it.** **Part A** applies to *every* VM — do all of it. **Part B** is opt-in:
+> **How to read it.** **Part A** applies to _every_ VM — do all of it. **Part B** is opt-in:
 > do it only if your workload runs untrusted / model-authored code, ingests untrusted input, or
 > just deserves a bounded blast radius. **Part C** is the list of things that actually went wrong
 > — read it before you touch nftables or PAM. Not every rule fits every project; where a choice
@@ -32,12 +32,12 @@ tags: [security, linux, ops, hardening, self-hosting]
 
 Substitute these throughout:
 
-| Placeholder | Means |
-|---|---|
-| `admin` | your **human** sudo administrator — the account you SSH into (key-only) |
-| `svc` | the **dedicated unprivileged user** the workload runs as (Part B). No key, no sudo |
-| `myapp` | your project name → code at `/srv/myapp`, config/secrets at `/etc/myapp` |
-| `<vm>` | the SSH host alias in your laptop's `~/.ssh/config` |
+| Placeholder | Means                                                                              |
+| ----------- | ---------------------------------------------------------------------------------- |
+| `admin`     | your **human** sudo administrator — the account you SSH into (key-only)            |
+| `svc`       | the **dedicated unprivileged user** the workload runs as (Part B). No key, no sudo |
+| `myapp`     | your project name → code at `/srv/myapp`, config/secrets at `/etc/myapp`           |
+| `<vm>`      | the SSH host alias in your laptop's `~/.ssh/config`                                |
 
 UIDs shown (`admin` 1001, `svc` 1002) are illustrative — use whatever `adduser` assigns and read
 the real one with `id -u svc`. **nftables needs the literal uid**, so capture it before you write rules.
@@ -46,14 +46,14 @@ the real one with `id -u svc`. **nftables needs the literal uid**, so capture it
 
 ## Threat model
 
-Be explicit about what you're defending against — it tells you which rules matter for *your* project:
+Be explicit about what you're defending against — it tells you which rules matter for _your_ project:
 
 - **Drive-by scanners** — constant SSH brute-force and exposed-service probes.
 - **Compromised credentials** — a stolen key, leaked token, reused password.
 - **Lateral movement from a compromised service** — an app bug must not mean root.
 - **Outbound abuse (the one the generic guides miss)** — a compromised or prompt-injected workload
   that **phones home, exfiltrates data, or reaches the cloud metadata service** for credentials.
-  If your workload runs untrusted code or ingests untrusted input, *this is your primary risk* — and
+  If your workload runs untrusted code or ingests untrusted input, _this is your primary risk_ — and
   inbound firewalls do nothing about it. → **Part B.**
 - **Operator mistakes** — you, locking yourself out or leaving a port open.
 - **Provider-layer risk** — someone with console access, or snapshot theft.
@@ -68,7 +68,7 @@ your model, you shouldn't be on shared cloud.
 - **Minimize attack surface** — nothing public that doesn't have to be; no service as root that a
   system user could run.
 - **Defense in depth** — no single control is the only thing standing between you and a bad day.
-- **Verify, don't assume** — every phase ends by checking the *effective* state (`sshd -T`, `sysctl`
+- **Verify, don't assume** — every phase ends by checking the _effective_ state (`sshd -T`, `sysctl`
   read-back, a real login from a fresh terminal), not by trusting that editing a file worked.
 - **The only control that survives a full root compromise is enforced _off the box_.** On-box
   firewalls, file perms, and caps all fall if root falls. Design accordingly (see Part C).
@@ -77,7 +77,7 @@ your model, you shouldn't be on shared cloud.
 
 The single most common way to brick a remote box is doing the right steps in the wrong order.
 
-1. Create `admin` and **verify you can log in as them from a fresh terminal** *before* disabling root.
+1. Create `admin` and **verify you can log in as them from a fresh terminal** _before_ disabling root.
 2. Harden SSH in two stages: password-off + root **key-only** first (keeps a way in during setup),
    root **off** entirely only at the very end after `admin` is proven.
 3. Do **all installs and pre-pull any container images _before_ locking egress** (Part B) — a
@@ -107,7 +107,7 @@ cp /root/.ssh/authorized_keys /home/admin/.ssh/authorized_keys
 chmod 600 /home/admin/.ssh/authorized_keys
 ```
 
-**Passwordless sudo is a deliberate choice, not laziness** — *if* your only auth factor is the SSH
+**Passwordless sudo is a deliberate choice, not laziness** — _if_ your only auth factor is the SSH
 key (no passwords anywhere), then there is no password protecting sudo to begin with, so NOPASSWD
 keeps admin-over-SSH non-interactive without weakening anything:
 
@@ -115,7 +115,7 @@ keeps admin-over-SSH non-interactive without weakening anything:
 printf 'admin ALL=(ALL) NOPASSWD:ALL\n' > /etc/sudoers.d/90-admin && chmod 440 /etc/sudoers.d/90-admin
 ```
 
-If you *do* keep passwords anywhere, drop NOPASSWD and keep faillock (A7).
+If you _do_ keep passwords anywhere, drop NOPASSWD and keep faillock (A7).
 
 **Verify before going further — do not skip.** New terminal on your laptop:
 
@@ -150,6 +150,7 @@ AddressFamily inet       # IPv6 disabled by default (A4); delete this line if yo
 ```
 
 **Service box vs. dev box — the one real fork:**
+
 - **Service / agent box** (you don't interactively code on it): the values above. `AllowAgentForwarding no`
   — do **not** expose your laptop's keys to a box running untrusted code. `AllowTcpForwarding yes` is
   still fine and useful: it's how you tunnel a loopback-only dashboard back to your laptop
@@ -174,7 +175,7 @@ sudo sshd -T | grep -iE 'permitroot|passwordauth|allowusers|agentforward'   # co
 > **Don't hand-pin `Ciphers` / `KexAlgorithms` / `MACs`.** OpenSSH on current Ubuntu already defaults to
 > strong, **post-quantum** key exchange (`mlkem768x25519-sha256` on 26.04's 10.2p1; `sntrup761x25519` on
 > 24.04's 9.6p1) and has dropped the weak primitives (DSA removed, plain finite-field DH off, AES-GCM
-> preferred). A copy-pasted "hardening" cipher block from an old blog usually *disables* the PQ default and
+> preferred). A copy-pasted "hardening" cipher block from an old blog usually _disables_ the PQ default and
 > invites regressions — leave the defaults unless a specific compliance list forces your hand.
 
 #### Laptop-side (`~/.ssh/config`, keep it in your dotfiles)
@@ -212,7 +213,7 @@ sudo apt install -y neovim        # prefer Vim? -> sudo apt install -y vim   (fu
 Ubuntu's packaged Neovim lags — notably on 24.04 (ships 0.9.x vs upstream 0.12.x); 26.04 is closer
 (0.11.x). For a current build use the PPA (`sudo add-apt-repository ppa:neovim-ppa/stable` — note it's
 **community-maintained**, not by the Neovim team) or a **checksum-verified release tarball**
-(`nvim-linux-x86_64.tar.gz`) from `github.com/neovim/neovim/releases` (then *you* own its updates; apt/PPA
+(`nvim-linux-x86_64.tar.gz`) from `github.com/neovim/neovim/releases` (then _you_ own its updates; apt/PPA
 auto-update). Skip the AppImage on a hardened box unless you want FUSE — and on 24.04+ it needs
 `libfuse2t64` (the old `libfuse2` name is 22.04-and-earlier).
 
@@ -374,10 +375,10 @@ sudo apt install -y fail2ban && sudo systemctl enable --now fail2ban && sudo fai
 ```
 
 Its value drops sharply once you're key-only + Tailscale (no public SSH to brute-force). Keep it for
-anything you *do* expose publicly later; otherwise it's cheap and harmless.
+anything you _do_ expose publicly later; otherwise it's cheap and harmless.
 
 > **On 26.04, OpenSSH does some of this itself.** `PerSourcePenalties` (built-in throttling of misbehaving
-> sources) is **default-on since OpenSSH 9.8**, so it's active on 26.04's 10.2p1 but *not* on 24.04's
+> sources) is **default-on since OpenSSH 9.8**, so it's active on 26.04's 10.2p1 but _not_ on 24.04's
 > 9.6p1. On 26.04 it reduces reliance on fail2ban for SSH; on 24.04, fail2ban still earns its keep.
 
 ### A10 — auditd
@@ -426,7 +427,7 @@ and you'd then need the port-53 CGNAT exception in the B3 cage (C-3).
 > **Gotcha:** the provider's DHCP resolver often keeps winning. If `resolvectl` still shows the DHCP one,
 > add a netplan drop-in `/etc/netplan/60-dns.yaml` with `dhcp4-overrides.use-dns: false` +
 > `nameservers.addresses: [1.1.1.1, 9.9.9.9]`, then `netplan apply`. **Also note (C-4):** `resolvectl` is
-> the *systemd-resolved* view; glibc and most tools read `/etc/resolv.conf`, which can say something else
+> the _systemd-resolved_ view; glibc and most tools read `/etc/resolv.conf`, which can say something else
 > — check both, especially before you firewall any IP range.
 
 ### A12 — Package integrity
@@ -463,7 +464,7 @@ promtail → Loki (moderate), or a managed sink (Grafana Cloud / Better Stack / 
 
 A dashboard or a log tail can't show you the one failure that matters most: the box or its workload
 **silently stopped** (crash, OOM, hung run, dead VM) — and a dashboard on a dead box serves no page. Close
-that with a **dead-man's-switch**: something *external* that expects a regular signal and alerts you when it
+that with a **dead-man's-switch**: something _external_ that expects a regular signal and alerts you when it
 stops arriving.
 
 - **Emit the signal** from the thing whose liveness you care about, and **on success** — a scheduled job
@@ -483,7 +484,7 @@ Cheapest high-value alert you can wire — do it before you walk away.
 Puts SSH behind a WireGuard mesh; removes ~all drive-by noise and gives ACL-based access.
 
 **Required in this guide:** every box joins the tailnet and public SSH is closed (below). SSH auth stays
-**native OS keys** (A2's `AllowUsers admin`), *not* Tailscale SSH — so you're not locked out if Tailscale
+**native OS keys** (A2's `AllowUsers admin`), _not_ Tailscale SSH — so you're not locked out if Tailscale
 is down for maintenance, and not tied to their identity layer. If you'd rather manage access purely in
 tailnet ACLs, use `tailscale up --ssh` and drop the OS-key path instead — just accept that coupling.
 
@@ -537,11 +538,11 @@ rewrite its own config.**
 
 **Default: treat the box as stateless and disposable.** If its real state lives in git and off-box (code
 reproducible, data in a managed DB / object store), all you need is a provider **snapshot** as a
-known-good rollback — take one now labeled `post-hardening-baseline`. A snapshot is *rollback, not backup*:
+known-good rollback — take one now labeled `post-hardening-baseline`. A snapshot is _rollback, not backup_:
 it lives with the provider, so a compromised provider account takes it too.
 
 **Only if the box holds state you can't recreate** (a local DB, generated artifacts, an on-box ledger),
-add an **offsite** backup of *just that state*: `restic` to S3/B2, repo password in your secrets manager,
+add an **offsite** backup of _just that state_: `restic` to S3/B2, repo password in your secrets manager,
 on a systemd timer. **Test a restore at least quarterly — an untested backup is not a backup.**
 
 ### A19 — Pre-use audit
@@ -580,7 +581,7 @@ The guiding idea: **the workload is the risk actor, so cage _it_, not the whole 
 scoped to the `svc` user, so it doesn't fight your admin access, Tailscale, or `apt`.
 
 **Two choices you then make _per box_ (deliberately not baked into this guide):** (1) whether `svc` is a
-*regular* or a `--system` user — B1; (2) `admin`'s SSH posture, dev vs service box — A2. Both follow from
+_regular_ or a `--system` user — B1; (2) `admin`'s SSH posture, dev vs service box — A2. Both follow from
 what the workload actually is, so decide them once you know it.
 
 ### B1 — Dedicated service user
@@ -604,7 +605,7 @@ install -d -m 750 -o root  -g svc   /etc/myapp   # config/secrets: root owns, sv
 
 `admin` administers; `svc` runs the workload and can touch nothing else. Act as it with
 `sudo -u svc -H …`. This one split is what makes every control below meaningful — a control scoped to
-"the workload" needs the workload to *be* a distinct principal.
+"the workload" needs the workload to _be_ a distinct principal.
 
 ### B2 — Read-only secrets
 
@@ -615,9 +616,9 @@ The subtle, high-value one. Set the env/config file **`root:svc 0640`** — owne
 sudo install -m 0640 -o root -g svc /dev/null /etc/myapp/app.env
 ```
 
-Why it matters: if the service could *write* its own config, it could flip its own resource limits,
+Why it matters: if the service could _write_ its own config, it could flip its own resource limits,
 budget/rate caps, or an `ISOLATION=off` switch on its next run — quietly undoing your controls. Read-only
-means the limits are set *by you, above it*. (This bit for real once: an env file mistakenly `svc:svc`
+means the limits are set _by you, above it_. (This bit for real once: an env file mistakenly `svc:svc`
 would have let the workload disable its own sandbox.) The very highest-value secrets go further — see B6.
 
 ### B3 — Egress allowlist
@@ -628,7 +629,7 @@ dropping everything else at the kernel. Proxy-based (not IP-based) so it survive
 so it doesn't disturb the rest of the box.
 
 **Recommended posture: start tight, broaden deliberately.** Ship with a strict domain allowlist, and open
-up to broad reads *only after* the proxy-uid caging (below) is in place. Broadening the allowlist before
+up to broad reads _only after_ the proxy-uid caging (below) is in place. Broadening the allowlist before
 that caging briefly exposed the cloud metadata service — do it in the opposite order.
 
 **Two layers:**
@@ -689,7 +690,7 @@ sudo -u svc -H bash -lc 'HTTPS_PROXY= curl -s https://api.your-provider.com'    
 ```
 
 **If you deliberately relax the domain allowlist** (e.g. the workload needs broad read access), you have
-**not** removed the cage's most important job — you've moved it. Now the *proxy's* own uid can reach the
+**not** removed the cage's most important job — you've moved it. Now the _proxy's_ own uid can reach the
 tailnet, other loopback services, RFC1918, and — critically — the **cloud metadata service**
 (`169.254.169.254`, which hands out cloud credentials). Add a second nftables rule set that denies the
 **proxy's** uid (`id -u tinyproxy`, often 105) those ranges, placed **first** in the chain (see C-2, C-3):
@@ -708,7 +709,7 @@ layer matters more because it also covers any code path that bypasses your guard
 
 ### B4 — Run-command sandbox
 
-If the workload executes commands the *model* (or any untrusted source) wrote, an un-isolated exec can read
+If the workload executes commands the _model_ (or any untrusted source) wrote, an un-isolated exec can read
 your secrets and overwrite the very files that enforce safety — voiding every other control. Run each such
 command in a throwaway container.
 
@@ -737,7 +738,7 @@ podman run --rm --network=none --read-only --cap-drop=ALL --security-opt=no-new-
 
 **Fail closed:** if no container runtime is present, the workload must **refuse** to run untrusted commands
 — never silently fall back to host exec. If a command genuinely needs the network, give it the network
-*inside the egress cage* (still bounded by B3) and treat that run as tainted/untrusted — don't punch a hole
+_inside the egress cage_ (still bounded by B3) and treat that run as tainted/untrusted — don't punch a hole
 in the cage. Smoke-test: confirm the sandbox has no network and cannot see the host FS.
 
 ### B5 — Scheduling (systemd timer)
@@ -804,7 +805,7 @@ MemoryMax=1400M
 `sudo systemctl enable --now myapp` and `journalctl -u myapp -f`. Everything else in Part B (service
 user, secrets perms, egress cage, sandbox) applies unchanged — only the unit shape differs. Public inbound
 for such a server is a **separate** decision (reverse proxy / Tailscale Funnel / an opened port); the
-egress cage still governs what it can reach *out* regardless.
+egress cage still governs what it can reach _out_ regardless.
 
 ### B6 — Crown-jewel credential
 
@@ -827,17 +828,17 @@ compromise.** Match the custody to the stakes.
 ## Part C — Hard-won gotchas
 
 - **C-1 — Test on the _target OS_, not just your laptop.** A blocking syscall against an unwritable path
-  (e.g. a synchronous `mkdir` at a path that lost write perms) **hangs on Linux** where it *threw* on
+  (e.g. a synchronous `mkdir` at a path that lost write perms) **hangs on Linux** where it _threw_ on
   macOS — and a `try/catch` can't rescue a hung syscall. If a stalled write sits in a hot path, it can
   wedge the one component that matters. Exercise the real deploy path on the real OS before trusting it.
 - **C-2 — nftables rule ORDER is everything.** A chain whose first rule is `meta skuid != <svc> accept`
-  short-circuits *everything that isn't the workload* — so any rule you append *after* it (e.g. to cage the
+  short-circuits _everything that isn't the workload_ — so any rule you append _after_ it (e.g. to cage the
   proxy uid) is **never reached**. Order-sensitive rules must come first.
 - **C-3 — DNS can live inside the range you're about to block.** With the default MagicDNS-off posture
-  (A15) this is moot, but if you enable MagicDNS its resolver `100.100.100.100` sits *inside* the CGNAT
+  (A15) this is moot, but if you enable MagicDNS its resolver `100.100.100.100` sits _inside_ the CGNAT
   range `100.64.0.0/10` — block that range without a port-53 exception and the workload resolves nothing →
   total, silent egress failure. The general lesson stands regardless: **always `cat /etc/resolv.conf`
-  before firewalling any IP range,** and add any DNS exception *before* the drop.
+  before firewalling any IP range,** and add any DNS exception _before_ the drop.
 - **C-4 — `resolvectl` lies (politely).** It shows the systemd-resolved view; glibc/most tools read
   `/etc/resolv.conf`, which may point elsewhere. Check the file, not just the tool.
 - **C-5 — `tailscale up` resets flags you don't restate.** Re-running it to change one thing silently
@@ -851,7 +852,7 @@ compromise.** Match the custody to the stakes.
 - **C-8 — faillock + remote PAM = lockout risk.** Editing `/etc/pam.d/common-auth` wrong locks you out of a
   box you can only reach remotely. With key-only + NOPASSWD there's nothing to protect; stage faillock but
   don't wire it unless you keep passwords (A7).
-- **C-9 — Host-level egress is open by design, and that's a real limit.** The cage confines the *workload*;
+- **C-9 — Host-level egress is open by design, and that's a real limit.** The cage confines the _workload_;
   it does not confine root. A full root compromise can tear down any on-box firewall. The only outbound
   control that survives that is enforced upstream (a NAT/proxy gateway off the box). Know where your
   boundary actually is.
@@ -882,7 +883,7 @@ switch, and judge a stopped run by its **behavior and true state**, not by what 
 - [ ] Stop the scheduler (`systemctl disable --now myapp.timer`) and the service.
 - [ ] Take a final snapshot / offsite backup if the state matters.
 - [ ] **Revoke every credential that touched the box** — API keys (rotate, don't just delete), deploy keys,
-      the RPC/webhook URLs, the healthcheck ping URL (the URL *is* the credential).
+      the RPC/webhook URLs, the healthcheck ping URL (the URL _is_ the credential).
 - [ ] Remove the node from the tailnet (admin console) and delete its auth key.
 - [ ] Destroy the VM at the provider, then **confirm** it's gone (and any attached volumes/snapshots you
       don't want to keep).
@@ -904,6 +905,7 @@ switch, and judge a stopped run by its **behavior and true state**, not by what 
 ## Final checklist
 
 **Part A (every VM):**
+
 - [ ] Non-root `admin`, verified from a fresh terminal; root SSH disabled (A1–A2, A15)
 - [ ] SSH key-only, hardened, effective values confirmed with `sshd -T` (A2)
 - [ ] _(optional)_ Editor default — nvim/vim via `update-alternatives` + `$EDITOR`/`$VISUAL`/`$SUDO_EDITOR` (A2b)
@@ -920,6 +922,7 @@ switch, and judge a stopped run by its **behavior and true state**, not by what 
 - [ ] Snapshot taken; offsite restic + restore drill only if stateful (A18); pre-use audit passes (A19)
 
 **Part B (if B0 applies):**
+
 - [ ] Dedicated `svc` user, no key/no sudo (B1)
 - [ ] Config `root:svc 0640` — service can read, not write (B2)
 - [ ] Egress allowlist verified four ways; proxy uid + metadata caged if allowlist relaxed (B3)

@@ -19,9 +19,7 @@ export default function MobileToc({ headings, label }: { headings: TocEntry[]; l
               href={`#${heading.slug}`}
               className={cn(
                 "block py-1 text-sm transition-colors hover:text-foreground",
-                heading.level === 3
-                  ? "pl-4 text-neutral-500 dark:text-neutral-400"
-                  : "font-medium text-neutral-700 dark:text-neutral-300"
+                heading.level === 3 ? "pl-4 text-neutral-500 dark:text-neutral-400" : "font-medium text-neutral-700 dark:text-neutral-300"
               )}
             >
               {heading.text}
