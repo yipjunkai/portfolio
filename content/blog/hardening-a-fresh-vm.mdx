@@ -22,22 +22,37 @@ tags: [security, linux, ops, hardening, self-hosting]
 >
 > **How to read it.** **Part A** applies to _every_ VM — do all of it. **Part B** is opt-in:
 > do it only if your workload runs untrusted / model-authored code, ingests untrusted input, or
-> just deserves a bounded blast radius. **Part C** is the list of things that actually went wrong
-> — read it before you touch nftables or PAM. Not every rule fits every project; where a choice
-> is a judgment call, the rationale is stated so you can make it yourself.
+> just deserves a bounded blast radius — and **B0 tells you _which_ of its controls you actually
+> need**, which is a narrower question than whether Part B applies at all. **Part C** is the list of
+> things that actually went wrong — read it before you touch nftables or PAM. Not every rule fits
+> every project; where a choice is a judgment call, the rationale is stated so you can make it yourself.
 
 ---
 
-## Conventions
+## Principals & placeholders
 
-Substitute these throughout:
+Two kinds of thing get substituted below: the **accounts that exist on a finished box**, and plain
+name placeholders. At the end of Part A + Part B there are exactly **three** principals, no others:
 
-| Placeholder | Means                                                                              |
-| ----------- | ---------------------------------------------------------------------------------- |
-| `admin`     | your **human** sudo administrator — the account you SSH into (key-only)            |
-| `svc`       | the **dedicated unprivileged user** the workload runs as (Part B). No key, no sudo |
-| `myapp`     | your project name → code at `/srv/myapp`, config/secrets at `/etc/myapp`           |
-| `<vm>`      | the SSH host alias in your laptop's `~/.ssh/config`                                |
+| Name    | Substitute         | Purpose                                       | SSH login                | sudo               |
+| ------- | ------------------ | --------------------------------------------- | ------------------------ | ------------------ |
+| `root`  | —                  | owns files; what `sudo` elevates to           | none (A15)               | n/a                |
+| `admin` | your human account | the operator you SSH in as                    | key-only                 | yes (NOPASSWD, A1) |
+| `svc`   | your service acct  | runs the workload (Part B)                    | none — no key, `nologin` | never              |
+| `myapp` | your project name  | path placeholder → `/srv/myapp`, `/etc/myapp` | —                        | —                  |
+| `<vm>`  | your SSH alias     | path placeholder → laptop's `~/.ssh/config`   | —                        | —                  |
+
+**We disable root _login_, not the root _account_.** Root keeps owning files — that is exactly what
+makes B2's read-only secrets work — and stays reachable via `sudo` from `admin`. Its password stays
+**locked** (`!` in `/etc/shadow`, the distro default, which we never change), so no password login
+path exists anywhere on the box.
+
+`adduser` on Debian/Ubuntu creates a matching per-user group, so `svc` names **both a user and a
+group**. B2's `root:svc 0640` therefore reads: _root owns it, svc's group may read it._
+
+Only `admin` is ever added to `sudo` (A1). Neither `adduser` nor `adduser --system` grants sudo on
+its own — "the first account gets sudo" is installer and cloud-init behaviour, not something the
+commands below do. A19 audits this rather than assuming it.
 
 UIDs shown (`admin` 1001, `svc` 1002) are illustrative — use whatever `adduser` assigns and read
 the real one with `id -u svc`. **nftables needs the literal uid**, so capture it before you write rules.
@@ -131,12 +146,17 @@ Remove any provider default user once `admin` is proven (DigitalOcean sometimes 
 Providers often drop a `PasswordAuthentication yes` override in `/etc/ssh/sshd_config.d/50-cloud-init.conf`
 — neutralize it and write your own managed drop-in `/etc/ssh/sshd_config.d/00-hardening.conf`:
 
+**This is stage 1 of two** (Sequencing step 2). Passwords go off now; root stays reachable **by key
+only** so you keep a second way in while the rest of Part A lands. A15 closes root entirely once
+`admin` is proven over the tailnet. Note that `AllowUsers` gates independently of `PermitRootLogin`
+— listing only `admin` here would lock root out immediately and collapse the two stages into one.
+
 ```
-PermitRootLogin no
+PermitRootLogin prohibit-password    # stage 1 — key-only. A15 tightens this to `no`
 PasswordAuthentication no
 KbdInteractiveAuthentication no
 PubkeyAuthentication yes
-AllowUsers admin
+AllowUsers admin root                # stage 1 — A15 drops `root` from this line
 X11Forwarding no
 AllowTcpForwarding yes
 AllowAgentForwarding no
@@ -148,6 +168,10 @@ ClientAliveInterval 60
 ClientAliveCountMax 30
 AddressFamily inet       # IPv6 disabled by default (A4); delete this line if you keep v6
 ```
+
+**More than one human?** `AllowUsers` assumes a solo operator. For a team, create a group and gate on
+it instead — `AllowGroups ssh-users` — so adding or removing an admin is a group change, not an sshd
+edit and restart on every box.
 
 **Service box vs. dev box — the one real fork:**
 
@@ -197,6 +221,13 @@ Host <vm>
 ```
 
 `mkdir -p ~/.ssh/sockets && chmod 700 ~/.ssh/sockets` once. Force a fresh connection with `ssh -O exit <vm>`.
+
+**Protect the private key itself.** Key-only auth moves the whole attack surface onto one file on your
+laptop, and "stolen key" is the second entry in the threat model — so don't leave it bare on disk. Give
+it a passphrase and let your agent cache it (macOS: `ssh-add --apple-use-keychain`), or better, make it
+non-exportable: `ssh-keygen -t ed25519-sk` binds the key to a hardware authenticator (YubiKey, or a
+platform key via Secure Enclave) so a copied file is useless without the device. Requires OpenSSH ≥ 8.2
+on both ends — fine everywhere in this guide's target range.
 
 ### A2b — Editor default
 
@@ -267,6 +298,12 @@ misconfiguration, so the one thing not to do is leave it ambiguous.
 disable block, delete `AddressFamily inet` from A2, and make sure nothing binds only to `::` by accident
 (`sudo ss -tulpn | grep ':::'`). Check what you have with `ip -6 addr show`.
 
+> **Disabling v6 removes `::1`, not just public v6.** A5's `net.ipv6.conf.lo.disable_ipv6 = 1` takes
+> loopback down with it, and plenty of runtimes resolve `localhost` to `::1` **before** `127.0.0.1`.
+> Anything pointed at a loopback service by name — a local database, or B3's loopback proxy — can fail
+> with `ECONNREFUSED` while `127.0.0.1` works fine. Address loopback services by **literal IP**, not by
+> `localhost`, and this never bites you.
+
 ### A5 — Kernel & network sysctl
 
 `/etc/sysctl.d/99-hardening.conf`:
@@ -316,8 +353,24 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 
 ```bash
 sudo sysctl --system
-sudo sysctl kernel.kptr_restrict kernel.yama.ptrace_scope net.ipv4.tcp_syncookies   # spot-verify
+# Spot-verify — and include core_pattern, the one on this list that something else fights you for:
+sudo sysctl kernel.kptr_restrict kernel.yama.ptrace_scope net.ipv4.tcp_syncookies kernel.core_pattern
 ```
+
+> **`core_pattern` will not stick on Ubuntu while apport is installed.** Apport sets it from its
+> _service_, which starts long after `sysctl.d` is applied — so your file is correct, the running value
+> is apport's, and nothing warns you. Verify and fix:
+>
+> ```bash
+> sysctl -n kernel.core_pattern                  # want |/bin/false, not |/usr/share/apport/apport …
+> sudo systemctl disable --now apport.service
+> sudo systemctl mask apport.service             # mask, or it comes back on upgrade
+> sudo sysctl --system && sysctl -n kernel.core_pattern
+> ```
+>
+> Crash reporting on a server is a liability anyway — apport collects process memory, which is where
+> your secrets are. This is the guide's own C-12 biting inside the guide: the value you edited and the
+> value in force were different, and only reading the effective one showed it.
 
 ### A6 — Automatic updates
 
@@ -335,12 +388,16 @@ otherwise sit unapplied indefinitely. Set a fixed reboot window in `/etc/apt/apt
 
 ```conf
 Unattended-Upgrade::Automatic-Reboot "true";
-Unattended-Upgrade::Automatic-Reboot-Time "04:00";
+Unattended-Upgrade::Automatic-Reboot-Time "04:30";
 # Set ::Automatic-Reboot-WithUsers "false" if you'd rather not reboot during an active login.
 ```
 
-A oneshot timer's `Persistent=true` (B5) catches any run missed during the reboot; for a long-running
-server, pick a low-traffic window.
+**Offset this from your schedule on purpose.** The obvious `04:00` collides with the equally obvious
+`OnCalendar=*-*-* 0/4:00:00` in B5 — and `Persistent=true` does **not** save you there, because it
+re-runs slots that were _missed_, not a run that had already started and got killed mid-flight. The
+symptom is one silently truncated run every few weeks, which reads as noise. Pick a reboot time no
+timer lands on (or give the timer a `RandomizedDelaySec=`); for a long-running server, pick a
+low-traffic window.
 
 ### A7 — Session limits & faillock
 
@@ -353,6 +410,23 @@ server, pick a low-traffic window.
 *   hard   nofile  8192     # 65536 if you run containers
 *   hard   core    0
 ```
+
+> **These limits do not apply to your workload.** `limits.conf` is enforced by `pam_limits`, and
+> **systemd services never traverse PAM** unless the unit sets `PAMName=`. So this file covers
+> interactive logins — `admin` over SSH — and nothing else. The service you actually wanted to bound
+> runs on systemd's defaults, which are enormous by comparison (`LimitNOFILE=524288`,
+> `LimitNPROC` in the thousands).
+>
+> The fix is per-unit, in B5:
+>
+> ```ini
+> LimitNOFILE=8192
+> LimitNPROC=2048
+> ```
+>
+> Check the effective values rather than trusting either file — `systemctl show <unit> -p LimitNOFILE
+-p LimitNPROC`. A control written where it cannot reach the thing it names is worse than no control,
+> because the checklist says it's done.
 
 **faillock — stage it, but think before wiring it into PAM.** With key-only SSH + NOPASSWD sudo there is
 **no password surface to protect**, and a bad edit to `/etc/pam.d/common-auth` on a remote box is a real
@@ -460,12 +534,35 @@ attacker move). For a disposable box, **journald with size caps is a legitimate 
 `journald` + `auditd` + `ufw` logs off-box over Tailscale: rsyslog → remote listener (simple),
 promtail → Loki (moderate), or a managed sink (Grafana Cloud / Better Stack / Axiom).
 
+Set the cap explicitly rather than inheriting it — journald's default ceiling is a _percentage of the
+filesystem_, so on a big disk "capped" can still mean many gigabytes, and on most cloud VMs logs share
+one partition with everything else. `/etc/systemd/journald.conf.d/99-cap.conf`:
+
+```conf
+[Journal]
+SystemMaxUse=1G
+SystemKeepFree=2G
+```
+
+```bash
+sudo systemctl restart systemd-journald && journalctl --disk-usage
+```
+
+This is the cheapest of the disk bounds — see A16 for the rest, because a full `/` takes down every
+service on the box at once, not just the one that filled it.
+
 ### A14b — Liveness / dead-man's switch
 
 A dashboard or a log tail can't show you the one failure that matters most: the box or its workload
 **silently stopped** (crash, OOM, hung run, dead VM) — and a dashboard on a dead box serves no page. Close
 that with a **dead-man's-switch**: something _external_ that expects a regular signal and alerts you when it
 stops arriving.
+
+> **Not the same thing as a watchdog**, though the words get used interchangeably. A watchdog —
+> systemd's `WatchdogSec=`, or a hardware/VM watchdog timer — lives **on the box** and _restarts_ a
+> stuck process. Useful, and orthogonal to this: it dies with the host, so it cannot tell you the host
+> is gone. A dead-man's switch is inverted and external — **absence** of a signal is the alarm. Run
+> both if you like; only one of them survives the box.
 
 - **Emit the signal** from the thing whose liveness you care about, and **on success** — a scheduled job
   pings a URL from the last line of its script/unit; a daemon pings on a heartbeat. Pinging on success (not
@@ -504,9 +601,19 @@ sudo ufw delete allow OpenSSH
 sudo ufw reload && sudo ufw status verbose    # confirm public :22 now times out
 ```
 
-Also close root SSH entirely now (A2's `PermitRootLogin no` — final stage). Break-glass if Tailscale ever
-fails = the **provider's web console** (unaffected by tailnet ACLs). Write Tailscale ACLs in the console —
-the default "anyone in the tailnet reaches anything" is usually too permissive.
+**Stage 2 of the SSH lockout — do it now, not earlier.** `admin` is proven over the tailnet, so root no
+longer needs to be reachable. Edit A2's drop-in to its final values:
+
+```bash
+sudo sed -i 's/^PermitRootLogin .*/PermitRootLogin no/; s/^AllowUsers .*/AllowUsers admin/' \
+  /etc/ssh/sshd_config.d/00-hardening.conf
+sudo sshd -t && sudo systemctl restart ssh
+sudo sshd -T | grep -iE 'permitroot|allowusers'      # confirm EFFECTIVE, then test a fresh login
+```
+
+Break-glass if Tailscale ever fails = the **provider's web console** (unaffected by tailnet ACLs). Write
+Tailscale ACLs in the console — the default "anyone in the tailnet reaches anything" is usually too
+permissive.
 
 > **`tailscale up` resets any flag you don't restate** (see C-5) — so always restate `--accept-dns=false`
 > (plus your tags/routes). We keep **MagicDNS off** so A11's pinned DoT resolvers stay in force; enable it
@@ -516,19 +623,41 @@ the default "anyone in the tailnet reaches anything" is usually too permissive.
 
 ```bash
 sudo install -d -m 750 -o admin -g admin /srv/myapp        # code (git-managed, reproducible)
+sudo install -d -m 750 -o root  -g root  /etc/myapp        # config/secrets (A17 writes into this)
 # data + logs as needed; back up data (A18), cap logs via the log driver
 ```
 
 Don't run services out of `/home` — harder to back up, mixes code with user config. (Part B moves the
-service tree to `svc` ownership.)
+service tree to `svc` ownership, and revisits `/etc/myapp`'s group once `svc` exists — B2.)
+
+**Bound the disk while you're here.** Nothing above stops a runaway workload — a decompression bomb, a
+log loop, an unbounded cache, container layers — from filling `/`, and on a full root filesystem
+_everything_ fails at once: the database can't write, journald stops recording the incident, and the
+box gets hard to even log into. Most commodity VMs ship one big partition, so pick a bound that matches
+the stakes:
+
+- **Minimum, always:** the journald cap from A14, plus `df -h` in the A19 audit so you notice drift.
+- **If the workload writes anything unbounded:** give its scratch space a size — `PrivateTmp=yes` plus
+  `TemporaryFileSystem=/tmp:size=256m` on the unit (B5), or `--tmpfs /tmp:size=64m` on the container (B4).
+- **If you can't tolerate a full disk:** put `/srv` and the workload's home on their own filesystem
+  (separate volume or LV), so the blast radius of "it filled the disk" is that one tree. Provider block
+  storage makes this a five-minute job at provision time and a painful one afterwards — decide now.
+
+Filesystem quotas (`quota`, or ext4/XFS project quotas) are the finer-grained version, but they're
+enough extra machinery that they only pay off on a box you actually share.
 
 ### A17 — Secrets
 
 Never bake credentials into images; never commit `.env`. **Default — a root-owned `0600` env file**, referenced from a systemd `EnvironmentFile`:
 
 ```bash
-sudo install -m 0600 /dev/null /etc/myapp/app.env    # edit, reference from systemd EnvironmentFile
+sudo install -m 0600 /dev/null /etc/myapp/app.env    # /etc/myapp created in A16
 ```
+
+**Don't leave old copies beside the live one.** `app.env.bak.<date>` files accumulate every time you
+edit secrets by hand, they inherit the same permissions, and they hold credentials you have since
+rotated — which quietly falsifies the teardown checklist's "revoke every credential that touched the
+box." Keep the history in your secrets manager, not in `/etc`, and `shred -u` the strays.
 
 **Upgrades** when you outgrow a flat file: sops+age (encrypted in git, decrypted at deploy) or a managed store (1Password CLI / Infisical /
 Doppler / Vault / cloud secret manager). **Part B tightens the ownership so the workload can read but not
@@ -550,18 +679,44 @@ on a systemd timer. **Test a restore at least quarterly — an untested backup i
 Run this before any real workload touches the box. Anything surprising, stop and fix.
 
 ```bash
+# --- exposure ---
 sudo ss -tulpn                                          # no unexpected listeners
-sudo sshd -T | grep -iE 'permitroot|passwordauth|pubkey|allowusers|x11|agentforward'
+tailscale serve status 2>/dev/null                      # see the note below — this is NOT in ss output
 sudo ufw status verbose                                 # v4 + v6, minimal rules
 ip -6 addr show                                         # IPv6 firewalled or disabled, not ambiguous
-systemctl is-active ssh unattended-upgrades auditd fail2ban systemd-timesyncd
-sudo sysctl kernel.kptr_restrict kernel.yama.ptrace_scope net.ipv4.tcp_syncookies fs.protected_hardlinks
-sudo find /etc -type f -perm -o+w                       # no world-writable config
+
+# --- access ---
+sudo sshd -T | grep -iE 'permitroot|passwordauth|pubkey|allowusers|allowgroups|x11|agentforward'
+getent group sudo                                       # EXACTLY the admins you expect — nobody else
+sudo cat /etc/sudoers.d/*                               # no rule you didn't write
 awk -F: '$3==0 {print $1}' /etc/passwd                  # UID 0 == root only
 awk -F: '$7 !~ /nologin|false/ {print $1,$7}' /etc/passwd  # only expected users can log in
+
+# --- effective state (the file you edited may not be what's in force) ---
+sudo sysctl kernel.kptr_restrict kernel.yama.ptrace_scope net.ipv4.tcp_syncookies \
+            fs.protected_hardlinks kernel.core_pattern
+systemctl show myapp.service -p LimitNOFILE -p LimitNPROC -p Requires   # A7 does NOT reach units
+cat /etc/resolv.conf                                    # the file glibc reads, not just resolvectl
+
+# --- integrity & capacity ---
+sudo find /etc -type f -perm -o+w                       # no world-writable config
 sudo debsums -c                                         # package integrity
 sudo ls -la /etc/cron.*/ /var/spool/cron/crontabs/      # no surprise cron
+df -h /                                                 # headroom, before something fills it
+
+# --- services: check the ones YOU chose to run ---
+systemctl is-active ssh unattended-upgrades auditd
+# Add only what applies: fail2ban (A9 — often skipped behind Tailscale), and your time-sync
+# implementation, which may be systemd-timesyncd OR chrony. Listing a service you deliberately
+# didn't install makes a correct box fail its own audit.
 ```
+
+> **`ss` does not show outbound-initiated exposure.** Anything tunnelled — Tailscale Funnel or Serve,
+> Cloudflare Tunnel, ngrok, an SSH reverse tunnel — reaches your service by dialling **out** and proxying
+> back to loopback. There is no listener on a public interface and no UFW rule, so a box with a live
+> path from the public internet audits as "no unexpected listeners." Check the tunnel's own status
+> command, and count anything it publishes as public inbound with all that implies (auth on every route,
+> rate limits, and it belongs in your threat model).
 
 ---
 
@@ -580,46 +735,110 @@ Do Part B if **any** of these is true; otherwise Part A is enough:
 The guiding idea: **the workload is the risk actor, so cage _it_, not the whole box.** Everything below is
 scoped to the `svc` user, so it doesn't fight your admin access, Tailscale, or `apt`.
 
+#### Which controls, though — trace the path, don't count the triggers
+
+Those four bullets tell you Part B is _in scope_. They do **not** tell you which parts you need, and read
+literally they over-trigger: plenty of well-behaved services ingest untrusted input and still don't need
+an egress cage. The question that actually decides it is narrower:
+
+> **Is there a path from untrusted input to an outbound request whose _destination_ an attacker
+> chooses?**
+
+Work it backwards from every outbound call the workload can make:
+
+- **Can the model or the input pick the destination?** Tool/function calling with a fetch or HTTP tool,
+  a URL built from model output or user data, a webhook target read from a document, an SSRF-able
+  parameter. **Yes → B3 is your primary control, today.**
+- **Or are all destinations fixed in code and config?** Hard-coded API base, host pinned in a constant,
+  endpoint from a root-owned env file the workload can't rewrite (B2). Untrusted text still flows
+  _through_ the process, but it can never redirect where bytes go. **Then B3 is defence-in-depth, not
+  the load-bearing control** — and it's reasonable to stage it until that changes.
+- **Can it execute commands or code from any untrusted source?** Model-authored shell, `eval`,
+  a plugin loader, dependency install at runtime. **Yes → B4, and B3 stops being optional**, because
+  arbitrary code brings its own arbitrary destinations.
+
+The honest version of this is a table you keep with the project: every outbound call, who chooses its
+destination, and what changes that answer. **Re-run it whenever you add a tool, a webhook, or a
+dependency that fetches** — the day something gains tool-calling is the day a "defence-in-depth" cage
+becomes load-bearing, and nothing will announce that transition for you.
+
+Two things stay true regardless: **B1 and B2 are cheap and always worth it**, and **B3 does not depend
+on B4** — the egress cage works exactly the same for a `--system` user with no containers anywhere.
+
 **Two choices you then make _per box_ (deliberately not baked into this guide):** (1) whether `svc` is a
 _regular_ or a `--system` user — B1; (2) `admin`'s SSH posture, dev vs service box — A2. Both follow from
 what the workload actually is, so decide them once you know it.
 
+**Deliberately not used here, so the absences read as decisions:** no `chroot` — it isolates a filesystem
+view, was never a security boundary, and namespaces (B4) do the job properly. No SELinux — AppArmor (A8)
+is the distro-native choice on Ubuntu and fighting both is how you end up with neither. And systemd's
+sandboxing directives are **conditionally** excluded, not excluded outright — see B5, which tells you
+exactly when to add them and when they'll break your container runtime.
+
 ### B1 — Dedicated service user
 
-**First decide `svc`'s type — it follows from whether you'll run the B4 rootless-container sandbox:**
+**First decide `svc`'s type. This choice affects B4 and nothing else** — it is _not_ a fork in the road
+for Part B as a whole. B2, B3, B5 and B6 are written the same either way, so choosing a `--system` user
+here does not mean skipping the egress cage:
 
 - **Using the sandbox (B4)** → a **regular** user (uid ≥ 1000). Rootless Podman needs per-user
   `subuid`/`subgid` ranges (auto-assigned by `adduser`), a lingering user session, and
   `XDG_RUNTIME_DIR=/run/user/<uid>` — none of which a `--system` user gets.
 - **No sandbox / no rootless containers** → a conventional `--system` daemon user is cleaner (no home,
-  no login shell, no subuid ranges).
+  no login shell, no subuid ranges). Take this branch and you should add the systemd sandboxing block
+  in B5, which is exactly the isolation the containers would otherwise have given you.
 
 ```bash
 # pick ONE, per the choice above — no SSH key, no sudo, ever, either way:
 adduser --disabled-password --gecos "" svc      # regular user  (needed for the B4 rootless sandbox)
 # adduser --system --group svc                   # system user   (if you're NOT running rootless containers)
 
+usermod -s /usr/sbin/nologin svc                 # nothing here needs an interactive shell
+
 install -d -m 750 -o svc   -g svc   /srv/myapp   # code the service runs
-install -d -m 750 -o root  -g svc   /etc/myapp   # config/secrets: root owns, svc-group can traverse
+install -d -m 750 -o root  -g root  /etc/myapp   # config/secrets — see B2 before widening this
 ```
 
-`admin` administers; `svc` runs the workload and can touch nothing else. Act as it with
-`sudo -u svc -H …`. This one split is what makes every control below meaningful — a control scoped to
-"the workload" needs the workload to _be_ a distinct principal.
+**Give `svc` `nologin`.** `adduser --disabled-password` leaves it with `/bin/bash` and no password,
+which is _almost_ the same thing but not quite — and it makes `svc` show up in A19's "who can log in"
+check forever after. `nologin` costs nothing: `sudo -u svc -H bash -lc '…'` still works because it
+invokes the shell explicitly, and systemd's `User=` never consults the login shell at all.
+
+`admin` administers; `svc` runs the workload and can touch nothing else. This one split is what makes
+every control below meaningful — a control scoped to "the workload" needs the workload to _be_ a
+distinct principal.
 
 ### B2 — Read-only secrets
 
-The subtle, high-value one. Set the env/config file **`root:svc 0640`** — owned by root, readable by the
-`svc` group, writable by neither the service nor anyone but root:
+The subtle, high-value one — and the permissions depend on **who does the reading**, which is not
+obvious and is worth getting right rather than copying:
+
+**Pattern 1 — systemd reads it (preferred).** With `EnvironmentFile=` (B5), **PID 1 opens the file as
+root and injects the variables _before_ dropping to `User=svc`.** The workload therefore never needs
+read access at all, and the tightest correct setting is root-only:
 
 ```bash
+sudo install -d -m 0750 -o root -g root /etc/myapp
+sudo install -m 0600 -o root -g root /dev/null /etc/myapp/app.env
+```
+
+**Pattern 2 — the app opens the config file itself** (a YAML/TOML it parses at startup, a `.env` loaded
+by the runtime). Now `svc` genuinely must read it, so grant exactly that and no more — group-readable,
+inside a directory `svc` can traverse:
+
+```bash
+sudo install -d -m 0750 -o root -g svc  /etc/myapp
 sudo install -m 0640 -o root -g svc /dev/null /etc/myapp/app.env
 ```
 
-Why it matters: if the service could _write_ its own config, it could flip its own resource limits,
-budget/rate caps, or an `ISOLATION=off` switch on its next run — quietly undoing your controls. Read-only
-means the limits are set _by you, above it_. (This bit for real once: an env file mistakenly `svc:svc`
-would have let the workload disable its own sandbox.) The very highest-value secrets go further — see B6.
+Either way the rule is the same: **root owns it, the service never writes it.** If the service could
+_write_ its own config, it could flip its own resource limits, budget/rate caps, or an `ISOLATION=off`
+switch on its next run — quietly undoing your controls. Read-only means the limits are set _by you,
+above it_. (This bit for real once: an env file mistakenly `svc:svc` would have let the workload
+disable its own sandbox.)
+
+Default to Pattern 1 — it's strictly tighter, and it means a shell as `svc` can't `cat` your secrets
+even though the process holds them in its environment. The very highest-value secrets go further — B6.
 
 ### B3 — Egress allowlist
 
@@ -662,6 +881,12 @@ Ubuntu's AppArmor confines tinyproxy and will block reading the filter file — 
 service. Get the uid first (`id -u svc`) and put the literal in `/etc/myapp/egress.nft`:
 
 ```
+# The first two lines make this file re-runnable: a bare table declaration CREATES it if absent,
+# so the delete always succeeds, and the definition below is then the only copy. Without them,
+# `nft -f` APPENDS — restart the unit twice and every rule exists three times.
+table inet app_egress
+delete table inet app_egress
+
 table inet app_egress {
     chain output {
         type filter hook output priority 0; policy accept;
@@ -673,21 +898,58 @@ table inet app_egress {
 }
 ```
 
-Load it via a oneshot unit ordered after `ufw` with **no global flush** (so it coexists with UFW):
-`nft -f /etc/myapp/egress.nft`.
+Load it from a oneshot unit ordered after `ufw`, with **no global flush** so it coexists with UFW's own
+tables — `/etc/systemd/system/app-egress.service`:
+
+```ini
+[Unit]
+Description=myapp egress cage (nftables owner-match)
+After=ufw.service network-pre.target
+Before=myapp.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/nft -f /etc/myapp/egress.nft
+ExecStop=-/usr/sbin/nft delete table inet app_egress
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+sudo nft -c -f /etc/myapp/egress.nft            # syntax check BEFORE you enable anything
+sudo systemctl enable --now app-egress.service
+```
+
+Keep using `nft -c -f` before every later edit. Once B5 declares `Requires=app-egress.service`, a
+syntax error in this file stops the workload from starting — which is the correct failure direction,
+and a new way to take yourself down if you edit it carelessly.
 
 **Make the workload use the proxy.** For Node ≥ 24: `NODE_USE_ENV_PROXY=1` + `HTTPS_PROXY=http://127.0.0.1:8888`
 (global `fetch` honors it — no code change). For other stacks set `HTTPS_PROXY` / `https_proxy` (and
 `HTTP_PROXY`/`http_proxy`) in the service env. **Prefer `https://` URLs** — some runtimes only route
 `https` through the env proxy, so a bare `http://` URL bypasses it and dead-ends at DNS under the cage.
 
-**Verify four ways as `svc`:**
+**Verify four ways as `svc`** — the fourth is the one that matters most and the one everyone forgets:
 
 ```bash
-sudo -u svc -H bash -lc 'curl -s -o /dev/null -w "%{http_code}\n" https://api.your-provider.com'   # 200
-sudo -u svc -H bash -lc 'curl -s -o /dev/null -w "%{http_code}\n" https://example.com'             # blocked
-sudo -u svc -H bash -lc 'HTTPS_PROXY= curl -s https://api.your-provider.com'                       # direct egress: fails
+# 1. an allowlisted host still works                                        -> 200
+sudo -u svc -H bash -lc 'curl -s -o /dev/null -w "%{http_code}\n" https://api.your-provider.com'
+# 2. a non-allowlisted host does not                                        -> blocked
+sudo -u svc -H bash -lc 'curl -s -o /dev/null -w "%{http_code}\n" https://example.com'
+# 3. bypassing the proxy gets you nowhere                                   -> fails
+sudo -u svc -H bash -lc 'HTTPS_PROXY= curl -s https://api.your-provider.com'
+# 4. the cloud metadata service is unreachable                              -> MUST fail/time out
+sudo -u svc -H bash -lc 'curl -s -m 4 -o /dev/null -w "%{http_code}\n" http://169.254.169.254/'
 ```
+
+Run #4 from `admin` as well: it should still succeed there. Two different results prove the cage is
+**uid-scoped** rather than a blanket rule you'll trip over later. What `169.254.169.254` hands out varies
+enormously by provider — AWS/GCP-style instance credentials at one end, inert instance config at the
+other — so check yours rather than assuming, but block it either way. Note that plenty of providers
+install an explicit route to it (`ip route | grep 169.254`), which tells you nothing about whether it
+_should_ be reachable by your workload.
 
 **If you deliberately relax the domain allowlist** (e.g. the workload needs broad read access), you have
 **not** removed the cage's most important job — you've moved it. Now the _proxy's_ own uid can reach the
@@ -732,9 +994,16 @@ Run template (workspace-only mount, no network, read-only rootfs, all caps dropp
 
 ```bash
 podman run --rm --network=none --read-only --cap-drop=ALL --security-opt=no-new-privileges \
-  --pids-limit=256 -v "$WORKSPACE:/work:rw" -w /work <image> <cmd>
+  --pids-limit=256 --memory=512m --tmpfs /tmp:size=64m,mode=1777 \
+  -v "$WORKSPACE:/work:rw" -w /work <image> <cmd>
 # Podman applies its default seccomp profile unless you pass seccomp=unconfined — leave it on.
 ```
+
+**Why `--tmpfs` with an explicit size, given `--read-only`.** A read-only rootfs still needs somewhere
+writable or most tooling breaks, so Podman mounts `/tmp` and `/run` as tmpfs for you — **unbounded**,
+and tmpfs is RAM. A decompression bomb or a runaway write then consumes host memory rather than being
+stopped by the container's own limits. Size it, and pair it with `--memory` so the cgroup catches what
+the mount doesn't. `--pids-limit` covers fork bombs; none of the three substitutes for the others.
 
 **Fail closed:** if no container runtime is present, the workload must **refuse** to run untrusted commands
 — never silently fall back to host exec. If a command genuinely needs the network, give it the network
@@ -750,6 +1019,9 @@ catches up runs missed while the box was off and kills a hung run.
 
 ```ini
 [Unit]
+# Requires=, not just After=. After= is ORDERING ONLY — if the egress cage failed to load,
+# an After=-only unit starts anyway and the workload runs uncaged, silently. See C-13.
+Requires=app-egress.service tinyproxy.service
 After=network-online.target tinyproxy.service app-egress.service
 Wants=network-online.target
 [Service]
@@ -761,22 +1033,58 @@ EnvironmentFile=/etc/myapp/app.env
 ExecStart=/usr/local/bin/<runner> <task>
 TimeoutStartSec=900          # kill a hung run (RuntimeMaxSec is ignored for oneshot)
 MemoryMax=1400M
+LimitNOFILE=8192             # A7's limits.conf does NOT reach systemd units — set them here
+LimitNPROC=2048
 # XDG_RUNTIME_DIR=/run/user/1002 in app.env + linger (B4) so rootless Podman works under systemd.
-# Do NOT add NoNewPrivileges=/SystemCallFilter= here if you use rootless Podman — they break its
-# setuid newuidmap (see C-6). Isolation = egress cage + containerized exec + non-root user.
 [Install]
 WantedBy=multi-user.target
 ```
+
+#### Sandboxing directives — which set applies to you
+
+systemd can confine this unit substantially on its own. Whether you take that isolation from systemd or
+from containers depends on the B1 branch you chose, and **taking neither is the one wrong answer**:
+
+**Running rootless Podman (B4)?** Add nothing below. `NoNewPrivileges=yes` and `SystemCallFilter=`
+break the setuid `newuidmap` that rootless Podman depends on (C-6). Your isolation comes from the
+egress cage + containerised exec + non-root user, which is a stronger stack anyway.
+
+**Not running containers** — the `--system` user branch of B1 — **then add this block**, because
+otherwise the workload has no confinement beyond file permissions:
+
+```ini
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full           # strict + ReadWritePaths= if the service writes nowhere but its own tree
+ProtectHome=yes
+ProtectControlGroups=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+LockPersonality=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+```
+
+Check your work with `systemd-analyze security myapp.service`, which scores the unit and names what's
+still open. Treat the score as a prompt, not a target — `ProtectSystem=strict` on a service that needs
+to write somewhere will simply fail at runtime, and a unit that doesn't start is not hardened.
 
 `/etc/systemd/system/myapp.timer`:
 
 ```ini
 [Timer]
-OnCalendar=*-*-* 0/4:00:00    # e.g. every 4h
-Persistent=true               # run once on boot if a slot was missed
+OnCalendar=*-*-* 0/4:00:00    # e.g. every 4h — check this against A6's reboot window!
+Persistent=true               # run once on boot if a slot was MISSED (not one killed mid-run)
+RandomizedDelaySec=300        # also spreads load if several boxes share a schedule
 [Install]
 WantedBy=timers.target
 ```
+
+Cross-check the calendar against A6's `Automatic-Reboot-Time` before you enable it — the two obvious
+defaults (`04:00` reboot, `0/4:00:00` timer) land on the same minute, and a run killed by a reboot is
+_not_ a missed slot, so `Persistent=true` won't re-run it. `systemctl list-timers` shows you the real
+next-fire times.
 
 Keep the timer **disabled** until the pre-use audit passes and a dry/real run succeeds. Go live:
 `sudo systemctl start myapp.service` (one run on demand) → watch logs → `sudo systemctl enable --now
@@ -797,11 +1105,16 @@ EnvironmentFile=/etc/myapp/app.env
 ExecStart=/usr/local/bin/<runner> <serve>
 Restart=on-failure
 RestartSec=5
+TimeoutStopSec=20
 MemoryMax=1400M
-# same as the oneshot: NO NoNewPrivileges/SystemCallFilter with rootless Podman (C-6)
+LimitNOFILE=8192
+LimitNPROC=2048
+# Sandboxing directives: same rule as the oneshot — the full block if you're NOT running
+# rootless Podman, nothing if you are (C-6).
 ```
 
-(Reuse the `[Unit]` and `[Install]` blocks from the oneshot above — only `[Service]` changes.) Then
+(Reuse the `[Unit]` — including `Requires=app-egress.service` — and `[Install]` blocks from the oneshot
+above; only `[Service]` changes.) Then
 `sudo systemctl enable --now myapp` and `journalctl -u myapp -f`. Everything else in Part B (service
 user, secrets perms, egress cage, sandbox) applies unchanged — only the unit shape differs. Public inbound
 for such a server is a **separate** decision (reverse proxy / Tailscale Funnel / an opened port); the
@@ -844,9 +1157,13 @@ compromise.** Match the custody to the stakes.
 - **C-5 — `tailscale up` resets flags you don't restate.** Re-running it to change one thing silently
   reverts `--accept-dns`, `--accept-routes`, tags, etc. to defaults. State every flag you care about, every
   time.
-- **C-6 — systemd hardening breaks rootless Podman.** `NoNewPrivileges=yes` / `SystemCallFilter=` block the
-  setuid `newuidmap` rootless Podman needs. Don't add them to a unit that runs rootless containers; get your
-  isolation from the egress cage + containerized exec + non-root user instead.
+- **C-6 — systemd hardening breaks rootless Podman — _conditionally_.** `NoNewPrivileges=yes` /
+  `SystemCallFilter=` block the setuid `newuidmap` rootless Podman needs, so don't add them to a unit
+  that runs rootless containers; there, isolation comes from the egress cage + containerised exec +
+  non-root user. **Read the condition, not just the prohibition:** on a unit with _no_ container runtime
+  those directives are exactly what you want, and skipping them because this gotcha said "don't" leaves
+  a service with no confinement at all. Neither-nor is the failure mode this warning accidentally
+  creates. See B5 for which set applies.
 - **C-7 — Pre-pull images before locking egress.** `--network=none` (and a tight allowlist) blocks
   on-demand pulls. Pull every image you'll need while the network is still open.
 - **C-8 — faillock + remote PAM = lockout risk.** Editing `/etc/pam.d/common-auth` wrong locks you out of a
@@ -865,6 +1182,22 @@ compromise.** Match the custody to the stakes.
   before go-live.
 - **C-12 — Verify effective state, not the file you edited.** `sshd -T`, `sysctl <key>`, a fresh login from
   a new terminal. A provider drop-in, an AppArmor deny, or a DHCP override can quietly beat your edit.
+  Two live examples in this guide: apport silently owns `kernel.core_pattern` (A5), and `limits.conf`
+  never reaches a systemd unit at all (A7). Both files read correctly forever; neither is in force.
+- **C-13 — `After=` is ordering, not a dependency.** `After=app-egress.service` says "if that unit
+  starts, start after it" — **not** "require it." If the cage fails to load or was never enabled, an
+  `After=`-only workload starts anyway, uncaged, with no error anywhere. Use `Requires=` for anything
+  whose absence should stop the workload, and accept the trade: a broken cage now means a service that
+  won't start, which is the correct direction to fail.
+- **C-14 — `nft -f` appends; it does not replace.** Re-running your rules file — a unit restart, a
+  reboot path, a manual reload — adds a **second** copy of every rule. Duplicate `accept`s look
+  harmless right up until you reorder something and the shadowed copy wins. Make the file idempotent
+  with the bare-table + `delete table` prologue (B3), and check with `nft list table inet app_egress`
+  after any reload rather than assuming.
+- **C-15 — Absence of a listener is not absence of exposure.** `ss -tulpn` can't see a service published
+  through an outbound-initiated tunnel — Tailscale Funnel/Serve, Cloudflare Tunnel, ngrok, an SSH
+  reverse tunnel. There's no bound public port and no firewall rule to find. Audit the tunnel's own
+  status command too, or you'll certify a box that's answering the public internet (A19).
 
 ---
 
@@ -899,6 +1232,11 @@ switch, and judge a stopped run by its **behavior and true state**, not by what 
 - Run a service as root when a system user would do; add yourself to `docker` on a shared box (≈ root).
 - Put a signing key / crown-jewel secret where the workload can read it.
 - Relax the egress allowlist without caging the proxy uid + metadata service (B3).
+- Order a unit with `After=` when you meant `Requires=` — that's a cage that silently isn't there (C-13).
+- Leave a service with neither containers nor systemd sandboxing because a gotcha said "don't add
+  `NoNewPrivileges`" and you skipped the condition attached to it (C-6).
+- Write a control somewhere it can't reach what it names — `limits.conf` for a systemd unit is the
+  classic — and then tick it off the checklist (A7).
 - Trust provider snapshots as your only backup, or ignore IPv6 because "we only use v4."
 - Skip the pre-use audit (A19) because "it worked last time."
 
@@ -906,27 +1244,29 @@ switch, and judge a stopped run by its **behavior and true state**, not by what 
 
 **Part A (every VM):**
 
-- [ ] Non-root `admin`, verified from a fresh terminal; root SSH disabled (A1–A2, A15)
-- [ ] SSH key-only, hardened, effective values confirmed with `sshd -T` (A2)
+- [ ] Non-root `admin`, verified from a fresh terminal; **stage 1** SSH applied (A1–A2)
+- [ ] SSH key-only, hardened, effective values confirmed with `sshd -T`; private key passphrased or hardware-backed (A2)
 - [ ] _(optional)_ Editor default — nvim/vim via `update-alternatives` + `$EDITOR`/`$VISUAL`/`$SUDO_EDITOR` (A2b)
-- [ ] UFW deny-inbound, v4 + v6 (A3); IPv6 disabled unless a workload needs it (A4)
-- [ ] sysctl hardening applied + spot-verified (A5)
-- [ ] Unattended security upgrades + needrestart + auto-reboot window (A6)
-- [ ] Session limits set; faillock staged (A7)
-- [ ] AppArmor loaded (A8); fail2ban active (A9); auditd running (A10)
+- [ ] UFW deny-inbound, v4 + v6 (A3); IPv6 disabled unless a workload needs it — and nothing addresses loopback as `localhost` (A4)
+- [ ] sysctl applied + spot-verified **including `core_pattern`**; apport masked (A5)
+- [ ] Unattended security upgrades + needrestart + auto-reboot window **offset from every timer** (A6)
+- [ ] Session limits set — and mirrored onto the unit, since `limits.conf` can't reach it (A7, B5); faillock staged
+- [ ] AppArmor loaded (A8); fail2ban active **if you kept it** (A9); auditd running (A10)
 - [ ] DNS pinned + DoT, checked against `/etc/resolv.conf` (A11); `debsums -c` clean (A12)
-- [ ] AIDE + off-box logs if long-lived/high-value (A13–A14)
-- [ ] Liveness dead-man's-switch wired if unattended (A14b)
-- [ ] Tailscale up, public SSH closed **after** verifying tailnet access (A15)
-- [ ] `/srv/myapp` layout; secrets 0600, out of git (A16–A17)
+- [ ] AIDE + off-box logs if long-lived/high-value; journald capped explicitly (A13–A14)
+- [ ] Liveness dead-man's-switch wired if unattended — external, not a watchdog (A14b)
+- [ ] Tailscale up, public SSH closed **after** verifying tailnet access; **stage 2** root lockout done (A15)
+- [ ] `/srv/myapp` + `/etc/myapp` layout; disk bound chosen; secrets 0600, out of git, no stale `.bak` (A16–A17)
 - [ ] Snapshot taken; offsite restic + restore drill only if stateful (A18); pre-use audit passes (A19)
 
 **Part B (if B0 applies):**
 
-- [ ] Dedicated `svc` user, no key/no sudo (B1)
-- [ ] Config `root:svc 0640` — service can read, not write (B2)
-- [ ] Egress allowlist verified four ways; proxy uid + metadata caged if allowlist relaxed (B3)
-- [ ] Container runtime installed, image **pre-pulled**, exec sandbox fail-closed + smoke-tested (B4)
+- [ ] Outbound-destination trace done — who chooses each destination, and what would change it (B0)
+- [ ] Dedicated `svc` user, `nologin`, no key/no sudo (B1)
+- [ ] Config root-owned, service can read but not write — Pattern 1 unless the app opens it itself (B2)
+- [ ] Egress allowlist verified four ways **including metadata**; rules file idempotent; proxy uid caged if allowlist relaxed (B3)
+- [ ] Container runtime installed, image **pre-pulled**, exec sandbox fail-closed + smoke-tested, tmpfs and memory bounded (B4)
+- [ ] Unit uses `Requires=` on the cage, carries `Limit*`, and has **either** containers **or** the systemd sandboxing block — not neither (B5)
 - [ ] systemd oneshot + timer installed, **timer disabled** until go-live (B5)
 - [ ] Crown-jewel credential off the box or root-only, referenced by handle (B6)
 - [ ] Read Part C before touching nftables / PAM / DNS
