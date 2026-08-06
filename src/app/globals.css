@@ -19,6 +19,13 @@
   --color-grad-1: var(--color-grad-1);
   --color-grad-2: var(--color-grad-2);
   --color-grad-3: var(--color-grad-3);
+
+  /* Wire next/font onto Tailwind's font tokens. Without this the Geist faces are
+     downloaded but never applied, and `font-sans`/`font-mono` fall back to the
+     system stacks. Swapping typeface = change the next/font import in
+     [locale]/layout.tsx and these two lines; nothing else references the family. */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 @keyframes gradient-rotate {
@@ -241,7 +248,7 @@
   border-radius: var(--radius) var(--radius) 0 0;
   padding: 0.5rem 1.25rem;
   font-family: var(--font-geist-mono), monospace;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--muted-foreground);
   background-color: var(--shiki-light-bg);
 }

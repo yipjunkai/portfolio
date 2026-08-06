@@ -68,8 +68,16 @@ export default async function RootLayout({
   });
 
   return (
-    <html lang={locale} suppressHydrationWarning data-scroll-behavior="smooth">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+      // The font variables live on <html>, not <body>: Tailwind's preflight sets
+      // font-family on <html>, so a variable defined one level lower can't resolve
+      // there and the mapping in globals.css would silently fall back to system.
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
+      <body className="antialiased">
         <link rel="prefetch" as="fetch" href={siteConfig.resume.url} crossOrigin="anonymous" />
         <JsonLd data={websiteJsonLd} />
         <NextIntlClientProvider>
