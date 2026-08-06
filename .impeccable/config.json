@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-radius",
+        "value": "20px",
+        "createdAt": "2026-08-06T16:47:06.792Z",
+        "reason": "Scrollbar thumb; browser chrome, documented exception in DESIGN.md Shapes"
+      }
+    ]
+  }
+}

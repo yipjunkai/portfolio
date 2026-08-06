@@ -120,3 +120,15 @@ $RECYCLE.BIN/
 
 # Local MCP server config (Chrome DevTools MCP, etc.)
 .mcp.json
+
+# Impeccable — ignore runtime state, keep shared design artifacts.
+# Must be `.impeccable/*`, not `.impeccable/`: git will not descend into an
+# excluded directory, so the negations below would never fire.
+.impeccable/*
+!.impeccable/config.json
+!.impeccable/design.json
+!.impeccable/critique/
+!.impeccable/surfaces/
+!.impeccable/live/
+.impeccable/live/*
+!.impeccable/live/config.json

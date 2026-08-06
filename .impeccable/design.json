@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-06T16:28:58Z",
+  "title": "Design System: Yip Jun Kai — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "signal-coral": {
+        "role": "primary",
+        "displayName": "Signal Coral",
+        "canonical": "#ee696b",
+        "tonalRamp": [
+          "oklch(0.20 0.08 20)",
+          "oklch(0.31 0.11 20)",
+          "oklch(0.42 0.14 20)",
+          "oklch(0.53 0.16 20)",
+          "oklch(0.70 0.16 20)",
+          "oklch(0.79 0.12 20)",
+          "oklch(0.88 0.07 20)",
+          "oklch(0.95 0.03 20)"
+        ]
+      },
+      "deep-violet": {
+        "role": "primary",
+        "displayName": "Deep Violet",
+        "canonical": "#523a78",
+        "tonalRamp": [
+          "oklch(0.16 0.05 300)",
+          "oklch(0.24 0.07 300)",
+          "oklch(0.31 0.09 300)",
+          "oklch(0.38 0.10 300)",
+          "oklch(0.50 0.11 300)",
+          "oklch(0.64 0.10 300)",
+          "oklch(0.79 0.07 300)",
+          "oklch(0.93 0.03 300)"
+        ]
+      },
+      "electric-purple": {
+        "role": "primary",
+        "displayName": "Electric Purple",
+        "canonical": "#a855f7",
+        "tonalRamp": [
+          "oklch(0.20 0.10 305)",
+          "oklch(0.30 0.15 305)",
+          "oklch(0.40 0.20 305)",
+          "oklch(0.51 0.23 305)",
+          "oklch(0.63 0.24 305)",
+          "oklch(0.74 0.18 305)",
+          "oklch(0.85 0.11 305)",
+          "oklch(0.94 0.04 305)"
+        ]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Canvas",
+        "canonical": "#e5e7eb",
+        "tonalRamp": [
+          "oklch(0.15 0.004 286)",
+          "oklch(0.27 0.004 286)",
+          "oklch(0.39 0.004 286)",
+          "oklch(0.51 0.005 286)",
+          "oklch(0.63 0.005 286)",
+          "oklch(0.75 0.005 286)",
+          "oklch(0.91 0.005 286)",
+          "oklch(0.97 0.003 286)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Reading Surface",
+        "canonical": "#f9fafb",
+        "tonalRamp": [
+          "oklch(0.15 0.002 286)",
+          "oklch(0.27 0.002 286)",
+          "oklch(0.39 0.002 286)",
+          "oklch(0.51 0.002 286)",
+          "oklch(0.63 0.002 286)",
+          "oklch(0.78 0.002 286)",
+          "oklch(0.90 0.002 286)",
+          "oklch(0.98 0.002 286)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#171717",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.20 0 0)",
+          "oklch(0.32 0 0)",
+          "oklch(0.44 0 0)",
+          "oklch(0.56 0 0)",
+          "oklch(0.68 0 0)",
+          "oklch(0.82 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "canvas-dark": {
+        "role": "neutral",
+        "displayName": "Canvas (Dark)",
+        "canonical": "#0a0a0a",
+        "tonalRamp": [
+          "oklch(0.11 0 0)",
+          "oklch(0.22 0 0)",
+          "oklch(0.34 0 0)",
+          "oklch(0.46 0 0)",
+          "oklch(0.58 0 0)",
+          "oklch(0.70 0 0)",
+          "oklch(0.83 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "surface-dark": {
+        "role": "neutral",
+        "displayName": "Reading Surface (Dark)",
+        "canonical": "#131313",
+        "tonalRamp": [
+          "oklch(0.14 0 0)",
+          "oklch(0.25 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.60 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "ink-dark": {
+        "role": "neutral",
+        "displayName": "Ink (Dark)",
+        "canonical": "#ededed",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.27 0 0)",
+          "oklch(0.39 0 0)",
+          "oklch(0.51 0 0)",
+          "oklch(0.63 0 0)",
+          "oklch(0.75 0 0)",
+          "oklch(0.87 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "oklch(0.552 0.016 285.938)",
+        "tonalRamp": [
+          "oklch(0.16 0.016 286)",
+          "oklch(0.27 0.016 286)",
+          "oklch(0.38 0.016 286)",
+          "oklch(0.55 0.016 286)",
+          "oklch(0.66 0.014 286)",
+          "oklch(0.77 0.011 286)",
+          "oklch(0.87 0.007 286)",
+          "oklch(0.95 0.004 286)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(0.92 0.004 286.32)",
+        "tonalRamp": [
+          "oklch(0.16 0.004 286)",
+          "oklch(0.28 0.004 286)",
+          "oklch(0.40 0.004 286)",
+          "oklch(0.52 0.004 286)",
+          "oklch(0.64 0.004 286)",
+          "oklch(0.78 0.004 286)",
+          "oklch(0.92 0.004 286)",
+          "oklch(0.97 0.002 286)"
+        ]
+      },
+      "link-blue": {
+        "role": "secondary",
+        "displayName": "Link Blue",
+        "canonical": "#2563eb",
+        "tonalRamp": [
+          "oklch(0.20 0.09 264)",
+          "oklch(0.30 0.14 264)",
+          "oklch(0.40 0.18 264)",
+          "oklch(0.55 0.22 264)",
+          "oklch(0.66 0.19 264)",
+          "oklch(0.77 0.14 264)",
+          "oklch(0.87 0.08 264)",
+          "oklch(0.95 0.03 264)"
+        ]
+      },
+      "tech-language": {
+        "role": "tertiary",
+        "displayName": "Language Blue",
+        "canonical": "#3b82f6",
+        "tonalRamp": [
+          "oklch(0.21 0.09 259)",
+          "oklch(0.31 0.14 259)",
+          "oklch(0.42 0.18 259)",
+          "oklch(0.53 0.20 259)",
+          "oklch(0.62 0.19 259)",
+          "oklch(0.75 0.13 259)",
+          "oklch(0.86 0.07 259)",
+          "oklch(0.95 0.03 259)"
+        ]
+      },
+      "tech-frontend": {
+        "role": "tertiary",
+        "displayName": "Frontend Green",
+        "canonical": "#22c55e",
+        "tonalRamp": [
+          "oklch(0.20 0.07 149)",
+          "oklch(0.30 0.10 149)",
+          "oklch(0.41 0.13 149)",
+          "oklch(0.52 0.16 149)",
+          "oklch(0.73 0.19 149)",
+          "oklch(0.82 0.14 149)",
+          "oklch(0.90 0.08 149)",
+          "oklch(0.96 0.03 149)"
+        ]
+      },
+      "tech-backend": {
+        "role": "tertiary",
+        "displayName": "Backend Purple",
+        "canonical": "#a855f7",
+        "tonalRamp": [
+          "oklch(0.20 0.10 305)",
+          "oklch(0.30 0.15 305)",
+          "oklch(0.40 0.20 305)",
+          "oklch(0.51 0.23 305)",
+          "oklch(0.63 0.24 305)",
+          "oklch(0.74 0.18 305)",
+          "oklch(0.85 0.11 305)",
+          "oklch(0.94 0.04 305)"
+        ]
+      },
+      "tech-database": {
+        "role": "tertiary",
+        "displayName": "Database Yellow",
+        "canonical": "#eab308",
+        "tonalRamp": [
+          "oklch(0.20 0.05 96)",
+          "oklch(0.31 0.07 96)",
+          "oklch(0.42 0.10 96)",
+          "oklch(0.53 0.12 96)",
+          "oklch(0.79 0.16 96)",
+          "oklch(0.87 0.12 96)",
+          "oklch(0.93 0.07 96)",
+          "oklch(0.97 0.03 96)"
+        ]
+      },
+      "tech-service": {
+        "role": "tertiary",
+        "displayName": "Service Orange",
+        "canonical": "#f97316",
+        "tonalRamp": [
+          "oklch(0.20 0.07 48)",
+          "oklch(0.31 0.10 48)",
+          "oklch(0.42 0.14 48)",
+          "oklch(0.53 0.17 48)",
+          "oklch(0.70 0.19 48)",
+          "oklch(0.81 0.14 48)",
+          "oklch(0.89 0.08 48)",
+          "oklch(0.96 0.03 48)"
+        ]
+      },
+      "tech-other": {
+        "role": "tertiary",
+        "displayName": "Other Grey",
+        "canonical": "#6b7280",
+        "tonalRamp": [
+          "oklch(0.17 0.012 286)",
+          "oklch(0.28 0.014 286)",
+          "oklch(0.39 0.016 286)",
+          "oklch(0.55 0.017 286)",
+          "oklch(0.66 0.015 286)",
+          "oklch(0.77 0.012 286)",
+          "oklch(0.87 0.008 286)",
+          "oklch(0.95 0.004 286)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the home hero and nothing else. Larger on mobile (4.5rem) than desktop (3rem) — deliberately inverted."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page-level h1: Projects, Blog, and blog post titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project names, experience entry titles, in-page section headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All prose and evidence bullets. Capped at a 900px measure."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Secondary tier — button labels, badge text, callout body, dialog descriptions, muted field labels. The most-reused step after Body."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Code block bodies and inline code chips. Shares Caption's size so code sits level with surrounding secondary text."
+      },
+      "label": {
+        "displayName": "Mono Label",
+        "purpose": "Orientation only — location, wordmark, employer/date headers, email address. Never body copy."
+      },
+      "overline": {
+        "displayName": "Overline",
+        "purpose": "Uppercase tracked micro-headers: sidebar section names, the ABSTRACT marker."
+      }
+    },
+    "shadows": [
+      {
+        "name": "dialog-lift",
+        "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "purpose": "The only structural shadow in the system. Modal surfaces exclusively, paired with a black/50 scrim."
+      },
+      {
+        "name": "breathing-halo-rest",
+        "value": "0 0 12px rgba(238, 105, 107, 0.4)",
+        "purpose": "Low point of the secondary button's hover pulse, in Signal Coral."
+      },
+      {
+        "name": "breathing-halo-peak",
+        "value": "0 0 24px rgba(238, 105, 107, 0.7)",
+        "purpose": "High point of the same 2s alternating pulse. Hover only — never at rest."
+      },
+      {
+        "name": "inset-ring-dark",
+        "value": "inset 0 0 0 2px rgba(0, 0, 0, 0.6)",
+        "purpose": "Darkens the primary button's gradient fill in dark mode so white text keeps its contrast."
+      }
+    ],
+    "motion": [
+      {
+        "name": "gradient-rotate",
+        "value": "gradient-rotate 2s ease-in-out infinite",
+        "purpose": "Cycles the primary button's halo gradient 0% → 100% background-position. Desktop hover only; always on at mobile widths where no hover exists."
+      },
+      {
+        "name": "shadow-breathe",
+        "value": "shadow-breathe 2s ease-in-out infinite",
+        "purpose": "The secondary button's coral hover pulse, alternating between the two halo shadows."
+      },
+      {
+        "name": "copy-shimmer",
+        "value": "copy-shimmer 0.7s ease-out forwards",
+        "purpose": "One-shot sweep confirming the email address was copied. Fires on intent, never idle."
+      },
+      {
+        "name": "nav-transition",
+        "value": "200ms",
+        "purpose": "Standard duration for navigation item hover and background shifts."
+      },
+      {
+        "name": "dialog-transition",
+        "value": "200ms",
+        "purpose": "Dialog fade and 95% → 100% zoom on open, reversed on close."
+      }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "shell-max", "value": "1280px" },
+      { "name": "measure-max", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single strongest call to action — gradient fill with an animated bloom on hover.",
+      "html": "<button class=\"ds-btn-primary\"><span>View resume</span></button>",
+      "css": ".ds-btn-primary { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border: none; border-radius: 8px; background: linear-gradient(to right, var(--color-grad-1, #ee696b), var(--color-grad-2, #523a78)); color: #fff; font-size: 14px; font-weight: 400; cursor: pointer; transition: all 0.2s; } .ds-btn-primary::before { content: ''; position: absolute; inset: -4px; z-index: 0; border-radius: 10px; background: linear-gradient(to right, var(--color-grad-1, #ee696b), var(--color-grad-3, #a855f7), var(--color-grad-1, #ee696b)); background-size: 200% 100%; filter: blur(20px); opacity: 0; transition: opacity 0.2s; } .ds-btn-primary:hover::before { opacity: 0.8; animation: ds-gradient-rotate 2s ease-in-out infinite; } .ds-btn-primary > * { position: relative; z-index: 10; } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(113, 113, 122, 0.5); } @keyframes ds-gradient-rotate { 0% { background-position: 0% 0%; } 100% { background-position: 100% 0%; } } @media (prefers-reduced-motion: reduce) { .ds-btn-primary:hover::before { animation: none; } }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Inverse of primary — gradient reads as a 2px border with gradient-clipped text, pulsing coral on hover.",
+      "html": "<button class=\"ds-btn-secondary\"><span>Email me</span></button>",
+      "css": ".ds-btn-secondary { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border: none; border-radius: 8px; background: linear-gradient(to right, var(--color-grad-1, #ee696b), var(--color-grad-2, #523a78)); font-size: 14px; cursor: pointer; box-shadow: 0 0 0 rgba(238, 105, 107, 0); transition: box-shadow 0.2s; } .ds-btn-secondary::before { content: ''; position: absolute; inset: 2px; z-index: 0; border-radius: 6px; background: #fff; } .ds-btn-secondary > span { position: relative; z-index: 10; background: linear-gradient(to right, var(--color-grad-1, #ee696b), var(--color-grad-2, #523a78)); -webkit-background-clip: text; background-clip: text; color: transparent; } .ds-btn-secondary:hover { animation: ds-shadow-breathe 2s ease-in-out infinite; } .ds-btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(113, 113, 122, 0.5); } @keyframes ds-shadow-breathe { 0%, 100% { box-shadow: 0 0 12px rgba(238, 105, 107, 0.4); } 50% { box-shadow: 0 0 24px rgba(238, 105, 107, 0.7); } } @media (prefers-reduced-motion: reduce) { .ds-btn-secondary:hover { animation: none; } }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Restrained non-primary action — bordered surface that fills on hover.",
+      "html": "<button class=\"ds-btn-outline\">Download</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border: 1px solid oklch(0.92 0.004 286.32); border-radius: 8px; background: #f9fafb; color: #171717; font-size: 14px; cursor: pointer; transition: background 0.2s, color 0.2s; } .ds-btn-outline:hover { background: oklch(0.967 0.001 286.375); } .ds-btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(113, 113, 122, 0.5); }"
+    },
+    {
+      "name": "Brand Badge",
+      "kind": "chip",
+      "refersTo": "badge-default",
+      "description": "Gradient badge used where a label signs for the brand rather than classifying something.",
+      "html": "<span class=\"ds-badge-brand\">First Author</span>",
+      "css": ".ds-badge-brand { display: inline-flex; width: fit-content; align-items: center; justify-content: center; gap: 4px; padding: 4px 8px; border: none; border-radius: 8px; background: linear-gradient(to right, var(--color-grad-1, #ee696b), var(--color-grad-2, #523a78)); color: #fff; font-size: 14px; font-weight: 500; white-space: nowrap; }"
+    },
+    {
+      "name": "Tech Taxonomy Badge",
+      "kind": "chip",
+      "refersTo": "badge-tech",
+      "description": "Flat category marker for technology rows. Six fills classify; they never decorate.",
+      "html": "<span class=\"ds-badge-tech ds-badge-tech--language\">TypeScript</span> <span class=\"ds-badge-tech ds-badge-tech--backend\">Rust</span> <span class=\"ds-badge-tech ds-badge-tech--other\">Docker</span>",
+      "css": ".ds-badge-tech { display: inline-flex; width: fit-content; align-items: center; padding: 4px 8px; border: none; border-radius: 8px; color: #fff; font-size: 14px; font-weight: 500; white-space: nowrap; } .ds-badge-tech--language { background: #3b82f6; } .ds-badge-tech--frontend { background: #22c55e; } .ds-badge-tech--backend { background: #a855f7; } .ds-badge-tech--database { background: #eab308; } .ds-badge-tech--service { background: #f97316; } .ds-badge-tech--other { background: #6b7280; }"
+    },
+    {
+      "name": "Navigation Item",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "A row in the 192px desktop rail. Background shifts on hover over 200ms; external links carry a trailing icon.",
+      "html": "<nav class=\"ds-nav\"><p class=\"ds-nav__section\">About me</p><a class=\"ds-nav__item ds-nav__item--active\" href=\"#\"><span>Home</span></a><a class=\"ds-nav__item\" href=\"#\"><span>Experience</span></a><a class=\"ds-nav__item\" href=\"#\"><span>GitHub</span><svg class=\"ds-nav__ext\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\"/><polyline points=\"15 3 21 3 21 9\"/><line x1=\"10\" y1=\"14\" x2=\"21\" y2=\"3\"/></svg></a></nav>",
+      "css": ".ds-nav { display: flex; flex-direction: column; gap: 8px; width: 192px; padding: 16px; } .ds-nav__section { margin: 0 0 4px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: oklch(0.552 0.016 285.938); } .ds-nav__item { display: flex; flex-direction: row; align-items: center; gap: 16px; padding: 8px; border-radius: 8px; color: #171717; text-decoration: none; text-transform: capitalize; transition: all 200ms; } .ds-nav__item:hover { background: oklch(0.87 0.005 286); } .ds-nav__item--active { background: oklch(0.87 0.005 286); outline: 1px solid oklch(0.78 0.005 286); } .ds-nav__item:focus-visible { outline: 2px solid oklch(0.705 0.015 286.067); outline-offset: 0; } .ds-nav__ext { width: 16px; height: 16px; margin-left: auto; }"
+    },
+    {
+      "name": "Dialog Surface",
+      "kind": "card",
+      "refersTo": "dialog-surface",
+      "description": "The only elevated object in the system — the sole sanctioned use of a structural shadow.",
+      "html": "<div class=\"ds-dialog\"><h2 class=\"ds-dialog__title\">Here's my resume</h2><p class=\"ds-dialog__desc\">Put in a good word to HR!</p></div>",
+      "css": ".ds-dialog { display: grid; gap: 16px; width: 100%; max-width: 512px; padding: 24px; border: 1px solid oklch(0.92 0.004 286.32); border-radius: 10px; background: #fff; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); } .ds-dialog__title { margin: 0; font-size: 18px; font-weight: 700; color: #171717; } .ds-dialog__desc { margin: 0; font-size: 14px; color: oklch(0.552 0.016 285.938); }"
+    },
+    {
+      "name": "MDX Callout",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Blog admonition in info / warning / tip. Tinted 10% fill over a 30–40% border — the only place non-brand colour fills a container.",
+      "html": "<div class=\"ds-callout ds-callout--warning\"><svg class=\"ds-callout__icon\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2 1 21h22L12 2zm0 6 7.5 13h-15L12 8zm-1 4v4h2v-4h-2zm0 5v2h2v-2h-2z\"/></svg><div class=\"ds-callout__body\"><p class=\"ds-callout__title\">Careful</p><p class=\"ds-callout__text\">This locks you out if you skip the SSH key step.</p></div></div>",
+      "css": ".ds-callout { display: flex; gap: 12px; margin: 24px 0; padding: 16px; border: 1px solid; border-radius: 10px; } .ds-callout--info { border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.1); } .ds-callout--warning { border-color: rgba(234, 179, 8, 0.4); background: rgba(234, 179, 8, 0.1); } .ds-callout--tip { border-color: rgba(34, 197, 94, 0.3); background: rgba(34, 197, 94, 0.1); } .ds-callout__icon { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; color: #eab308; } .ds-callout__body { display: flex; flex-direction: column; gap: 4px; } .ds-callout__title { margin: 0; font-weight: 600; color: #171717; } .ds-callout__text { margin: 0; font-size: 14px; color: #171717; }"
+    },
+    {
+      "name": "Code Block",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The signature surface. Title bar squares its bottom corners so title and block read as one object; highlighted lines take a violet wash with a coral left border.",
+      "html": "<figure class=\"ds-code\"><figcaption class=\"ds-code__title\">setup.sh</figcaption><pre class=\"ds-code__pre\"><code><span class=\"ds-code__line\">ufw default deny incoming</span><span class=\"ds-code__line ds-code__line--hl\">ufw allow from 100.64.0.0/10</span><span class=\"ds-code__line\">ufw enable</span></code></pre></figure>",
+      "css": ".ds-code { margin: 24px 0; } .ds-code__title { padding: 8px 20px; border: 1px solid oklch(0.92 0.004 286.32); border-bottom: 0; border-radius: 10px 10px 0 0; background: #f9fafb; font-family: var(--font-geist-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: 13px; color: oklch(0.552 0.016 285.938); } .ds-code__pre { margin: 0; padding: 16px 0; overflow-x: auto; border: 1px solid oklch(0.92 0.004 286.32); border-radius: 0 0 10px 10px; background: #f9fafb; font-size: 14px; line-height: 1.6; } .ds-code__pre code { display: grid; background: transparent; font-family: var(--font-geist-mono, ui-monospace, SFMono-Regular, Menlo, monospace); } .ds-code__line { padding: 0 20px; border-left: 2px solid transparent; color: #171717; } .ds-code__line--hl { background: color-mix(in oklch, var(--color-grad-2, #523a78) 12%, transparent); border-left-color: var(--color-grad-1, #ee696b); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Terminal Dossier",
+    "overview": "This is a briefing document, not a showcase. A senior technical reader arrives already holding a reference to the person and needs to confirm it quickly — so the interface behaves like a well-kept dossier handed across a desk: near-monochrome, densely packed with evidence, monospace where a label needs to orient you, and completely uninterested in performing. The reading column sits on a lighter surface inset into a darker canvas, the way a page sits on a desk. Nothing floats, nothing glows at rest, nothing animates unprompted.\n\nThe system rations colour to the point of severity. One coral-to-violet gradient carries the entire chromatic identity, and it appears only where the reader could act or where the brand signs its name. Everything else is a neutral ramp. This is what makes the gradient legible as a signal rather than as decoration — the moment a second accent hue enters, the first one stops meaning anything.\n\nConfidence lives in structure, never in ornament. Scale jumps are large and decisive — a 4.5rem name against 1rem body copy — weights go straight from regular to bold with nothing timid in between, and headings do not apologise for their size. But that confidence is expressed entirely through type scale, weight, and hierarchy. It never reaches for a bigger shadow, a louder colour, or a flourish. The visual voice matches the written one: plain, evidence-first, no hedging.",
+    "keyCharacteristics": [
+      "Two-tone neutral field (darker canvas framing a lighter reading surface) in both themes",
+      "Exactly one chromatic gesture: the coral → violet gradient, used sparingly",
+      "Monospace as a labelling instrument, not a body face",
+      "Flat at rest; depth and motion appear only in response to intent",
+      "Dense, scannable evidence — bulleted proof over paragraphs",
+      "Full light/dark parity, with no theme treated as the default"
+    ],
+    "rules": [
+      {
+        "name": "The One Gradient Rule",
+        "body": "The coral → violet gradient is the only chromatic event in the system. It appears in exactly four places: the primary button, the default badge, the highlighted code line, and the secondary button's border and text fill. It is never a page background, never a section fill, never a large field. Its scarcity is what makes it read as \"act here.\"",
+        "section": "colors"
+      },
+      {
+        "name": "The Taxonomy Is Not Brand Rule",
+        "body": "The six tech-badge colours classify; they never decorate. They may not be borrowed for buttons, links, headings, or surfaces, and no seventh category colour may be invented to add visual interest.",
+        "section": "colors"
+      },
+      {
+        "name": "The Cool-Neutral Rule",
+        "body": "Every neutral in the system carries a slight cool cast (the OKLCH ramp sits around hue 286). Warm greys, beiges, and cream surfaces are foreign to this system and read immediately as imported from elsewhere.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono Label Rule",
+        "body": "Geist Mono marks orientation, never content. Where am I, who is this, when was this, what is the address — those are mono. The substance of what is being claimed is always in the sans face. A mono paragraph is a violation of the rule, not an intensification of it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mobile-Louder Rule",
+        "body": "The name renders larger on mobile (4.5rem) than on desktop (3rem). This is deliberate and inverts the usual instinct: on a phone the hero is the entire first viewport and the name must own it, while on desktop it shares the field with a persistent sidebar. Do not \"fix\" this into a conventional clamp.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two-Weight Rule",
+        "body": "The system uses 400 and 700. Medium and semibold appear only where a third-party component ships them (badge text, inline code); no new intermediate weight may be introduced to soften a hierarchy step. If a step feels too hard, change the size, not the weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The 900 Rule",
+        "body": "No prose measure exceeds 900px, regardless of viewport. Wide screens buy margin, never line length.",
+        "section": "layout"
+      },
+      {
+        "name": "The Rail Stays Rule",
+        "body": "The desktop navigation rail is always visible and never scrolls with content. Section-jumping is a primary affordance for a reader who is verifying, not browsing.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat-At-Rest Rule",
+        "body": "Nothing in this system has a resting shadow except a modal. If an element needs to feel separated, use the tonal surface step or a hairline — never a shadow. Glow at rest is banned outright; the two glows that exist are hover states and one mobile affordance, and both are tied to the accent.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Motion-Answers-Intent Rule",
+        "body": "Every animation in the system is a response to the reader doing something: hovering a button, opening a dialog, copying an address. Nothing loops, drifts, or attracts attention on its own. prefers-reduced-motion is honoured explicitly in the animated icon buttons and the primary button's halo.",
+        "section": "elevation"
+      },
+      {
+        "name": "The 8/10 Rule",
+        "body": "Controls take 8px, containers take 10px. A new component picks whichever of those two it is; it does not invent a third radius to feel distinct.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do reserve the coral → violet gradient for action and identity — primary button, brand badge, highlighted code line, secondary button border. Four places, deliberately.",
+      "Do express emphasis through type scale and weight (400 → 700, 1rem → 4.5rem), which is where this system's confidence is allowed to live.",
+      "Do separate content with 1px hairlines and 64px of space rather than wrapping it in cards.",
+      "Do keep prose at or below 900px and let wide viewports buy margin instead of measure.",
+      "Do use Geist Mono for orientation labels — place, name, date, address — and Geist for everything that makes a claim.",
+      "Do ship every new string in both messages/en-SG.json and messages/zh-SG.json; both locales are first-class.",
+      "Do honour prefers-reduced-motion on anything that moves, as the animated icon buttons and primary halo already do."
+    ],
+    "donts": [
+      "Don't introduce a second accent hue. The gradient's authority is entirely a function of being the only one.",
+      "Don't give anything a resting shadow or glow. The two glows in the system are hover states; a third, at rest, would break The Flat-At-Rest Rule.",
+      "Don't repurpose the tech-taxonomy colours for buttons, links, headings, or surfaces — they classify, they don't decorate.",
+      "Don't put white text on the mid-tone taxonomy fills at text-sm. Database Yellow on white measures roughly 1.9:1, Frontend Green about 2.3:1, and Backend Purple about 3.5:1 — all below the 4.5:1 needed for small text. This is a known defect in the incumbent implementation, recorded here so it is fixed rather than propagated.",
+      "Don't fix Geist by adding font-family to individual components. Map --font-sans and --font-mono once in globals.css's @theme block so the whole system inherits it.",
+      "Don't normalise the mobile-larger display size into a conventional clamp(). The inversion is intentional.",
+      "Don't add a third radius value. Controls are 8px, containers are 10px.",
+      "Don't let colour alone carry meaning — the taxonomy badges are always accompanied by a text label naming the category."
+    ]
+  }
+}
