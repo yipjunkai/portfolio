@@ -54,7 +54,10 @@
       "cvDialog": {
         "title": "这是我的简历",
         "description": "记得帮我推荐一下哦！",
-        "filename": "叶俊凯_简历.pdf"
+        "filename": "叶俊凯_简历.pdf",
+        "loading": "正在加载简历…",
+        "loadError": "无法加载简历。",
+        "downloadError": "下载未能完成。"
       },
       "emailDialog": {
         "title": "与我联系",

@@ -54,7 +54,10 @@
       "cvDialog": {
         "title": "Here's my resume",
         "description": "Put in a good word to HR!",
-        "filename": "Yip_JunKai_Resume.pdf"
+        "filename": "Yip_JunKai_Resume.pdf",
+        "loading": "Loading resume…",
+        "loadError": "The resume could not be loaded.",
+        "downloadError": "The download did not complete."
       },
       "emailDialog": {
         "title": "Get in touch with me",
