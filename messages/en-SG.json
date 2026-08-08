@@ -60,11 +60,11 @@
         "downloadError": "The download did not complete."
       },
       "emailDialog": {
-        "title": "Get in touch with me",
-        "description": "Hey! One more step to get in touch with me. I will try my best to reply ASAP!",
+        "title": "Get in touch",
+        "description": "Whichever is easier.",
         "openEmailClient": "Open email client",
         "copyEmail": "Copy email address",
-        "orCopyEmail": "or copy my email address"
+        "orCopyEmail": "or copy the address"
       }
     },
     "experience": {
@@ -132,7 +132,25 @@
       "greeting": "Hey, I'm ",
       "name": "Jun Kai",
       "location": "San Francisco & Singapore",
-      "aboutMe": "A relentless builder across full-stack web and AI — comfortable end to end, from frontend to backend, web to mobile, at both startups and large companies.\n\nEqually at home deeper in the stack: Rust systems, cryptography, quantitative finance, and ML research."
+      "aboutMe": "Most of what I build starts where something else stopped: a benchmark someone set, or a problem taken as solved until you measure it. Curiosity mostly, with a competitive streak. Professionally that's full-stack product engineering, with deeper specialisation in Rust numerical computing, security tooling and uncertainty quantification.",
+      "evidence": {
+        "pyvolr": {
+          "label": "pyvolr",
+          "claim": "~2× faster than the next-fastest library at 1M implied-vol solves — and the only one still exact at option prices of 1e-215, where the others return wrong constants without erroring."
+        },
+        "secretsSpotter": {
+          "label": "secrets-spotter",
+          "claim": "Finds leaked credentials in files, pages and live network traffic. 50 patterns, one Rust core, a CLI and a browser extension, plus a disclosure policy nobody asked me for."
+        },
+        "oceanfront": {
+          "label": "Oceanfront Hardware",
+          "claim": "A B2B checkout-first storefront, live since 2023 and still a one-person system. One search rebuild took query latency from 700ms to 20ms."
+        },
+        "ai4x": {
+          "label": "AI4X 2025",
+          "claim": "Quantifying uncertainty in physics-informed neural networks — knowing when the model does not know."
+        }
+      }
     },
     "experience": {
       "jobs": {

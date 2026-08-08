@@ -9,6 +9,7 @@ import { getPageMetadata } from "@/lib/seo";
 import { JsonLd, getPersonJsonLd } from "@/lib/jsonLd";
 import EmailMeDialog from "./_components/EmailMeDialog";
 import ResumePDFDialog from "./_components/ResumePDFDialog";
+import HomeEvidence from "./_components/HomeEvidence";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
@@ -42,7 +43,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <>
       <JsonLd data={personJsonLd} />
-      <div className="h-[calc(100svh-8rem)] space-y-8 md:h-min">
+      <div className="space-y-8">
         <h1 className="md:font-bold">
           <span className="text-3xl md:text-5xl">{t("greeting")}</span>
           <br className="block md:hidden" />
@@ -52,15 +53,16 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <MapPinIcon className="size-6 text-grad-1" />
           <span>{t("location")}</span>
         </h2>
-        <p className="text-justify text-pretty whitespace-pre-line">{t("aboutMe")}</p>
+        {t("aboutMe").trim() !== "" && <p className="text-pretty">{t("aboutMe")}</p>}
         <div className="flex flex-col gap-4 *:flex *:items-center *:gap-4 *:text-2xl lg:flex-row">
-          <ResumePDFDialog>
-            <AnimatedIconButton variant="default" icon={DownloadIcon} label={tCommon("viewCv")} />
-          </ResumePDFDialog>
           <EmailMeDialog>
-            <AnimatedIconButton variant="secondary" icon={SendIcon} label={tCommon("emailMe")} />
+            <AnimatedIconButton variant="default" icon={SendIcon} label={tCommon("emailMe")} />
           </EmailMeDialog>
+          <ResumePDFDialog>
+            <AnimatedIconButton variant="secondary" icon={DownloadIcon} label={tCommon("viewCv")} />
+          </ResumePDFDialog>
         </div>
+        <HomeEvidence locale={locale} />
       </div>
     </>
   );
