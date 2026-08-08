@@ -26,9 +26,10 @@
       }
     },
     "notFound": {
-      "title": "页面未找到",
-      "illustrationAlt": "404 页面插图",
-      "goHome": "返回主页"
+      "title": "这里什么都没有",
+      "body": "大多数故障不会主动声明自己。这一个会——这个地址下没有页面。",
+      "illustrationAlt": "一个人站在黑暗虚空的边缘",
+      "routesLabel": "整个网站只有四个页面"
     },
     "error": {
       "title": "出错了",

@@ -26,9 +26,10 @@
       }
     },
     "notFound": {
-      "title": "Page Not Found",
-      "illustrationAlt": "404 page illustration",
-      "goHome": "Go home"
+      "title": "Nothing here",
+      "body": "Most failures do not announce themselves. This one did — there is no page at this address.",
+      "illustrationAlt": "A figure standing at the edge of a dark void",
+      "routesLabel": "The whole site is four pages"
     },
     "error": {
       "title": "Something went wrong",
