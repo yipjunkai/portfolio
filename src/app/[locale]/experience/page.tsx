@@ -92,11 +92,10 @@ export default async function Experience({ params }: { params: Promise<{ locale:
         { name: "FastAPI", section: "backend" },
         { name: "Python", section: "language" },
         { name: "Typescript", section: "language" },
-        { name: "PostgreSQL", section: "database" },
-        { name: "RBAC + JWT Authentication", section: "backend" }
+        { name: "PostgreSQL", section: "database" }
       ],
       description: t("jobs.dsbj.description"),
-      bulletPoints: [t("jobs.dsbj.bullet1"), t("jobs.dsbj.bullet2"), t("jobs.dsbj.bullet3")],
+      bulletPoints: [t("jobs.dsbj.bullet1"), t("jobs.dsbj.bullet2")],
       patternVariant: "nodes"
     },
     {
@@ -128,7 +127,9 @@ export default async function Experience({ params }: { params: Promise<{ locale:
         { name: "Firebase", section: "database" }
       ],
       description: t("jobs.cda.description"),
-      bulletPoints: [t("jobs.cda.bullet1")],
+      // No bullets: a description plus a single bullet says the same thing twice, and an
+      // array of one empty string still renders an empty <ul>.
+      bulletPoints: [],
       patternVariant: "shield"
     }
   ];

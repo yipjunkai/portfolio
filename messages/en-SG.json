@@ -159,42 +159,40 @@
           "company": "Kipo AI",
           "location": "San Francisco",
           "position": "Software Engineering Intern",
-          "description": "Built and hardened core platform systems as the product scaled from stealth to ~1,000 active users with 2M+ indexed components.",
-          "bullet1": "Rewrote the authentication and session system end-to-end to unblock OAuth and enterprise rollout, with cross-browser end-to-end tests guarding the flow.",
-          "bullet2": "Made the AI agent reliably usable for ~1,000 users by introducing a durable workflow engine and moving chat state onto Redis, eliminating the race conditions that were dropping live responses.",
-          "bullet3": "Led an architectural split that decoupled the chat and search subsystems, and hardened the deploy pipeline with reproducible builds, faster caching, and end-to-end test coverage."
+          "description": "Built much of the web application and the platform systems beneath it, through the scale-up from stealth to ~1,000 active users over a 2M+ component index.",
+          "bullet1": "Rewrote the authentication and session system to unblock OAuth and enterprise rollout, with cross-browser end-to-end tests guarding the flow.",
+          "bullet2": "Rebuilt the product's real-time core on Temporal, replacing a WebSocket-and-SSE patchwork and in-process state, and split chat from search — opening product directions the original coupling had ruled out.",
+          "bullet3": "Rebuilt the deploy pipeline and test suite over several sprints — unit, end-to-end and fuzz, with the front-end tests driven through the accessibility layer — which surfaced and closed a backlog of latent defects."
         },
         "dsbj": {
           "company": "DSBJ",
           "location": "Singapore",
           "position": "Application & Data Developer Intern",
-          "description": "",
-          "bullet1": "Built a model visualization platform with LLM-based diagnostics, enabling non-technical stakeholders to interpret complex mathematical models via natural language.",
-          "bullet2": "Centralized and deployed a Single Sign-On (SSO) framework, unifying authentication across 6 internal applications to enhance organizational security.",
-          "bullet3": ""
+          "description": "Internal platform work for an electronics manufacturer — making complex models readable to the domain experts who rely on them, and unifying login across six applications.",
+          "bullet1": "Built a model visualisation platform with LLM-based diagnostics, used day to day by the domain experts who had to interpret the models.",
+          "bullet2": "Replaced six independently built authentication systems with one — modern password hashing, proper access and refresh tokens, and consistent session management across all six applications."
         },
         "works": {
           "company": "Gigworks",
           "location": "Singapore",
-          "position": "Mobile Application and Web Application Developer Intern",
+          "position": "Mobile and Web Application Developer Intern",
           "description": "",
           "bullet1": "Owned development across mobile and web on a revenue-generating e-commerce platform, contributing ~80% of the production codebase.",
-          "bullet2": "Reduced user-reported defects by ~90%, improving checkout reliability and customer trust.",
-          "bullet3": "Accelerated time-to-market by helping close a ~6-month delivery gap with the design team."
+          "bullet2": "Reduced user-reported defects by ~90%, improving checkout reliability.",
+          "bullet3": "Closed a ~6-month delivery gap by working directly against the design team's backlog."
         },
         "cda": {
           "company": "Civil Defence Academy",
           "location": "Singapore",
           "position": "Mobile Application Developer",
-          "description": "",
-          "bullet1": "Pioneered a mission-critical attendance system during National Service using Flutter and Firebase, that digitised status tracking for 1,000+ personnel across the military base."
+          "description": "Built during National Service and deployed base-wide — Flutter and Firebase, replacing manual status tracking for 1,000+ personnel."
         }
       },
       "research": {
         "ai4x": {
           "conference": "AI4X 2025",
           "title": "Quantifying Uncertainty in Physics-Informed Neural Networks",
-          "description": "We used deep evidential regression to quantify uncertainties in physics-informed neural networks, demonstrating it on the Burgers and Laplace experiments.",
+          "description": "Deep evidential regression applied to PINNs — a way to tell when a prediction should not be trusted. Demonstrated on Burgers and Laplace.",
           "abstract": "We integrate a state-of-the-art method to quantify aleatoric and epistemic uncertainties in physics-informed neural networks and observe that they can be captured effectively while maintaining predictive accuracy.",
           "topic1": "Physics-Informed Neural Networks",
           "topic2": "Uncertainty Quantification"
