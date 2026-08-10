@@ -141,7 +141,7 @@
         },
         "secretsSpotter": {
           "label": "secrets-spotter",
-          "claim": "检测文件、网页与实时网络流量中泄漏的密钥。50 种模式、一个 Rust 核心、一个命令行工具和一个浏览器扩展，外加一份没人要求我写的安全披露政策。"
+          "claim": "检测文件、网页与实时网络流量中泄漏的密钥。60 多种模式、一个 Rust 核心、一个命令行工具和一个浏览器扩展，外加一份没人要求我写的安全披露政策。"
         },
         "oceanfront": {
           "label": "Oceanfront Hardware",
@@ -212,20 +212,19 @@
       "oceanfrontHardware": {
         "name": "Oceanfront Hardware",
         "role": "自由职业开发者",
-        "description": "为这家五金公司担任全栈网页开发自由职业者。专注于 SEO 性能和 CMS 集成。",
-        "bullet1": "架构并部署了全栈 B2B 电商平台，支持 800 个活跃 SKU 的目录，帮助客户实现销售数字化并扩大目录运营规模。",
-        "bullet2": "主导使用服务端渲染（SSR）的迁移，改善核心网页性能指标并推动顶级 Google 排名，增加与竞争对手相比的自然流量可发现性。",
-        "bullet3": "通过实施先进的搜索功能优化产品可发现性，将搜索查询延迟降低了 97%（从 700ms 降至 20ms），并为 B2B 目录启用即时、容错的筛选功能。",
-        "laptopAlt": "OceanfrontHardware 桌面端视图",
-        "mobileAlt": "OceanfrontHardware 移动端视图"
+        "description": "一个以结账流程为核心的 B2B 商店，由我从头搭建并持续维护至今。",
+        "bullet1": "把客户从线下销售带到一个他们的商用客户真正能下单的网店，全程只有我一个工程师。",
+        "bullet2": "带着客户一起梳理他们自己的产品目录，理清那些让产品悄悄无法出现在搜索结果和分类页里的数据问题。",
+        "bullet3": "服务端渲染以便被索引；搜索响应约 20 毫秒，此前为 700 毫秒，并支持全目录的容错拼写。",
+        "mobileAlt": "手机上的 Oceanfront Hardware 商店，显示一个产品页面"
       },
       "pyvolr": {
         "name": "pyvolr",
         "role": "开源项目",
-        "description": "现代 Python 期权定价库，提供 Black-Scholes-Merton 价格、希腊值与隐含波动率计算；以 Rust 为内核，全面支持 NumPy 向量化，并与 `py_vollib`/`vollib` 即插即用兼容。定位为活跃 BSM 生态的高速路径，同时在深度尾部仍保持 f64 精确——正是那些更快的竞品悄然失效之处。",
-        "bullet1": "构建 Rust 数值内核（BSM 与 Black-76 定价、五大希腊值，以及由 Manaster-Koehler 初值驱动、并以二分法兜底的牛顿-拉夫森隐含波动率求解器），通过 PyO3 暴露给 Python，并在各端点阈值之上以 rayon 并行化。在大规模下领跑活跃生态：100 万次隐含波动率求解比 fast-vollib 的 numba 后端快约 2 倍、比 opengreeks 快约 12 倍，并行定价路径在约 4 毫秒内完成 100 万个执行价的定价；同时保留标量入/标量出的使用体验，标量快路径低至亚微秒级。",
-        "bullet2": "以尾部正确性作为核心差异化：基于 `erfcx` 的正态累积分布函数与归一化 Black 正向映射，让隐含波动率在期权价格低至 1e-215 时仍保持 f64 精确；而每一款 2026 年的高速竞品（fast-vollib、opengreeks、quantforge）在价格约 1e-6 至 1e-26 之间便开始悄然返回错误的常数波动率——本项目以 mpmath 黄金基准阶梯锚定，并在良态输入上与所有竞品交叉校验至约 1e-13。",
-        "bullet3": "打造以可持续性为先的发布流程：release-please 搭配 PyPI Trusted Publishing（OIDC，无需存储凭证）、差异化测试以捕捉数值漂移，以及 Python 3.10–3.14 × Linux/macOS/Windows 的 wheel 矩阵，外加自由线程 3.14t 构建；同时提供 `pyvolr.compat.py_vollib` 与 `py_vollib_vectorized` 即插即用兼容层，让现有用户只需修改一行 import 即可迁移。",
+        "description": "一个用于 Black-Scholes-Merton 与 Black-76 定价、五大希腊值以及隐含波动率的 Python 库——基于 NumPy 全面向量化，并与 `py_vollib`/`vollib` 即插即用兼容。",
+        "bullet1": "在大规模下领跑活跃的 BSM 生态：100 万次隐含波动率求解比 fast-vollib 的 numba 后端快约 2 倍、比 opengreeks 快约 12 倍，并行定价路径在约 4 毫秒内完成 100 万个执行价的定价——底层是 Rust 核心，通过 PyO3 暴露、以 rayon 并行，标量输入下仍保持亚微秒级。",
+        "bullet2": "在期权价格低至 1e-215 时仍保持 f64 精确，而 fast-vollib、opengreeks 与 quantforge 在此之前就已开始返回错误的常数——采用 Jäckel 的“Let’s Be Rational”求解器与基于 `erfcx` 的正态累积分布函数，并以 mpmath 黄金基准锚定、在 CI 中做差异化测试。",
+        "bullet3": "为 Python 3.10–3.14 提供 Linux、macOS 与 Windows 的 wheel 包，含自由线程的 3.13t 与 3.14t 构建，通过 PyPI Trusted Publishing 发布且不存储任何凭证——另附 `py_vollib` 与 `py_vollib_vectorized` 兼容层，现有用户改一行 import 即可迁移。",
         "chartCaptionThroughput": "吞吐量对比：pyvolr 与活跃 BSM 生态（双对数，按数组大小）",
         "chartCaptionAccuracy": "深度尾部的隐含波动率精度（正确位数，越高越好）",
         "chartAltThroughput": "吞吐量基准测试：pyvolr 对比 fast-vollib、opengreeks 及更广的 BSM 生态，在 Apple M4 Pro 上按数组大小双对数缩放",
@@ -235,8 +234,8 @@
         "name": "Secrets Spotter",
         "role": "开源项目",
         "description": "一款开源的 CLI 工具与 Chrome 扩展，用于检测文件、目录、标准输入、网页和网络流量中泄露的密钥；由共享的 Rust 核心驱动。",
-        "bullet1": "构建统一的 Rust 检测引擎，内置 50 种检测模式（涵盖 AWS、GitHub、Stripe、JWT、私钥等），并通过香农熵、字符类多样性和代码标识符过滤来排除误报；CLI 和浏览器扩展共用同一核心。",
-        "bullet2": "推出面向 CI/CD 的 CLI 工具，支持 SARIF（用于 GitHub Code Scanning）与 JSON 输出格式，以及 glob 和严重程度筛选，实现对文件、目录及标准输入流的即插即用密钥扫描。",
+        "bullet1": "构建统一的 Rust 检测引擎，内置 60 多种检测模式（涵盖 AWS、GitHub、Stripe、JWT、私钥等），并通过香农熵、字符类多样性和代码标识符过滤来排除误报；CLI 和浏览器扩展共用同一核心。",
+        "bullet2": "推出面向 CI/CD 的 CLI 工具，支持 SARIF（用于 GitHub Code Scanning）与 JSON 输出格式，以及 glob 和严重程度筛选。",
         "bullet3": "开发基于 WebAssembly 的 Chrome 扩展，扫描 DOM 并通过 MAIN 世界拦截器捕获 fetch、XHR、WebSocket、SSE 和 Cookie；结合 SHA-256 去重与 SPA 路由变更自动重扫，全程本地运行，数据不外泄。"
       }
     }

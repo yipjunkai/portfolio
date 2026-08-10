@@ -141,7 +141,7 @@
         },
         "secretsSpotter": {
           "label": "secrets-spotter",
-          "claim": "Finds leaked credentials in files, pages and live network traffic. 50 patterns, one Rust core, a CLI and a browser extension, plus a disclosure policy nobody asked me for."
+          "claim": "Finds leaked credentials in files, pages and live network traffic. 60+ patterns, one Rust core, a CLI and a browser extension, plus a disclosure policy nobody asked me for."
         },
         "oceanfront": {
           "label": "Oceanfront Hardware",
@@ -212,20 +212,19 @@
       "oceanfrontHardware": {
         "name": "Oceanfront Hardware",
         "role": "Freelance Developer",
-        "description": "Freelanced as a full-stack web developer for this hardware company. Focused on SEO performance and CMS integration.",
-        "bullet1": "Architected and deployed a full-stack B2B e-commerce platform supporting a catalog of 800 active SKUs, enabling the client to digitize sales and scale catalog operations.",
-        "bullet2": "Led migration with Server-Side Rendering (SSR), improving Core Web Vitals and driving top-tier Google rankings, increasing organic discoverability against competitors.",
-        "bullet3": "Optimized product discoverability by implementing advanced search capabilities, reducing search query latency by 97% (from 700ms to 20ms) and enabling instant, typo-tolerant filtering for the B2B catalog.",
-        "laptopAlt": "OceanfrontHardware desktop view",
-        "mobileAlt": "OceanfrontHardware mobile view"
+        "description": "A B2B checkout-first storefront, built and still maintained end to end.",
+        "bullet1": "Took the client from offline sales to a storefront their trade customers can actually order through, as the only engineer on it.",
+        "bullet2": "Took the client through their own product catalogue, resolving inconsistencies that were quietly keeping products out of search results and category pages.",
+        "bullet3": "Server-rendered for indexability; search returns in ~20 ms, down from 700, with typo tolerance across the catalogue.",
+        "mobileAlt": "The Oceanfront Hardware storefront on a phone, showing a product page"
       },
       "pyvolr": {
         "name": "pyvolr",
         "role": "Open-source Project",
-        "description": "A modern Python library for Black-Scholes-Merton pricing, Greeks, and implied volatility — a Rust core, fully vectorized over NumPy, and drop-in compatible with `py_vollib`/`vollib`. Built to be the fast path for the active BSM ecosystem while staying f64-exact deep in the tails, where faster rivals silently break.",
-        "bullet1": "Built a Rust numerical core — BSM and Black-76 pricing, all five Greeks, and a Manaster-Koehler-seeded Newton-Raphson implied-vol solver with bisection fallback — exposed to Python via PyO3 and parallelized with rayon above per-endpoint thresholds. It leads the active ecosystem at scale: 1M implied-vol solves land ~2× faster than fast-vollib's numba backend and ~12× faster than opengreeks, and the parallel price path prices 1M strikes in ~4 ms — all while preserving scalar-in/scalar-out ergonomics down to a sub-microsecond scalar fast path.",
-        "bullet2": "Made tail correctness the differentiator: an `erfcx`-based normal CDF and a normalized-Black forward map keep implied vols f64-exact down to option prices of 1e-215, where every fast 2026 entrant (fast-vollib, opengreeks, quantforge) starts returning silently-wrong constant volatilities between prices of ~1e-6 and ~1e-26 — pinned against an mpmath golden ladder and cross-checked to ~1e-13 against every competitor on well-posed inputs.",
-        "bullet3": "Shipped a sustainability-first release pipeline — release-please with PyPI Trusted Publishing (OIDC, no stored credentials), differential tests to catch numerical drift, and a Python 3.10–3.14 × Linux/macOS/Windows wheel matrix plus a free-threaded 3.14t build — alongside drop-in `pyvolr.compat.py_vollib` and `py_vollib_vectorized` shims that let existing users migrate with a single import-line change.",
+        "description": "A Python library for Black-Scholes-Merton and Black-76 pricing, all five Greeks, and implied volatility — fully vectorised over NumPy and drop-in compatible with `py_vollib`/`vollib`.",
+        "bullet1": "Fastest in the active BSM ecosystem at scale: 1M implied-vol solves run ~2× faster than fast-vollib’s numba backend and ~12× faster than opengreeks, and 1M strikes price in ~4 ms — on a Rust core exposed via PyO3, parallelised with rayon, and still sub-microsecond on scalar input.",
+        "bullet2": "Stays f64-exact down to option prices of 1e-215, where fast-vollib, opengreeks and quantforge all begin returning silently-wrong constants — Jäckel’s “Let’s Be Rational” solver over an `erfcx`-based normal CDF, pinned against an mpmath golden ladder and differential-tested in CI.",
+        "bullet3": "Wheels for Python 3.10–3.14 across Linux, macOS and Windows, including free-threaded 3.13t and 3.14t builds, published through PyPI Trusted Publishing with no stored credentials — plus `py_vollib` and `py_vollib_vectorized` shims that migrate existing users in one import line.",
         "chartCaptionThroughput": "Throughput vs the active BSM ecosystem (log-log, by array size)",
         "chartCaptionAccuracy": "Implied-vol accuracy deep in the tail (correct digits, higher is better)",
         "chartAltThroughput": "Throughput benchmark: pyvolr vs fast-vollib, opengreeks, and the wider BSM ecosystem, log-log by array size on an Apple M4 Pro",
@@ -235,8 +234,8 @@
         "name": "Secrets Spotter",
         "role": "Open-source Project",
         "description": "An open-source CLI and Chrome extension that detects exposed secrets in files, directories, stdin, web pages, and network traffic — powered by a shared Rust core.",
-        "bullet1": "Built a unified Rust detection engine with 50 patterns (AWS, GitHub, Stripe, JWTs, private keys, and more) plus false-positive filtering via Shannon entropy, character-class diversity, and code-identifier rejection — shared across the CLI and browser extension from a single core.",
-        "bullet2": "Shipped a CI/CD-ready CLI with SARIF output for GitHub Code Scanning, JSON mode for automation, and glob and severity filters, enabling drop-in secret scanning across files, directories, and stdin pipelines.",
+        "bullet1": "Built a unified Rust detection engine with 60+ patterns (AWS, GitHub, Stripe, JWTs, private keys, and more) plus false-positive filtering via Shannon entropy, character-class diversity, and code-identifier rejection — shared across the CLI and browser extension from a single core.",
+        "bullet2": "Shipped a CI/CD-ready CLI with SARIF output for GitHub Code Scanning, JSON mode for automation, and glob and severity filters.",
         "bullet3": "Engineered a WASM-powered Chrome extension that scans DOM content and intercepts fetch, XHR, WebSocket, SSE, and cookies through a MAIN-world interceptor, with SHA-256 deduplication and automatic re-scan on SPA navigations — all fully local."
       }
     }
