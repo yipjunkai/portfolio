@@ -9,7 +9,7 @@ import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { requireLocale } from "@/i18n/locale";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { siteConfig } from "@/config";
 import { getPageMetadata, getTitleMetadata } from "@/lib/seo";
 import { JsonLd, getWebsiteJsonLd } from "@/lib/jsonLd";
@@ -49,9 +49,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
   const locale = requireLocale(requestedLocale);
-  const t = await getTranslations({ locale, namespace: "content.meta" });
+  const t = await getTranslations("content.meta");
 
   return {
+    // Lives here rather than in an `app/layout.tsx` above: this file *is* the root
+    // layout now, which is what makes `[locale]` a root param for next/root-params.
+    metadataBase: new URL(siteConfig.url),
     title: getTitleMetadata(t("siteName")),
     ...getPageMetadata({
       locale,
@@ -74,10 +77,8 @@ export default async function RootLayout({
   const { locale: requestedLocale } = await params;
   const locale = requireLocale(requestedLocale);
 
-  setRequestLocale(locale);
-
-  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
-  const sections = await buildNavSections(locale);
+  const tMeta = await getTranslations("content.meta");
+  const sections = await buildNavSections();
 
   const websiteJsonLd = getWebsiteJsonLd({
     locale,

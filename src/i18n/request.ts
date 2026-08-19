@@ -1,3 +1,4 @@
+import * as rootParams from "next/root-params";
 import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 import { hasLocale } from "next-intl";
@@ -19,8 +20,17 @@ function deepMerge<T extends Record<string, unknown>>(fallback: T, locale: T): T
   return result;
 }
 
-export default getRequestConfig(async ({ requestLocale }) => {
-  const requested = await requestLocale;
+export default getRequestConfig(async () => {
+  // Read straight off the root layout's `[locale]` segment. This replaces the old
+  // `requestLocale` plus a `setRequestLocale(locale)` call in every page: a static
+  // render used to have no way to know its own locale, so each page had to hand it
+  // over. next/root-params (Next 16.3) removes that obligation.
+  //
+  // Still falling back to defaultLocale rather than calling notFound() on an
+  // unrecognised value, which is what this did before. The proxy redirects unknown
+  // prefixes long before they reach here, so the fallback is close to unreachable —
+  // but making a 404 out of it is a behaviour change, not part of this migration.
+  const requested = await rootParams.locale();
 
   const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
 

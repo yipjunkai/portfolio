@@ -4,7 +4,7 @@ import { BookOpenIcon, BriefcaseIcon, CodeBracketIcon, EnvelopeIcon, HomeIcon } 
 import { getTranslations } from "next-intl/server";
 import type { JSX } from "react";
 import { siteConfig } from "@/config";
-import type { Locale, StaticPathname } from "@/i18n/routing";
+import type { StaticPathname } from "@/i18n/routing";
 
 interface BaseRoute {
   name: string;
@@ -29,8 +29,8 @@ export interface Sections {
 }
 
 /** Builds the global navigation used by the desktop sidebar and the mobile top nav. */
-export async function buildNavSections(locale: Locale): Promise<Sections[]> {
-  const t = await getTranslations({ locale, namespace: "common.nav" });
+export async function buildNavSections(): Promise<Sections[]> {
+  const t = await getTranslations("common.nav");
 
   return [
     {

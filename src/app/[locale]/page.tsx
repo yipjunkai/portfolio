@@ -3,7 +3,7 @@ import { AnimatedIconButton } from "@/components/ui/animated-icon-button";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import { DownloadIcon } from "@/components/ui/download";
 import { SendIcon } from "@/components/ui/send";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { requireLocale } from "@/i18n/locale";
 import { getPageMetadata } from "@/lib/seo";
 import { JsonLd, getPersonJsonLd } from "@/lib/jsonLd";
@@ -14,7 +14,7 @@ import HomeEvidence from "./_components/HomeEvidence";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
   const locale = requireLocale(requestedLocale);
-  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+  const tMeta = await getTranslations("content.meta");
 
   return getPageMetadata({
     locale,
@@ -27,11 +27,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: requestedLocale } = await params;
   const locale = requireLocale(requestedLocale);
-  setRequestLocale(locale);
-
-  const t = await getTranslations({ locale, namespace: "content.home" });
-  const tCommon = await getTranslations({ locale, namespace: "common.home" });
-  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+  const t = await getTranslations("content.home");
+  const tCommon = await getTranslations("common.home");
+  const tMeta = await getTranslations("content.meta");
 
   const personJsonLd = getPersonJsonLd({
     locale,
@@ -62,7 +60,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <AnimatedIconButton variant="secondary" icon={DownloadIcon} label={tCommon("viewCv")} />
           </ResumePDFDialog>
         </div>
-        <HomeEvidence locale={locale} />
+        <HomeEvidence />
       </div>
     </>
   );

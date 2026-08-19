@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getFormatter, getTranslations, setRequestLocale } from "next-intl/server";
+import { getFormatter, getTranslations } from "next-intl/server";
 import { requireLocale } from "@/i18n/locale";
 import { getPageMetadata } from "@/lib/seo";
 import ExperienceCard from "./_components/ExperienceCard";
@@ -11,8 +11,8 @@ import TechPattern from "./_components/TechPattern";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
   const locale = requireLocale(requestedLocale);
-  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
-  const tPage = await getTranslations({ locale, namespace: "content.meta.pages.experience" });
+  const tMeta = await getTranslations("content.meta");
+  const tPage = await getTranslations("content.meta.pages.experience");
 
   return getPageMetadata({
     locale,
@@ -26,10 +26,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Experience({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: requestedLocale } = await params;
   const locale = requireLocale(requestedLocale);
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "content.experience" });
-  const tUI = await getTranslations({ locale, namespace: "common.experience" });
-  const tCommon = await getTranslations({ locale, namespace: "common" });
+  const t = await getTranslations("content.experience");
+  const tUI = await getTranslations("common.experience");
+  const tCommon = await getTranslations("common");
   const formatter = await getFormatter({ locale });
 
   const formattedDate = (date: Date) => {

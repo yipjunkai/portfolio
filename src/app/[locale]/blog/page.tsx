@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { requireLocale } from "@/i18n/locale";
 import { getPageMetadata } from "@/lib/seo";
@@ -8,8 +8,8 @@ import { BLOG_CATEGORIES, formatPostDate, getPostsByCategory } from "@/lib/blog"
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
   const locale = requireLocale(requestedLocale);
-  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
-  const tPage = await getTranslations({ locale, namespace: "content.meta.pages.blog" });
+  const tMeta = await getTranslations("content.meta");
+  const tPage = await getTranslations("content.meta.pages.blog");
 
   return getPageMetadata({
     locale,
@@ -23,8 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Blog({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: requestedLocale } = await params;
   const locale = requireLocale(requestedLocale);
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "common.blog" });
+  const t = await getTranslations("common.blog");
 
   const grouped = getPostsByCategory();
   const activeCategories = BLOG_CATEGORIES.filter(category => grouped[category].length > 0);

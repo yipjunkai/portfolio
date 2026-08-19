@@ -9,7 +9,7 @@ import oceanfrontHardwareMobile from "./_assets/oceanfront-hardware-mobile.webp"
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import GithubIcon from "@/components/icons/GithubIcon";
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { cn } from "@/components/lib/utils";
 import { requireLocale } from "@/i18n/locale";
 import { Fragment, type ReactNode } from "react";
@@ -18,8 +18,8 @@ import { getPageMetadata } from "@/lib/seo";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale: requestedLocale } = await params;
   const locale = requireLocale(requestedLocale);
-  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
-  const tPage = await getTranslations({ locale, namespace: "content.meta.pages.projects" });
+  const tMeta = await getTranslations("content.meta");
+  const tPage = await getTranslations("content.meta.pages.projects");
 
   return getPageMetadata({
     locale,
@@ -30,13 +30,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
-export default async function Projects({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: requestedLocale } = await params;
-  const locale = requireLocale(requestedLocale);
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "content.projects" });
-  const tUI = await getTranslations({ locale, namespace: "common.projects" });
-  const tCommon = await getTranslations({ locale, namespace: "common" });
+export default async function Projects() {
+  const t = await getTranslations("content.projects");
+  const tUI = await getTranslations("common.projects");
+  const tCommon = await getTranslations("common");
 
   const projects: {
     name: string;

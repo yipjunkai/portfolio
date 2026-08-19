@@ -15,8 +15,8 @@ const ROWS = [
 
 const linkClass = "text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300";
 
-export default async function HomeEvidence({ locale }: { locale: string }) {
-  const t = await getTranslations({ locale, namespace: "content.home.evidence" });
+export default async function HomeEvidence() {
+  const t = await getTranslations("content.home.evidence");
 
   return (
     // 64px above the block: this is a major entry in the page's rhythm, not a sibling

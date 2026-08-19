@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { requireLocale } from "@/i18n/locale";
 import { getPageMetadata } from "@/lib/seo";
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const post = getPost(slug);
   if (!post) return {};
 
-  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+  const tMeta = await getTranslations("content.meta");
 
   return getPageMetadata({
     locale,
@@ -37,13 +37,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function BlogPost({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale: requestedLocale, slug } = await params;
   const locale = requireLocale(requestedLocale);
-  setRequestLocale(locale);
-
   const post = getPost(slug);
   if (!post) notFound();
 
-  const t = await getTranslations({ locale, namespace: "common.blog" });
-  const tMeta = await getTranslations({ locale, namespace: "content.meta" });
+  const t = await getTranslations("common.blog");
+  const tMeta = await getTranslations("content.meta");
   const headings = getPostHeadings(slug);
 
   const jsonLd = getBlogPostingJsonLd({
