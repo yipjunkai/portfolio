@@ -99,6 +99,15 @@ export default async function RootLayout({
         <link rel="prefetch" as="fetch" href={siteConfig.resume.url} crossOrigin="anonymous" />
         <JsonLd data={websiteJsonLd} />
         <NextIntlClientProvider>
+          {/*
+            React 19.2 logs "Encountered a script tag while rendering React component" in
+            dev on every locale switch. `[locale]` is a root segment, so changing it remounts
+            this layout on the client, and next-themes renders its no-flash <script> inside
+            the provider. Harmless: that script only has a job in the SSR'd HTML, and on a
+            client render the provider's own state has already reapplied the theme. The
+            JsonLd <script> above does not trigger it — React exempts application/ld+json.
+            Upstream: pacocoursey/next-themes#397. Fix proposed in #386, unmerged since Mar 2026.
+          */}
           <ThemeProvider disableTransitionOnChange>
             <div className="fixed left-1/2 -z-10 hidden h-screen w-1/2 bg-gray-50 lg:block dark:bg-[#131313]"></div>
             <div className="absolute left-1/2 z-10 mx-auto flex h-svh w-full max-w-7xl -translate-x-1/2 flex-col lg:flex-row *:lg:h-full">
