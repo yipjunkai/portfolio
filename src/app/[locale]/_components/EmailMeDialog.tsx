@@ -46,7 +46,7 @@ const EmailActions = ({ email }: { email: string }) => {
             <span
               key={copyCount}
               aria-hidden
-              className="animate-copy-shimmer pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent motion-reduce:hidden dark:via-white/15"
+              className="pointer-events-none absolute inset-0 animate-copy-shimmer bg-gradient-to-r from-transparent via-white/60 to-transparent motion-reduce:hidden dark:via-white/15"
             />
           )}
           <pre className="font-mono text-sm tracking-wider whitespace-pre-wrap">{email}</pre>

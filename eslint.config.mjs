@@ -16,7 +16,15 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const configs = defineConfig(
   {
-    ignores: ["node_modules", "dist", ".next", "**/*.d.ts", "public", "messages"]
+    // `.claude` holds vendored Claude Code skill scripts — third-party code we
+    // neither wrote nor ship. It is gitignored, so CI never sees it and `pnpm
+    // lint` passes there; only local runs picked it up, reporting 255 problems
+    // (192 of them errors) that no one could act on. Prettier already skips it
+    // for free, because Prettier 3 defaults --ignore-path to .gitignore. ESLint
+    // flat config does not read .gitignore at all, which is the whole reason
+    // the two tools disagreed. Keep this in sync with .gitignore by hand, or
+    // pull in @eslint/compat's includeIgnoreFile if the list ever grows.
+    ignores: ["node_modules", "dist", ".next", "**/*.d.ts", "public", "messages", ".claude"]
   },
   {
     languageOptions: {
