@@ -23,9 +23,25 @@
   /* Wire next/font onto Tailwind's font tokens. Without this the Geist faces are
      downloaded but never applied, and `font-sans`/`font-mono` fall back to the
      system stacks. Swapping typeface = change the next/font import in
-     [locale]/layout.tsx and these two lines; nothing else references the family. */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+     [locale]/layout.tsx and these two lines; nothing else references the family.
+
+     Latin face first, CJK second — the order is load-bearing, not stylistic.
+     A browser walks the stack per character, so Geist claims every glyph it
+     has and Noto Sans SC is reached only for the Chinese. Reverse the two and
+     Noto's Latin, which is markedly weaker than Geist's, takes over every
+     English word on the zh-SG pages. */
+  --font-sans: var(--font-geist-sans), var(--font-noto-sans-sc);
+
+  /* Geist Mono has no CJK either, and the mono tier is not decorative here —
+     it carries the orientation layer (DESIGN.md, The Mono Label Rule), which on
+     zh-SG means Chinese: the location line, the employer/date headers, the
+     sidebar wordmark. Falling those through to Noto Sans SC keeps them on the
+     same face as the rest of the zh site instead of leaving them to the OS.
+     It is proportional rather than fixed-width, which matters less than it
+     sounds because CJK glyphs are uniform-width by construction — but it is an
+     interim answer. The real one is self-hosting Noto Sans Mono CJK SC, which
+     Google Fonts does not serve. */
+  --font-mono: var(--font-geist-mono), var(--font-noto-sans-sc);
 }
 
 @keyframes gradient-rotate {
