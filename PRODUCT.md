@@ -33,11 +33,19 @@ Jun Kai's current situation, which future copy work must not get wrong in either
 
 **Production-grade engineering discipline applied to work nobody asked for.**
 
+**This line is analysis, not copy. Do not ship it, or any compression of it, as a sentence on a page.** Tested on the live hero on 2026-08-07 and rejected. Two things go wrong when it is said aloud rather than used as a lens. First, the emphasis inverts onto _nobody asked for_, which fails the discriminator test below — every side project is something nobody asked for; that is what a side project is — so it claims the least distinctive fact available. Second, "systems nobody asked for" reads to a seed-stage founder as someone who will gold-plate an MVP, which is Principle 2's liability exactly. The same idea works one level down, attached to a specific artifact the reader can open: "a disclosure policy nobody asked me for" is true of almost no one and is one click from the `SECURITY.md` that proves it. **Positioning belongs on the artifacts, not on the person.**
+
 A comparable candidate has projects. They do not have projects with CI, a published disclosure policy, and a stated scope boundary. That gap is the claim, and it is verifiable rather than asserted (see Evidence on Hand).
+
+**The discriminator test — apply this before any fact earns space on a primary surface.** Ask: _does a comparable candidate have this?_ If yes, it is not evidence. It is filler, and it actively dilutes the facts that do discriminate. A catalogue size fails the test outright; twelve CI workflows and a disclosure policy on a personal library pass it completely. This is the operational form of the gap named above, and it is the reason a surface with four strong lines beats one with nine mixed ones.
 
 **Binding framing constraint — do not lead with the word "rigour."** To a seed-stage reader, rigour reads as gold-plating: slow, expensive, over-engineered, a risk. Frame the identical evidence as **shipping things that survive contact with production** — work that holds up once real users, real load, and real adversaries touch it. Same evidence, opposite risk profile. Craft framing loses; risk-reduction framing wins.
 
 The supporting shape of the claim: breadth that is genuinely end-to-end (frontend, backend, web, mobile, startup and large company) with depth underneath it that most generalists do not have (Rust numerical cores, security tooling, uncertainty-quantification research).
+
+**What actually drives the work — Jun Kai's own account, recorded 2026-08-07.** Challenge-driven curiosity. Projects typically begin where something else stopped: a benchmark somebody else set, or a problem widely treated as solved that does not survive being measured. Secrets Spotter started as a friend's project he wanted to push further and kept improving until it passed the original. pyvolr started with libraries that were fast right up until the tails. In his words, the trigger is usually some form of _"nobody can do that"_ or _"I did this — can you?"_.
+
+**Write from this whenever a surface has to describe the person rather than the work.** It was not written down anywhere before this entry, and the cost of that was real: a full copy session inferred personality from the artifacts and produced roughly sixty rejected drafts, every one of which described what he builds rather than what he is like. The evidence answers _is the signal real_; only this answers _what kind of engineer is he_, which is a separate question a hiring or poaching reader genuinely asks.
 
 ## Operating Context
 
@@ -69,6 +77,8 @@ The supporting shape of the claim: breadth that is genuinely end-to-end (fronten
 - **Location:** San Francisco & Singapore. Singaporean.
 - **Existing asset:** `public/logo.svg`.
 - **Voice:** plain and evidence-first. Claims arrive attached to numbers, artifacts, or links. No hedging, no self-deprecation, no inflation.
+- **Spelling: `en-SG` is Singapore English and follows British convention** — largely, though not entirely. Default to `-ise` / `-isation`, and to `catalogue`, `centre`, `colour`, `licence` (noun), `digitise`, `optimise`, `specialisation`. Two carve-outs. **Code identifiers, package names and anything inside backticks are never respelled** — `py_vollib_vectorized`, `pyvolr.compat.py_vollib`, CSS `color`, JS `serialize` stay exactly as published. **Technical terms of art are not an exemption** — "normalized Black" (options-pricing literature) and "vectorized over NumPy" (NumPy ecosystem usage) were both raised as borderline and both were respelled to `normalised` / `vectorised`. House style wins over field convention in prose; the only true exemption is the identifier carve-out above. Note also that British English itself permits Oxford `-ize` — the house style here is `-ise` regardless, so `-ize` is not defensible on that ground.
+  - The shipped copy still contains American drift (`digitize`, `Optimized`, `Centralized`, `visualization` and others). That is an error to fix, not the standard to match — a prior pass mistook it for the house style and "corrected" a British spelling to align with it.
 - **The framing rule in Positioning is a brand commitment, not a style preference.** Correctness-as-craft language ("rigour", "meticulous", "obsessive about quality") is out. Survives-production language is in.
 
 ## Evidence on Hand
@@ -78,17 +88,24 @@ The supporting shape of the claim: breadth that is genuinely end-to-end (fronten
 - `yipjunkai/pyvolr`: `SECURITY.md` with explicit in-scope / out-of-scope boundaries, `GOVERNANCE.md`, `CONTRIBUTING.md`, dual Apache/MIT licensing, pre-commit hooks, and twelve CI workflows including `audit.yml`, `fuzz.yml`, `scorecard.yml` (OpenSSF), `differential.yml`, `perf.yml`, and release-please with PyPI Trusted Publishing.
 - `yipjunkai/secrets-spotter`: `SECURITY.md` with the same scope boundaries, `CONTRIBUTING.md`, dual licensing, pre-commit, fuzzing, OpenSSF scorecard, and release automation.
 
+**The test suites are adversarial, not voluminous — and this is load-bearing (verified locally 2026-08-07).** pyvolr carries 5 property-based test files, 5 fuzz targets, 6 golden/snapshot files, and 14 files performing differential comparison against rival implementations, pinned to an mpmath oracle. secrets-spotter and farwatch carry 5 and 4 fuzz targets respectively. **The differential tests are how the silently-wrong-constants finding was made** — pyvolr's headline claim came out of its test suite rather than being verified afterwards. Describing this as "has CI and good test coverage" gets it backwards and throws away the interesting part.
+
+Note the framing hazard: enumerating CI workflows, test suites and disclosure policies **in prose** is the craft framing the Positioning section prohibits, and it reads as gold-plating however true it is. Left in the repos where a reader finds them, the identical facts read as reduced risk. Point at the artifact; do not list its virtues.
+
 **Performance and scale claims already in site copy, traceable to the work:**
 
 - pyvolr: ~2× faster than fast-vollib's numba backend and ~12× faster than opengreeks on 1M implied-vol solves; 1M strikes priced in ~4 ms; f64-exact implied vols down to option prices of 1e-215 where competing 2026 libraries return silently-wrong constants; pinned against an mpmath golden ladder.
-- Secrets Spotter: 50 detection patterns across a shared Rust core, SARIF output for GitHub Code Scanning, WASM Chrome extension intercepting fetch/XHR/WebSocket/SSE/cookies.
+- Secrets Spotter: 60+ detection patterns across a shared Rust core, SARIF output for GitHub Code Scanning, WASM Chrome extension intercepting fetch/XHR/WebSocket/SSE/cookies.
 - Kipo AI: scaled from stealth to ~1,000 active users over a 2M+ component index.
-- Oceanfront Hardware: 800 active SKUs; search latency cut 97% (700ms → 20ms).
+- Oceanfront Hardware: a B2B **checkout-first** storefront, live since 2023, **built and operated solely by Jun Kai, and still ongoing**. One search rebuild cut query latency 97% (700ms → 20ms) — his own work, and reproducible. The catalogue has since grown well past the 800 SKUs previously recorded here and the search has been rebuilt again, so the live site is faster than any figure on this page. **Do not restate the SKU count.** It is the client's business metric, not an engineering claim; it decays; and attaching it to a performance number caps how hard the problem sounds. The evidence here is three years of solo production ownership — the latency win is one instance of it, not the headline.
+  - Note the shipped copy currently says "Freelance Developer" and "Freelanced as a full-stack web developer" in the past tense. **That is simply inaccurate, not a deliberate choice** — unlike the Kipo tense question above, which is Jun Kai's call. Do not preserve it by analogy.
 - DSBJ: SSO unified across 6 internal applications.
 - Gigworks: ~80% of the production codebase; ~90% reduction in user-reported defects.
 - Civil Defence Academy: attendance system for 1,000+ personnel.
 
 **Other real assets:** `cv.typ` (Typst resume source, the canonical record of roles and dates); the AI4X 2025 paper on quantifying uncertainty in physics-informed neural networks; one published blog post, `content/blog/hardening-a-fresh-vm.mdx`, which is itself an artifact of the positioning claim.
+
+**farwatch — a finished body of work, deliberately not on the site yet.** A multi-repo product held locally: a Rust core with 266 tests and 8 CI workflows, a mobile app releasing through TestFlight, plus control, certificate and Homebrew-tap repositories. Functionally complete. Parts have been open-sourced and a written retrospective is planned. Its absence from every public surface is a staging decision, not an oversight — **do not add it to the site, the resume or any evidence list until Jun Kai says the write-up has landed.** When it does, it will likely score well on the discriminator test.
 
 **Absences that future work must not fabricate:**
 
@@ -103,6 +120,7 @@ The supporting shape of the claim: breadth that is genuinely end-to-end (fronten
 1. **Confirm, don't introduce.** The visitor already knows who he is. Spend the visit resolving doubt and raising conviction, never on establishing basic identity.
 2. **Lead with survival, not with craft.** Every quality signal must be framed as reduced risk to the reader's team or product. The moment it reads as perfectionism, it has become a liability.
 3. **Claims must be walkable.** Anything asserted should be one click from the artifact that proves it — a repo, a workflow file, a benchmark, a paper. Unbacked superlatives are worse than silence here.
+   - **State claims decay; event claims do not.** "800 active SKUs" and "search latency is 20ms" describe how something _is_, so they need re-verifying forever and rot silently as the work continues. "Cut search latency from 700ms to 20ms" describes something done, and stays true however the system changes afterwards. On any shipped surface, prefer the event form — it is the only kind of number that does not require maintenance.
 4. **Respect a senior reader's clock.** The audience is technical and busy, and reaching out costs them something. Depth must be available without being mandatory.
 5. **Both languages are the product.** zh-SG is not a translation layer over the real site; it is the site, for a real part of the audience.
 
