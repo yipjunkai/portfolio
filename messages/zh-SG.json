@@ -149,7 +149,7 @@
         },
         "ai4x": {
           "label": "AI4X 2025",
-          "claim": "量化物理信息神经网络中的不确定性——让模型知道自己何时并不知道。"
+          "claim": "量化物理信息神经网络中的不确定性——知道模型何时其实并不知道。"
         }
       }
     },
@@ -159,7 +159,7 @@
           "company": "Kipo AI",
           "location": "旧金山",
           "position": "软件工程实习生",
-          "description": "构建了网页应用的大部分以及其下的平台系统，贯穿产品从内测扩展到约 1,000 名活跃用户、索引超过 200 万个组件的整个过程。",
+          "description": "构建了网页应用的大部分以及其下的平台系统，贯穿产品从隐身阶段扩展到约 1,000 名活跃用户、索引超过 200 万个组件的整个过程。",
           "bullet1": "重写认证与会话系统，为 OAuth 与企业级部署铺开道路，并以跨浏览器端到端测试保障流程稳定。",
           "bullet2": "在 Temporal 上重建了产品的实时核心，替换掉原先 WebSocket 与 SSE 混杂、状态存在进程内的实现，并把聊天与搜索拆开——为原本被这层耦合排除在外的产品方向打开了空间。",
           "bullet3": "用数个迭代重建了部署流水线与测试体系——单元测试、端到端测试与模糊测试，并让前端测试走无障碍层——过程中发现并修复了一批长期潜伏的缺陷。"
@@ -185,7 +185,7 @@
           "company": "民防学院",
           "location": "新加坡",
           "position": "移动应用开发者",
-          "description": "服役期间开发并在全营部署——使用 Flutter 和 Firebase，取代了 1,000 多名人员原本靠人工进行的状态追踪。"
+          "description": "服役期间开发并在全院部署——使用 Flutter 和 Firebase，取代了 1,000 多名人员原本靠人工进行的状态追踪。"
         }
       },
       "research": {
@@ -223,7 +223,7 @@
         "role": "开源项目",
         "description": "一个用于 Black-Scholes-Merton 与 Black-76 定价、五大希腊值以及隐含波动率的 Python 库——基于 NumPy 全面向量化，并与 `py_vollib`/`vollib` 即插即用兼容。",
         "bullet1": "在大规模下领跑活跃的 BSM 生态：100 万次隐含波动率求解比 fast-vollib 的 numba 后端快约 2 倍、比 opengreeks 快约 12 倍，并行定价路径在约 4 毫秒内完成 100 万个执行价的定价——底层是 Rust 核心，通过 PyO3 暴露、以 rayon 并行，标量输入下仍保持亚微秒级。",
-        "bullet2": "在期权价格低至 1e-215 时仍保持 f64 精确，而 fast-vollib、opengreeks 与 quantforge 在此之前就已开始返回错误的常数——采用 Jäckel 的“Let’s Be Rational”求解器与基于 `erfcx` 的正态累积分布函数，并以 mpmath 黄金基准锚定、在 CI 中做差异化测试。",
+        "bullet2": "在期权价格低至 1e-215 时仍保持 f64 精确，而 fast-vollib、opengreeks 与 quantforge 在此之前就已开始返回错误的常数——采用 Jäckel 的“Let’s Be Rational”求解器与基于 `erfcx` 的正态累积分布函数，并以 mpmath 黄金基准锚定、在 CI 中做差分测试。",
         "bullet3": "为 Python 3.10–3.14 提供 Linux、macOS 与 Windows 的 wheel 包，含自由线程的 3.13t 与 3.14t 构建，通过 PyPI Trusted Publishing 发布且不存储任何凭证——另附 `py_vollib` 与 `py_vollib_vectorized` 兼容层，现有用户改一行 import 即可迁移。",
         "chartCaptionThroughput": "吞吐量对比：pyvolr 与活跃 BSM 生态（双对数，按数组大小）",
         "chartCaptionAccuracy": "深度尾部的隐含波动率精度（正确位数，越高越好）",
