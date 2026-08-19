@@ -24,7 +24,7 @@ export default function ExtensionPopupPreview({ className }: { className?: strin
           86 scanned, 0 skipped (cookie: 6, dom: 15, fetch: 65)
         </div>
 
-        <div className="mb-3 rounded-sm border border-neutral-200 bg-white px-2 py-2 dark:border-neutral-700 dark:bg-neutral-800">
+        <div className="mb-3 rounded-sm border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-neutral-800">
           <div className="text-[12px] font-bold text-neutral-800 dark:text-neutral-200">2 secret(s) detected</div>
           <div className="mt-0.5 text-[12px]">
             <span className="font-bold text-orange-500">High: 1</span>
@@ -33,7 +33,7 @@ export default function ExtensionPopupPreview({ className }: { className?: strin
           </div>
         </div>
 
-        <div className="mb-1 rounded-sm border-l-[3px] border-orange-500 bg-white px-2 py-2 dark:bg-neutral-800">
+        <div className="mb-1 rounded-sm border-l-[3px] border-orange-500 bg-white p-2 dark:bg-neutral-800">
           <div className="flex items-center gap-2 text-[12px]">
             <span className="font-bold text-neutral-900 dark:text-neutral-100">JWT Token</span>
             <span className="text-[10px] font-normal text-neutral-400 dark:text-neutral-500">[DOM]</span>
@@ -55,16 +55,16 @@ export default function ExtensionPopupPreview({ className }: { className?: strin
             <div className="text-[11px] text-neutral-600 dark:text-neutral-400">
               <span aria-hidden="true">▾</span> JWT decode
             </div>
-            <pre className="mt-1 overflow-x-auto rounded-xs bg-neutral-100 px-1.5 py-1.5 font-mono text-[9px] leading-snug text-neutral-700 dark:bg-neutral-950 dark:text-neutral-400">
+            <pre className="mt-1 overflow-x-auto rounded-xs bg-neutral-100 p-1.5 font-mono text-[9px] leading-snug text-neutral-700 dark:bg-neutral-950 dark:text-neutral-400">
               {JWT_HEADER}
             </pre>
-            <pre className="mt-1 overflow-x-auto rounded-xs bg-neutral-100 px-1.5 py-1.5 font-mono text-[9px] leading-snug text-neutral-700 dark:bg-neutral-950 dark:text-neutral-400">
+            <pre className="mt-1 overflow-x-auto rounded-xs bg-neutral-100 p-1.5 font-mono text-[9px] leading-snug text-neutral-700 dark:bg-neutral-950 dark:text-neutral-400">
               {JWT_PAYLOAD}
             </pre>
           </div>
         </div>
 
-        <div className="rounded-sm border-l-[3px] border-amber-500 bg-white px-2 py-2 dark:bg-neutral-800">
+        <div className="rounded-sm border-l-[3px] border-amber-500 bg-white p-2 dark:bg-neutral-800">
           <div className="flex items-center gap-2 text-[12px]">
             <span className="font-bold text-neutral-900 dark:text-neutral-100">PostHog API Key</span>
             <span className="text-[10px] font-normal text-neutral-400 dark:text-neutral-500">[DOM]</span>

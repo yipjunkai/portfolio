@@ -35,7 +35,7 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
       {/* Menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group absolute top-4 right-4 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none md:h-12 md:w-12 lg:hidden"
+        className="group absolute top-4 right-4 z-50 flex size-10 cursor-pointer items-center justify-center rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none md:size-12 lg:hidden"
         aria-label={t("toggleMenu")}
         aria-expanded={isOpen}
       >

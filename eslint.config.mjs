@@ -83,11 +83,19 @@ const configs = defineConfig(
     rules: {
       ...eslintPluginNext.configs.recommended.rules,
       ...eslintPluginNext.configs["core-web-vitals"].rules,
-      ...eslintPluginTailwindcss.configs.recommended.rules
+      ...eslintPluginTailwindcss.configs.recommended.rules,
+
+      // Off deliberately. Every arbitrary value it flags here is load-bearing:
+      // MobileTemplate's bezel geometry (8 hits) is fixed-pixel by design, and the
+      // rule rewrites only the values divisible by 4 into rem-based spacing units,
+      // so the frame would scale with root font size while the rest stayed put.
+      // It also rewrites `max-w-[900px]` — the measure DESIGN.md names as The 900
+      // Rule — to `max-w-225`, leaving no `900` in the source at all.
+      "tailwindcss/no-unnecessary-arbitrary-value": "off"
     },
     settings: {
       tailwindcss: {
-        config: `${__dirname}/src/app/globals.css`
+        cssConfigPath: `${__dirname}/src/app/globals.css`
       }
     }
   },

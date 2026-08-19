@@ -57,7 +57,7 @@ export default function PDFDialogContent({ url, downloadName, title, description
   // `sm:w-full` rather than `sm:w-auto`: the viewer sizes its pages to this container, so a
   // content-driven width would be circular and collapse the dialog to its minimum.
   return (
-    <DialogContent className="top-0 left-0 flex h-svh w-full max-w-full translate-x-0 translate-y-0 flex-col rounded-none p-4 sm:top-[50%] sm:left-[50%] sm:h-auto sm:w-full sm:max-w-5xl sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-lg sm:p-6">
+    <DialogContent className="top-0 left-0 flex h-svh w-full max-w-full translate-0 flex-col rounded-none p-4 sm:top-[50%] sm:left-[50%] sm:h-auto sm:w-full sm:max-w-5xl sm:translate-[-50%] sm:rounded-lg sm:p-6">
       <DialogHeader>
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>{description}</DialogDescription>
