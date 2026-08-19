@@ -19,7 +19,7 @@
           "title": "联系方式",
           "routes": {
             "email": "电子邮件",
-            "linkedin": "领英",
+            "linkedin": "LinkedIn",
             "github": "GitHub"
           }
         }
@@ -27,7 +27,7 @@
     },
     "notFound": {
       "title": "这里什么都没有",
-      "body": "大多数故障不会主动声明自己。这一个会——这个地址下没有页面。",
+      "body": "大多数故障都不会自报家门。这一个会——这个地址下没有页面。",
       "illustrationAlt": "一个人站在黑暗虚空的边缘",
       "routesLabel": "整个网站只有四个页面"
     },
@@ -54,7 +54,7 @@
       "viewCv": "查看简历",
       "cvDialog": {
         "title": "这是我的简历",
-        "description": "记得帮我推荐一下哦！",
+        "description": "帮我在 HR 面前美言几句！",
         "filename": "叶俊凯_简历.pdf",
         "loading": "正在加载简历…",
         "loadError": "无法加载简历。",
@@ -100,7 +100,7 @@
     "blog": {
       "title": "博客",
       "subtitle": "我在构建与拆解各种项目时写下的指南、实验与笔记。",
-      "empty": "暂无文章 —— 首批内容正在筹备中。",
+      "empty": "暂无文章——首批内容正在筹备中。",
       "readingTime": "阅读约 {minutes} 分钟",
       "backToBlog": "返回博客",
       "onThisPage": "本页目录",
@@ -114,7 +114,7 @@
   "content": {
     "meta": {
       "siteName": "叶俊凯",
-      "siteDescription": "俊凯是一名现居旧金山与新加坡的软件开发者，目前在Kipo AI打造B2B零件智能平台。",
+      "siteDescription": "俊凯是一名现居旧金山与新加坡的软件开发者，目前在 Kipo AI 打造 B2B 零件智能平台。",
       "jobTitle": "软件开发者",
       "pages": {
         "experience": {
@@ -132,7 +132,7 @@
     "home": {
       "greeting": "嗨，我是",
       "name": "俊凯",
-      "location": "旧金山 & 新加坡",
+      "location": "旧金山与新加坡",
       "aboutMe": "我做的东西大多从别人停下的地方开始：别人立下的标杆，或是一个被当作已经解决、直到真正去测量才发现并非如此的问题。主要是好奇心，外加一点好胜心。职业上做的是全栈产品工程，在 Rust 数值计算、安全工具和不确定性量化上钻得更深。",
       "evidence": {
         "pyvolr": {
@@ -193,7 +193,7 @@
           "conference": "AI4X 2025 国际会议",
           "title": "物理信息神经网络中的不确定性量化",
           "description": "将深度证据回归用于物理信息神经网络——用来判断一个预测何时不该被信任。在 Burgers 与 Laplace 上验证。",
-          "abstract": "我们将一种先进的方法集成到物理信息神经网络中，用于量化随机不确定性和认知不确定性，观察到在保持预测准确性的同时，不确定性能被有效捕获。",
+          "abstract": "我们将一种最先进的方法集成到物理信息神经网络中，用于量化随机不确定性和认知不确定性，观察到在保持预测准确性的同时，不确定性能被有效捕获。",
           "topic1": "物理信息神经网络",
           "topic2": "不确定性量化"
         }
@@ -213,16 +213,16 @@
         "name": "Oceanfront Hardware",
         "role": "自由职业开发者",
         "description": "一个以结账流程为核心的 B2B 商店，由我从头搭建并持续维护至今。",
-        "bullet1": "把客户从线下销售带到一个他们的商用客户真正能下单的网店，全程只有我一个工程师。",
+        "bullet1": "把客户从线下销售带到一个他们的商业客户真正能下单的网店，全程只有我一个工程师。",
         "bullet2": "带着客户一起梳理他们自己的产品目录，理清那些让产品悄悄无法出现在搜索结果和分类页里的数据问题。",
-        "bullet3": "服务端渲染以便被索引；搜索响应约 20 毫秒，此前为 700 毫秒，并支持全目录的容错拼写。",
+        "bullet3": "服务端渲染以便被索引；搜索响应约 20 毫秒，此前为 700 毫秒，并支持全目录的拼写容错。",
         "mobileAlt": "手机上的 Oceanfront Hardware 商店，显示一个产品页面"
       },
       "pyvolr": {
         "name": "pyvolr",
         "role": "开源项目",
         "description": "一个用于 Black-Scholes-Merton 与 Black-76 定价、五大希腊值以及隐含波动率的 Python 库——基于 NumPy 全面向量化，并与 `py_vollib`/`vollib` 即插即用兼容。",
-        "bullet1": "在大规模下领跑活跃的 BSM 生态：100 万次隐含波动率求解比 fast-vollib 的 numba 后端快约 2 倍、比 opengreeks 快约 12 倍，并行定价路径在约 4 毫秒内完成 100 万个执行价的定价——底层是 Rust 核心，通过 PyO3 暴露、以 rayon 并行，标量输入下仍保持亚微秒级。",
+        "bullet1": "在大规模下领跑活跃的 BSM 生态：100 万次隐含波动率求解比 fast-vollib 的 numba 后端快约 2 倍、比 opengreeks 快约 12 倍，100 万个执行价可在约 4 毫秒内完成定价——底层是 Rust 核心，通过 PyO3 暴露、以 rayon 并行，标量输入下仍保持亚微秒级。",
         "bullet2": "在期权价格低至 1e-215 时仍保持 f64 精确，而 fast-vollib、opengreeks 与 quantforge 在此之前就已开始返回错误的常数——采用 Jäckel 的“Let’s Be Rational”求解器与基于 `erfcx` 的正态累积分布函数，并以 mpmath 黄金基准锚定、在 CI 中做差分测试。",
         "bullet3": "为 Python 3.10–3.14 提供 Linux、macOS 与 Windows 的 wheel 包，含自由线程的 3.13t 与 3.14t 构建，通过 PyPI Trusted Publishing 发布且不存储任何凭证——另附 `py_vollib` 与 `py_vollib_vectorized` 兼容层，现有用户改一行 import 即可迁移。",
         "chartCaptionThroughput": "吞吐量对比：pyvolr 与活跃 BSM 生态（双对数，按数组大小）",
