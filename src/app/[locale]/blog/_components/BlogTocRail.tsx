@@ -65,7 +65,7 @@ export default function BlogTocRail({ headings, labels }: { headings: TocEntry[]
     let frame = 0;
     const update = () => {
       frame = 0;
-      // At the bottom, the last sections can't reach the activation line — force the last one active.
+      // At the bottom, the last sections can't reach the activation line -- force the last one active.
       if (atBottom()) {
         setActiveSlug(items[items.length - 1].slug);
         return;

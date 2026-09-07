@@ -53,7 +53,7 @@ export default function ExtensionPopupPreview({ className }: { className?: strin
           </div>
           <div className="mt-1.5 rounded-xs border border-neutral-200 bg-neutral-50 p-1.5 dark:border-neutral-700 dark:bg-neutral-900/60">
             <div className="text-[11px] text-neutral-600 dark:text-neutral-400">
-              <span aria-hidden="true">▾</span> JWT decode
+              <span aria-hidden="true">v</span> JWT decode
             </div>
             <pre className="mt-1 overflow-x-auto rounded-xs bg-neutral-100 p-1.5 font-mono text-[9px] leading-snug text-neutral-700 dark:bg-neutral-950 dark:text-neutral-400">
               {JWT_HEADER}
@@ -85,7 +85,7 @@ export default function ExtensionPopupPreview({ className }: { className?: strin
         </div>
 
         <div className="mt-3 border-t border-neutral-200 pt-2 text-[11px] text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
-          <span aria-hidden="true">▸</span> Debug Log
+          <span aria-hidden="true">&gt;</span> Debug Log
         </div>
       </div>
     </div>

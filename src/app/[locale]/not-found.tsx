@@ -18,7 +18,7 @@ export default function NotFound() {
 
   return (
     <div className="space-y-8">
-      {/* Above the fold and the LCP element on this route — without `priority` Next lazy-loads
+      {/* Above the fold and the LCP element on this route -- without `priority` Next lazy-loads
           it and the page paints empty first. */}
       <Image src={theVoid} alt={t("illustrationAlt")} priority className="size-60" />
 
@@ -33,7 +33,7 @@ export default function NotFound() {
           {ROUTES.map(({ href, key }) => (
             <li key={key}>
               {/* Sans, not mono: these are the primary action on this page, and mono is the
-                  orientation register — the substance of a claim or an action stays in sans. */}
+                  orientation register -- the substance of a claim or an action stays in sans. */}
               <Link href={href} className="text-blue-600 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
                 {tRoutes(key)}
               </Link>

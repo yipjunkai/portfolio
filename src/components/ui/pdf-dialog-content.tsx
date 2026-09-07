@@ -9,7 +9,7 @@ import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 
 // Only the viewer leaf is client-only. Keeping the dialog shell out of the dynamic import
 // means the surface, title and download button paint the instant the dialog opens, with a
-// skeleton standing in while the pdfjs chunk arrives — rather than the whole dialog being
+// skeleton standing in while the pdfjs chunk arrives -- rather than the whole dialog being
 // nothing until it lands.
 const PdfViewer = dynamic(() => import("./pdf-viewer"), {
   ssr: false,

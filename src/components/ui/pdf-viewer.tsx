@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 // resolving it at runtime. It reaches pdfjs-dist through the `publicHoistPattern` entry in
 // pnpm-workspace.yaml, which pnpm needs because pdfjs-dist is react-pdf's dependency and not
 // ours. This is the only module in the app that touches pdfjs, and it is never imported on
-// the server — see pdf-dialog-content.tsx for how it is loaded.
+// the server -- see pdf-dialog-content.tsx for how it is loaded.
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
 export interface PdfViewerProps {

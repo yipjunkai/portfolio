@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 // The CJK face. Geist has no Chinese glyphs, so without this every character on
-// /zh-SG is rendered by whatever the visitor's OS supplies — PingFang on macOS,
+// /zh-SG is rendered by whatever the visitor's OS supplies -- PingFang on macOS,
 // Microsoft YaHei on Windows, Noto Sans CJK on Android. Geist still wins the
 // Latin, because it is listed first in --font-sans (globals.css); this face is
 // only ever reached for glyphs Geist does not have.
@@ -106,7 +106,7 @@ export default async function RootLayout({
             this layout on the client, and next-themes renders its no-flash <script> inside
             the provider. Harmless: that script only has a job in the SSR'd HTML, and on a
             client render the provider's own state has already reapplied the theme. The
-            JsonLd <script> above does not trigger it — React exempts application/ld+json.
+            JsonLd <script> above does not trigger it -- React exempts application/ld+json.
             Upstream: pacocoursey/next-themes#397. Fix proposed in #386, unmerged since Mar 2026.
           */}
           <ThemeProvider disableTransitionOnChange>

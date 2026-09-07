@@ -468,7 +468,7 @@ L 677.695898 36.597656
      </g>
     </g>
     <g id="text_9">
-     <!-- Target option price (log scale — deeper out-of-the-money →) -->
+     <!-- Target option price (log scale -- deeper out-of-the-money ->) -->
      <g style="fill: #e5e7eb" transform="translate(211.164336 399.973906) scale(0.12 -0.12)">
       <defs>
        <path id="DejaVuSans-54" d="M -19 4666 
@@ -1122,7 +1122,7 @@ L 721.288398 51.487656
      </g>
     </g>
     <g id="text_15">
-     <!-- Correct digits in recovered σ  (higher is better) -->
+     <!-- Correct digits in recovered sigma  (higher is better) -->
      <g style="fill: #e5e7eb" transform="translate(31.817773 340.388281) rotate(-90) scale(0.12 -0.12)">
       <defs>
        <path id="DejaVuSans-43" d="M 4122 4306 
@@ -1875,7 +1875,7 @@ z
     </g>
    </g>
    <g id="text_16">
-    <!-- pyvolr · vollib · py_vollib_vectorized -->
+    <!-- pyvolr - vollib - py_vollib_vectorized -->
     <g style="fill: #9ca3af" transform="translate(340.871992 74.715492) scale(0.095 -0.095)">
      <defs>
       <path id="DejaVuSans-Oblique-70" d="M 3175 2156 
@@ -2215,7 +2215,7 @@ z
      <use xlink:href="#DejaVuSans-Oblique-65" transform="translate(1657.128906 0)"/>
      <use xlink:href="#DejaVuSans-Oblique-64" transform="translate(1718.652344 0)"/>
     </g>
-    <!-- overlap up here — all f64-exact to the end -->
+    <!-- overlap up here -- all f64-exact to the end -->
     <g style="fill: #9ca3af" transform="translate(324.413984 85.617633) scale(0.095 -0.095)">
      <defs>
       <path id="DejaVuSans-Oblique-61" d="M 3438 1997 
@@ -2473,7 +2473,7 @@ z
     </g>
    </g>
    <g id="text_17">
-    <!-- the four that break saturate at a wrong constant σ — 0 correct digits -->
+    <!-- the four that break saturate at a wrong constant sigma -- 0 correct digits -->
     <g style="fill: #9ca3af" transform="translate(228.886367 307.239062) scale(0.095 -0.095)">
      <defs>
       <path id="DejaVuSans-Oblique-6b" d="M 1172 4863 
@@ -4577,7 +4577,7 @@ z
    </g>
   </g>
   <g id="text_26">
-   <!-- K=100, T=0.05, r=0.05, true σ=0.16; S swept 99→33 · pyvolr 0.1.5 forward map (pinned to 60-digit mpmath goldens) · a line ending early = solver raised or returned NaN -->
+   <!-- K=100, T=0.05, r=0.05, true sigma=0.16; S swept 99->33 - pyvolr 0.1.5 forward map (pinned to 60-digit mpmath goldens) - a line ending early = solver raised or returned NaN -->
    <g style="fill: #9ca3af" transform="translate(7.2 424.077656) scale(0.085 -0.085)">
     <defs>
      <path id="DejaVuSans-Oblique-4b" d="M 1081 4666 

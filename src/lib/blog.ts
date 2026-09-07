@@ -66,7 +66,7 @@ function parseFile(slug: string): Post | null {
 
   if (typeof data.title !== "string" || !date || !isBlogCategory(data.category)) {
     throw new Error(
-      `Invalid frontmatter in content/blog/${slug}.mdx — "title", "date", and a valid "category" (${BLOG_CATEGORIES.join(
+      `Invalid frontmatter in content/blog/${slug}.mdx -- "title", "date", and a valid "category" (${BLOG_CATEGORIES.join(
         " | "
       )}) are required.`
     );
@@ -162,7 +162,7 @@ export function getPostHeadings(slug: string): TocEntry[] {
 
     const level = match[1].length;
     const text = stripInlineMarkdown(match[2]);
-    const id = slugger.slug(text); // advance for every H2–H4 to mirror rehype-slug dedup
+    const id = slugger.slug(text); // advance for every H2-H4 to mirror rehype-slug dedup
     if (level === 2 || level === 3) toc.push({ text, slug: id, level });
   }
 

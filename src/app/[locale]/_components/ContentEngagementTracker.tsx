@@ -35,7 +35,7 @@ export default function ContentEngagementTracker() {
     const measure = () => {
       const scrollable = scroller.scrollHeight - scroller.clientHeight;
       if (scrollable <= 0) {
-        // Whole page fits the viewport — everything is visible without scrolling.
+        // Whole page fits the viewport -- everything is visible without scrolling.
         maxDepth = 100;
         if (!fired.has(100)) {
           MILESTONES.forEach(milestone => fired.add(milestone));

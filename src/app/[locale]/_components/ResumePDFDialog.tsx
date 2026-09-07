@@ -16,7 +16,7 @@ export default function PDFDialog({ children }: { children: ReactNode }) {
       {/*
         Mounted only once opened. The dialog content subtree is client-only (it loads pdfjs),
         and a client-only subtree rendered unconditionally here would be prerendered as a
-        *failed* Suspense boundary — `BAILOUT_TO_CLIENT_SIDE_RENDERING` baked into the static
+        *failed* Suspense boundary -- `BAILOUT_TO_CLIENT_SIDE_RENDERING` baked into the static
         HTML between this trigger and the one beside it. Recovering that boundary during
         hydration could take both triggers with it, leaving the hero with no call to action.
         Gating on `open` keeps the prerendered tree to just the trigger, so there is no

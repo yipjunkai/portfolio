@@ -3,10 +3,10 @@
 Each post is one `.mdx` file in this directory. The file name (without `.mdx`) becomes the URL slug:
 
 ```
-content/blog/vm-hardening.mdx  →  /blog/vm-hardening
+content/blog/vm-hardening.mdx  ->  /blog/vm-hardening
 ```
 
-Only `.mdx` files are treated as posts — this `README.md` is ignored.
+Only `.mdx` files are treated as posts -- this `README.md` is ignored.
 
 ## Frontmatter
 
@@ -17,10 +17,10 @@ Every post starts with a YAML frontmatter block:
 title: "Hardening a fresh VM"
 description: "A practical runbook for locking down a new Linux server."
 date: 2026-08-03
-updated: 2026-08-10 # optional — last meaningful edit
+updated: 2026-08-10 # optional -- last meaningful edit
 category: guide # guide | experiment | note
 tags: [security, linux] # optional
-draft: false # optional — true hides it everywhere
+draft: false # optional -- true hides it everywhere
 ---
 
 Your MDX content starts here.

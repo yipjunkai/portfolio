@@ -28,7 +28,7 @@ export default getRequestConfig(async () => {
   //
   // Still falling back to defaultLocale rather than calling notFound() on an
   // unrecognised value, which is what this did before. The proxy redirects unknown
-  // prefixes long before they reach here, so the fallback is close to unreachable —
+  // prefixes long before they reach here, so the fallback is close to unreachable --
   // but making a 404 out of it is a behaviour change, not part of this migration.
   const requested = await rootParams.locale();
 

@@ -64,10 +64,10 @@ jobs:
         run: pnpm build
       - name: Verify build artifacts
         run: |
-          echo "🔍 Verifying build artifacts..."
+          echo " Verifying build artifacts..."
           if [ -d ".next" ]; then
-            echo "✅ Build artifacts found"
+            echo " Build artifacts found"
           else
-            echo "❌ Build artifacts missing"
+            echo " Build artifacts missing"
             exit 1
           fi

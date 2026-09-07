@@ -12,7 +12,7 @@ const prettyCodeOptions: RehypePrettyCodeOptions = {
   // Scope the fallback language to fenced BLOCKS only. A bare-string defaultLang also targets
   // inline code, which would Shiki-highlight every `inline` span in prose (wrong color in dark mode).
   defaultLang: { block: "plaintext" },
-  // Leave inline code alone — it's styled as a theme-aware chip by the prose CSS in globals.css.
+  // Leave inline code alone -- it's styled as a theme-aware chip by the prose CSS in globals.css.
   bypassInlineCode: true
 };
 

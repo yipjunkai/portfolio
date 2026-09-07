@@ -71,7 +71,7 @@ export default async function BlogPost({ params }: { params: Promise<{ locale: s
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
           <Badge>{t(`categories.${post.meta.category}`)}</Badge>
           <time dateTime={post.meta.date}>{formatPostDate(post.meta.date, locale)}</time>
-          <span aria-hidden="true">·</span>
+          <span aria-hidden="true">-</span>
           <span>{t("readingTime", { minutes: post.meta.readingMinutes })}</span>
         </div>
         <h1 className="text-4xl font-bold text-balance">{post.meta.title}</h1>

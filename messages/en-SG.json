@@ -27,7 +27,7 @@
     },
     "notFound": {
       "title": "Nothing here",
-      "body": "Most failures do not announce themselves. This one did — there is no page at this address.",
+      "body": "Most failures do not announce themselves. This one did -- there is no page at this address.",
       "illustrationAlt": "A figure standing at the edge of a dark void",
       "routesLabel": "The whole site is four pages"
     },
@@ -56,7 +56,7 @@
         "title": "Here's my resume",
         "description": "Put in a good word to HR!",
         "filename": "Yip_JunKai_Resume.pdf",
-        "loading": "Loading resume…",
+        "loading": "Loading resume...",
         "loadError": "The resume could not be loaded.",
         "downloadError": "The download did not complete."
       },
@@ -100,7 +100,7 @@
     "blog": {
       "title": "Blog",
       "subtitle": "Guides, experiments, and notes from the things I build and break.",
-      "empty": "No posts yet — the first ones are in the works.",
+      "empty": "No posts yet -- the first ones are in the works.",
       "readingTime": "{minutes} min read",
       "backToBlog": "Back to blog",
       "onThisPage": "On this page",
@@ -137,7 +137,7 @@
       "evidence": {
         "pyvolr": {
           "label": "pyvolr",
-          "claim": "~2× faster than the next-fastest library at 1M implied-vol solves — and the only one still exact at option prices of 1e-215, where the others return wrong constants without erroring."
+          "claim": "~2x faster than the next-fastest library at 1M implied-vol solves -- and the only one still exact at option prices of 1e-215, where the others return wrong constants without erroring."
         },
         "secretsSpotter": {
           "label": "secrets-spotter",
@@ -149,7 +149,7 @@
         },
         "ai4x": {
           "label": "AI4X 2025",
-          "claim": "Quantifying uncertainty in physics-informed neural networks — knowing when the model does not know."
+          "claim": "Quantifying uncertainty in physics-informed neural networks -- knowing when the model does not know."
         }
       }
     },
@@ -161,16 +161,16 @@
           "position": "Software Engineering Intern",
           "description": "Built much of the web application and the platform systems beneath it, through the scale-up from stealth to ~1,000 active users over a 2M+ component index.",
           "bullet1": "Rewrote the authentication and session system to unblock OAuth and enterprise rollout, with cross-browser end-to-end tests guarding the flow.",
-          "bullet2": "Rebuilt the product's real-time core on Temporal, replacing a WebSocket-and-SSE patchwork and in-process state, and split chat from search — opening product directions the original coupling had ruled out.",
-          "bullet3": "Rebuilt the deploy pipeline and test suite over several sprints — unit, end-to-end and fuzz, with the front-end tests driven through the accessibility layer — which surfaced and closed a backlog of latent defects."
+          "bullet2": "Rebuilt the product's real-time core on Temporal, replacing a WebSocket-and-SSE patchwork and in-process state, and split chat from search -- opening product directions the original coupling had ruled out.",
+          "bullet3": "Rebuilt the deploy pipeline and test suite over several sprints -- unit, end-to-end and fuzz, with the front-end tests driven through the accessibility layer -- which surfaced and closed a backlog of latent defects."
         },
         "dsbj": {
           "company": "DSBJ",
           "location": "Singapore",
           "position": "Application & Data Developer Intern",
-          "description": "Internal platform work for an electronics manufacturer — making complex models readable to the domain experts who rely on them, and unifying login across six applications.",
+          "description": "Internal platform work for an electronics manufacturer -- making complex models readable to the domain experts who rely on them, and unifying login across six applications.",
           "bullet1": "Built a model visualisation platform with LLM-based diagnostics, used day to day by the domain experts who had to interpret the models.",
-          "bullet2": "Replaced six independently built authentication systems with one — modern password hashing, proper access and refresh tokens, and consistent session management across all six applications."
+          "bullet2": "Replaced six independently built authentication systems with one -- modern password hashing, proper access and refresh tokens, and consistent session management across all six applications."
         },
         "works": {
           "company": "Gigworks",
@@ -185,14 +185,14 @@
           "company": "Civil Defence Academy",
           "location": "Singapore",
           "position": "Mobile Application Developer",
-          "description": "Built during National Service and deployed base-wide — Flutter and Firebase, replacing manual status tracking for 1,000+ personnel."
+          "description": "Built during National Service and deployed base-wide -- Flutter and Firebase, replacing manual status tracking for 1,000+ personnel."
         }
       },
       "research": {
         "ai4x": {
           "conference": "AI4X 2025",
           "title": "Quantifying Uncertainty in Physics-Informed Neural Networks",
-          "description": "Deep evidential regression applied to PINNs — a way to tell when a prediction should not be trusted. Demonstrated on Burgers and Laplace.",
+          "description": "Deep evidential regression applied to PINNs -- a way to tell when a prediction should not be trusted. Demonstrated on Burgers and Laplace.",
           "abstract": "We integrate a state-of-the-art method to quantify aleatoric and epistemic uncertainties in physics-informed neural networks and observe that they can be captured effectively while maintaining predictive accuracy.",
           "topic1": "Physics-Informed Neural Networks",
           "topic2": "Uncertainty Quantification"
@@ -221,10 +221,10 @@
       "pyvolr": {
         "name": "pyvolr",
         "role": "Open-source Project",
-        "description": "A Python library for Black-Scholes-Merton and Black-76 pricing, all five Greeks, and implied volatility — fully vectorised over NumPy and drop-in compatible with `py_vollib`/`vollib`.",
-        "bullet1": "Fastest in the active BSM ecosystem at scale: 1M implied-vol solves run ~2× faster than fast-vollib’s numba backend and ~12× faster than opengreeks, and 1M strikes price in ~4 ms — on a Rust core exposed via PyO3, parallelised with rayon, and still sub-microsecond on scalar input.",
-        "bullet2": "Stays f64-exact down to option prices of 1e-215, where fast-vollib, opengreeks and quantforge all begin returning silently-wrong constants — Jäckel’s “Let’s Be Rational” solver over an `erfcx`-based normal CDF, pinned against an mpmath golden ladder and differential-tested in CI.",
-        "bullet3": "Wheels for Python 3.10–3.14 across Linux, macOS and Windows, including free-threaded 3.13t and 3.14t builds, published through PyPI Trusted Publishing with no stored credentials — plus `py_vollib` and `py_vollib_vectorized` shims that migrate existing users in one import line.",
+        "description": "A Python library for Black-Scholes-Merton and Black-76 pricing, all five Greeks, and implied volatility -- fully vectorised over NumPy and drop-in compatible with `py_vollib`/`vollib`.",
+        "bullet1": "Fastest in the active BSM ecosystem at scale: 1M implied-vol solves run ~2x faster than fast-vollib's numba backend and ~12x faster than opengreeks, and 1M strikes price in ~4 ms -- on a Rust core exposed via PyO3, parallelised with rayon, and still sub-microsecond on scalar input.",
+        "bullet2": "Stays f64-exact down to option prices of 1e-215, where fast-vollib, opengreeks and quantforge all begin returning silently-wrong constants -- Jackel's \"Let's Be Rational\" solver over an `erfcx`-based normal CDF, pinned against an mpmath golden ladder and differential-tested in CI.",
+        "bullet3": "Wheels for Python 3.10-3.14 across Linux, macOS and Windows, including free-threaded 3.13t and 3.14t builds, published through PyPI Trusted Publishing with no stored credentials -- plus `py_vollib` and `py_vollib_vectorized` shims that migrate existing users in one import line.",
         "chartCaptionThroughput": "Throughput vs the active BSM ecosystem (log-log, by array size)",
         "chartCaptionAccuracy": "Implied-vol accuracy deep in the tail (correct digits, higher is better)",
         "chartAltThroughput": "Throughput benchmark: pyvolr vs fast-vollib, opengreeks, and the wider BSM ecosystem, log-log by array size on an Apple M4 Pro",
@@ -233,10 +233,10 @@
       "secretsSpotter": {
         "name": "Secrets Spotter",
         "role": "Open-source Project",
-        "description": "An open-source CLI and Chrome extension that detects exposed secrets in files, directories, stdin, web pages, and network traffic — powered by a shared Rust core.",
-        "bullet1": "Built a unified Rust detection engine with 60+ patterns (AWS, GitHub, Stripe, JWTs, private keys, and more) plus false-positive filtering via Shannon entropy, character-class diversity, and code-identifier rejection — shared across the CLI and browser extension from a single core.",
+        "description": "An open-source CLI and Chrome extension that detects exposed secrets in files, directories, stdin, web pages, and network traffic -- powered by a shared Rust core.",
+        "bullet1": "Built a unified Rust detection engine with 60+ patterns (AWS, GitHub, Stripe, JWTs, private keys, and more) plus false-positive filtering via Shannon entropy, character-class diversity, and code-identifier rejection -- shared across the CLI and browser extension from a single core.",
         "bullet2": "Shipped a CI/CD-ready CLI with SARIF output for GitHub Code Scanning, JSON mode for automation, and glob and severity filters.",
-        "bullet3": "Engineered a WASM-powered Chrome extension that scans DOM content and intercepts fetch, XHR, WebSocket, SSE, and cookies through a MAIN-world interceptor, with SHA-256 deduplication and automatic re-scan on SPA navigations — all fully local."
+        "bullet3": "Engineered a WASM-powered Chrome extension that scans DOM content and intercepts fetch, XHR, WebSocket, SSE, and cookies through a MAIN-world interceptor, with SHA-256 deduplication and automatic re-scan on SPA navigations -- all fully local."
       }
     }
   }
