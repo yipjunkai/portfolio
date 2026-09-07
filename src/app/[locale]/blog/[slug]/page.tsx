@@ -58,7 +58,7 @@ export default async function BlogPost({ params }: { params: Promise<{ locale: s
     <div className="space-y-8">
       <JsonLd data={jsonLd} />
 
-      {/* Desktop uses the sidebar rail's back link; this is the mobile/tablet fallback. */}
+      {/* Mobile and tablet fallback for the sidebar rail's back link. */}
       <Link
         href="/blog"
         className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground lg:hidden"

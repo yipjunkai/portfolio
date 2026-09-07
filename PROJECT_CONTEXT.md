@@ -1,6 +1,6 @@
 # Project Context
 
-This file preserves durable engineering and operational context recovered from prior Claude Code and claude-mem sessions. It was reconciled against the current `master` worktree on 2026-09-07. `PRODUCT.md`, `DESIGN.md`, and the current code take precedence if they conflict with this file.
+Durable engineering and operational context. `PRODUCT.md`, `DESIGN.md`, and the current code take precedence when they conflict with this file.
 
 ## Blog
 
@@ -18,4 +18,3 @@ This file preserves durable engineering and operational context recovered from p
 
 - Formatting is a hard CI requirement. Run `pnpm format:check` before committing; use `pnpm format` when formatting changes are needed.
 - MCP server definitions are shared in `.mcp.json` (Claude Code) and `opencode.json` (OpenCode). Keep the definitions aligned; credentials and per-user authentication state stay local.
-- `feat/blog-coverage-rail` contains later, unmerged blog work. Inspect or merge it deliberately; do not describe its changes as part of `master`.

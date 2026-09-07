@@ -254,12 +254,3 @@ export default async function Experience({ params }: { params: Promise<{ locale:
     </div>
   );
 }
-
-// TODO: Add dropdown for each experience
-// Dropdown show long description
-
-// TODO: (Extra) Make it visually a timeline
-
-// TODO: (Extra) On hover date, show tooltip
-
-// TODO: add pdf viewer for papers

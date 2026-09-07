@@ -12,9 +12,7 @@ const WORDS_PER_MINUTE = 220;
 export interface PostFrontmatter {
   title: string;
   description: string;
-  /** ISO date string, e.g. "2026-08-03" */
   date: string;
-  /** Optional ISO date for the last meaningful update */
   updated?: string;
   category: BlogCategory;
   tags: string[];
@@ -28,7 +26,6 @@ export interface PostMeta extends PostFrontmatter {
 
 export interface Post {
   meta: PostMeta;
-  /** Raw MDX body with frontmatter stripped */
   content: string;
 }
 
@@ -36,10 +33,7 @@ function isBlogCategory(value: unknown): value is BlogCategory {
   return typeof value === "string" && (BLOG_CATEGORIES as readonly string[]).includes(value);
 }
 
-/**
- * Normalize a frontmatter date to an ISO `YYYY-MM-DD` string.
- * YAML parses unquoted dates (e.g. `date: 2026-08-03`) into `Date` objects, so accept both.
- */
+/** Accept YAML dates and strings; normalize dates to ISO day strings. */
 function toIsoDate(value: unknown): string | undefined {
   if (value instanceof Date && !Number.isNaN(value.getTime())) {
     return value.toISOString().slice(0, 10);
@@ -104,7 +98,6 @@ export function getAllPosts({ includeDrafts = false }: { includeDrafts?: boolean
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-/** Returns a published post, or null if the slug is missing or the post is a draft. */
 export function getPost(slug: string): Post | null {
   const post = parseFile(slug);
   if (!post || post.meta.draft) return null;
@@ -127,7 +120,7 @@ export interface TocEntry {
   level: 2 | 3;
 }
 
-/** Strip inline markdown markers so the TOC text matches the heading's rendered text. */
+/** Match TOC text to rendered headings. */
 function stripInlineMarkdown(value: string): string {
   return value
     .replace(/`([^`]+)`/g, "$1")
@@ -137,11 +130,7 @@ function stripInlineMarkdown(value: string): string {
     .trim();
 }
 
-/**
- * Table of contents for a post: H2 (sections) and H3 (subsections).
- * All headings advance a single GithubSlugger so the slugs match rehype-slug's ids exactly
- * (it dedupes across every heading in document order).
- */
+/** Build H2/H3 TOC entries with the same document-order slug deduplication as rehype-slug. */
 export function getPostHeadings(slug: string): TocEntry[] {
   const post = getPost(slug);
   if (!post) return [];
@@ -162,7 +151,7 @@ export function getPostHeadings(slug: string): TocEntry[] {
 
     const level = match[1].length;
     const text = stripInlineMarkdown(match[2]);
-    const id = slugger.slug(text); // advance for every H2-H4 to mirror rehype-slug dedup
+    const id = slugger.slug(text); // Keep deduplication aligned with rehype-slug.
     if (level === 2 || level === 3) toc.push({ text, slug: id, level });
   }
 

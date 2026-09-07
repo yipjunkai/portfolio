@@ -23,7 +23,6 @@ const EmailActions = ({ email }: { email: string }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Option 1: Open email client */}
       <div className="flex flex-col gap-1">
         <Button variant="secondary" asChild className="w-full">
           <a href={`mailto:${email}`}>
@@ -39,7 +38,6 @@ const EmailActions = ({ email }: { email: string }) => {
         <div className="h-px flex-1 bg-border" />
       </div>
 
-      {/* Option 2: Copy email */}
       <div className="flex flex-col gap-1">
         <div className="relative flex flex-row items-center justify-between overflow-hidden rounded-md bg-gray-100 py-2 pr-2 pl-4 dark:bg-gray-800">
           {copyCount > 0 && (

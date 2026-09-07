@@ -22,7 +22,6 @@ const CONFIG: Record<CalloutType, { icon: typeof InformationCircleIcon; classNam
   }
 };
 
-/** Reusable admonition for MDX posts: <Callout type="warning" title="...">...</Callout> */
 export function Callout({ type = "info", title, children }: { type?: CalloutType; title?: string; children: ReactNode }) {
   const { icon: Icon, className, iconClassName } = CONFIG[type];
 

@@ -21,26 +21,17 @@ function deepMerge<T extends Record<string, unknown>>(fallback: T, locale: T): T
 }
 
 export default getRequestConfig(async () => {
-  // Read straight off the root layout's `[locale]` segment. This replaces the old
-  // `requestLocale` plus a `setRequestLocale(locale)` call in every page: a static
-  // render used to have no way to know its own locale, so each page had to hand it
-  // over. next/root-params (Next 16.3) removes that obligation.
-  //
-  // Still falling back to defaultLocale rather than calling notFound() on an
-  // unrecognized value, which is what this did before. The proxy redirects unknown
-  // prefixes long before they reach here, so the fallback is close to unreachable --
-  // but making a 404 out of it is a behavior change, not part of this migration.
+  // The proxy rejects unknown locale prefixes; retain the fallback as a defensive
+  // default rather than changing this request path into a 404.
   const requested = await rootParams.locale();
 
   const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
 
-  // Always load en-SG as the fallback base
+  // English supplies any missing locale keys.
   const fallbackMessages = (await import(`../../messages/en-SG.json`)).default;
 
-  // Load locale-specific messages
   const localeMessages = (await import(`../../messages/${locale}.json`)).default;
 
-  // Merge: locale-specific values override fallback
   const messages = deepMerge(fallbackMessages, localeMessages);
 
   return {

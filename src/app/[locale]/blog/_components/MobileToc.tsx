@@ -2,7 +2,6 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { cn } from "@/components/lib/utils";
 import type { TocEntry } from "@/lib/blog";
 
-/** Collapsible "On this page" for narrow screens (the desktop rail replaces the sidebar instead). */
 export default function MobileToc({ headings, label }: { headings: TocEntry[]; label: string }) {
   if (headings.length === 0) return null;
 

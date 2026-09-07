@@ -13,7 +13,7 @@ export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDi
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Delay to allow browser to paint initial state before transitioning
+    // Wait for initial paint before enabling theme transitions.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         setMounted(true);

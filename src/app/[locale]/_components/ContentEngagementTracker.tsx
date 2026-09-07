@@ -7,15 +7,7 @@ import { capture } from "@/lib/analytics";
 
 const MILESTONES = [25, 50, 75, 100] as const;
 
-/**
- * Measures how far readers get through the copy on each page and how long they
- * actively spend, then reports it to PostHog. Pairs with Google Search Console:
- * GSC shows how people *find* a page, these events show whether the copy is
- * *consumed* once they land.
- *
- * Renders nothing. Mounted inside <main>, which is the scroll container on this
- * site (not the window), so depth is measured against main's scroll position.
- */
+/** Reports active reading time and depth against the layout-owned main scroll container. */
 export default function ContentEngagementTracker() {
   const pathname = usePathname();
   const locale = useLocale();
@@ -35,7 +27,7 @@ export default function ContentEngagementTracker() {
     const measure = () => {
       const scrollable = scroller.scrollHeight - scroller.clientHeight;
       if (scrollable <= 0) {
-        // Whole page fits the viewport -- everything is visible without scrolling.
+        // A non-scrollable page is fully read.
         maxDepth = 100;
         if (!fired.has(100)) {
           MILESTONES.forEach(milestone => fired.add(milestone));
@@ -62,7 +54,7 @@ export default function ContentEngagementTracker() {
       });
     };
 
-    // Only count time the tab is actually focused, not time parked in a background tab.
+    // Exclude time while the tab is hidden.
     const pauseTimer = () => {
       if (lastResumeAt != null) {
         activeMs += performance.now() - lastResumeAt;
@@ -90,7 +82,7 @@ export default function ContentEngagementTracker() {
       });
     };
 
-    // Defer the first measure a frame so main has settled to its final height.
+    // Measure after main settles to its final height.
     rafId = requestAnimationFrame(measure);
     scroller.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
@@ -101,7 +93,8 @@ export default function ContentEngagementTracker() {
       scroller.removeEventListener("scroll", onScroll);
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pagehide", flush);
-      flush(); // fire on SPA navigation away from this page
+      // Flush on SPA navigation away from this page.
+      flush();
     };
   }, [pathname, locale]);
 

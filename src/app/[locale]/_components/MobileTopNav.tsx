@@ -18,21 +18,14 @@ export default function MobileTopNav(props: { sections: Sections[] }) {
   return (
     <div className="relative">
       <nav className="flex w-full flex-row items-center justify-between border-b border-neutral-300 bg-gray-50 p-4 pl-6 lg:hidden dark:border-neutral-800 dark:bg-[#131313]">
-        {/* SVG: favicon */}
         <Link href="/" className="cursor-pointer transition-opacity hover:opacity-80">
           <Image src="/logo.svg" alt={t("logoAlt")} className="size-8 md:size-12" width={32} height={32} />
         </Link>
 
         <div className="flex flex-row gap-2 *:p-2">
-          {/* Search button */}
-          {/* <button>
-            <MagnifyingGlassIcon className="size-6 md:size-8" />
-          </button> */}
-
           <div className="size-10 md:size-12"></div>
         </div>
       </nav>
-      {/* Menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="group absolute top-4 right-4 z-50 flex size-10 cursor-pointer items-center justify-center rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none md:size-12 lg:hidden"

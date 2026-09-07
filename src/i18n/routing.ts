@@ -23,7 +23,5 @@ export const routing = defineRouting({
 
 export type Locale = (typeof routing.locales)[number];
 export type Pathname = keyof typeof routing.pathnames;
-/** Pathnames without dynamic segments -- safe to use as a bare-string href. */
+/** Static pathnames only. */
 export type StaticPathname = Exclude<Pathname, `${string}[${string}]${string}`>;
-
-//todo add US locale

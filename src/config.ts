@@ -9,5 +9,3 @@ export const siteConfig = {
     url: "https://umpsbusvwgpktceb.public.blob.vercel-storage.com/resume_EN-SeOtsPNF9H85GwipSj00oWcTrTtnV7.pdf"
   }
 };
-
-// TODO: Add resume for different locales

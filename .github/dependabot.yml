@@ -1,6 +1,4 @@
-# Keeps the dependency tree from silently drifting behind security patches.
-# NOTE: pnpm is handled by the "npm" ecosystem -- Dependabot reads pnpm-lock.yaml
-# and updates package.json. There is no separate "pnpm" ecosystem key.
+# Dependabot uses the npm ecosystem for pnpm projects.
 version: 2
 updates:
   - package-ecosystem: "npm"
@@ -8,7 +6,6 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 10
-    # Group related bumps into one PR to cut review noise.
     groups:
       next:
         patterns: ["next", "@next/*"]
@@ -23,8 +20,7 @@ updates:
       dev-dependencies:
         dependency-type: "development"
         update-types: ["minor", "patch"]
-    # Next.js majors are handled manually -- a major bump (e.g. 16 -> 17) needs
-    # migration work, so a grouped auto-PR shouldn't drag it along.
+    # Next.js major upgrades require manual migration.
     ignore:
       - dependency-name: "next"
         update-types: ["version-update:semver-major"]

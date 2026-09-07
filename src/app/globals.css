@@ -20,27 +20,11 @@
   --color-grad-2: var(--color-grad-2);
   --color-grad-3: var(--color-grad-3);
 
-  /* Wire next/font onto Tailwind's font tokens. Without this the Geist faces are
-     downloaded but never applied, and `font-sans`/`font-mono` fall back to the
-     system stacks. Swapping typeface = change the next/font import in
-     [locale]/layout.tsx and these two lines; nothing else references the family.
-
-     Latin face first, CJK second -- the order is load-bearing, not stylistic.
-     A browser walks the stack per character, so Geist claims every glyph it
-     has and Noto Sans SC is reached only for the Chinese. Reverse the two and
-     Noto's Latin, which is markedly weaker than Geist's, takes over every
-     English word on the zh-SG pages. */
+  /* Connect next/font variables to Tailwind. Keep Geist before Noto so Chinese falls back
+     per glyph while Latin stays in Geist. */
   --font-sans: var(--font-geist-sans), var(--font-noto-sans-sc);
 
-  /* Geist Mono has no CJK either, and the mono tier is not decorative here --
-     it carries the orientation layer (DESIGN.md, The Mono Label Rule), which on
-     zh-SG means Chinese: the location line, the employer/date headers, the
-     sidebar wordmark. Falling those through to Noto Sans SC keeps them on the
-     same face as the rest of the zh site instead of leaving them to the OS.
-     It is proportional rather than fixed-width, which matters less than it
-     sounds because CJK glyphs are uniform-width by construction -- but it is an
-     interim answer. The real one is self-hosting Noto Sans Mono CJK SC, which
-     Google Fonts does not serve. */
+  /* Geist Mono lacks CJK glyphs; use the same CJK fallback as sans. */
   --font-mono: var(--font-geist-mono), var(--font-noto-sans-sc);
 }
 
@@ -219,7 +203,6 @@
   }
 }
 
-/* -- MDX blog: code blocks (rehype-pretty-code + Shiki dual theme) ----------- */
 [data-rehype-pretty-code-figure] {
   margin: 1.5rem 0;
 }
@@ -241,9 +224,7 @@
   counter-reset: line;
 }
 
-/* Light (default) token colors: Shiki stores them in per-token --shiki-light vars -- apply them,
-   or prose's --tw-prose-pre-code (a light gray for dark backgrounds) wins the cascade and washes
-   the code out. !important is needed to beat prose, exactly like the dark-mode rule below. */
+/* Override Typography's pre-code color with Shiki token colors. */
 [data-rehype-pretty-code-figure] code span {
   color: var(--shiki-light) !important;
 }
@@ -274,7 +255,6 @@
   border-top-right-radius: 0;
 }
 
-/* Dark theme: swap Shiki token colors + code surfaces */
 [data-theme="dark"] [data-rehype-pretty-code-figure] pre,
 [data-theme="dark"] [data-rehype-pretty-code-title] {
   background-color: var(--shiki-dark-bg);
@@ -287,7 +267,6 @@
   text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
-/* Inline code: drop prose's backtick pseudo-content, add a subtle chip */
 .prose :where(code):not(:where([data-rehype-pretty-code-figure] *))::before,
 .prose :where(code):not(:where([data-rehype-pretty-code-figure] *))::after {
   content: none;
@@ -301,7 +280,6 @@
   font-size: 0.875em;
 }
 
-/* TOC / anchor jumps leave a gap so the target heading isn't flush against the scroll top. */
 .prose :where(h2, h3, h4) {
   scroll-margin-top: 5rem;
 }

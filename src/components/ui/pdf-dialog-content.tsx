@@ -7,10 +7,7 @@ import { useState } from "react";
 import { Button } from "./button";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 
-// Only the viewer leaf is client-only. Keeping the dialog shell out of the dynamic import
-// means the surface, title and download button paint the instant the dialog opens, with a
-// skeleton standing in while the pdfjs chunk arrives -- rather than the whole dialog being
-// nothing until it lands.
+// Keep dialog chrome interactive while the client-only pdfjs viewer loads.
 const PdfViewer = dynamic(() => import("./pdf-viewer"), {
   ssr: false,
   loading: () => <div className="h-[60vh] animate-pulse border bg-muted motion-reduce:animate-none" />
@@ -28,9 +25,7 @@ export default function PDFDialogContent({ url, downloadName, title, description
   const [downloadFailed, setDownloadFailed] = useState(false);
   const [downloading, setDownloading] = useState(false);
 
-  // Fetched into a blob rather than linked directly: the resume is served from another
-  // origin, and browsers ignore the `download` attribute cross-origin, so this is the only
-  // way to keep the localized filename.
+  // Browsers ignore cross-origin download names; fetch the Blob before triggering the download.
   const downloadPDF = async () => {
     setDownloading(true);
     setDownloadFailed(false);
@@ -54,8 +49,7 @@ export default function PDFDialogContent({ url, downloadName, title, description
     }
   };
 
-  // `sm:w-full` rather than `sm:w-auto`: the viewer sizes its pages to this container, so a
-  // content-driven width would be circular and collapse the dialog to its minimum.
+  // The viewer sizes pages from this container; content-driven width would collapse the dialog.
   return (
     <DialogContent className="top-0 left-0 flex h-svh w-full max-w-full translate-0 flex-col rounded-none p-4 sm:top-[50%] sm:left-[50%] sm:h-auto sm:w-full sm:max-w-5xl sm:translate-[-50%] sm:rounded-lg sm:p-6">
       <DialogHeader>

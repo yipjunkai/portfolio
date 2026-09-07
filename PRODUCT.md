@@ -33,7 +33,7 @@ Jun Kai's current situation, which future copy work must not get wrong in either
 
 **Production-grade engineering discipline applied to work nobody asked for.**
 
-**This line is analysis, not copy. Do not ship it, or any compression of it, as a sentence on a page.** Tested on the live hero on 2026-08-07 and rejected. Two things go wrong when it is said aloud rather than used as a lens. First, the emphasis inverts onto _nobody asked for_, which fails the discriminator test below -- every side project is something nobody asked for; that is what a side project is -- so it claims the least distinctive fact available. Second, "systems nobody asked for" reads to a seed-stage founder as someone who will gold-plate an MVP, which is Principle 2's liability exactly. The same idea works one level down, attached to a specific artifact the reader can open: "a disclosure policy nobody asked me for" is true of almost no one and is one click from the `SECURITY.md` that proves it. **Positioning belongs on the artifacts, not on the person.**
+**Analysis, not copy.** Do not ship this line or a compression of it. It overemphasizes a non-discriminator and reads as MVP gold-plating. Positioning belongs on artifacts readers can inspect, not on the person.
 
 A comparable candidate has projects. They do not have projects with CI, a published disclosure policy, and a stated scope boundary. That gap is the claim, and it is verifiable rather than asserted (see Evidence on Hand).
 
@@ -45,7 +45,7 @@ The supporting shape of the claim: breadth that is genuinely end-to-end (fronten
 
 **What actually drives the work -- Jun Kai's own account, recorded 2026-08-07.** Challenge-driven curiosity. Projects typically begin where something else stopped: a benchmark somebody else set, or a problem widely treated as solved that does not survive being measured. Secrets Spotter started as a friend's project he wanted to push further and kept improving until it passed the original. pyvolr started with libraries that were fast right up until the tails. In his words, the trigger is usually some form of _"nobody can do that"_ or _"I did this -- can you?"_.
 
-**Write from this whenever a surface has to describe the person rather than the work.** It was not written down anywhere before this entry, and the cost of that was real: a full copy session inferred personality from the artifacts and produced roughly sixty rejected drafts, every one of which described what he builds rather than what he is like. The evidence answers _is the signal real_; only this answers _what kind of engineer is he_, which is a separate question a hiring or poaching reader genuinely asks.
+**Write from this whenever a surface describes the person rather than the work.** Evidence answers _is the signal real_; this answers _what kind of engineer is he_.
 
 ## Operating Context
 
@@ -67,7 +67,7 @@ The supporting shape of the claim: breadth that is genuinely end-to-end (fronten
 - **Blog post bodies are authored in English only** and served under both locales. This is a deliberate, documented exception to parity (`content/blog/README.md`), not an oversight.
 - Blog categories are a closed set: `guide`, `experiment`, `note`. Reading time is computed, not authored.
 - CI hard-fails on `prettier --check`; `pnpm format` must pass before anything ships.
-- Resume is a single English PDF served from Vercel Blob storage. A per-locale resume is an **open, undecided item** (`src/config.ts` carries the TODO) -- do not treat it as either shipped or abandoned.
+- Resume is a single English PDF served from Vercel Blob storage. A per-locale resume remains an open decision.
 - Only one asset lives in `public/` (`logo.svg`). There is no photography, no illustration library, and no icon set beyond Heroicons and Lucide.
 
 ## Brand Commitments
@@ -78,7 +78,7 @@ The supporting shape of the claim: breadth that is genuinely end-to-end (fronten
 - **Existing asset:** `public/logo.svg`.
 - **Voice:** plain and evidence-first. Claims arrive attached to numbers, artifacts, or links. No hedging, no self-deprecation, no inflation.
 - **Spelling: `en-SG` is Singapore English and follows British convention** -- largely, though not entirely. Default to `-ise` / `-isation`, and to `catalogue`, `centre`, `colour`, `licence` (noun), `digitise`, `optimise`, `specialisation`. Two carve-outs. **Code identifiers, package names and anything inside backticks are never respelled** -- `py_vollib_vectorized`, `pyvolr.compat.py_vollib`, CSS `color`, JS `serialize` stay exactly as published. **Technical terms of art are not an exemption** -- "normalized Black" (options-pricing literature) and "vectorized over NumPy" (NumPy ecosystem usage) were both raised as borderline and both were respelled to `normalised` / `vectorised`. House style wins over field convention in prose; the only true exemption is the identifier carve-out above. Note also that British English itself permits Oxford `-ize` -- the house style here is `-ise` regardless, so `-ize` is not defensible on that ground.
-  - Where American spellings survive in shipped copy they are drift, not the standard to match -- a prior pass mistook them for the house style and "corrected" a British spelling to align with them. Swept clean on 2026-08-19: both message catalogs and `cv.typ` were already British; the drift was confined to the blog post, which mixed `behaviour` and `behavior` in one file, and has been made consistent. Re-sweep after any bulk copy change, and note that the blog is a copy surface for this rule like any other.
+  - Re-sweep both message catalogs and blog content after bulk copy changes. American spellings in shipped prose are drift.
 - **The framing rule in Positioning is a brand commitment, not a style preference.** Correctness-as-craft language ("rigour", "meticulous", "obsessive about quality") is out. Survives-production language is in.
 
 ## Evidence on Hand
@@ -98,8 +98,8 @@ Note the framing hazard: enumerating CI workflows, test suites and disclosure po
 - Secrets Spotter: 60+ detection patterns across a shared Rust core, SARIF output for GitHub Code Scanning, WASM Chrome extension intercepting fetch/XHR/WebSocket/SSE/cookies.
 - Kipo AI: scaled from stealth to ~1,000 active users over a 2M+ component index.
 - Oceanfront Hardware: a B2B **checkout-first** storefront, live since 2023, **built and operated solely by Jun Kai, and still ongoing**. One search rebuild cut query latency 97% (700ms -> 20ms) -- his own work, and reproducible. The catalog has since grown well past the 800 SKUs previously recorded here and the search has been rebuilt again, so the live site is faster than any figure on this page. **Do not restate the SKU count.** It is the client's business metric, not an engineering claim; it decays; and attaching it to a performance number caps how hard the problem sounds. The evidence here is three years of solo production ownership -- the latency win is one instance of it, not the headline.
-  - Status as of 2026-08-19: the site copy is correct -- present tense, no SKU count, `Freelance Developer` as a role label with no past-tense framing around it. **One thing is still open, and it is in `cv.typ`** -- which is gitignored, so it never appears in a diff and gets missed by any sweep that only reads the tracked tree. It still restates the 800-SKU catalog, against the rule above. Jun Kai is handling that file directly; **when sweeping copy, open `cv.typ` explicitly or you will certify a surface you never read.**
-  - **Decided 2026-08-19, leave it alone:** `projects.oceanfrontHardware.bullet3` keeps "search returns in ~20 ms, down from 700" in both catalogs, even though that is the state form the rule above discourages and the figure now understates the rebuilt search. This is a deliberate call, not an oversight -- do not "fix" it into the event form on a later pass. The home page (`content.home.evidence.oceanfront`) already carries the event form, so the pattern is on the site where it matters most.
+  - `cv.typ` is gitignored. Review it explicitly during copy sweeps; it must not restate the SKU count.
+  - Keep `projects.oceanfrontHardware.bullet3` unchanged. The home page already uses the preferred event form.
   - Where a past-tense freelance framing appears anywhere in future, **that is inaccurate, not a deliberate choice** -- unlike the Kipo tense question above, which is Jun Kai's call. Do not preserve it by analogy.
 - DSBJ: SSO unified across 6 internal applications.
 - Gigworks: ~80% of the production codebase; ~90% reduction in user-reported defects.
