@@ -252,9 +252,6 @@ $RECYCLE.BIN/
 
 .claude/
 
-# Local MCP server config (Chrome DevTools MCP, etc.)
-.mcp.json
-
 # impeccable-ignore-start
 # Ephemeral output, runtime state, and per-dev overrides.
 # Unanchored: .impeccable may sit at the repo root or under a nested

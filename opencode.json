@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "posthog": {
+      "type": "remote",
+      "url": "https://mcp.posthog.com/mcp",
+      "enabled": true
+    },
+    "gsc": {
+      "type": "local",
+      "command": ["uvx", "--with", "mcp[cli]<2", "mcp-search-console"],
+      "environment": {
+        "GSC_OAUTH_CLIENT_SECRETS_FILE": "{env:GSC_OAUTH_CLIENT_SECRETS_FILE}"
+      },
+      "enabled": true
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
+      "enabled": true
+    }
+  }
+}

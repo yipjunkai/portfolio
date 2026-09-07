@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "posthog": {
+      "type": "http",
+      "url": "https://mcp.posthog.com/mcp"
+    },
+    "gsc": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--with", "mcp[cli]<2", "mcp-search-console"],
+      "env": {
+        "GSC_OAUTH_CLIENT_SECRETS_FILE": "${GSC_OAUTH_CLIENT_SECRETS_FILE}"
+      }
+    },
+    "chrome-devtools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"],
+      "env": {}
+    }
+  }
+}
