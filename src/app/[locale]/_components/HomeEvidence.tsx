@@ -4,7 +4,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 
 // Each row is one artifact the reader can open. Mono names the thing (orientation),
 // sans carries the claim -- the same register split the experience entries use. The link
-// colour is deliberately the blue used for outbound links elsewhere, not the brand
+// color is deliberately the blue used for outbound links elsewhere, not the brand
 // gradient: an outbound link is not a brand moment.
 const ROWS = [
   { key: "pyvolr", href: "https://github.com/yipjunkai/pyvolr", external: true },

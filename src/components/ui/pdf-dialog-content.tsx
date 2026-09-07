@@ -30,7 +30,7 @@ export default function PDFDialogContent({ url, downloadName, title, description
 
   // Fetched into a blob rather than linked directly: the resume is served from another
   // origin, and browsers ignore the `download` attribute cross-origin, so this is the only
-  // way to keep the localised filename.
+  // way to keep the localized filename.
   const downloadPDF = async () => {
     setDownloading(true);
     setDownloadFailed(false);

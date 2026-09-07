@@ -23,7 +23,7 @@ export interface PdfViewerProps {
 
 // A resume is dense enough that fitting a page to a phone's width renders it unreadable, and
 // the reader has to zoom in regardless. So pages never render narrower than this: on a phone
-// the document opens already legible and pans sideways, which is the behaviour to preserve.
+// the document opens already legible and pans sideways, which is the behavior to preserve.
 const MIN_READABLE_WIDTH = 960;
 
 function Notice({ children }: { children: string }) {
@@ -36,7 +36,7 @@ export default function PdfViewer({ url, loadingLabel, errorLabel }: PdfViewerPr
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Widen pages to fill a container bigger than the readable baseline, never shrink below it.
-  // Zero and unchanged widths are dropped because every accepted width re-rasterises every
+  // Zero and unchanged widths are dropped because every accepted width re-rasterizes every
   // page: the observer can report a transient 0 while the dialog is still laying out, and
   // sub-pixel jitter would otherwise thrash it.
   useEffect(() => {

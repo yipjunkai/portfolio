@@ -119,15 +119,15 @@ components:
 
 This is a briefing document, not a showcase. A senior technical reader arrives already holding a reference to the person and needs to confirm it quickly -- so the interface behaves like a well-kept dossier handed across a desk: near-monochrome, densely packed with evidence, monospace where a label needs to orient you, and completely uninterested in performing. The reading column sits on a lighter surface inset into a darker canvas, the way a page sits on a desk. Nothing floats, nothing glows at rest, nothing animates unprompted.
 
-The system rations colour to the point of severity. One coral-to-violet gradient carries the entire chromatic identity, and it appears only where the reader could act or where the brand signs its name. Everything else is a neutral ramp. This is what makes the gradient legible as a signal rather than as decoration -- the moment a second accent hue enters, the first one stops meaning anything.
+The system rations color to the point of severity. One coral-to-violet gradient carries the entire chromatic identity, and it appears only where the reader could act or where the brand signs its name. Everything else is a neutral ramp. This is what makes the gradient legible as a signal rather than as decoration -- the moment a second accent hue enters, the first one stops meaning anything.
 
-Confidence lives in structure, never in ornament. Scale jumps are large and decisive -- a 4.5rem name against 1rem body copy -- weights go straight from regular to bold with nothing timid in between, and headings do not apologise for their size. But that confidence is expressed entirely through type scale, weight, and hierarchy. It never reaches for a bigger shadow, a louder colour, or a flourish. The visual voice matches the written one: plain, evidence-first, no hedging.
+Confidence lives in structure, never in ornament. Scale jumps are large and decisive -- a 4.5rem name against 1rem body copy -- weights go straight from regular to bold with nothing timid in between, and headings do not apologize for their size. But that confidence is expressed entirely through type scale, weight, and hierarchy. It never reaches for a bigger shadow, a louder color, or a flourish. The visual voice matches the written one: plain, evidence-first, no hedging.
 
 **Key Characteristics:**
 
 - Two-tone neutral field (darker canvas framing a lighter reading surface) in both themes
 - Exactly one chromatic gesture: the coral -> violet gradient, used sparingly
-- Monospace as a labelling instrument, not a body face
+- Monospace as a labeling instrument, not a body face
 - Flat at rest; depth and motion appear only in response to intent
 - Dense, scannable evidence -- bulleted proof over paragraphs
 - Full light/dark parity, with no theme treated as the default
@@ -138,7 +138,7 @@ A severe neutral ramp interrupted by exactly one warm-to-cool gradient, plus a u
 
 ### Primary
 
-- **Signal Coral** (`#ee696b`): The gradient's warm origin and the system's true accent. It opens every primary action, anchors the brand badge, marks the highlighted line in a code block, and is the only hue in the breathing hover shadow. On its own it reads warm and human against the cold neutrals -- deliberately the least "corporate" colour in the system.
+- **Signal Coral** (`#ee696b`): The gradient's warm origin and the system's true accent. It opens every primary action, anchors the brand badge, marks the highlighted line in a code block, and is the only hue in the breathing hover shadow. On its own it reads warm and human against the cold neutrals -- deliberately the least "corporate" color in the system.
 - **Deep Violet** (`#523a78`): The gradient's cool terminus. Never used as a flat fill on its own; its entire job is to give the coral somewhere to travel so the accent reads as a gesture with direction rather than a swatch.
 - **Electric Purple** (`#a855f7`): The brightened violet that appears only inside the primary button's animated halo, where the gradient cycles coral -> purple -> coral. It exists to make motion legible; using it as a static fill flattens the one place the system moves.
 
@@ -153,15 +153,15 @@ A severe neutral ramp interrupted by exactly one warm-to-cool gradient, plus a u
 
 ### Tertiary -- Tech Taxonomy
 
-A six-colour classification set used exclusively on technology badges (`language`, `frontend`, `backend`, `database`, `service`, `other`). These are functional category markers, not brand colours: **Language Blue** (`#3b82f6`), **Frontend Green** (`#22c55e`), **Backend Purple** (`#a855f7`), **Database Yellow** (`#eab308`), **Service Orange** (`#f97316`), **Other Grey** (`#6b7280`).
+A six-color classification set used exclusively on technology badges (`language`, `frontend`, `backend`, `database`, `service`, `other`). These are functional category markers, not brand colors: **Language Blue** (`#3b82f6`), **Frontend Green** (`#22c55e`), **Backend Purple** (`#a855f7`), **Database Yellow** (`#eab308`), **Service Orange** (`#f97316`), **Other Gray** (`#6b7280`).
 
 ### Named Rules
 
 **The One Gradient Rule.** The coral -> violet gradient is the only chromatic event in the system. It appears in exactly four places: the primary button, the default badge, the highlighted code line, and the secondary button's border and text fill. It is never a page background, never a section fill, never a large field. Its scarcity is what makes it read as "act here."
 
-**The Taxonomy Is Not Brand Rule.** The six tech-badge colours classify; they never decorate. They may not be borrowed for buttons, links, headings, or surfaces, and no seventh category colour may be invented to add visual interest.
+**The Taxonomy Is Not Brand Rule.** The six tech-badge colors classify; they never decorate. They may not be borrowed for buttons, links, headings, or surfaces, and no seventh category color may be invented to add visual interest.
 
-**The Cool-Neutral Rule.** Every neutral in the system carries a slight cool cast (the OKLCH ramp sits around hue 286). Warm greys, beiges, and cream surfaces are foreign to this system and read immediately as imported from elsewhere.
+**The Cool-Neutral Rule.** Every neutral in the system carries a slight cool cast (the OKLCH ramp sits around hue 286). Warm grays, beiges, and cream surfaces are foreign to this system and read immediately as imported from elsewhere.
 
 ## Typography
 
@@ -169,7 +169,7 @@ A six-colour classification set used exclusively on technology badges (`language
 **Body Font:** Geist (same stack)
 **Label/Mono Font:** Geist Mono (with Geist Mono Fallback, then `ui-monospace`, `SFMono-Regular`, `Menlo`)
 
-**Character:** A single geometric-grotesque family carries the whole interface, with its monospace sibling doing all the labelling. Because both faces share a skeleton, switching to mono reads as a change of _register_ rather than a change of voice -- the same speaker moving from prose to a field label. The pairing is technical without being retro; there is no terminal-green nostalgia here, just the precision of fixed advance widths where precision is the point.
+**Character:** A single geometric-grotesque family carries the whole interface, with its monospace sibling doing all the labeling. Because both faces share a skeleton, switching to mono reads as a change of _register_ rather than a change of voice -- the same speaker moving from prose to a field label. The pairing is technical without being retro; there is no terminal-green nostalgia here, just the precision of fixed advance widths where precision is the point.
 
 > **Where the family is set.** Two places, and only two. `next/font` declares the faces in `src/app/[locale]/layout.tsx`, where the variable classes sit on `<html>` -- not `<body>`, because Tailwind's preflight sets `font-family` on `<html>` and a variable defined one level lower cannot resolve there. `globals.css` then maps them onto `--font-sans` / `--font-mono` in its `@theme inline` block. Changing typeface means editing those two spots; nothing else in the codebase names a font family.
 
@@ -194,9 +194,9 @@ A six-colour classification set used exclusively on technology badges (`language
 
 ## Layout
 
-A fixed two-column shell, capped at 1280px (`max-w-7xl`) and centred, with a full-height 192px navigation rail on the left and a scrolling content column on the right. Below `lg`, the rail collapses into a top bar and the layout becomes a single stack. The shell is `h-svh` with the content column owning its own overflow, so the rail never scrolls away -- a reader mid-dossier can always jump sections.
+A fixed two-column shell, capped at 1280px (`max-w-7xl`) and centered, with a full-height 192px navigation rail on the left and a scrolling content column on the right. Below `lg`, the rail collapses into a top bar and the layout becomes a single stack. The shell is `h-svh` with the content column owning its own overflow, so the rail never scrolls away -- a reader mid-dossier can always jump sections.
 
-The reading column caps at **900px** and carries 32px of horizontal padding (24px from `md` up), 48px of top margin on mobile rising to 96px at `lg`, and 96px of bottom padding so the last line never collides with the viewport edge. Behind everything, a fixed half-width panel painted in the reading surface colour runs from the horizontal centre to the right edge, which is what produces the framed, inset-page effect at wide viewports.
+The reading column caps at **900px** and carries 32px of horizontal padding (24px from `md` up), 48px of top margin on mobile rising to 96px at `lg`, and 96px of bottom padding so the last line never collides with the viewport edge. Behind everything, a fixed half-width panel painted in the reading surface color runs from the horizontal center to the right edge, which is what produces the framed, inset-page effect at wide viewports.
 
 Vertical rhythm runs on a coarse scale: 32px between sibling blocks, 64px between major entries (projects, experience items), 16px inside a component. Dividers between entries are 1px hairlines at full column width, never boxes or cards -- entries are separated by rule and space, not by containers.
 
@@ -240,7 +240,7 @@ The form language is rectangular and quiet: full-width hairline dividers, no car
 
 - **Shape:** Softly rounded (8px, `rounded-md`), with 16px horizontal and 8px vertical padding at default size.
 - **Primary:** The coral -> violet gradient as the fill with white text, wrapped in an animated blurred halo. On desktop the halo is transparent at rest and blooms to 80% opacity on hover with a 2s gradient cycle; on mobile it is permanently visible, since there is no hover state to discover it. An inset ring darkens the fill in dark mode.
-- **Secondary:** The inverse construction -- the gradient renders as a 2px border with the card colour filling the interior, and the label itself is gradient-clipped text. On hover it pulses the coral breathing halo. In dark mode the gradient text is replaced by solid `neutral-50`, because gradient-clipped text on a dark field loses too much contrast.
+- **Secondary:** The inverse construction -- the gradient renders as a 2px border with the card color filling the interior, and the label itself is gradient-clipped text. On hover it pulses the coral breathing halo. In dark mode the gradient text is replaced by solid `neutral-50`, because gradient-clipped text on a dark field loses too much contrast.
 - **Outline / Ghost / Link:** Standard restrained fallbacks for non-primary actions -- bordered surface, transparent-until-hover, and underline-on-hover respectively.
 - **Focus:** A 3px `ring-ring/50` ring on `focus-visible` across every variant. Never removed.
 - **Sizes:** A full ladder from `xs` (24px) to `lg` (40px) plus square icon variants, with the icon-only `icon-lg` stepping down from 48px to 40px at `lg` -- larger touch target on touch devices.
@@ -263,7 +263,7 @@ There are no cards. Content blocks are separated by 64px of space and a 1px hair
 
 ### Code Blocks (signature)
 
-The most designed surface in the system. Shiki dual-theme highlighting swaps token colours by theme, wrapped in a hairline-bordered figure at 10px radius with an optional title bar in Geist Mono above it (bottom corners squared off so title and block read as one object). Highlighted lines take a 12% `deep-violet` wash with a 2px `signal-coral` left border -- the one place the accent gradient's two poles work as a pair inside dense text. Inline code drops the prose backticks for a muted chip at 6px radius.
+The most designed surface in the system. Shiki dual-theme highlighting swaps token colors by theme, wrapped in a hairline-bordered figure at 10px radius with an optional title bar in Geist Mono above it (bottom corners squared off so title and block read as one object). Highlighted lines take a 12% `deep-violet` wash with a 2px `signal-coral` left border -- the one place the accent gradient's two poles work as a pair inside dense text. Inline code drops the prose backticks for a muted chip at 6px radius.
 
 ## Do's and Don'ts
 
@@ -281,9 +281,9 @@ The most designed surface in the system. Shiki dual-theme highlighting swaps tok
 
 - **Don't** introduce a second accent hue. The gradient's authority is entirely a function of being the only one.
 - **Don't** give anything a resting shadow or glow. The two glows in the system are hover states; a third, at rest, would break The Flat-At-Rest Rule.
-- **Don't** repurpose the tech-taxonomy colours for buttons, links, headings, or surfaces -- they classify, they don't decorate.
+- **Don't** repurpose the tech-taxonomy colors for buttons, links, headings, or surfaces -- they classify, they don't decorate.
 - **Don't** put white text on the mid-tone taxonomy fills at `text-sm`. Database Yellow on white measures roughly 1.9:1, Frontend Green about 2.3:1, and Backend Purple about 3.5:1 -- all below the 4.5:1 needed for small text. This is a known defect in the incumbent implementation, recorded here so it is fixed rather than propagated.
 - **Don't** fix Geist by adding `font-family` to individual components. Map `--font-sans` and `--font-mono` once in `globals.css`'s `@theme` block so the whole system inherits it.
-- **Don't** normalise the mobile-larger display size into a conventional `clamp()`. The inversion is intentional.
+- **Don't** normalize the mobile-larger display size into a conventional `clamp()`. The inversion is intentional.
 - **Don't** add a third radius value. Controls are 8px, containers are 10px.
-- **Don't** let colour alone carry meaning -- the taxonomy badges are always accompanied by a text label naming the category.
+- **Don't** let color alone carry meaning -- the taxonomy badges are always accompanied by a text label naming the category.

@@ -25,7 +25,7 @@ tags: [security, linux, ops, hardening, self-hosting]
 > just deserves a bounded blast radius -- and **B0 tells you _which_ of its controls you actually
 > need**, which is a narrower question than whether Part B applies at all. **Part C** is the list of
 > things that actually went wrong -- read it before you touch nftables or PAM. Not every rule fits
-> every project; where a choice is a judgment call, the rationale is stated so you can make it yourself.
+> every project; where a choice is a judgement call, the rationale is stated so you can make it yourself.
 
 ---
 
@@ -80,9 +80,9 @@ your model, you shouldn't be on shared cloud.
 
 - **The VM is the isolation boundary.** Treat it as **disposable** -- rebuildable from a snapshot +
   offsite backup. Nothing on it should be irreplaceable.
-- **Minimize attack surface** -- nothing public that doesn't have to be; no service as root that a
+- **Minimise attack surface** -- nothing public that doesn't have to be; no service as root that a
   system user could run.
-- **Defense in depth** -- no single control is the only thing standing between you and a bad day.
+- **Defence in depth** -- no single control is the only thing standing between you and a bad day.
 - **Verify, don't assume** -- every phase ends by checking the _effective_ state (`sshd -T`, `sysctl`
   read-back, a real login from a fresh terminal), not by trusting that editing a file worked.
 - **The only control that survives a full root compromise is enforced _off the box_.** On-box
@@ -667,10 +667,10 @@ rewrite its own config.**
 
 **Default: treat the box as stateless and disposable.** If its real state lives in git and off-box (code
 reproducible, data in a managed DB / object store), all you need is a provider **snapshot** as a
-known-good rollback -- take one now labeled `post-hardening-baseline`. A snapshot is _rollback, not backup_:
+known-good rollback -- take one now labelled `post-hardening-baseline`. A snapshot is _rollback, not backup_:
 it lives with the provider, so a compromised provider account takes it too.
 
-**Only if the box holds state you can't recreate** (a local DB, generated artifacts, an on-box ledger),
+**Only if the box holds state you can't recreate** (a local DB, generated artefacts, an on-box ledger),
 add an **offsite** backup of _just that state_: `restic` to S3/B2, repo password in your secrets manager,
 on a systemd timer. **Test a restore at least quarterly -- an untested backup is not a backup.**
 
@@ -1209,7 +1209,7 @@ Plan the exit before you start -- especially for a long-running or autonomous wo
 env/config, or `systemctl disable --now myapp.timer`. **The switch must be enforced _outside_ the
 workload's control** (a root-owned file it can read but not write -- B2 -- or the systemd timer it can't
 touch). If the workload's objective could ever read as "keep running," never let it hold its own off
-switch, and judge a stopped run by its **behavior and true state**, not by what it reports about itself.
+switch, and judge a stopped run by its **behaviour and true state**, not by what it reports about itself.
 
 **Full teardown checklist:**
 

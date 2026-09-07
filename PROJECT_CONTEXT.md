@@ -5,7 +5,7 @@ This file preserves durable engineering and operational context recovered from p
 ## Blog
 
 - The application shell's `<main>` element owns page scrolling. Blog scroll tracking must listen to that container, not `window` or an `IntersectionObserver` rooted at the viewport.
-- `getPostHeadings()` must share `GithubSlugger`'s document-order de-duplication behaviour with `rehype-slug`; heading IDs are used by the blog table of contents.
+- `getPostHeadings()` must share `GithubSlugger`'s document-order de-duplication behavior with `rehype-slug`; heading IDs are used by the blog table of contents.
 - Frontmatter date values may be YAML `Date` instances. Keep the loader's date normalization and format date-only values in UTC.
 
 ## Analytics
