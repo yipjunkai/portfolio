@@ -27,7 +27,7 @@
     },
     "notFound": {
       "title": "这里什么都没有",
-      "body": "大多数故障都不会自报家门。这一个会——这个地址下没有页面。",
+      "body": "大多数故障都不会自报家门。这个例外：这个地址没有对应的页面。",
       "illustrationAlt": "一个人站在黑暗虚空的边缘",
       "routesLabel": "整个网站只有四个页面"
     },
@@ -47,7 +47,9 @@
       "other": "其他"
     },
     "aria": {
-      "changeTheme": "切换至{theme}主题"
+      "changeTheme": "切换至{theme}主题",
+      "darkTheme": "深色",
+      "lightTheme": "浅色"
     },
     "home": {
       "emailMe": "给我发邮件",
@@ -114,7 +116,7 @@
   "content": {
     "meta": {
       "siteName": "叶俊凯",
-      "siteDescription": "俊凯是一名软件开发者，目前就职于位于纽约市曼哈顿的 Tetrix。",
+      "siteDescription": "俊凯目前在纽约曼哈顿的 Tetrix 担任软件开发者。",
       "jobTitle": "软件开发者",
       "pages": {
         "experience": {
@@ -125,7 +127,7 @@
         },
         "blog": {
           "title": "博客",
-          "description": "叶俊凯关于软件、系统与性能优化的指南、实验与笔记。"
+          "description": "叶俊凯撰写的关于软件、系统与性能的指南、实验与笔记。"
         }
       }
     },
@@ -133,15 +135,15 @@
       "greeting": "嗨，我是",
       "name": "俊凯",
       "location": "新加坡与美国",
-      "aboutMe": "我喜欢处理那些看似已经完成、其实未必如此的问题。工作上，我做全栈开发；工作以外，我用 Rust 更深入地理解系统。",
+      "aboutMe": "我喜欢处理那些看似已经收尾、实则尚未结束的问题。工作上，我做全栈开发；工作之外，我写 Rust，以更深入地理解系统。",
       "evidence": {
         "pyvolr": {
           "label": "pyvolr",
-          "claim": "在 100 万次隐含波动率求解上比次快的库快约 2 倍；而且在期权价格低至 1e-215 时仍然精确——其他库此时会返回错误的常数，却不会报错。"
+          "claim": "在 100 万次隐含波动率求解上比第二快的库快约 2 倍；而且在期权价格低至 1e-215 时仍然精确——其他库此时会返回错误的常数，却不会报错。"
         },
         "secretsSpotter": {
           "label": "secrets-spotter",
-          "claim": "检测文件、网页与实时网络流量中泄漏的密钥。60 多种模式、一个 Rust 核心、一个命令行工具和一个浏览器扩展，外加一份没人要求我写的安全披露政策。"
+          "claim": "检测文件、网页与实时网络流量中泄露的敏感凭据。60 多种模式、一个 Rust 核心、一个命令行工具和一个浏览器扩展，外加一份没人要求我写的安全披露政策。"
         },
         "oceanfront": {
           "label": "Oceanfront Hardware",
@@ -165,27 +167,27 @@
           "company": "Kipo AI",
           "location": "旧金山",
           "position": "软件工程实习生",
-          "description": "构建了网页应用的大部分以及其下的平台系统，贯穿产品从隐身阶段扩展到约 1,000 名活跃用户、索引超过 200 万个组件的整个过程。",
-          "bullet1": "重写认证与会话系统，为 OAuth 与企业级部署铺开道路，并以跨浏览器端到端测试保障流程稳定。",
-          "bullet2": "在 Temporal 上重建了产品的实时核心，替换掉原先 WebSocket 与 SSE 混杂、状态存在进程内的实现，并把聊天与搜索拆开——为原本被这层耦合排除在外的产品方向打开了空间。",
-          "bullet3": "用数个迭代重建了部署流水线与测试体系——单元测试、端到端测试与模糊测试，并让前端测试走无障碍层——过程中发现并修复了一批长期潜伏的缺陷。"
+          "description": "在产品从未公开阶段发展到约 1,000 名活跃用户、组件索引超过 200 万的扩张过程中，构建了网页应用的大部分及其底层平台系统。",
+          "bullet1": "重写认证与会话系统，为 OAuth 和企业级落地扫清障碍，并以跨浏览器端到端测试保障流程稳定。",
+          "bullet2": "在 Temporal 上重建产品的实时核心，取代由 WebSocket、SSE 和进程内状态拼凑而成的旧实现，并将聊天与搜索解耦——使先前受此耦合限制的产品方向成为可能。",
+          "bullet3": "用数个迭代重建部署流水线与测试体系——单元测试、端到端测试与模糊测试，并通过无障碍层驱动前端测试——过程中发现并修复了一批长期潜伏的缺陷。"
         },
         "dsbj": {
           "company": "东山精密",
           "location": "新加坡",
           "position": "应用与数据开发实习生",
-          "description": "为一家电子制造商做内部平台开发——让复杂的模型对依赖它们的领域专家变得可读，并统一六个应用的登录。",
-          "bullet1": "构建了带 LLM 诊断能力的模型可视化平台，供需要解读这些模型的领域专家日常使用。",
-          "bullet2": "用一套统一的认证系统取代了六套各自搭建的实现——现代密码哈希、规范的访问与刷新令牌，以及六个应用间一致的会话管理。"
+          "description": "为一家电子制造商开发内部平台——让依赖复杂模型的领域专家能够理解这些模型，并打通六个应用的登录。",
+          "bullet1": "构建了集成 LLM 诊断功能的模型可视化平台，供需要解读这些模型的领域专家日常使用。",
+          "bullet2": "用一套统一的认证系统取代了六套各自搭建的实现——采用现代密码散列算法、妥善的访问令牌与刷新令牌机制，以及六个应用间一致的会话管理。"
         },
         "works": {
           "company": "Gigworks",
           "location": "新加坡",
           "position": "移动端与网页应用开发实习生",
           "description": "",
-          "bullet1": "负责营收型电商平台的移动端和网页端开发，贡献了约 80% 的生产代码库。",
+          "bullet1": "负责一个产生营收的电商平台的移动端和网页端开发，贡献了约 80% 的生产代码库。",
           "bullet2": "将用户报告的缺陷减少约 90%，提高了结账可靠性。",
-          "bullet3": "与设计团队直接对接其待办事项，弥补了约 6 个月的交付进度差距。"
+          "bullet3": "直接处理设计团队积压的任务，弥补了约 6 个月的交付缺口。"
         },
         "cda": {
           "company": "民防学院",
@@ -196,10 +198,10 @@
       },
       "research": {
         "ai4x": {
-          "conference": "AI4X 2025 国际会议",
+          "conference": "AI4X 2025",
           "title": "物理信息神经网络中的不确定性量化",
-          "description": "将深度证据回归用于物理信息神经网络——用来判断一个预测何时不该被信任。在 Burgers 与 Laplace 上验证。",
-          "abstract": "我们将一种最先进的方法集成到物理信息神经网络中，用于量化随机不确定性和认知不确定性，观察到在保持预测准确性的同时，不确定性能被有效捕获。",
+          "description": "将深度证据回归用于物理信息神经网络——用来判断一个预测何时不该被信任。在 Burgers 方程与 Laplace 方程上验证。",
+          "abstract": "我们将一种最先进的方法整合进物理信息神经网络，用于量化随机不确定性和认知不确定性，并观察到在保持预测准确性的同时，能够有效刻画这两类不确定性。",
           "topic1": "物理信息神经网络",
           "topic2": "不确定性量化"
         }
@@ -207,7 +209,7 @@
       "education": {
         "ntu": {
           "school": "南洋理工大学",
-          "degree": "计算机工程荣誉工学学士",
+          "degree": "工学学士（荣誉），计算机工程",
           "description": "",
           "bullet1": "辅修商科",
           "bullet2": "选修方向：安全与人工智能"
@@ -219,30 +221,30 @@
         "name": "Oceanfront Hardware",
         "role": "自由职业开发者",
         "description": "一个以结账流程为核心的 B2B 商店，由我从头搭建并持续维护至今。",
-        "bullet1": "把客户从线下销售带到一个他们的商业客户真正能下单的网店，全程只有我一个工程师。",
-        "bullet2": "带着客户一起梳理他们自己的产品目录，理清那些让产品悄悄无法出现在搜索结果和分类页里的数据问题。",
+        "bullet1": "帮助客户从线下销售转向可供商业客户直接下单的线上商店；我是该项目唯一的工程师。",
+        "bullet2": "与客户一起梳理产品目录，解决那些让商品无法显示在搜索结果和分类页中的数据不一致问题。",
         "bullet3": "服务端渲染以便被索引；搜索响应约 20 毫秒，此前为 700 毫秒，并支持全目录的拼写容错。",
         "mobileAlt": "手机上的 Oceanfront Hardware 商店，显示一个产品页面"
       },
       "pyvolr": {
         "name": "pyvolr",
         "role": "开源项目",
-        "description": "一个用于 Black-Scholes-Merton 与 Black-76 定价、五大希腊值以及隐含波动率的 Python 库——基于 NumPy 全面向量化，并与 `py_vollib`/`vollib` 即插即用兼容。",
-        "bullet1": "在大规模下领跑活跃的 BSM 生态：100 万次隐含波动率求解比 fast-vollib 的 numba 后端快约 2 倍、比 opengreeks 快约 12 倍，100 万个执行价可在约 4 毫秒内完成定价——底层是 Rust 核心，通过 PyO3 暴露、以 rayon 并行，标量输入下仍保持亚微秒级。",
-        "bullet2": "在期权价格低至 1e-215 时仍保持 f64 精确，而 fast-vollib、opengreeks 与 quantforge 在此之前就已开始返回错误的常数——采用 Jäckel 的“Let’s Be Rational”求解器与基于 `erfcx` 的正态累积分布函数，并以 mpmath 黄金基准锚定、在 CI 中做差分测试。",
+        "description": "一个用于 Black-Scholes-Merton 与 Black-76 定价、计算全部五个希腊值及隐含波动率的 Python 库——完全基于 NumPy 向量化，可直接替换 `py_vollib`/`vollib` 使用。",
+        "bullet1": "在大规模运行下，是当前 BSM 生态中速度最快的库：100 万次隐含波动率求解比 fast-vollib 的 numba 后端快约 2 倍、比 opengreeks 快约 12 倍，100 万个执行价可在约 4 毫秒内完成定价——底层是 Rust 核心，通过 PyO3 暴露、以 rayon 并行，标量输入下仍保持亚微秒级。",
+        "bullet2": "在期权价格低至 1e-215 时仍保持 f64 精确，而 fast-vollib、opengreeks 与 quantforge 在此之前就已开始返回错误的常数——采用 Jäckel 的“Let’s Be Rational”求解器与基于 `erfcx` 的正态累积分布函数，以 mpmath 黄金基准序列校验，并在 CI 中进行差分测试。",
         "bullet3": "为 Python 3.10–3.14 提供 Linux、macOS 与 Windows 的 wheel 包，含自由线程的 3.13t 与 3.14t 构建，通过 PyPI Trusted Publishing 发布且不存储任何凭证——另附 `py_vollib` 与 `py_vollib_vectorized` 兼容层，现有用户改一行 import 即可迁移。",
-        "chartCaptionThroughput": "吞吐量对比：pyvolr 与活跃 BSM 生态（双对数，按数组大小）",
-        "chartCaptionAccuracy": "深度尾部的隐含波动率精度（正确位数，越高越好）",
-        "chartAltThroughput": "吞吐量基准测试：pyvolr 对比 fast-vollib、opengreeks 及更广的 BSM 生态，在 Apple M4 Pro 上按数组大小双对数缩放",
-        "chartAltAccuracy": "隐含波动率尾部精度：pyvolr 在期权价格低至 1e-215 时仍保持 f64 精确，而更快的库在价格 1e-6 至 1e-26 之间跌至零正确位数"
+        "chartCaptionThroughput": "pyvolr 与当前 BSM 生态的吞吐量对比（按数组大小的双对数图）",
+        "chartCaptionAccuracy": "尾部极端区域的隐含波动率精度（正确位数，越高越好）",
+        "chartAltThroughput": "在 Apple M4 Pro 上，按数组大小绘制的双对数吞吐量对比：pyvolr、fast-vollib、opengreeks 与更广的 BSM 生态",
+        "chartAltAccuracy": "隐含波动率尾部精度：pyvolr 在期权价格低至 1e-215 时仍保持 f64 精确，而速度更快的库在价格 1e-6 至 1e-26 之间的正确位数降为零"
       },
       "secretsSpotter": {
         "name": "Secrets Spotter",
         "role": "开源项目",
-        "description": "一款开源的 CLI 工具与 Chrome 扩展，用于检测文件、目录、标准输入、网页和网络流量中泄露的密钥；由共享的 Rust 核心驱动。",
-        "bullet1": "构建统一的 Rust 检测引擎，内置 60 多种检测模式（涵盖 AWS、GitHub、Stripe、JWT、私钥等），并通过香农熵、字符类多样性和代码标识符过滤来排除误报；CLI 和浏览器扩展共用同一核心。",
-        "bullet2": "推出面向 CI/CD 的 CLI 工具，支持 SARIF（用于 GitHub Code Scanning）与 JSON 输出格式，以及 glob 和严重程度筛选。",
-        "bullet3": "开发基于 WebAssembly 的 Chrome 扩展，扫描 DOM 并通过 MAIN 世界拦截器捕获 fetch、XHR、WebSocket、SSE 和 Cookie；结合 SHA-256 去重与 SPA 路由变更自动重扫，全程本地运行，数据不外泄。"
+        "description": "一款开源的 CLI 工具与 Chrome 扩展，用于检测文件、目录、标准输入、网页和网络流量中暴露的敏感凭据；由共享的 Rust 核心驱动。",
+        "bullet1": "构建统一的 Rust 检测引擎，内置 60 多种检测模式（涵盖 AWS、GitHub、Stripe、JWT、私钥等），并通过香农熵、字符类别多样性和代码标识符排除机制筛除误报；CLI 和浏览器扩展共用同一核心。",
+        "bullet2": "推出面向 CI/CD 的 CLI 工具，支持 SARIF（用于 GitHub Code Scanning）与 JSON 输出格式，以及 glob 模式和严重程度筛选。",
+        "bullet3": "开发基于 WebAssembly 的 Chrome 扩展，扫描 DOM 内容，并通过 MAIN world 拦截器捕获 fetch、XHR、WebSocket、SSE 和 Cookie；结合 SHA-256 去重与 SPA 路由变更自动重扫，所有处理均在本地完成。"
       }
     }
   }

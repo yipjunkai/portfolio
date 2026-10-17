@@ -47,7 +47,9 @@
       "other": "Other"
     },
     "aria": {
-      "changeTheme": "Button to change theme to {theme}"
+      "changeTheme": "Change theme to {theme}",
+      "darkTheme": "dark",
+      "lightTheme": "light"
     },
     "home": {
       "emailMe": "Email me",

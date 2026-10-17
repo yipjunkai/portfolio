@@ -24,10 +24,12 @@ export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDi
   const buttons = [
     {
       theme: "dark",
+      themeName: t("aria.darkTheme"),
       icon: <MoonIcon className="size-8 md:size-7 lg:size-5" />
     },
     {
       theme: "light",
+      themeName: t("aria.lightTheme"),
       icon: <SunIcon className="size-8 md:size-7 lg:size-5" />
     }
   ];
@@ -45,7 +47,7 @@ export default function ThemeChanger({ className, style }: HTMLAttributes<HTMLDi
           key={button.theme}
           onClick={() => setTheme(button.theme)}
           className={`z-20 rounded-full p-1 transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:outline-none ${mounted && resolvedTheme === button.theme ? "text-purple-600" : ""}`}
-          aria-label={t("aria.changeTheme", { theme: button.theme })}
+          aria-label={t("aria.changeTheme", { theme: button.themeName })}
         >
           {button.icon}
         </button>
