@@ -1,5 +1,5 @@
 interface TechPatternProps {
-  variant: "circuit" | "storefront" | "nodes" | "shield";
+  variant: "books" | "circuit" | "storefront" | "nodes" | "shield";
 }
 
 function CircuitPattern() {
@@ -82,6 +82,45 @@ function CircuitPattern() {
       {[30, 42, 54, 66, 78].map(x => (
         <rect key={`hpad-${x}`} x={x} y="18" width="5" height="8" rx="1" stroke="var(--color-grad-1)" strokeWidth="1" fill="none" />
       ))}
+    </svg>
+  );
+}
+
+function BooksPattern() {
+  const frontRows = [126, 144, 162, 180];
+
+  return (
+    <svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="126" y="24" width="110" height="156" rx="3" stroke="var(--color-grad-2)" strokeWidth="1.5" />
+      <line x1="148" y1="24" x2="148" y2="180" stroke="var(--color-grad-2)" strokeWidth="1" />
+      <circle cx="194" cy="48" r="3" stroke="var(--color-grad-2)" strokeWidth="1.25" />
+      <path
+        d="M194 52 V60 H174 M194 60 H214"
+        stroke="var(--color-grad-2)"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="174" cy="68" r="3" stroke="var(--color-grad-3)" strokeWidth="1.25" />
+      <circle cx="214" cy="68" r="3" stroke="var(--color-grad-3)" strokeWidth="1.25" />
+      <line x1="164" y1="86" x2="208" y2="86" stroke="var(--color-grad-2)" strokeWidth="1" strokeLinecap="round" />
+      <rect x="88" y="52" width="122" height="164" rx="3" stroke="var(--color-grad-3)" strokeWidth="1.5" />
+      <line x1="112" y1="52" x2="112" y2="216" stroke="var(--color-grad-3)" strokeWidth="1" />
+      <path d="M128 82 H192 M128 98 H200 M128 114 H180" stroke="var(--color-grad-3)" strokeWidth="1" strokeLinecap="round" />
+      <rect x="48" y="80" width="132" height="172" rx="3" stroke="var(--color-grad-1)" strokeWidth="1.75" />
+      <line x1="74" y1="80" x2="74" y2="252" stroke="var(--color-grad-1)" strokeWidth="1.25" />
+      <path d="M92 106 H162" stroke="var(--color-grad-1)" strokeWidth="1.5" strokeLinecap="round" />
+      <text x="88" y="138" fill="var(--color-grad-1)" fontFamily="monospace" fontSize="36" fontWeight="700">
+        $
+      </text>
+      {frontRows.map(y => (
+        <line key={y} x1="126" y1={y} x2="164" y2={y} stroke="var(--color-grad-1)" strokeWidth="0.9" strokeLinecap="round" />
+      ))}
+      <line x1="118" y1="116" x2="118" y2="192" stroke="var(--color-grad-1)" strokeWidth="0.75" />
+      <line x1="142" y1="116" x2="142" y2="192" stroke="var(--color-grad-1)" strokeWidth="0.75" />
+      <path d="M48 252 H180 V262 H48 Z" stroke="var(--color-grad-1)" strokeWidth="1.25" strokeLinejoin="round" />
+      <path d="M58 262 H190 V270 H58 Z" stroke="var(--color-grad-2)" strokeWidth="1.25" strokeLinejoin="round" />
+      <path d="M68 270 H200" stroke="var(--color-grad-3)" strokeWidth="1.25" strokeLinecap="round" />
     </svg>
   );
 }
@@ -246,10 +285,15 @@ function ShieldPattern() {
 export default function TechPattern({ variant }: TechPatternProps) {
   return (
     <div
-      className="pointer-events-none absolute -top-4 right-0 opacity-20 md:top-1/2 md:-translate-y-1/2 dark:opacity-15"
+      className={
+        variant === "books"
+          ? "pointer-events-none absolute -top-4 -right-12 opacity-10 md:top-1/2 md:-translate-y-1/2 md:opacity-15 dark:opacity-10 md:dark:opacity-15"
+          : "pointer-events-none absolute -top-4 right-0 opacity-20 md:top-1/2 md:-translate-y-1/2 dark:opacity-15"
+      }
       aria-hidden="true"
     >
       {variant === "circuit" && <CircuitPattern />}
+      {variant === "books" && <BooksPattern />}
       {variant === "storefront" && <StorefrontPattern />}
       {variant === "nodes" && <NodesPattern />}
       {variant === "shield" && <ShieldPattern />}

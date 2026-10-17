@@ -114,7 +114,7 @@
   "content": {
     "meta": {
       "siteName": "叶俊凯",
-      "siteDescription": "俊凯是一名现居旧金山与新加坡的软件开发者，目前在 Kipo AI 打造 B2B 零件智能平台。",
+      "siteDescription": "俊凯是一名软件开发者，目前就职于位于纽约市曼哈顿的 Tetrix。",
       "jobTitle": "软件开发者",
       "pages": {
         "experience": {
@@ -132,8 +132,8 @@
     "home": {
       "greeting": "嗨，我是",
       "name": "俊凯",
-      "location": "旧金山与新加坡",
-      "aboutMe": "我做的东西大多从别人停下的地方开始：别人立下的标杆，或是一个被当作已经解决、直到真正去测量才发现并非如此的问题。主要是好奇心，外加一点好胜心。职业上做的是全栈产品工程，在 Rust 数值计算、安全工具和不确定性量化上钻得更深。",
+      "location": "新加坡与美国",
+      "aboutMe": "我喜欢弄清一句\"这做不到\"到底是不是真的。工作上，我做全栈开发；工作以外，我用 Rust 做数值计算和安全工具。",
       "evidence": {
         "pyvolr": {
           "label": "pyvolr",
@@ -155,6 +155,12 @@
     },
     "experience": {
       "jobs": {
+        "tetrix": {
+          "company": "Tetrix",
+          "location": "纽约市曼哈顿",
+          "position": "软件开发者",
+          "description": "全栈软件工程师，为私募市场构建可信赖的数据基础设施。将基金文件转化为可供资本配置者使用、可追溯的投资洞见。"
+        },
         "kipo": {
           "company": "Kipo AI",
           "location": "旧金山",

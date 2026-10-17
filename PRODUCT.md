@@ -26,8 +26,9 @@ The job is verification and escalation: confirm that the reference the visitor a
 
 Jun Kai's current situation, which future copy work must not get wrong in either direction:
 
-- He has **left Kipo AI** and is **seeking a full-time software engineering role**.
-- The site still describes Kipo in the present tense (`content.meta.siteDescription`, `content.experience.jobs.kipo`). **This is deliberate and must not be "corrected" as a stale-copy bug.** Any change to how employment status reads is a decision for Jun Kai, not a cleanup pass.
+- He has been a **Software Developer at Tetrix in Manhattan, New York, since October 2026**. His Software Engineering Internship at Kipo AI ended in **July 2026**.
+- The site describes Tetrix as his current employer and Kipo in the past tense (`content.meta.siteDescription`, `content.experience.jobs`). Any change to how employment status reads is a decision for Jun Kai, not a cleanup pass.
+- Tetrix's public positioning is private-market investment intelligence for capital allocators: turning fund documents into trusted, traceable intelligence. Do not add non-public product or customer details to the site.
 
 ## Positioning
 
@@ -74,7 +75,7 @@ The supporting shape of the claim: breadth that is genuinely end-to-end (fronten
 
 - **Name:** YIP Jun Kai; addressed as "Jun Kai" throughout the site.
 - **Domain and contact:** yipjunkai.com, `hello@yipjunkai.com`. Profiles at github.com/yipjunkai and linkedin.com/in/yipjk.
-- **Location:** San Francisco & Singapore. Singaporean.
+- **Location:** Singapore & US. Singaporean.
 - **Existing asset:** `public/logo.svg`.
 - **Voice:** plain and evidence-first. Claims arrive attached to numbers, artifacts, or links. No hedging, no self-deprecation, no inflation.
 - **Spelling: `en-SG` is Singapore English and follows British convention** -- largely, though not entirely. Default to `-ise` / `-isation`, and to `catalogue`, `centre`, `colour`, `licence` (noun), `digitise`, `optimise`, `specialisation`. Two carve-outs. **Code identifiers, package names and anything inside backticks are never respelled** -- `py_vollib_vectorized`, `pyvolr.compat.py_vollib`, CSS `color`, JS `serialize` stay exactly as published. **Technical terms of art are not an exemption** -- "normalized Black" (options-pricing literature) and "vectorized over NumPy" (NumPy ecosystem usage) were both raised as borderline and both were respelled to `normalised` / `vectorised`. House style wins over field convention in prose; the only true exemption is the identifier carve-out above. Note also that British English itself permits Oxford `-ize` -- the house style here is `-ise` regardless, so `-ize` is not defensible on that ground.

@@ -11,6 +11,7 @@ interface CardProps {
   };
   title: string;
   description?: string;
+  descriptionClassName?: string;
   bulletPoints?: string[];
   techStack?: {
     name: string;
@@ -25,6 +26,7 @@ export default function Card({
   header,
   title,
   description,
+  descriptionClassName,
   bulletPoints = [],
   techStack = [],
   techSectionLabels = {},
@@ -55,7 +57,9 @@ export default function Card({
         {header.right && <div className="tracking-tighter italic">{header.right}</div>}
       </div>
       <h4 className="text-2xl font-bold">{title}</h4>
-      {description && description.trim() !== "" && <p className="text-pretty whitespace-pre-wrap">{description}</p>}
+      {description && description.trim() !== "" && (
+        <p className={`text-pretty whitespace-pre-wrap ${descriptionClassName ?? ""}`}>{description}</p>
+      )}
       {bulletPoints.length > 0 && (
         <ul className="list-inside list-disc">
           {bulletPoints

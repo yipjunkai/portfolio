@@ -114,7 +114,7 @@
   "content": {
     "meta": {
       "siteName": "Yip Jun Kai",
-      "siteDescription": "Jun Kai is a software developer in San Francisco and Singapore. Currently at Kipo AI building B2B parts intelligence.",
+      "siteDescription": "Jun Kai is a software developer currently at Tetrix in Manhattan, New York.",
       "jobTitle": "Software Developer",
       "pages": {
         "experience": {
@@ -132,8 +132,8 @@
     "home": {
       "greeting": "Hey, I'm ",
       "name": "Jun Kai",
-      "location": "San Francisco & Singapore",
-      "aboutMe": "Most of what I build starts where something else stopped: a benchmark someone set, or a problem taken as solved until you measure it. Curiosity mostly, with a competitive streak. Professionally that's full-stack product engineering, with deeper specialisation in Rust numerical computing, security tooling and uncertainty quantification.",
+      "location": "Singapore & US",
+      "aboutMe": "I like finding out whether \"that can't be done\" is actually true. At work, I build across the stack. Outside it, I write Rust for numerical computing and security tools.",
       "evidence": {
         "pyvolr": {
           "label": "pyvolr",
@@ -155,6 +155,12 @@
     },
     "experience": {
       "jobs": {
+        "tetrix": {
+          "company": "Tetrix",
+          "location": "Manhattan, New York",
+          "position": "Software Developer",
+          "description": "Full-stack software engineer building trusted data infrastructure for private markets. Turning fund documents into traceable intelligence for capital allocators."
+        },
         "kipo": {
           "company": "Kipo AI",
           "location": "San Francisco",

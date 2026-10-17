@@ -50,15 +50,28 @@ export default async function Experience({ params }: { params: Promise<{ locale:
       section: "frontend" | "backend" | "database" | "service" | "language" | "other";
     }[];
     description: string;
+    descriptionClassName?: string;
     bulletPoints: string[];
-    patternVariant: "circuit" | "storefront" | "nodes" | "shield";
+    patternVariant: "books" | "circuit" | "storefront" | "nodes" | "shield";
   }[] = [
+    {
+      company: t("jobs.tetrix.company"),
+      location: t("jobs.tetrix.location"),
+      position: t("jobs.tetrix.position"),
+      startDate: new Date(2026, 9, 1), // Oct 2026 (Month is 0-indexed)
+      techStack: [],
+      description: t("jobs.tetrix.description"),
+      descriptionClassName: "max-w-[82ch]",
+      bulletPoints: [],
+      patternVariant: "books"
+    },
     {
       company: t("jobs.kipo.company"),
       companyUrl: "https://kipo.ai",
       location: t("jobs.kipo.location"),
       position: t("jobs.kipo.position"),
       startDate: new Date(2025, 5, 1), // Jun 2025 (Month is 0-indexed)
+      endDate: new Date(2026, 6, 1), // Jul 2026 (Month is 0-indexed)
       techStack: [
         { name: "Next.js", section: "frontend" },
         { name: "NestJS", section: "backend" },
@@ -175,6 +188,7 @@ export default async function Experience({ params }: { params: Promise<{ locale:
             }}
             title={experience.position}
             description={experience.description}
+            descriptionClassName={experience.descriptionClassName}
             bulletPoints={experience.bulletPoints}
             backgroundGraphic={<TechPattern variant={experience.patternVariant} />}
             techStack={experience.techStack}
