@@ -133,7 +133,7 @@
       "greeting": "Hey, I'm ",
       "name": "Jun Kai",
       "location": "Singapore & US",
-      "aboutMe": "I like finding out whether \"that can't be done\" is actually true. At work, I build across the stack. Outside it, I write Rust for numerical computing and security tools.",
+      "aboutMe": "I like working on problems that seem finished before they are. At work I build across the stack; outside it, I write Rust to understand systems more deeply.",
       "evidence": {
         "pyvolr": {
           "label": "pyvolr",
