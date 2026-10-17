@@ -287,7 +287,7 @@ export default function TechPattern({ variant }: TechPatternProps) {
     <div
       className={
         variant === "books"
-          ? "pointer-events-none absolute -top-4 -right-12 opacity-10 md:top-1/2 md:-translate-y-1/2 md:opacity-15 dark:opacity-10 md:dark:opacity-15"
+          ? "pointer-events-none absolute -top-4 right-0 opacity-10 md:top-1/2 md:-translate-y-1/2 md:opacity-15 dark:opacity-10 md:dark:opacity-15"
           : "pointer-events-none absolute -top-4 right-0 opacity-20 md:top-1/2 md:-translate-y-1/2 dark:opacity-15"
       }
       aria-hidden="true"
