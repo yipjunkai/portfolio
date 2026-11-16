@@ -4,6 +4,9 @@ Next.js App Router portfolio for yipjunkai.com, localized for `en-SG` and `zh-SG
 
 ## Development
 
+Use Node.js 26 and pnpm 10.28.2. With fnm, install the version in `.nvmrc` with `fnm install` and select it with `fnm use`.
+Node.js 26 does not bundle Corepack; install pnpm separately, for example with `npm install --global pnpm@10.28.2`.
+
 ```bash
 pnpm install --frozen-lockfile
 pnpm dev

@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [26.x]
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-pnpm
@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [26.x]
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-pnpm
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [26.x]
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/setup-pnpm
@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [26.x]
     needs: [type-check, lint, format]
     steps:
       - uses: actions/checkout@v7
