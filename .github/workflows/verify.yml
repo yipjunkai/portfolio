@@ -71,3 +71,7 @@ jobs:
             echo " Build artifacts missing"
             exit 1
           fi
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps --only-shell chromium
+      - name: Browser smoke tests
+        run: pnpm test:e2e

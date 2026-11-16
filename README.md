@@ -19,7 +19,10 @@ pnpm format:check
 pnpm typecheck
 pnpm lint
 pnpm build
+pnpm test:e2e
 ```
+
+The browser smoke tests use the production build. Install Chromium once with `pnpm exec playwright install --only-shell chromium`.
 
 ## Project Guidance
 
